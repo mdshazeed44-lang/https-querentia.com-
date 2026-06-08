@@ -64,7 +64,7 @@ export function Process() {
                     <span
                       className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white transition-transform duration-300 group-hover:scale-110"
                       style={{
-                        background: "linear-gradient(135deg, #2563eb, #0ea5e9)",
+                        background: "linear-gradient(135deg, var(--color-green), var(--color-blue))",
                         boxShadow: "0 8px 22px -6px rgba(37,99,235,0.6)",
                         fontFamily: "var(--font-display)",
                       }}

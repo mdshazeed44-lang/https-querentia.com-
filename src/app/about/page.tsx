@@ -268,14 +268,14 @@ export default function AboutPage() {
                 Mission &amp;{" "}
                 <span
                   className="bg-clip-text text-transparent"
-                  style={{ backgroundImage: "linear-gradient(95deg, #2563eb, #0ea5e9)" }}
+                  style={{ backgroundImage: "linear-gradient(95deg, var(--color-green), var(--color-blue))" }}
                 >
                   Vision
                 </span>
                 <span
                   aria-hidden
                   className="absolute -bottom-3 left-1/2 h-1 w-24 -translate-x-1/2 rounded-full"
-                  style={{ background: "linear-gradient(90deg, #2563eb, #0ea5e9)" }}
+                  style={{ background: "linear-gradient(90deg, var(--color-green), var(--color-blue))" }}
                 />
               </h2>
             </div>
@@ -455,7 +455,7 @@ export default function AboutPage() {
               className="relative overflow-hidden rounded-[2rem] px-6 py-16 text-center text-white shadow-[0_30px_80px_-30px_rgba(37,99,235,0.55)] md:px-16 md:py-24"
               style={{
                 background:
-                  "linear-gradient(120deg, #0a1322 0%, #1e3a8a 30%, #2563eb 60%, #0ea5e9 100%)",
+                  "linear-gradient(120deg, var(--color-deep-2) 0%, var(--color-deep) 35%, var(--color-green) 70%, var(--color-blue) 100%)",
                 backgroundSize: "200% 200%",
                 animation: "gradient-shift 12s ease-in-out infinite",
               }}

@@ -218,7 +218,7 @@ export default function InterviewTrainingPage() {
                   <div className="flex items-start gap-3">
                     <span
                       className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white"
-                      style={{ background: "linear-gradient(135deg, #2563eb, #0ea5e9)" }}
+                      style={{ background: "linear-gradient(135deg, var(--color-green), var(--color-blue))" }}
                     >
                       <Briefcase className="h-5 w-5" />
                     </span>
@@ -284,14 +284,14 @@ export default function InterviewTrainingPage() {
                 Built for{" "}
                 <span
                   className="bg-clip-text text-transparent"
-                  style={{ backgroundImage: "linear-gradient(95deg, #2563eb, #0ea5e9)" }}
+                  style={{ backgroundImage: "linear-gradient(95deg, var(--color-green), var(--color-blue))" }}
                 >
                   everyone interviewing
                 </span>
                 <span
                   aria-hidden
                   className="absolute -bottom-3 left-1/2 h-1 w-24 -translate-x-1/2 rounded-full"
-                  style={{ background: "linear-gradient(90deg, #2563eb, #0ea5e9)" }}
+                  style={{ background: "linear-gradient(90deg, var(--color-green), var(--color-blue))" }}
                 />
               </h2>
               <p className="mt-8 text-ink-muted">
@@ -368,7 +368,7 @@ export default function InterviewTrainingPage() {
               className="relative mx-auto max-w-3xl overflow-hidden rounded-[2rem] px-6 py-14 text-center text-white shadow-[0_30px_80px_-30px_rgba(37,99,235,0.55)] md:px-14 md:py-20"
               style={{
                 background:
-                  "linear-gradient(120deg, #0a1322 0%, #1e3a8a 35%, #2563eb 70%, #0ea5e9 100%)",
+                  "linear-gradient(120deg, var(--color-deep-2) 0%, var(--color-deep) 35%, var(--color-green) 70%, var(--color-blue) 100%)",
                 backgroundSize: "200% 200%",
                 animation: "gradient-shift 12s ease-in-out infinite",
               }}

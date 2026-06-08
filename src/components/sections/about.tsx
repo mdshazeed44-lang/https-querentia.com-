@@ -45,14 +45,14 @@ export function About() {
               About{" "}
               <span
                 className="bg-clip-text text-transparent"
-                style={{ backgroundImage: "linear-gradient(95deg, #2563eb, #0ea5e9)" }}
+                style={{ backgroundImage: "linear-gradient(95deg, var(--color-green), var(--color-blue))" }}
               >
                 Querentia
               </span>
               <span
                 aria-hidden
                 className="absolute -bottom-3 left-1/2 h-1 w-24 -translate-x-1/2 rounded-full"
-                style={{ background: "linear-gradient(90deg, #2563eb, #0ea5e9)" }}
+                style={{ background: "linear-gradient(90deg, var(--color-green), var(--color-blue))" }}
               />
             </h2>
             <p className="mt-8 text-ink-muted">

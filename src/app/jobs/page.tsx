@@ -121,7 +121,7 @@ export default function JobsPage() {
               className="relative overflow-hidden rounded-[2rem] px-6 py-14 text-center text-white shadow-[0_30px_80px_-30px_rgba(37,99,235,0.55)] md:px-14 md:py-20"
               style={{
                 background:
-                  "linear-gradient(120deg, #0a1322 0%, #1e3a8a 35%, #2563eb 70%, #0ea5e9 100%)",
+                  "linear-gradient(120deg, var(--color-deep-2) 0%, var(--color-deep) 35%, var(--color-green) 70%, var(--color-blue) 100%)",
                 backgroundSize: "200% 200%",
                 animation: "gradient-shift 12s ease-in-out infinite",
               }}

@@ -211,7 +211,7 @@ export default function ResumeServicesPage() {
                   <div className="flex items-start gap-3">
                     <span
                       className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white"
-                      style={{ background: "linear-gradient(135deg, #2563eb, #0ea5e9)" }}
+                      style={{ background: "linear-gradient(135deg, var(--color-green), var(--color-blue))" }}
                     >
                       <Bolt className="h-5 w-5" />
                     </span>
@@ -277,14 +277,14 @@ export default function ResumeServicesPage() {
                 Our{" "}
                 <span
                   className="bg-clip-text text-transparent"
-                  style={{ backgroundImage: "linear-gradient(95deg, #2563eb, #0ea5e9)" }}
+                  style={{ backgroundImage: "linear-gradient(95deg, var(--color-green), var(--color-blue))" }}
                 >
                   Services
                 </span>
                 <span
                   aria-hidden
                   className="absolute -bottom-3 left-1/2 h-1 w-24 -translate-x-1/2 rounded-full"
-                  style={{ background: "linear-gradient(90deg, #2563eb, #0ea5e9)" }}
+                  style={{ background: "linear-gradient(90deg, var(--color-green), var(--color-blue))" }}
                 />
               </h2>
               <p className="mt-8 text-ink-muted">

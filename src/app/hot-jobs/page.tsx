@@ -141,7 +141,7 @@ export default function HotJobsPage() {
                     <div className="flex items-start gap-4">
                       <span
                         className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110"
-                        style={{ background: "linear-gradient(135deg, #2563eb, #0ea5e9)" }}
+                        style={{ background: "linear-gradient(135deg, var(--color-green), var(--color-blue))" }}
                       >
                         <Briefcase className="h-6 w-6" />
                       </span>
@@ -220,7 +220,7 @@ export default function HotJobsPage() {
               className="relative overflow-hidden rounded-[2rem] px-6 py-14 text-center text-white shadow-[0_30px_80px_-30px_rgba(37,99,235,0.55)] md:px-14 md:py-20"
               style={{
                 background:
-                  "linear-gradient(120deg, #0a1322 0%, #1e3a8a 35%, #2563eb 70%, #0ea5e9 100%)",
+                  "linear-gradient(120deg, var(--color-deep-2) 0%, var(--color-deep) 35%, var(--color-green) 70%, var(--color-blue) 100%)",
                 backgroundSize: "200% 200%",
                 animation: "gradient-shift 12s ease-in-out infinite",
               }}

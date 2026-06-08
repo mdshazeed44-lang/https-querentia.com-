@@ -150,7 +150,7 @@ export function Hero() {
                 <div className="flex items-start gap-3">
                   <span
                     className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white"
-                    style={{ background: "linear-gradient(135deg, #2563eb, #0ea5e9)" }}
+                    style={{ background: "linear-gradient(135deg, var(--color-green), var(--color-blue))" }}
                   >
                     <Briefcase className="h-5 w-5" />
                   </span>
@@ -169,7 +169,7 @@ export function Hero() {
               <div className="absolute -right-4 top-12 inline-flex items-center gap-2 rounded-2xl border border-border bg-white px-3 py-2 shadow-[0_18px_40px_-15px_rgba(15,27,51,0.35)] animate-float-2">
                 <span
                   className="flex h-8 w-8 items-center justify-center rounded-lg text-white"
-                  style={{ background: "linear-gradient(135deg, #2563eb, #0ea5e9)" }}
+                  style={{ background: "linear-gradient(135deg, var(--color-green), var(--color-blue))" }}
                 >
                   <Star className="h-4 w-4" />
                 </span>

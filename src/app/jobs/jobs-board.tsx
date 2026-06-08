@@ -306,7 +306,7 @@ function JobCard({ job }: { job: Job }) {
         <div className="flex min-w-0 flex-1 gap-4">
           <span
             className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110"
-            style={{ background: "linear-gradient(135deg, #2563eb, #0ea5e9)" }}
+            style={{ background: "linear-gradient(135deg, var(--color-green), var(--color-blue))" }}
           >
             <Briefcase className="h-6 w-6" />
           </span>

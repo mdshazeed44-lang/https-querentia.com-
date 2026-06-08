@@ -49,7 +49,7 @@ export function WhoWeAre() {
               <span
                 aria-hidden
                 className="absolute -bottom-3 left-1/2 h-1 w-24 -translate-x-1/2 rounded-full"
-                style={{ background: "linear-gradient(90deg, #38bdf8, #0ea5e9)" }}
+                style={{ background: "linear-gradient(90deg, var(--color-sage), var(--color-blue))" }}
               />
             </h2>
             <p className="mt-8 text-on-deep-muted">
@@ -94,7 +94,7 @@ export function WhoWeAre() {
                   <span
                     aria-hidden
                     className="mx-auto mt-5 block h-1 w-10 origin-center rounded-full transition-all duration-500 group-hover:w-20"
-                    style={{ background: "linear-gradient(90deg, #2563eb, #0ea5e9)" }}
+                    style={{ background: "linear-gradient(90deg, var(--color-green), var(--color-blue))" }}
                   />
                 </div>
               </Reveal>
