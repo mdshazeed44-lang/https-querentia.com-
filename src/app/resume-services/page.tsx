@@ -425,8 +425,8 @@ export default function ResumeServicesPage() {
               {/* RIGHT — image */}
               <div className="relative aspect-[4/3] md:aspect-auto">
                 <Image
-                  src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1100&q=80"
-                  alt="A new Canadian tech immigrant smiling after a successful resume review"
+                  src="https://images.unsplash.com/photo-1573164574572-cb89e39749b4?auto=format&fit=crop&w=1100&q=80"
+                  alt="A new Canadian tech immigrant reviewing her CV on a laptop in a modern coworking space"
                   fill
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="object-cover"
