@@ -14,7 +14,6 @@ type MenuItem = {
 };
 
 const menu: MenuItem[] = [
-  { label: "Home", href: "/" },
   {
     label: "Talent Services",
     href: "/jobs",
@@ -74,10 +73,10 @@ export function SiteHeader() {
     WebkitBackdropFilter: t > 0.02 ? "blur(16px)" : undefined,
     boxShadow: `0 12px 40px -12px rgba(15, 27, 51, ${lerp(0, 0.35, t)})`,
     border: `1px solid rgba(221, 230, 242, ${lerp(0, 1, t)})`,
-    paddingTop: `${lerp(16, 5, t)}px`,
-    paddingBottom: `${lerp(16, 5, t)}px`,
-    paddingLeft: `${lerp(0, 14, t)}px`,
-    paddingRight: `${lerp(0, 5, t)}px`,
+    paddingTop: `${lerp(16, 4, t)}px`,
+    paddingBottom: `${lerp(16, 4, t)}px`,
+    paddingLeft: `${lerp(0, 12, t)}px`,
+    paddingRight: `${lerp(0, 4, t)}px`,
   };
 
   // Color interpolation helpers
@@ -93,7 +92,7 @@ export function SiteHeader() {
         <div className="mx-auto flex w-full items-center justify-between gap-3 transition-[background-color] duration-100" style={barStyle}>
           {/* Logo — crossfade between white & colored versions */}
           <Link href="/" className="relative flex shrink-0 items-center" aria-label={site.name}>
-            <div className="relative" style={{ height: lerp(36, 28, t), width: lerp(126, 100, t) }}>
+            <div className="relative" style={{ height: lerp(34, 24, t), width: lerp(118, 88, t) }}>
               {/* Colored logo (final state) */}
               <Image
                 src="/querentia-logo.png"
@@ -123,7 +122,7 @@ export function SiteHeader() {
               <div key={item.label} className="group relative">
                 <Link
                   href={item.href}
-                  className="flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 text-[13px] font-medium transition-colors xl:px-3 xl:text-sm"
+                  className="flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-1.5 text-[12.5px] font-medium transition-colors xl:px-3 xl:text-[13px]"
                   style={
                     {
                       color: navColor,
@@ -163,7 +162,7 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="glow-green inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-green px-4 py-2.5 text-[13px] font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-green-700 xl:px-5 xl:text-sm"
+              className="glow-green inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-green px-3.5 py-2 text-[12.5px] font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-green-700 xl:px-4 xl:text-[13px]"
             >
               Get in Touch <ArrowRight className="h-3.5 w-3.5" />
             </button>
