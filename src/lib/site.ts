@@ -147,6 +147,7 @@ export const openJobs: Job[] = [
     postedAt: "2026-05-28",
     summary:
       "Tier-2 SOC role with a public-sector mandate. Tune detections, lead investigations, and harden a high-stakes environment.",
+    isFeatured: true,
   },
   {
     id: "qrn-004",
@@ -219,6 +220,7 @@ export const openJobs: Job[] = [
     postedAt: "2026-05-18",
     summary:
       "Productionize recommender models for a national retailer. Partner with engineering on MLOps and real-time scoring.",
+    isFeatured: true,
   },
   {
     id: "qrn-008",

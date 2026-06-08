@@ -4,8 +4,8 @@ import { useState, useEffect, type CSSProperties } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/lib/site";
-import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown } from "@/components/ui/icons";
+import { ContactModal } from "@/components/contact-modal";
 
 type MenuItem = {
   label: string;
@@ -17,17 +17,13 @@ const menu: MenuItem[] = [
   { label: "Home", href: "/" },
   {
     label: "Talent Services",
-    href: "/employers",
-    children: [
-      { label: "For Employers", href: "/employers" },
-      { label: "For Job Seekers", href: "/candidates" },
-      { label: "Open Roles", href: "/jobs" },
-      { label: "Industries", href: "/industries" },
-    ],
+    href: "/jobs",
+    children: [{ label: "Open Positions", href: "/jobs" }],
   },
   { label: "Resume Services", href: "/resume-services" },
   { label: "Interview Training", href: "/interview-training" },
   { label: "About", href: "/about" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 // Distance (px) over which the header morphs from flat → pill
@@ -37,6 +33,7 @@ const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [t, setT] = useState(0); // 0 = top, 1 = fully shrunk pill
 
   useEffect(() => {
@@ -90,6 +87,7 @@ export function SiteHeader() {
   const iconBtnColor = `color-mix(in srgb, #ffffff ${100 - t * 100}%, var(--color-deep) ${t * 100}%)`;
 
   return (
+    <>
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="container-x" style={wrapperStyle}>
         <div className="mx-auto flex w-full items-center justify-between gap-3 transition-[background-color] duration-100" style={barStyle}>
@@ -160,11 +158,15 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          {/* Right action — Contact Us */}
+          {/* Right action — Get in Touch (opens modal) */}
           <div className="hidden items-center gap-2 lg:flex">
-            <Button href="/contact" variant="primary" className="px-6">
-              Contact Us <ArrowRight className="h-4 w-4" />
-            </Button>
+            <button
+              type="button"
+              onClick={() => setModalOpen(true)}
+              className="glow-green inline-flex items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-green-700"
+            >
+              Get in Touch <ArrowRight className="h-4 w-4" />
+            </button>
           </div>
 
           {/* Mobile toggle */}
@@ -201,11 +203,19 @@ export function SiteHeader() {
               </Link>
             ))}
             <div className="mt-2 flex flex-col gap-2 px-1">
-              <Button href="/contact" variant="primary">Contact Us</Button>
+              <button
+                type="button"
+                onClick={() => { setOpen(false); setModalOpen(true); }}
+                className="glow-green inline-flex items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-green-700"
+              >
+                Get in Touch <ArrowRight className="h-4 w-4" />
+              </button>
             </div>
           </nav>
         </div>
       </div>
     </header>
+    <ContactModal open={modalOpen} onClose={() => setModalOpen(false)} />
+    </>
   );
 }
