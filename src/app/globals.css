@@ -177,9 +177,9 @@ h1, h2, h3, h4, h5 {
   .animate-pulse-ring { animation: pulse-ring 2.2s ease-out infinite; }
   .animate-spin-slow { animation: spin-slow 12s linear infinite; }
 
-  /* Animated brand gradient text */
+  /* Animated brand gradient text — uses palette vars so it tracks the active palette */
   .text-gradient-anim {
-    background: linear-gradient(95deg, #ffffff 0%, #38bdf8 30%, #2563eb 55%, #38bdf8 80%, #ffffff 100%);
+    background: linear-gradient(95deg, #ffffff 0%, var(--color-sage) 30%, var(--color-green) 55%, var(--color-sage) 80%, #ffffff 100%);
     background-size: 250% 100%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -301,6 +301,8 @@ h1, h2, h3, h4, h5 {
 html[data-palette] .bg-deep   { background-color: var(--color-deep) !important; }
 html[data-palette] .bg-deep-2 { background-color: var(--color-deep-2) !important; }
 html[data-palette] .bg-green  { background-color: var(--color-green) !important; }
+html[data-palette] .bg-blue   { background-color: var(--color-blue) !important; }
+html[data-palette] .bg-sage   { background-color: var(--color-sage) !important; }
 html[data-palette] .bg-page-2 { background-color: var(--color-page-2) !important; }
 html[data-palette] .bg-green-soft { background-color: var(--color-green-soft) !important; }
 

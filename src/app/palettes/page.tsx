@@ -34,36 +34,6 @@ const palettes: Palette[] = [
   },
   {
     id: "2",
-    slug: "emerald-carbon",
-    name: "Emerald Carbon",
-    vibe: "Premium · growth · confident — green signals opportunity",
-    bg: "#0B1512",
-    panel: "#11211B",
-    ink: "#ECFDF5",
-    sub: "#9CC4B4",
-    accent: "#34D399",
-    accent2: "#10B981",
-    accentText: "#042015",
-    border: "rgba(255,255,255,0.10)",
-    swatches: ["#0B1512", "#11211B", "#10B981", "#34D399", "#ECFDF5"],
-  },
-  {
-    id: "3",
-    slug: "indigo-amber",
-    name: "Indigo Amber",
-    vibe: "Distinctive · premium · warm-cool contrast that feels expensive",
-    bg: "#15122E",
-    panel: "#211B45",
-    ink: "#F4F1FF",
-    sub: "#B4ABDD",
-    accent: "#F59E0B",
-    accent2: "#8B5CF6",
-    accentText: "#1A1304",
-    border: "rgba(255,255,255,0.10)",
-    swatches: ["#15122E", "#211B45", "#8B5CF6", "#F59E0B", "#F4F1FF"],
-  },
-  {
-    id: "4",
     slug: "royal-frost",
     name: "Royal Frost",
     vibe: "Clean · corporate · light — crisp enterprise credibility (CURRENT)",
@@ -78,22 +48,7 @@ const palettes: Palette[] = [
     swatches: ["#0F1B33", "#2563EB", "#0EA5E9", "#DCE6F6", "#FFFFFF"],
   },
   {
-    id: "5",
-    slug: "forest-slate",
-    name: "Forest Slate",
-    vibe: "Earthy · sophisticated · trustworthy — quietly authoritative",
-    bg: "#0F1A14",
-    panel: "#172821",
-    ink: "#EEF6F0",
-    sub: "#A5BFAF",
-    accent: "#84CC8F",
-    accent2: "#D9B97A",
-    accentText: "#0A1410",
-    border: "rgba(255,255,255,0.10)",
-    swatches: ["#0F1A14", "#172821", "#84CC8F", "#D9B97A", "#EEF6F0"],
-  },
-  {
-    id: "6",
+    id: "3",
     slug: "crimson-luxe",
     name: "Crimson Luxe",
     vibe: "Bold · luxury · premium — different from every blue site out there",
@@ -108,7 +63,7 @@ const palettes: Palette[] = [
     swatches: ["#1A0D11", "#2B141C", "#E11D48", "#F5C26B", "#FBE9EC"],
   },
   {
-    id: "7",
+    id: "4",
     slug: "midnight-gold",
     name: "Midnight Gold",
     vibe: "Exclusive · high-end · understated — black-tie tech",
@@ -123,7 +78,7 @@ const palettes: Palette[] = [
     swatches: ["#0A0A0C", "#16161A", "#E2B669", "#F5E4B9", "#FAF7EE"],
   },
   {
-    id: "8",
+    id: "5",
     slug: "sunset-coral",
     name: "Sunset Coral",
     vibe: "Warm · human · friendly — modern alternative to corporate cool",
@@ -261,7 +216,7 @@ export default function PalettesPage() {
             Querentia — Palette Options
           </h1>
           <p className="mx-auto mt-3 max-w-xl text-sm text-white/60 md:text-base">
-            Eight directions. Tap <strong className="text-white">Preview live →</strong> on any
+            Five directions. Tap <strong className="text-white">Preview live →</strong> on any
             card to apply it to the full homepage instantly — you can experience
             the real site in that palette.
           </p>

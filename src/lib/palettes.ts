@@ -10,10 +10,7 @@
 
 export type PaletteSlug =
   | "quantum-blue"
-  | "emerald-carbon"
-  | "indigo-amber"
   | "royal-frost"
-  | "forest-slate"
   | "crimson-luxe"
   | "midnight-gold"
   | "sunset-coral";
@@ -57,61 +54,10 @@ export const PALETTES: PaletteDef[] = [
     },
   },
   {
-    slug: "emerald-carbon",
-    name: "Emerald Carbon",
-    vibe: "Premium · growth · confident",
-    vars: {
-      "--color-deep": "#11211B",
-      "--color-deep-2": "#0B1512",
-      "--color-green": "#10B981",       // emerald CTA
-      "--color-green-700": "#059669",
-      "--color-green-soft": "#D1FAE5",
-      "--color-blue": "#34D399",
-      "--color-sage": "#6EE7B7",
-      "--color-page-2": "#EAF6F0",
-      "--color-on-deep": "#ECFDF5",
-      "--color-on-deep-muted": "#9CC4B4",
-    },
-  },
-  {
-    slug: "indigo-amber",
-    name: "Indigo Amber",
-    vibe: "Distinctive · warm-cool premium",
-    vars: {
-      "--color-deep": "#211B45",
-      "--color-deep-2": "#15122E",
-      "--color-green": "#8B5CF6",       // violet CTA
-      "--color-green-700": "#7c3aed",
-      "--color-green-soft": "#EDE9FE",
-      "--color-blue": "#F59E0B",        // amber secondary
-      "--color-sage": "#C4B5FD",
-      "--color-page-2": "#F0EEFA",
-      "--color-on-deep": "#F4F1FF",
-      "--color-on-deep-muted": "#B4ABDD",
-    },
-  },
-  {
     slug: "royal-frost",
     name: "Royal Frost",
     vibe: "Clean · corporate · light (CURRENT default)",
     vars: ROYAL_FROST_DEFAULTS,
-  },
-  {
-    slug: "forest-slate",
-    name: "Forest Slate",
-    vibe: "Earthy · trustworthy · authoritative",
-    vars: {
-      "--color-deep": "#172821",
-      "--color-deep-2": "#0F1A14",
-      "--color-green": "#16A34A",
-      "--color-green-700": "#15803d",
-      "--color-green-soft": "#DCFCE7",
-      "--color-blue": "#D9B97A",        // beige accent
-      "--color-sage": "#86EFAC",
-      "--color-page-2": "#EFF3EC",
-      "--color-on-deep": "#EEF6F0",
-      "--color-on-deep-muted": "#A5BFAF",
-    },
   },
   {
     slug: "crimson-luxe",

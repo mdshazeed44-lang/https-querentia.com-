@@ -73,7 +73,7 @@ export function WhoWeAre() {
                   {/* Circular icon chip */}
                   <span
                     className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-full text-white shadow-[0_18px_36px_-12px_rgba(15,27,51,0.5)] transition-all duration-500 group-hover:scale-110 group-hover:rotate-6"
-                    style={{ background: "linear-gradient(135deg, #0f1b33, #1e3a8a)" }}
+                    style={{ background: "linear-gradient(135deg, var(--color-deep-2), var(--color-green))" }}
                   >
                     <Icon className="h-9 w-9" />
                     {/* Outer ring */}
