@@ -23,7 +23,6 @@ const menu: MenuItem[] = [
   { label: "Resume Services", href: "/resume-services" },
   { label: "Interview Training", href: "/interview-training" },
   { label: "Contact Us", href: "/contact" },
-  { label: "Palette", href: "/palettes" },
 ];
 
 // Distance (px) over which the header morphs from flat → pill
