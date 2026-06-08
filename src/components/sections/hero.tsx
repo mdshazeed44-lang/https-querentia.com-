@@ -19,8 +19,8 @@ export function Hero() {
         />
       </div>
 
-      <div className="container-x relative flex flex-1 items-center pt-28 pb-10 md:pt-32 md:pb-14">
-        <div className="grid w-full items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+      <div className="container-x relative flex flex-1 items-center pt-20 pb-2 md:pt-24 md:pb-6">
+        <div className="grid w-full items-center gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
           {/* LEFT — copy */}
           <div className="text-center lg:text-left">
             <Reveal>
@@ -35,14 +35,14 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={120}>
-              <h1 className="mt-7 text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl xl:text-6xl">
+              <h1 className="mt-5 text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl md:text-5xl xl:text-6xl">
                 We Build, <span className="text-blue">Attract</span>
                 <br />&amp; Ignite Talent
               </h1>
             </Reveal>
 
             <Reveal delay={220}>
-              <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-on-deep-muted lg:mx-0 md:text-lg">
+              <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-on-deep-muted lg:mx-0 md:text-base">
                 Connecting Canada&apos;s leading enterprises with elite technology
                 professionals — across cloud, data, security, and engineering.
               </p>
@@ -52,14 +52,14 @@ export function Hero() {
             <Reveal delay={320}>
               <form
                 action="/jobs"
-                className="mx-auto mt-9 flex max-w-xl flex-col gap-2 rounded-2xl border border-white/15 bg-white/[0.06] p-2 backdrop-blur-md transition-all duration-500 focus-within:border-blue/60 focus-within:bg-white/[0.1] focus-within:shadow-[0_0_0_4px_rgba(37,99,235,0.18)] sm:flex-row sm:items-center sm:rounded-full lg:mx-0"
+                className="mx-auto mt-6 flex max-w-xl flex-col gap-2 rounded-2xl border border-white/15 bg-white/[0.06] p-1.5 backdrop-blur-md transition-all duration-500 focus-within:border-blue/60 focus-within:bg-white/[0.1] focus-within:shadow-[0_0_0_4px_rgba(37,99,235,0.18)] sm:flex-row sm:items-center sm:rounded-full lg:mx-0"
               >
                 <div className="flex flex-1 items-center gap-2 px-3">
                   <Search className="h-4 w-4 shrink-0 text-blue" />
                   <input
                     name="q"
                     placeholder="Role, skill or keyword"
-                    className="w-full bg-transparent py-2.5 text-sm text-white placeholder:text-on-deep-muted/70 focus:outline-none"
+                    className="w-full bg-transparent py-2 text-sm text-white placeholder:text-on-deep-muted/70 focus:outline-none"
                   />
                 </div>
                 <div className="hidden h-6 w-px bg-white/15 sm:block" />
@@ -68,12 +68,12 @@ export function Hero() {
                   <input
                     name="location"
                     placeholder="Location"
-                    className="w-full bg-transparent py-2.5 text-sm text-white placeholder:text-on-deep-muted/70 focus:outline-none"
+                    className="w-full bg-transparent py-2 text-sm text-white placeholder:text-on-deep-muted/70 focus:outline-none"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="flex items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_-8px_rgba(37,99,235,0.6)] transition-all duration-300 hover:scale-[1.02] hover:bg-green-700"
+                  className="flex items-center justify-center gap-2 rounded-full bg-green px-6 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_-8px_rgba(37,99,235,0.6)] transition-all duration-300 hover:scale-[1.02] hover:bg-green-700"
                 >
                   Search <ArrowRight className="h-4 w-4" />
                 </button>
@@ -81,7 +81,7 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={420}>
-              <div className="mt-5 lg:mt-6">
+              <div className="mt-4">
                 <Button href="/employers" variant="outline-light" className="hover:scale-[1.02]">
                   Hire IT talent instead <ArrowRight className="h-4 w-4" />
                 </Button>
@@ -90,15 +90,15 @@ export function Hero() {
 
             {/* Trusted by */}
             <Reveal delay={560}>
-              <div className="mt-12 lg:mt-14">
-                <p className="text-xs uppercase tracking-[0.2em] text-on-deep-muted/60">
+              <div className="mt-6 lg:mt-8">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-on-deep-muted/60">
                   Trusted by top companies in Canada
                 </p>
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 lg:justify-start">
+                <div className="mt-2 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 lg:justify-start">
                   {clients.map((c) => (
                     <span
                       key={c}
-                      className="text-base font-semibold text-white/55 transition-colors duration-300 hover:text-white md:text-lg"
+                      className="text-sm font-semibold text-white/55 transition-colors duration-300 hover:text-white md:text-base"
                       style={{ fontFamily: "var(--font-display)" }}
                     >
                       {c}
@@ -120,7 +120,7 @@ export function Hero() {
               />
 
               {/* Main image card */}
-              <div className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/15 bg-white/5 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7)]">
+              <div className="group relative aspect-[5/6] overflow-hidden rounded-[2rem] border border-white/15 bg-white/5 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7)]">
                 <Image
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80"
                   alt="Diverse IT team collaborating around a laptop in a modern Toronto office"
@@ -188,7 +188,7 @@ export function Hero() {
         aria-hidden
         viewBox="0 0 1440 66"
         preserveAspectRatio="none"
-        className="-mb-1.5 block h-12 w-full md:h-16"
+        className="-mb-1.5 block h-8 w-full md:h-12"
       >
         <path d="M0 66V24C240 50 480 60 720 50C960 40 1200 12 1440 26V66H0Z" fill="var(--color-page)" />
       </svg>
