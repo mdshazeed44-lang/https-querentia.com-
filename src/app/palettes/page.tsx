@@ -2,6 +2,7 @@
 
 type Palette = {
   id: string;
+  slug: string; // matches src/lib/palettes.ts slug
   name: string;
   vibe: string;
   bg: string;
@@ -18,6 +19,7 @@ type Palette = {
 const palettes: Palette[] = [
   {
     id: "1",
+    slug: "quantum-blue",
     name: "Quantum Blue",
     vibe: "Futuristic · tech-forward · the scope's “ahead of time” brief",
     bg: "#0A1020",
@@ -32,6 +34,7 @@ const palettes: Palette[] = [
   },
   {
     id: "2",
+    slug: "emerald-carbon",
     name: "Emerald Carbon",
     vibe: "Premium · growth · confident — green signals opportunity",
     bg: "#0B1512",
@@ -46,6 +49,7 @@ const palettes: Palette[] = [
   },
   {
     id: "3",
+    slug: "indigo-amber",
     name: "Indigo Amber",
     vibe: "Distinctive · premium · warm-cool contrast that feels expensive",
     bg: "#15122E",
@@ -60,6 +64,7 @@ const palettes: Palette[] = [
   },
   {
     id: "4",
+    slug: "royal-frost",
     name: "Royal Frost",
     vibe: "Clean · corporate · light — crisp enterprise credibility (CURRENT)",
     bg: "#F4F7FC",
@@ -74,6 +79,7 @@ const palettes: Palette[] = [
   },
   {
     id: "5",
+    slug: "forest-slate",
     name: "Forest Slate",
     vibe: "Earthy · sophisticated · trustworthy — quietly authoritative",
     bg: "#0F1A14",
@@ -88,6 +94,7 @@ const palettes: Palette[] = [
   },
   {
     id: "6",
+    slug: "crimson-luxe",
     name: "Crimson Luxe",
     vibe: "Bold · luxury · premium — different from every blue site out there",
     bg: "#1A0D11",
@@ -102,6 +109,7 @@ const palettes: Palette[] = [
   },
   {
     id: "7",
+    slug: "midnight-gold",
     name: "Midnight Gold",
     vibe: "Exclusive · high-end · understated — black-tie tech",
     bg: "#0A0A0C",
@@ -116,6 +124,7 @@ const palettes: Palette[] = [
   },
   {
     id: "8",
+    slug: "sunset-coral",
     name: "Sunset Coral",
     vibe: "Warm · human · friendly — modern alternative to corporate cool",
     bg: "#FFF8F4",
@@ -207,6 +216,24 @@ function Mockup({ p }: { p: Palette }) {
           </div>
         ))}
       </div>
+
+      {/* Action row — preview live on full homepage */}
+      <div className="flex items-center justify-between gap-3 border-t px-4 py-3" style={{ borderColor: p.border, background: p.panel }}>
+        <a
+          href={`/?palette=${p.slug}`}
+          className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold transition-transform hover:scale-[1.03]"
+          style={{ background: p.accent, color: p.accentText }}
+        >
+          Preview live →
+        </a>
+        <a
+          href={`mailto:dev@querentia.com?subject=Querentia%20palette%20pick%20%E2%80%94%20${encodeURIComponent(p.name)}`}
+          className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors"
+          style={{ color: p.ink, border: `1px solid ${p.border}` }}
+        >
+          Pick this
+        </a>
+      </div>
     </div>
   );
 }
@@ -234,8 +261,9 @@ export default function PalettesPage() {
             Querentia — Palette Options
           </h1>
           <p className="mx-auto mt-3 max-w-xl text-sm text-white/60 md:text-base">
-            Same hero mockup, eight directions. Pick one (or mix). The
-            currently-applied palette is marked.
+            Eight directions. Tap <strong className="text-white">Preview live →</strong> on any
+            card to apply it to the full homepage instantly — you can experience
+            the real site in that palette.
           </p>
         </header>
 
@@ -272,16 +300,22 @@ export default function PalettesPage() {
 
         <div className="mx-auto mt-16 max-w-2xl rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-center text-sm text-white/70 md:p-8">
           <p>
-            <strong className="text-white">Like one of these?</strong> Tell us
-            the number (1–8) and we&apos;ll apply it across the whole site —
-            colors, gradients, hover states, the lot. Open to mixes too
-            (e.g. <em className="text-white">#3 background with #7 accents</em>).
+            <strong className="text-white">How to evaluate:</strong> Hit{" "}
+            <em className="text-white">Preview live</em> on any palette → the
+            full homepage instantly re-themes. Navigate around the site — your
+            choice persists. Tap the floating <em className="text-white">×</em> at the bottom
+            to reset to default (Royal Frost).
+          </p>
+          <p className="mt-3">
+            <strong className="text-white">Found a winner?</strong> Hit{" "}
+            <em className="text-white">Pick this</em> on any card — opens an
+            email to us. Mixes welcome (e.g. <em className="text-white">#3 background with #7 accents</em>).
           </p>
           <a
-            href="mailto:dev@querentia.com?subject=Querentia%20palette%20pick"
+            href="/?palette=reset"
             className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-[#0e1117] transition-transform hover:scale-[1.02]"
           >
-            Lock in my pick →
+            Reset to default (Royal Frost) →
           </a>
         </div>
       </div>

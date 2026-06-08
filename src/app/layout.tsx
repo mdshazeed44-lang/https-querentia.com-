@@ -5,6 +5,7 @@ import { site } from "@/lib/site";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CustomCursor } from "@/components/custom-cursor";
+import { PaletteApplier } from "@/components/palette-applier";
 
 const sans = Roboto({
   variable: "--font-sans",
@@ -135,6 +136,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
+        <PaletteApplier />
         <CustomCursor />
         <SiteHeader />
         <main className="flex-1">{children}</main>
