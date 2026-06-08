@@ -59,7 +59,7 @@ export function SiteHeader() {
   // Outer wrapper interpolation — padding grows to "squeeze" pill smaller + center it.
   // On mobile we squeeze less (the pill is already narrow), on desktop more.
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-  const squeezeRem = isMobile ? 1 : 5;
+  const squeezeRem = isMobile ? 1 : 9;
   const wrapperStyle: CSSProperties = {
     paddingTop: `${lerp(0, 12, t)}px`,
     paddingLeft: `calc(1.5rem + ${lerp(0, squeezeRem, t)}rem)`,
