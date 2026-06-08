@@ -59,7 +59,7 @@ export function SiteHeader() {
   // Outer wrapper interpolation — padding grows to "squeeze" pill smaller + center it.
   // On mobile we squeeze less (the pill is already narrow), on desktop more.
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-  const squeezeRem = isMobile ? 1 : 10;
+  const squeezeRem = isMobile ? 1 : 5;
   const wrapperStyle: CSSProperties = {
     paddingTop: `${lerp(0, 12, t)}px`,
     paddingLeft: `calc(1.5rem + ${lerp(0, squeezeRem, t)}rem)`,
@@ -93,7 +93,7 @@ export function SiteHeader() {
         <div className="mx-auto flex w-full items-center justify-between gap-3 transition-[background-color] duration-100" style={barStyle}>
           {/* Logo — crossfade between white & colored versions */}
           <Link href="/" className="relative flex shrink-0 items-center" aria-label={site.name}>
-            <div className="relative" style={{ height: lerp(40, 30, t), width: lerp(140, 108, t) }}>
+            <div className="relative" style={{ height: lerp(36, 28, t), width: lerp(126, 100, t) }}>
               {/* Colored logo (final state) */}
               <Image
                 src="/querentia-logo.png"
@@ -118,12 +118,12 @@ export function SiteHeader() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-1 lg:flex">
+          <nav className="hidden items-center gap-0 lg:flex">
             {menu.map((item) => (
               <div key={item.label} className="group relative">
                 <Link
                   href={item.href}
-                  className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-colors"
+                  className="flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 text-[13px] font-medium transition-colors xl:px-3 xl:text-sm"
                   style={
                     {
                       color: navColor,
@@ -163,9 +163,9 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="glow-green inline-flex items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-green-700"
+              className="glow-green inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-green px-4 py-2.5 text-[13px] font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-green-700 xl:px-5 xl:text-sm"
             >
-              Get in Touch <ArrowRight className="h-4 w-4" />
+              Get in Touch <ArrowRight className="h-3.5 w-3.5" />
             </button>
           </div>
 
