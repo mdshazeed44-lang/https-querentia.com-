@@ -44,7 +44,7 @@ export function CTA() {
                   Find Jobs <ArrowRight className="h-4 w-4" />
                 </Button>
                 <Button
-                  href="/employers"
+                  href="/contact"
                   variant="outline-light"
                   className="w-full transition-transform duration-300 hover:scale-[1.03] sm:w-auto"
                 >

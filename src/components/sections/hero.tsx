@@ -82,7 +82,7 @@ export function Hero() {
 
             <Reveal delay={420}>
               <div className="mt-4">
-                <Button href="/employers" variant="outline-light" className="hover:scale-[1.02]">
+                <Button href="/contact" variant="outline-light" className="hover:scale-[1.02]">
                   Hire IT talent instead <ArrowRight className="h-4 w-4" />
                 </Button>
               </div>

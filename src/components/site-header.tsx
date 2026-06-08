@@ -14,6 +14,7 @@ type MenuItem = {
 };
 
 const menu: MenuItem[] = [
+  { label: "About Us", href: "/about" },
   {
     label: "Talent Services",
     href: "/jobs",
@@ -21,7 +22,6 @@ const menu: MenuItem[] = [
   },
   { label: "Resume Services", href: "/resume-services" },
   { label: "Interview Training", href: "/interview-training" },
-  { label: "About", href: "/about" },
   { label: "Contact Us", href: "/contact" },
   { label: "Palette", href: "/palettes" },
 ];
