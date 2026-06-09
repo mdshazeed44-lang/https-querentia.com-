@@ -112,6 +112,21 @@ h1, h2, h3, h4, h5 {
   }
 }
 
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-x-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@layer utilities {
+  .animate-marquee-slow { animation: marquee-x 50s linear infinite; }
+  .animate-marquee-mid  { animation: marquee-x 35s linear infinite; }
+  .animate-marquee-rev  { animation: marquee-x-reverse 45s linear infinite; }
+}
+
 @keyframes float-slow {
   0%, 100% { transform: translateY(0) scale(1); }
   50% { transform: translateY(-14px) scale(1.03); }
