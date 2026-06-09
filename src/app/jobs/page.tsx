@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "@/components/ui/icons";
+import { ArrowRight } from "@/components/ui/icons";
 import { site, openJobs } from "@/lib/site";
 import { JobsBoard } from "./jobs-board";
 
@@ -43,67 +43,57 @@ export default function JobsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(listSchema) }}
       />
 
-      {/* HERO — compact, listing-focused (not full viewport — we want results visible) */}
-      <section className="relative overflow-hidden bg-deep-2 text-on-deep">
-        <div aria-hidden className="pointer-events-none absolute inset-0">
+      {/* HERO */}
+      <section className="relative isolate overflow-hidden bg-deep-2 text-on-deep">
+        <div aria-hidden className="absolute inset-0 -z-10">
           <div
-            className="animate-aurora absolute -top-32 left-[20%] h-[36rem] w-[36rem] rounded-full blur-[160px]"
-            style={{ background: "radial-gradient(circle, rgba(37,99,235,0.45), transparent 65%)" }}
+            className="absolute inset-0 animate-gradient-pan"
+            style={{
+              background:
+                "linear-gradient(120deg, #0b0c0a 0%, #1a1c19 30%, #1f3a2a 60%, #1a1c19 100%)",
+            }}
           />
-          <div
-            className="animate-aurora-2 absolute -bottom-20 right-[15%] h-[30rem] w-[30rem] rounded-full blur-[160px]"
-            style={{ background: "radial-gradient(circle, rgba(14,165,233,0.3), transparent 70%)" }}
-          />
+          <span className="grain absolute inset-0" />
         </div>
 
-        <div className="container-x relative pt-32 pb-16 md:pt-40 md:pb-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 text-xs font-medium text-on-deep backdrop-blur-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-green opacity-80" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-green" />
-                </span>
-                <Sparkles className="h-3.5 w-3.5 text-blue" />
-                {openJobs.length} live roles · Updated this week
+        <div className="container-x relative pt-32 pb-16 md:pt-44 md:pb-24">
+          <Reveal>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-4 py-1.5 text-xs font-medium text-white/85 backdrop-blur-sm">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sage opacity-70" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-sage" />
               </span>
-            </Reveal>
-            <Reveal delay={120}>
-              <h1 className="mt-7 text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-                We want to <span className="text-blue">work with you</span>.
-              </h1>
-            </Reveal>
-            <Reveal delay={220}>
-              <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
-                Job searching just got simpler. If you&apos;re a skilled
-                technology professional looking for a partner who actually
-                listens — your search starts here.
-              </p>
-            </Reveal>
-            <Reveal delay={340}>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <a
-                  href="#results"
-                  className="inline-flex items-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_-8px_rgba(37,99,235,0.6)] transition-all duration-300 hover:scale-[1.02] hover:bg-green-700"
-                >
-                  See open roles <ArrowRight className="h-4 w-4" />
-                </a>
-                <Button href="/contact" variant="outline-light">
-                  Submit your CV
-                </Button>
-              </div>
-            </Reveal>
-          </div>
+              {openJobs.length} live roles · Updated this week
+            </span>
+          </Reveal>
+          <Reveal delay={120}>
+            <h1
+              className="mt-7 max-w-3xl text-[clamp(2.75rem,9vw,7.5rem)] font-medium leading-[0.95] tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              We want to <span className="text-white/70">work with you</span>.
+            </h1>
+          </Reveal>
+          <Reveal delay={240}>
+            <p className="mt-7 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
+              If you&apos;re a skilled technology professional looking for a
+              partner who actually listens — your search starts here.
+            </p>
+          </Reveal>
+          <Reveal delay={360}>
+            <div className="mt-9 flex flex-wrap items-center gap-3">
+              <a
+                href="#results"
+                className="magnetic shine inline-flex items-center gap-2 rounded-full bg-green px-7 py-3.5 text-sm font-medium text-white shadow-[0_18px_40px_-12px_rgba(38,112,68,0.5)] transition-colors hover:bg-green-700"
+              >
+                See open roles <ArrowRight className="h-4 w-4" />
+              </a>
+              <Button href="/contact" variant="outline-light" className="magnetic">
+                Submit your CV
+              </Button>
+            </div>
+          </Reveal>
         </div>
-
-        <svg
-          aria-hidden
-          viewBox="0 0 1440 66"
-          preserveAspectRatio="none"
-          className="-mb-1.5 block h-12 w-full md:h-16"
-        >
-          <path d="M0 66V24C240 50 480 60 720 50C960 40 1200 12 1440 26V66H0Z" fill="var(--color-page)" />
-        </svg>
       </section>
 
       {/* JOB BOARD */}
@@ -114,22 +104,20 @@ export default function JobsPage() {
       </section>
 
       {/* TALENT POOL CTA */}
-      <section className="bg-page-2 py-20 md:py-28">
+      <section className="bg-page py-12 md:py-16">
         <div className="container-x">
           <Reveal>
             <div
-              className="relative overflow-hidden rounded-[2rem] px-6 py-14 text-center text-white shadow-[0_30px_80px_-30px_rgba(37,99,235,0.55)] md:px-14 md:py-20"
+              className="grain animate-gradient-pan relative overflow-hidden rounded-3xl px-8 py-16 text-center text-white md:px-16 md:py-24"
               style={{
                 background:
-                  "linear-gradient(120deg, var(--color-deep-2) 0%, var(--color-deep) 35%, var(--color-green) 70%, var(--color-blue) 100%)",
-                backgroundSize: "200% 200%",
-                animation: "gradient-shift 12s ease-in-out infinite",
+                  "linear-gradient(120deg, #0b0c0a 0%, #1a1c19 30%, #1f3a2a 60%, #1a1c19 100%)",
               }}
             >
-              <div
+              <span
                 aria-hidden
-                className="animate-aurora pointer-events-none absolute -left-10 -top-10 h-72 w-72 rounded-full blur-[120px]"
-                style={{ background: "radial-gradient(circle, rgba(255,255,255,0.3), transparent 70%)" }}
+                className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full blur-3xl"
+                style={{ background: "radial-gradient(circle, rgba(143,184,159,0.25), transparent 70%)" }}
               />
               <div className="relative">
                 <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
