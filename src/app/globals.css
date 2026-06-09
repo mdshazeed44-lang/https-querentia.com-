@@ -120,9 +120,112 @@ h1, h2, h3, h4, h5 {
   100% { background-position: 200% 50%; }
 }
 
+/* Ken Burns — slow zoom + drift for hero background */
+@keyframes ken-burns {
+  0% { transform: scale(1.08) translate(0, 0); }
+  50% { transform: scale(1.14) translate(-1.5%, -1%); }
+  100% { transform: scale(1.08) translate(0, 0); }
+}
+
+/* Scroll cue line pulse */
+@keyframes scroll-cue {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* Word-by-word fade-in (used on hero headline) */
+@keyframes word-rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Underline draw-in */
+@keyframes underline-draw {
+  from { transform: scaleX(0); transform-origin: left; }
+  to   { transform: scaleX(1); transform-origin: left; }
+}
+
+/* Slow gradient pan for CTA card */
+@keyframes gradient-pan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 @layer utilities {
   .animate-float { animation: float-slow 7s ease-in-out infinite; }
   .animate-float-2 { animation: float-slow 9s ease-in-out infinite; animation-delay: -2s; }
+  .animate-ken-burns { animation: ken-burns 22s ease-in-out infinite; }
+  .animate-scroll-cue { animation: scroll-cue 2.4s ease-in-out infinite; }
+  .animate-gradient-pan {
+    background-size: 200% 200%;
+    animation: gradient-pan 14s ease-in-out infinite;
+  }
+
+  /* Word rise — applied to children via custom delay */
+  .word {
+    display: inline-block;
+    opacity: 0;
+    animation: word-rise 0.9s var(--ease-out-expo) forwards;
+  }
+
+  /* Underline that draws in once visible */
+  .underline-draw {
+    display: inline-block;
+    background: linear-gradient(currentColor, currentColor) bottom left / 100% 2px no-repeat;
+    padding-bottom: 4px;
+  }
+  .underline-draw.is-in {
+    animation: underline-draw 0.8s 0.4s var(--ease-out-expo) both;
+  }
+
+  /* Shine sweep on hover (card overlay) */
+  .shine {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .shine::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.18) 50%,
+      transparent 100%
+    );
+    transform: translateX(-150%) skewX(-12deg);
+    transition: transform 1s var(--ease-out-expo);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .shine:hover::before { transform: translateX(150%) skewX(-12deg); }
+  .shine > * { position: relative; z-index: 2; }
+
+  /* Lift + glow on hover */
+  .lift {
+    transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s var(--ease-out-expo), border-color 0.4s ease;
+  }
+  .lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 60px -22px rgba(38, 112, 68, 0.25);
+  }
+
+  /* Magnetic button — slight scale on hover */
+  .magnetic {
+    transition: transform 0.4s var(--ease-out-expo);
+  }
+  .magnetic:hover { transform: translateY(-2px) scale(1.02); }
+
+  /* Scroll-driven progress bar variable (set by JS) */
+  .scroll-progress {
+    transform-origin: left;
+    transform: scaleX(var(--scroll, 0));
+    transition: transform 0.1s linear;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

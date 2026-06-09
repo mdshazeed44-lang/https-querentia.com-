@@ -38,11 +38,15 @@ export function Industries() {
             const Icon = iconMap[s.icon] ?? Code;
             return (
               <Reveal key={s.title} delay={(i % 10) * 50}>
-                <div className="group relative flex h-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-7 text-center transition-all duration-300 hover:border-sage/50 hover:bg-white/[0.07]">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/[0.08] text-sage transition-all duration-500 group-hover:scale-110">
+                <div className="group relative flex h-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-7 text-center transition-all duration-500 hover:-translate-y-1 hover:border-sage/50 hover:bg-white/[0.08] hover:shadow-[0_18px_40px_-16px_rgba(143,184,159,0.35)]">
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sage/0 to-sage/0 opacity-0 transition-opacity duration-500 group-hover:from-sage/10 group-hover:opacity-100"
+                  />
+                  <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-white/[0.08] text-sage transition-all duration-500 group-hover:rotate-[8deg] group-hover:scale-110 group-hover:bg-sage/20">
                     <Icon className="h-5 w-5" />
                   </span>
-                  <h3 className="mt-4 text-sm font-medium leading-snug text-white">
+                  <h3 className="relative mt-4 text-sm font-medium leading-snug text-white transition-colors duration-300 group-hover:text-sage">
                     {s.title}
                   </h3>
                 </div>

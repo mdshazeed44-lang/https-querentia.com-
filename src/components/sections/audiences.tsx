@@ -37,7 +37,7 @@ export function Audiences() {
           <Reveal key={c.eyebrow} delay={i * 120}>
             <Link
               href={c.href}
-              className="group relative block h-full overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all duration-500 hover:-translate-y-1 hover:border-green/40 md:p-10"
+              className="group shine lift relative block h-full overflow-hidden rounded-3xl border border-border bg-card p-8 hover:border-green/40 md:p-10"
             >
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-green">
                 {c.eyebrow}

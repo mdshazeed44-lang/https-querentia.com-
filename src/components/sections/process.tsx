@@ -33,18 +33,27 @@ export function Process() {
           </div>
         </Reveal>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
+        <div className="relative mt-14 grid gap-5 md:grid-cols-3">
+          {/* Connecting line behind the cards */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute left-[10%] right-[10%] top-1/2 hidden h-px -translate-y-1/2 md:block"
+            style={{
+              background:
+                "linear-gradient(to right, transparent, rgba(38,112,68,0.35) 20%, rgba(38,112,68,0.35) 80%, transparent)",
+            }}
+          />
           {steps.map((s, i) => (
-            <Reveal key={s.n} delay={i * 120}>
-              <div className="group h-full rounded-3xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-green/40">
+            <Reveal key={s.n} delay={i * 160}>
+              <div className="group lift relative h-full rounded-3xl border border-border bg-card p-8 hover:border-green/40">
                 <span
-                  className="text-xs font-semibold uppercase tracking-[0.2em] text-green"
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-green-soft text-sm font-semibold text-green transition-all duration-500 group-hover:scale-110 group-hover:bg-green group-hover:text-white"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   {s.n}
                 </span>
                 <h3
-                  className="mt-4 text-2xl font-medium tracking-tight text-deep"
+                  className="mt-5 text-2xl font-medium tracking-tight text-deep transition-colors duration-300 group-hover:text-green"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   {s.title}

@@ -4,7 +4,7 @@ import { stats } from "@/lib/site";
 
 export function Stats() {
   return (
-    <section className="bg-page py-20 md:py-28">
+    <section id="stats" className="bg-page py-20 md:py-28">
       <div className="container-x">
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
@@ -19,14 +19,15 @@ export function Stats() {
 
         <div className="mt-14 grid grid-cols-2 gap-y-12 border-y border-border md:grid-cols-4 md:divide-x md:divide-border md:py-12">
           {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 80}>
-              <div className="px-6 text-center">
+            <Reveal key={s.label} delay={i * 110}>
+              <div className="group px-6 text-center">
                 <p
-                  className="text-[clamp(2.5rem,5vw,4.5rem)] font-medium leading-none tracking-tight text-deep"
+                  className="text-[clamp(2.5rem,5vw,4.5rem)] font-medium leading-none tracking-tight text-deep transition-transform duration-500 group-hover:scale-[1.04]"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   <CountUp value={s.value} />
                 </p>
+                <span className="mx-auto mt-4 block h-[2px] w-8 origin-center bg-green transition-all duration-500 group-hover:w-16" />
                 <p className="mt-3 text-sm font-medium text-deep">{s.label}</p>
                 <p className="mt-1 text-xs text-ink-faint">{s.sub}</p>
               </div>

@@ -7,8 +7,20 @@ export function CTA() {
     <section className="bg-page py-12 md:py-16">
       <div className="container-x">
         <Reveal>
-          <div className="grain relative overflow-hidden rounded-3xl bg-deep-2 px-8 py-16 md:px-16 md:py-24">
-            <div className="grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
+          <div
+            className="grain relative overflow-hidden rounded-3xl px-8 py-16 md:px-16 md:py-24 animate-gradient-pan"
+            style={{
+              background:
+                "linear-gradient(120deg, #0b0c0a 0%, #1a1c19 30%, #1f3a2a 60%, #1a1c19 100%)",
+            }}
+          >
+            {/* Soft accent glow */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full blur-3xl"
+              style={{ background: "radial-gradient(circle, rgba(143,184,159,0.25), transparent 70%)" }}
+            />
+            <div className="relative grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sage">
                   Hunt with us
