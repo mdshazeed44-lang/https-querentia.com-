@@ -6,7 +6,6 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CustomCursor } from "@/components/custom-cursor";
 import { ScrollProgress } from "@/components/scroll-progress";
-import { LenisProvider } from "@/components/lenis-provider";
 
 const sans = DM_Sans({
   variable: "--font-sans",
@@ -143,7 +142,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
-        <LenisProvider />
         <ScrollProgress />
         <CustomCursor />
         <SiteHeader />
