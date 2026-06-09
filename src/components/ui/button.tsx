@@ -1,18 +1,21 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
-type Variant = "primary" | "secondary" | "outline-light" | "ghost";
+type Variant = "primary" | "secondary" | "outline-light" | "outline-dark" | "ghost";
 
 const styles: Record<Variant, string> = {
-  // Royal blue CTA
+  // Forest green pill — primary CTA on light + dark
   primary:
-    "bg-green text-white font-semibold hover:bg-green-700 glow-green",
-  // Light surface button for use on light sections
+    "bg-green text-white font-medium hover:bg-green-700",
+  // Cream pill on light bg
   secondary:
-    "border border-border-2 bg-white text-deep font-medium hover:border-green hover:text-green-700",
-  // Outline button for use on deep teal sections
+    "bg-card text-deep border border-border-2 font-medium hover:border-deep",
+  // Outline on dark bg (cream stroke)
   "outline-light":
-    "border border-white/35 text-white font-medium hover:bg-white/10 hover:border-white/60",
+    "border border-white/30 text-white font-medium hover:bg-white/10 hover:border-white/60",
+  // Outline on light bg (charcoal stroke)
+  "outline-dark":
+    "border border-deep text-deep font-medium hover:bg-deep hover:text-white",
   ghost: "text-ink-muted hover:text-deep",
 };
 

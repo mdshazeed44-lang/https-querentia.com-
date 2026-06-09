@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Roboto, Poppins } from "next/font/google";
+import { DM_Sans, Familjen_Grotesk } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CustomCursor } from "@/components/custom-cursor";
 
-const sans = Roboto({
+const sans = DM_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   display: "swap",
 });
 
-const display = Poppins({
+const display = Familjen_Grotesk({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["500", "600", "700"],

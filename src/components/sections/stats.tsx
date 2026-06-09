@@ -1,44 +1,38 @@
-import { stats } from "@/lib/site";
 import { Reveal } from "@/components/ui/reveal";
 import { CountUp } from "@/components/ui/count-up";
-import { Star, Briefcase, Bolt, Shield } from "@/components/ui/icons";
-
-const iconMap = {
-  star: Star,
-  briefcase: Briefcase,
-  bolt: Bolt,
-  shield: Shield,
-} as const;
+import { stats } from "@/lib/site";
 
 export function Stats() {
   return (
-    <section className="bg-page py-16 md:py-20">
+    <section className="bg-page py-20 md:py-28">
       <div className="container-x">
         <Reveal>
-          <div className="grid grid-cols-2 gap-y-10 md:grid-cols-4 md:divide-x md:divide-border">
-            {stats.map((s) => {
-              const Icon = iconMap[s.icon as keyof typeof iconMap];
-              return (
-                <div
-                  key={s.label}
-                  className="group flex flex-col items-center px-6 text-center"
-                >
-                  <Icon className="h-5 w-5 text-green-700 transition-transform duration-500 group-hover:scale-110" />
-                  <div
-                    className="mt-3 text-4xl font-bold tracking-tight text-deep md:text-5xl"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    <CountUp value={s.value} />
-                  </div>
-                  <div className="mt-2 text-sm font-semibold text-deep">
-                    {s.label}
-                  </div>
-                  <div className="mt-0.5 text-xs text-ink-faint">{s.sub}</div>
-                </div>
-              );
-            })}
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green">
+              By the numbers
+            </p>
+            <h2 className="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[1.05] tracking-tight text-deep">
+              The best hires have always come through people you trust.
+            </h2>
           </div>
         </Reveal>
+
+        <div className="mt-14 grid grid-cols-2 gap-y-12 border-y border-border md:grid-cols-4 md:divide-x md:divide-border md:py-12">
+          {stats.map((s, i) => (
+            <Reveal key={s.label} delay={i * 80}>
+              <div className="px-6 text-center">
+                <p
+                  className="text-[clamp(2.5rem,5vw,4.5rem)] font-medium leading-none tracking-tight text-deep"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  <CountUp value={s.value} />
+                </p>
+                <p className="mt-3 text-sm font-medium text-deep">{s.label}</p>
+                <p className="mt-1 text-xs text-ink-faint">{s.sub}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
