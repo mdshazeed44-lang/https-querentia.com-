@@ -1,159 +1,145 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
 import { ArrowRight } from "@/components/ui/icons";
+import { clients } from "@/lib/site";
 
-// Specs scroll vertically on the right edge as a "live" feed
-const SPECS_LIVE = [
-  "Cloud Technologies",
-  "Data Engineering",
-  "Cyber Security",
-  "Full Stack Development",
-  "Data Science",
-  "UI / UX Design",
-  "DevOps",
-  "Blockchain",
-  "Data Analytics",
-  "Project Management",
-];
-
-const WORDS = ["Build,", "Attract", "&", "Ignite"];
+// Headline split into words for staggered rise animation
+const LINE_1 = ["There's", "a", "team"];
+const LINE_2_PRE = ["you", "should"];
+const LINE_2_POST = ["build."];
 
 export function Hero() {
+  // Build staggered animation delays per word
   let i = 0;
-  const w = () => {
-    const d = 0.1 + i * 0.09;
+  const wordStyle = () => {
+    const d = 0.1 + i * 0.07;
     i++;
     return { animationDelay: `${d}s` } as React.CSSProperties;
   };
 
   return (
-    <section className="relative isolate overflow-hidden bg-page">
-      {/* Subtle grid backdrop */}
+    <section className="relative isolate overflow-hidden bg-deep-2 text-on-deep">
+      {/* Background portrait with Ken Burns slow zoom */}
       <div aria-hidden className="absolute inset-0 -z-10">
-        <div
-          className="absolute inset-0 opacity-[0.04]"
+        <div className="absolute inset-0 animate-ken-burns">
+          <Image
+            src="https://images.unsplash.com/photo-1573164574572-cb89e39749b4?auto=format&fit=crop&w=2400&q=80"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-65"
+          />
+        </div>
+        {/* Vignette */}
+        <span
+          className="absolute inset-0"
           style={{
-            backgroundImage:
-              "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-            color: "var(--color-ink)",
+            background:
+              "linear-gradient(115deg, rgba(11,12,10,0.92) 0%, rgba(11,12,10,0.6) 45%, rgba(11,12,10,0.3) 70%, rgba(11,12,10,0.85) 100%)",
           }}
         />
-        <div
-          className="absolute -left-32 top-0 h-[40rem] w-[40rem] rounded-full blur-[140px] opacity-30"
-          style={{ background: "radial-gradient(circle, rgba(38,112,68,0.4), transparent 70%)" }}
+        {/* Bottom fade */}
+        <span
+          className="absolute inset-x-0 bottom-0 h-64"
+          style={{
+            background: "linear-gradient(to bottom, transparent, rgba(11,12,10,0.95))",
+          }}
         />
-        <div
-          className="absolute -right-32 bottom-0 h-[34rem] w-[34rem] rounded-full blur-[140px] opacity-25"
-          style={{ background: "radial-gradient(circle, rgba(143,184,159,0.6), transparent 70%)" }}
-        />
+        {/* Subtle grain */}
+        <span className="grain absolute inset-0" />
       </div>
 
-      <div className="container-x relative grid items-end gap-12 pt-32 pb-16 md:pt-44 md:pb-24 lg:grid-cols-[1.5fr_1fr]">
-        {/* LEFT — editorial type */}
-        <div>
+      <div className="container-x relative pt-32 pb-20 md:pt-48 md:pb-28">
+        <div className="max-w-3xl">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-green">
-              Querentia · Talent Redefined
-            </p>
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-4 py-1.5 text-xs font-medium text-white/85 backdrop-blur-sm">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sage opacity-70" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-sage" />
+              </span>
+              IT Recruitment · Oakville, Canada
+            </span>
           </Reveal>
 
-          {/* Massive editorial headline — word-by-word reveal */}
-          <h1 className="mt-6 text-[clamp(3.5rem,11vw,11rem)] font-medium leading-[0.86] tracking-[-0.04em] text-deep">
-            <span className="block">
-              <span className="word mr-[0.18em]" style={w()}>We</span>
-            </span>
-            <span className="block">
-              {WORDS.map((wd) => (
-                <span
-                  key={wd}
-                  className={`word mr-[0.18em] ${wd === "Ignite" ? "italic text-green" : ""}`}
-                  style={w()}
-                >
-                  {wd}
-                </span>
-              ))}
-            </span>
-            <span className="block">
-              <span className="word mr-[0.18em]" style={w()}>Talent.</span>
-            </span>
+          {/* Staggered word-rise headline */}
+          <h1 className="mt-7 text-[clamp(2.75rem,8vw,6.5rem)] font-medium leading-[0.95] tracking-tight">
+            {LINE_1.map((w) => (
+              <span key={w} className="word mr-[0.22em]" style={wordStyle()}>
+                {w}
+              </span>
+            ))}
+            <br />
+            {LINE_2_PRE.map((w) => (
+              <span key={w} className="word mr-[0.22em] text-white/70" style={wordStyle()}>
+                {w}
+              </span>
+            ))}
+            {LINE_2_POST.map((w) => (
+              <span key={w} className="word" style={wordStyle()}>
+                {w}
+              </span>
+            ))}
           </h1>
 
-          <Reveal delay={820}>
-            <p className="mt-10 max-w-xl text-base leading-relaxed text-ink-muted md:text-xl">
-              Trusted Talent Partners. Remarkable services. Built for the
-              ambitions of Canada&apos;s leading enterprises — and the careers
-              of the people powering them.
+          <Reveal delay={640}>
+            <p className="mt-7 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
+              The IT recruitment partner Canada&apos;s leading enterprises trust
+              to staff their most critical technology programs — through the
+              people they already rely on.
             </p>
           </Reveal>
 
-          <Reveal delay={960}>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                href="/jobs"
-                className="magnetic inline-flex items-center gap-2 rounded-full bg-deep px-8 py-4 text-sm font-medium text-page transition-all hover:bg-green"
-              >
-                Find Jobs <ArrowRight className="h-4 w-4" />
-              </Link>
+          <Reveal delay={780}>
+            <div className="mt-9 flex flex-wrap items-center gap-3">
               <Link
                 href="/contact"
-                className="magnetic group inline-flex items-center gap-3 text-sm font-medium text-deep"
+                className="magnetic shine inline-flex items-center gap-2 rounded-full bg-green px-7 py-3.5 text-sm font-medium text-white shadow-[0_18px_40px_-12px_rgba(38,112,68,0.5)] transition-colors duration-300 hover:bg-green-700"
               >
-                <span className="relative">
-                  Or hire IT talent
-                  <span className="absolute inset-x-0 -bottom-1 h-[2px] origin-left scale-x-100 bg-deep transition-transform duration-500 group-hover:scale-x-0" />
-                  <span className="absolute inset-x-0 -bottom-1 h-[2px] origin-right scale-x-0 bg-green transition-transform duration-500 group-hover:scale-x-100" />
-                </span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                Hire IT talent
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </Link>
+              <Link
+                href="/jobs"
+                className="magnetic inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3.5 text-sm font-medium text-white backdrop-blur-md transition-colors hover:border-white/60 hover:bg-white/10"
+              >
+                Find a role
               </Link>
             </div>
           </Reveal>
         </div>
 
-        {/* RIGHT — live spec vertical feed */}
-        <Reveal delay={400}>
-          <div className="relative hidden lg:block">
-            <div className="absolute -top-6 left-0 right-0 z-10 h-16 bg-gradient-to-b from-page to-transparent" />
-            <div className="absolute -bottom-6 left-0 right-0 z-10 h-16 bg-gradient-to-t from-page to-transparent" />
-
-            <div className="relative h-[28rem] overflow-hidden">
-              <div className="flex animate-marquee-rev flex-col gap-3" style={{ animationDirection: "normal" }}>
-                {[...SPECS_LIVE, ...SPECS_LIVE].map((s, idx) => (
-                  <div
-                    key={`${s}-${idx}`}
-                    className="group flex items-center justify-between rounded-2xl border border-border bg-card px-5 py-4 transition-colors hover:border-green/40"
-                  >
-                    <span className="text-sm font-medium text-deep">{s}</span>
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-green-soft text-green transition-transform duration-300 group-hover:translate-x-0.5">
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <p className="mt-5 text-[10px] uppercase tracking-[0.3em] text-ink-faint">
-              ↑ Live · 30+ specialisations
-            </p>
-          </div>
+        {/* Scroll cue */}
+        <Reveal delay={1100}>
+          <a
+            href="#stats"
+            aria-label="Scroll to next section"
+            className="absolute bottom-32 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-white/55 transition-colors hover:text-white md:flex"
+          >
+            <span>Scroll</span>
+            <span className="relative block h-10 w-px overflow-hidden bg-white/15">
+              <span className="absolute inset-0 animate-scroll-cue bg-white/90" />
+            </span>
+          </a>
         </Reveal>
       </div>
 
-      {/* Bottom edge — running specializations marquee in a thin dark band */}
-      <div className="relative border-y border-border bg-deep py-5 text-on-deep">
-        <div className="flex animate-marquee-mid gap-12 whitespace-nowrap">
-          {[
-            "Cloud · Data · Cyber · AI · Cloud · Data · Cyber · AI · Cloud · Data · Cyber · AI",
-            "Cloud · Data · Cyber · AI · Cloud · Data · Cyber · AI · Cloud · Data · Cyber · AI",
-          ].map((row, idx) => (
-            <span
-              key={idx}
-              className="text-2xl font-medium tracking-tight md:text-4xl"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              {row}
-            </span>
-          ))}
+      {/* Trust band */}
+      <div className="relative border-t border-white/10">
+        <div className="container-x py-8 md:py-10">
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-5 lg:justify-between">
+            {clients.map((c, idx) => (
+              <Reveal key={c} delay={idx * 80}>
+                <span
+                  className="text-xl font-medium tracking-tight text-white/55 transition-colors hover:text-white md:text-2xl"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {c}
+                </span>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
