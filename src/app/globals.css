@@ -293,33 +293,6 @@ h1, h2, h3, h4, h5 {
   color: var(--color-ink);
 }
 
-/* ---------- Palette preview overrides ----------
-   When PaletteApplier sets data-palette on <html>, these rules win over
-   Tailwind's compiled utilities (specificity 0,2,0 vs Tailwind's 0,1,0).
-   Lets us live-preview palettes without refactoring every utility class.
-*/
-html[data-palette] .bg-deep   { background-color: var(--color-deep) !important; }
-html[data-palette] .bg-deep-2 { background-color: var(--color-deep-2) !important; }
-html[data-palette] .bg-green  { background-color: var(--color-green) !important; }
-html[data-palette] .bg-blue   { background-color: var(--color-blue) !important; }
-html[data-palette] .bg-sage   { background-color: var(--color-sage) !important; }
-html[data-palette] .bg-page-2 { background-color: var(--color-page-2) !important; }
-html[data-palette] .bg-green-soft { background-color: var(--color-green-soft) !important; }
-
-html[data-palette] .text-deep        { color: var(--color-deep) !important; }
-html[data-palette] .text-green       { color: var(--color-green) !important; }
-html[data-palette] .text-green-700   { color: var(--color-green-700) !important; }
-html[data-palette] .text-blue        { color: var(--color-blue) !important; }
-html[data-palette] .text-sage        { color: var(--color-sage) !important; }
-html[data-palette] .text-on-deep     { color: var(--color-on-deep) !important; }
-html[data-palette] .text-on-deep-muted { color: var(--color-on-deep-muted) !important; }
-
-html[data-palette] .border-deep    { border-color: var(--color-deep) !important; }
-html[data-palette] .border-green   { border-color: var(--color-green) !important; }
-
-html[data-palette] .hover\:bg-green-700:hover { background-color: var(--color-green-700) !important; }
-html[data-palette] .hover\:text-green-700:hover { color: var(--color-green-700) !important; }
-html[data-palette] .hover\:border-green:hover { border-color: var(--color-green) !important; }
 
 /* ---------- Custom mouse cursor ---------- */
 @media (pointer: fine) {
