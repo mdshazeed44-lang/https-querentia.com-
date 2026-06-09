@@ -2,8 +2,10 @@
 
 /* ============================================================
    QUERENTIA — Design System
-   Hunt Club + Azuro inspired · Warm cream + deep charcoal + forest green
-   Fonts: Familjen Grotesk (display) + DM Sans (body)
+   - Inner pages: Hunt Club (cream + charcoal + forest green)
+   - HOMEPAGE: Futuristic dark + electric indigo (TECHUNT-style)
+   Fonts: Clash Display (futuristic display), Familjen Grotesk (inner),
+          DM Sans (body)
    ============================================================ */
 
 @theme inline {
@@ -243,6 +245,111 @@ h1, h2, h3, h4, h5 {
 ::-webkit-scrollbar-track { background: #efece5; }
 ::-webkit-scrollbar-thumb { background: #c8c2b4; border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-green); }
+
+/* ============================================================
+   FUTURISTIC THEME (used on homepage only via .theme-futuristic)
+   ============================================================ */
+.theme-futuristic {
+  --bg-near: #0a0a0f;          /* near-black */
+  --bg-dark: #050510;          /* darker */
+  --primary: #1027d4;          /* electric indigo */
+  --primary-2: #4f6bff;        /* lighter indigo */
+  --ice: #d3e2ff;              /* ice blue */
+  --neon: #00e5ff;             /* cyan neon */
+  --ink: #ffffff;
+  --ink-muted: #a4a8bd;
+  --font-tech: "Clash Display", "Familjen Grotesk", system-ui, sans-serif;
+
+  background: var(--bg-near);
+  color: var(--ink);
+}
+
+.theme-futuristic .h-display {
+  font-family: var(--font-tech);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+
+/* Headline character / word reveal — initial state for GSAP */
+.split-char,
+.split-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(110%);
+  will-change: transform, opacity;
+}
+
+/* Magnetic glow ring around buttons */
+.glow-ring {
+  position: relative;
+}
+.glow-ring::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #4f6bff, #00e5ff, #1027d4);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.glow-ring:hover::before { opacity: 1; }
+
+/* Auto-scrolling marquee track */
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 38s linear infinite;
+}
+
+/* Gradient mesh blob */
+@keyframes blob-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(3%, -2%) scale(1.05); }
+  66% { transform: translate(-2%, 3%) scale(0.96); }
+}
+.blob-drift { animation: blob-drift 24s ease-in-out infinite; }
+
+/* Animated link underline (footer) */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Tilt card — applied via JS for mouse-tracking parallax (lightweight CSS-only fallback) */
+.tilt-card {
+  transition: transform 0.4s var(--ease-out-expo);
+  transform-style: preserve-3d;
+}
+.tilt-card:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-4px);
+}
 
 /* ---------- Custom mouse cursor (kept) ---------- */
 @media (pointer: fine) {

@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CustomCursor } from "@/components/custom-cursor";
 import { ScrollProgress } from "@/components/scroll-progress";
+import { LenisProvider } from "@/components/lenis-provider";
 
 const sans = DM_Sans({
   variable: "--font-sans",
@@ -131,11 +132,18 @@ export default function RootLayout({
       lang="en"
       className={`${sans.variable} ${display.variable} h-full antialiased`}
     >
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap"
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-page text-ink">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
+        <LenisProvider />
         <ScrollProgress />
         <CustomCursor />
         <SiteHeader />

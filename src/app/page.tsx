@@ -1,19 +1,25 @@
-import { Hero } from "@/components/sections/hero";
-import { Stats } from "@/components/sections/stats";
-import { Audiences } from "@/components/sections/audiences";
-import { Industries } from "@/components/sections/industries";
-import { Process } from "@/components/sections/process";
-import { CTA } from "@/components/sections/cta";
+import { FuturisticHero } from "@/components/futuristic/hero";
+import {
+  Marquee,
+  WhatWeDo,
+  StatsCounters,
+  HowItWorks,
+  OpenRoles,
+  TrustedBy,
+  BigCTA,
+} from "@/components/futuristic/sections";
 
 export default function HomePage() {
   return (
-    <>
-      <Hero />
-      <Stats />
-      <Audiences />
-      <Industries />
-      <Process />
-      <CTA />
-    </>
+    <main className="theme-futuristic">
+      <FuturisticHero />
+      <Marquee />
+      <WhatWeDo />
+      <StatsCounters />
+      <HowItWorks />
+      <OpenRoles />
+      <TrustedBy />
+      <BigCTA />
+    </main>
   );
 }
