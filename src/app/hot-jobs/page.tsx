@@ -74,7 +74,7 @@ export default function HotJobsPage() {
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(115deg, rgba(11,12,10,0.92) 0%, rgba(11,12,10,0.65) 50%, rgba(11,12,10,0.5) 75%, rgba(11,12,10,0.92) 100%)",
+                "linear-gradient(115deg, rgba(13,27,42,0.92) 0%, rgba(13,27,42,0.65) 50%, rgba(13,27,42,0.5) 75%, rgba(13,27,42,0.92) 100%)",
             }}
           />
           <span className="grain absolute inset-0" />
@@ -103,7 +103,7 @@ export default function HotJobsPage() {
 
           <Reveal delay={400}>
             <p className="mt-7 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
-              Handpicked enterprise IT roles open right now — standout opportunities our team is actively placing.
+              Handpicked with precision — standout enterprise IT mandates we are actively placing right now.
             </p>
           </Reveal>
 
@@ -111,7 +111,7 @@ export default function HotJobsPage() {
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <Link
                 href="#featured"
-                className="magnetic shine inline-flex items-center gap-2 rounded-full bg-green px-7 py-3.5 text-sm font-medium text-white shadow-[0_18px_40px_-12px_rgba(38,112,68,0.5)] transition-colors hover:bg-green-700"
+                className="magnetic shine inline-flex items-center gap-2 rounded-full bg-green px-7 py-3.5 text-sm font-medium text-white shadow-[0_18px_40px_-12px_rgba(255,107,43,0.5)] transition-colors hover:bg-green-700"
               >
                 See featured <ArrowRight className="h-4 w-4" />
               </Link>
@@ -134,12 +134,12 @@ export default function HotJobsPage() {
               const pay = payLabel(j);
               return (
                 <Reveal key={j.id} delay={idx * 110}>
-                  <article className="group lift relative h-full overflow-hidden rounded-3xl border border-border bg-card p-7 hover:border-green/40 md:p-8">
+                  <article className="group lift relative h-full overflow-hidden rounded-3xl border border-border bg-card p-7 hover:border-cyan/40 md:p-8">
                     <span className="inline-flex items-center gap-1 rounded-full bg-green-soft px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-green">
                       <Bolt className="h-3 w-3" /> Hot
                     </span>
                     <h3
-                      className="mt-3 text-2xl font-medium leading-tight tracking-tight text-deep transition-colors duration-300 group-hover:text-green"
+                      className="mt-3 text-2xl font-medium leading-tight tracking-tight text-deep transition-colors duration-300 group-hover:text-cyan"
                       style={{ fontFamily: "var(--font-display)" }}
                     >
                       <Link href={`/jobs/${j.slug}`} className="after:absolute after:inset-0">
@@ -166,7 +166,7 @@ export default function HotJobsPage() {
                       {pay && <span className="text-sm font-bold text-deep">{pay}</span>}
                     </div>
 
-                    <span className="relative z-10 mt-5 inline-flex items-center gap-2 text-sm font-medium text-deep transition-colors duration-300 group-hover:text-green">
+                    <span className="relative z-10 mt-5 inline-flex items-center gap-2 text-sm font-medium text-deep transition-colors duration-300 group-hover:text-cyan">
                       View role
                       <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </span>
@@ -180,7 +180,7 @@ export default function HotJobsPage() {
             <div className="mt-12 text-center">
               <Link
                 href="/jobs"
-                className="magnetic inline-flex items-center gap-2 rounded-full border border-border bg-white px-7 py-3 text-sm font-medium text-deep transition-colors hover:border-green hover:text-green"
+                className="magnetic inline-flex items-center gap-2 rounded-full border border-border bg-white px-7 py-3 text-sm font-medium text-deep transition-colors hover:border-cyan hover:text-cyan"
               >
                 View all open positions <ArrowRight className="h-4 w-4" />
               </Link>

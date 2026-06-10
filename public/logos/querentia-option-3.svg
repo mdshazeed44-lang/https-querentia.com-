@@ -1,0 +1,14 @@
+<svg viewBox="0 0 360 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Querentia stacked registered wordmark — Precision. Impact. Integrity.">
+  <!-- Option 3: Stacked modern -->
+  <text x="180" y="72" font-family="Familjen Grotesk, Arial, sans-serif" font-weight="700" font-size="40" letter-spacing="0.5" text-anchor="middle"><tspan fill="#0D1B2A">Querentia</tspan><tspan fill="#FF6B2B">.</tspan></text>
+
+  <!-- Registered mark: circle + R after the wordmark -->
+  <circle cx="292" cy="44" r="7" fill="none" stroke="#0D1B2A" stroke-width="1.4" />
+  <text x="292" y="47" font-family="Familjen Grotesk, Arial, sans-serif" font-weight="600" font-size="8" fill="#0D1B2A" text-anchor="middle">R</text>
+
+  <!-- Thin cyan rule -->
+  <rect x="150" y="89" width="60" height="2" rx="1" fill="#00C2FF" />
+
+  <!-- Tagline -->
+  <text x="180" y="118" font-family="Familjen Grotesk, Arial, sans-serif" font-weight="600" font-size="12.5" letter-spacing="1.5" text-anchor="middle" fill="#5A6478">Precision<tspan fill="#FF6B2B">.</tspan> Impact<tspan fill="#FF6B2B">.</tspan> Integrity<tspan fill="#FF6B2B">.</tspan></text>
+</svg>

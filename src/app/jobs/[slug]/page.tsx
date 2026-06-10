@@ -132,7 +132,7 @@ export default async function JobDetailPage({ params }: Params) {
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <div
             className="animate-aurora absolute -top-32 left-[20%] h-[36rem] w-[36rem] rounded-full blur-[160px]"
-            style={{ background: "radial-gradient(circle, rgba(37,99,235,0.45), transparent 65%)" }}
+            style={{ background: "radial-gradient(circle, rgba(0,194,255,0.45), transparent 65%)" }}
           />
         </div>
 
@@ -156,7 +156,7 @@ export default async function JobDetailPage({ params }: Params) {
                     {job.specialization}
                   </span>
                   {job.isFeatured && (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-green-soft px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-green-700">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-green-soft px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-cyan">
                       <Bolt className="h-3 w-3" /> Featured
                     </span>
                   )}
@@ -254,7 +254,7 @@ export default async function JobDetailPage({ params }: Params) {
                   ].map((p) => (
                     <li key={p} className="flex items-start gap-3 text-sm text-ink">
                       <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-soft">
-                        <Check className="h-3 w-3 text-green-700" />
+                        <Check className="h-3 w-3 text-frost" />
                       </span>
                       {p}
                     </li>
@@ -284,7 +284,7 @@ export default async function JobDetailPage({ params }: Params) {
           <aside>
             <div className="sticky top-28 space-y-4">
               <div className="rounded-2xl border border-border bg-card p-6">
-                <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-green-700">
+                <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-cyan">
                   Role at a glance
                 </h3>
                 <dl className="mt-4 space-y-3 text-sm">
@@ -306,7 +306,7 @@ export default async function JobDetailPage({ params }: Params) {
 
               <Link
                 href="/jobs"
-                className="block rounded-2xl border border-dashed border-border bg-card p-5 text-sm text-deep transition-colors hover:border-green hover:text-green-700"
+                className="block rounded-2xl border border-dashed border-border bg-card p-5 text-sm text-deep transition-colors hover:border-cyan hover:text-cyan"
               >
                 ← Back to all open roles
               </Link>
@@ -321,7 +321,7 @@ export default async function JobDetailPage({ params }: Params) {
           <div className="container-x">
             <Reveal>
               <h2 className="text-2xl font-bold tracking-tight text-deep md:text-3xl">
-                More <span className="text-green-700">{job.specialization}</span> roles
+                More <span className="text-cyan">{job.specialization}</span> roles
               </h2>
             </Reveal>
             <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -331,10 +331,10 @@ export default async function JobDetailPage({ params }: Params) {
                     href={`/jobs/${r.slug}`}
                     className="ring-grad lift group block h-full rounded-2xl border border-border bg-card p-5"
                   >
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-green-700">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan">
                       {r.workModel} · {r.jobType}
                     </p>
-                    <h3 className="mt-2 text-base font-bold text-deep transition-colors duration-300 group-hover:text-green-700">
+                    <h3 className="mt-2 text-base font-bold text-deep transition-colors duration-300 group-hover:text-cyan">
                       {r.title}
                     </h3>
                     <p className="mt-1 text-xs text-ink-muted">{r.location}</p>

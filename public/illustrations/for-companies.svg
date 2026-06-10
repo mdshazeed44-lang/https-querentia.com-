@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 360" fill="none" aria-hidden="true">
+  <defs>
+    <style>
+      .navy { stroke: #0D1B2A; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .navy-thin { stroke: #0D1B2A; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .navy-hair { stroke: #0D1B2A; stroke-width: 2.2; fill: #0D1B2A; stroke-linejoin: round; }
+      .cyan-fill { fill: #00C2FF; stroke: #0D1B2A; stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
+      .white-fill { fill: #FFFFFF; stroke: #0D1B2A; stroke-width: 1.8; stroke-linejoin: round; }
+      .arc { stroke: #0D1B2A; stroke-width: 1.5; fill: none; opacity: 0.45; stroke-linecap: round; }
+      .bulb-glow { fill: #00C2FF; opacity: 0.85; }
+    </style>
+  </defs>
+
+  <!-- Decorative connecting arc through the floating icons -->
+  <path class="arc" d="M 60 130 Q 130 50, 230 60 Q 330 70, 410 110 Q 460 135, 455 200" />
+
+  <!-- ========== FLOATING ICON: CLOUD (top-left) ========== -->
+  <g transform="translate(58 110)">
+    <circle class="white-fill" cx="0" cy="0" r="26" />
+    <path class="navy-thin" d="M -11 4 Q -16 4, -16 -1 Q -16 -6, -11 -6 Q -10 -11, -4 -11 Q 2 -11, 4 -6 Q 11 -7, 13 -2 Q 16 0, 14 4 Z" />
+  </g>
+
+  <!-- ========== FLOATING ICON: LIGHTBULB (top-center, brightest) ========== -->
+  <g transform="translate(228 56)">
+    <circle class="white-fill" cx="0" cy="0" r="30" stroke-width="2" />
+    <path class="bulb-glow" d="M -9 -10 Q -9 -18, 0 -18 Q 9 -18, 9 -10 Q 9 -4, 5 0 L 5 6 L -5 6 L -5 0 Q -9 -4, -9 -10 Z" />
+    <path class="navy-thin" d="M -9 -10 Q -9 -18, 0 -18 Q 9 -18, 9 -10 Q 9 -4, 5 0 L 5 6 L -5 6 L -5 0 Q -9 -4, -9 -10 Z" stroke-width="2" />
+    <line class="navy-thin" x1="-4" y1="9" x2="4" y2="9" stroke-width="2" />
+    <line class="navy-thin" x1="-3" y1="12" x2="3" y2="12" stroke-width="2" />
+    <path class="navy-thin" d="M -3 -8 Q 0 -4, 3 -8" stroke-width="1.6" />
+    <line class="navy-thin" x1="0" y1="-26" x2="0" y2="-32" stroke-width="1.8" />
+    <line class="navy-thin" x1="-18" y1="-18" x2="-22" y2="-22" stroke-width="1.8" />
+    <line class="navy-thin" x1="18" y1="-18" x2="22" y2="-22" stroke-width="1.8" />
+    <line class="navy-thin" x1="-26" y1="0" x2="-32" y2="0" stroke-width="1.8" />
+    <line class="navy-thin" x1="26" y1="0" x2="32" y2="0" stroke-width="1.8" />
+  </g>
+
+  <!-- ========== FLOATING ICON: CODE { } (top-right) ========== -->
+  <g transform="translate(408 100)">
+    <circle class="white-fill" cx="0" cy="0" r="26" />
+    <path class="navy-thin" d="M -5 -10 Q -10 -10, -10 -5 Q -10 0, -13 0 Q -10 0, -10 5 Q -10 10, -5 10" />
+    <path class="navy-thin" d="M 5 -10 Q 10 -10, 10 -5 Q 10 0, 13 0 Q 10 0, 10 5 Q 10 10, 5 10" />
+  </g>
+
+  <!-- ========== FLOATING ICON: CHART (right side) ========== -->
+  <g transform="translate(455 200)">
+    <circle class="white-fill" cx="0" cy="0" r="24" />
+    <rect x="-10" y="-2" width="4" height="10" rx="0.8" fill="#0D1B2A" />
+    <rect x="-3" y="-8" width="4" height="16" rx="0.8" fill="#0D1B2A" />
+    <rect x="4" y="-5" width="4" height="13" rx="0.8" fill="#0D1B2A" />
+  </g>
+
+  <!-- ========== FLOATING ICON: GEAR (lower-left) ========== -->
+  <g transform="translate(60 215)">
+    <circle class="white-fill" cx="0" cy="0" r="24" />
+    <path d="M -2 -14 L 2 -14 L 3 -10 L -3 -10 Z" fill="#0D1B2A" />
+    <path d="M -2 14 L 2 14 L 3 10 L -3 10 Z" fill="#0D1B2A" />
+    <path d="M -14 -2 L -14 2 L -10 3 L -10 -3 Z" fill="#0D1B2A" />
+    <path d="M 14 -2 L 14 2 L 10 3 L 10 -3 Z" fill="#0D1B2A" />
+    <path d="M -10 -10 L -7 -7 L -4 -11 L -11 -4 Z" fill="#0D1B2A" />
+    <path d="M 10 10 L 7 7 L 4 11 L 11 4 Z" fill="#0D1B2A" />
+    <path d="M 10 -10 L 4 -11 L 11 -4 L 7 -7 Z" fill="#0D1B2A" />
+    <path d="M -10 10 L -4 11 L -11 4 L -7 7 Z" fill="#0D1B2A" />
+    <circle cx="0" cy="0" r="6" fill="#FFFFFF" stroke="#0D1B2A" stroke-width="1.6" />
+  </g>
+
+  <!-- ========== SPARKLES (top-right cluster) ========== -->
+  <g transform="translate(355 50)">
+    <path d="M 0 -8 L 2 -2 L 8 0 L 2 2 L 0 8 L -2 2 L -8 0 L -2 -2 Z" fill="#D94F3D" />
+  </g>
+  <g transform="translate(378 78)">
+    <path d="M 0 -5 L 1.3 -1.3 L 5 0 L 1.3 1.3 L 0 5 L -1.3 1.3 L -5 0 L -1.3 -1.3 Z" fill="#00C2FF" />
+  </g>
+  <g transform="translate(338 80)">
+    <path d="M 0 -6 L 1.6 -1.6 L 6 0 L 1.6 1.6 L 0 6 L -1.6 1.6 L -6 0 L -1.6 -1.6 Z" fill="#FF6B2B" />
+  </g>
+
+  <!-- ========== CENTRAL FIGURE: Person at laptop ========== -->
+  <line class="navy" x1="120" y1="328" x2="380" y2="328" stroke-width="2" />
+
+  <!-- Chair back behind figure -->
+  <path class="navy" d="M 198 195 Q 198 175, 218 175 L 282 175 Q 302 175, 302 195 L 302 268" />
+
+  <!-- Torso: cyan top -->
+  <path class="cyan-fill" d="M 215 200
+           Q 215 188, 228 186
+           L 272 186
+           Q 285 188, 285 200
+           L 290 258
+           Q 290 268, 282 268
+           L 218 268
+           Q 210 268, 210 258 Z" />
+
+  <!-- Collar/neckline detail -->
+  <path d="M 240 186 Q 250 196, 260 186" stroke="#0D1B2A" stroke-width="1.6" fill="none" stroke-linecap="round" />
+
+  <!-- Neck -->
+  <path d="M 244 185 L 244 172 L 256 172 L 256 185" fill="#FFFFFF" stroke="#0D1B2A" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" />
+
+  <!-- Head -->
+  <ellipse cx="250" cy="148" rx="24" ry="27" fill="#FFFFFF" stroke="#0D1B2A" stroke-width="2.2" />
+
+  <!-- Hair -->
+  <path class="navy-hair" d="M 226 142
+           Q 224 122, 240 117
+           Q 250 112, 262 116
+           Q 276 120, 275 142
+           Q 274 134, 268 132
+           Q 262 130, 256 134
+           Q 250 137, 242 134
+           Q 234 132, 228 137
+           Q 226 140, 226 142 Z" />
+
+  <!-- Ear -->
+  <path class="navy-thin" d="M 274 150 Q 278 150, 278 154 Q 278 158, 274 158" />
+
+  <!-- Eyes (closed smile) -->
+  <path class="navy-thin" d="M 240 150 Q 243 153, 246 150" stroke-width="2" />
+  <path class="navy-thin" d="M 254 150 Q 257 153, 260 150" stroke-width="2" />
+  <!-- Eyebrows -->
+  <path class="navy-thin" d="M 239 144 Q 243 142, 247 144" stroke-width="1.6" />
+  <path class="navy-thin" d="M 253 144 Q 257 142, 261 144" stroke-width="1.6" />
+  <!-- Smile -->
+  <path class="navy-thin" d="M 244 160 Q 250 165, 256 160" stroke-width="2" />
+
+  <!-- Raised arm (cyan sleeve cap then exposed forearm) -->
+  <path class="cyan-fill" d="M 215 200 Q 207 192, 207 178 L 220 188 Z" />
+  <path class="navy" d="M 213 188 Q 200 165, 198 145" />
+  <path class="navy" d="M 198 145 Q 207 125, 222 105" />
+
+  <!-- Hand pointing up -->
+  <path fill="#FFFFFF" stroke="#0D1B2A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+        d="M 218 108 Q 215 102, 218 96 Q 220 92, 225 93 Q 228 95, 227 100 L 225 105 Z" />
+  <line x1="222" y1="98" x2="226" y2="86" stroke="#0D1B2A" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Left arm resting on laptop -->
+  <path class="cyan-fill" d="M 285 200 Q 298 210, 308 230 L 296 240 Q 290 220, 283 215 Z" />
+  <path d="M 308 230 Q 318 245, 314 258" stroke="#0D1B2A" stroke-width="2.2" fill="none" stroke-linecap="round" />
+  <path d="M 302 232 Q 312 247, 308 258" stroke="#0D1B2A" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.6" />
+  <ellipse cx="312" cy="262" rx="9" ry="6" fill="#FFFFFF" stroke="#0D1B2A" stroke-width="2" />
+
+  <!-- Laptop base -->
+  <path fill="#FFFFFF" stroke="#0D1B2A" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"
+        d="M 198 290 L 342 290 L 358 308 L 182 308 Z" />
+  <!-- Laptop screen -->
+  <path fill="#FFFFFF" stroke="#0D1B2A" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"
+        d="M 210 290 L 220 240 L 320 240 L 330 290 Z" />
+  <!-- Screen content -->
+  <circle cx="270" cy="247" r="1.6" fill="#5A6478" />
+  <line stroke="#00C2FF" stroke-width="2.2" stroke-linecap="round" x1="234" y1="260" x2="270" y2="260" />
+  <line stroke="#0D1B2A" stroke-width="1.4" stroke-linecap="round" opacity="0.5" x1="232" y1="268" x2="305" y2="268" />
+  <line stroke="#0D1B2A" stroke-width="1.4" stroke-linecap="round" opacity="0.5" x1="232" y1="274" x2="290" y2="274" />
+  <line stroke="#0D1B2A" stroke-width="1.4" stroke-linecap="round" opacity="0.5" x1="232" y1="280" x2="300" y2="280" />
+  <!-- Trackpad -->
+  <line stroke="#0D1B2A" stroke-width="1.2" opacity="0.4" x1="252" y1="299" x2="288" y2="299" stroke-linecap="round" />
+
+  <!-- Ground shadow -->
+  <ellipse cx="270" cy="332" rx="118" ry="4" fill="#0D1B2A" opacity="0.08" />
+</svg>

@@ -19,7 +19,7 @@ export default function TermsPage() {
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <div
             className="animate-aurora absolute -top-32 left-[15%] h-[36rem] w-[36rem] rounded-full blur-[160px]"
-            style={{ background: "radial-gradient(circle, rgba(37,99,235,0.45), transparent 65%)" }}
+            style={{ background: "radial-gradient(circle, rgba(0,194,255,0.45), transparent 65%)" }}
           />
         </div>
         <div className="container-x relative pt-32 pb-12 md:pt-40 md:pb-16">
@@ -110,7 +110,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold text-deep md:text-3xl">7. Contact</h2>
             <p className="mt-3 leading-relaxed text-ink-muted">
               Questions about these terms? Reach{" "}
-              <a href={`mailto:${site.email}`} className="font-semibold text-green-700 hover:underline">
+              <a href={`mailto:${site.email}`} className="font-semibold text-cyan hover:underline">
                 {site.email}
               </a>
               .

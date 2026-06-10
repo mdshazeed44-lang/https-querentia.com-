@@ -5,14 +5,17 @@ import { Reveal } from "@/components/ui/reveal";
 import { CountUp } from "@/components/ui/count-up";
 import {
   ArrowRight,
-  Check,
+  Briefcase,
+  Shield,
+  Star,
+  UserCheck,
 } from "@/components/ui/icons";
-import { site, clients, stats } from "@/lib/site";
+import { site, stats } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Us",
   description:
-    "Querentia is a Toronto-area IT recruitment firm placing elite technology talent at Canada's leading enterprises.",
+    "Querentia is the most trusted partner for high-quality, high-impact IT talent in Canada — delivered with speed, precision, and integrity since 2014.",
   alternates: { canonical: "/about" },
 };
 
@@ -35,60 +38,78 @@ const aboutSchema = {
         addressCountry: site.country,
       },
     },
-    employee: {
-      "@type": "Person",
-      name: "Seema Makhija",
-      jobTitle: "Director, Talent Services",
-    },
+    employee: [
+      {
+        "@type": "Person",
+        name: "Seema Makhija",
+        jobTitle: "Director",
+      },
+      {
+        "@type": "Person",
+        name: "Hemant Makhija",
+        jobTitle: "Advisor",
+      },
+    ],
   },
 };
 
+const whoWeAre = [
+  {
+    icon: Briefcase,
+    title: "A specialist recruitment firm",
+    desc: "An IT recruitment practice based in Oakville, Ontario — placing technology professionals in permanent and contract roles with some of the biggest organizations in Canada since 2014.",
+  },
+  {
+    icon: Star,
+    title: "A world-class hiring experience",
+    desc: "We are committed to a hiring experience that feels first-class on both sides of the table — responsive recruiters, honest feedback, and momentum from intake to offer.",
+  },
+  {
+    icon: UserCheck,
+    title: "Top industry talent, on call",
+    desc: "We specialize in providing top industry talent across cloud, data, security, and engineering — drawn from an active network and matched to stack, team, and culture.",
+  },
+  {
+    icon: Shield,
+    title: "Trusted talent partners",
+    desc: "Industry experts who understand exactly what internal recruiters and hiring leaders look for — and who deliver against it with precision and integrity.",
+  },
+];
+
 const values = [
   {
-    title: "Trust first",
-    desc: "Honest feedback, transparent timelines, no recruiter games. Reputation is everything in this market.",
+    num: "01",
+    title: "Precision.",
+    desc: "Shortlists tuned to your stack, your team, and your culture — never keyword-matched resume floods. Every candidate we present has been vetted by a recruiter who actually understands the technology.",
   },
   {
-    title: "Precision over volume",
-    desc: "We send shortlists, not resume floods. Quality is faster than quantity — every time.",
+    num: "02",
+    title: "Impact.",
+    desc: "We place people who move roadmaps, not just fill seats. A 94% placement retention rate means our matches keep delivering long after the start date — for the client and the candidate.",
   },
   {
-    title: "Enterprise speed",
-    desc: "48-hour qualified shortlists. Senior-recruiter responsiveness. No black-holed candidates.",
-  },
-  {
-    title: "Long-term outcomes",
-    desc: "We optimize for retention — not for the next hire. 94% placement retention says we mean it.",
+    num: "03",
+    title: "Integrity.",
+    desc: "Honest pipelines, real timelines, and straight answers — for employers and candidates alike. Trust is the only metric that compounds, and we protect it on every search.",
   },
 ];
 
 const leadership = [
   {
     name: "Seema Makhija",
-    role: "Director, Talent Services",
-    bio: "Leads Querentia's enterprise practice. Two decades in IT staffing across banking, consulting, and digital transformation programs.",
-    img: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=600&q=80",
+    role: "Director",
+    bio: "Seema leads Querentia's recruitment practice, guiding every search from intake to offer. She has spent her career placing technology professionals with some of Canada's largest consulting, banking, and enterprise organizations.",
+    img: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80",
   },
   {
     name: "Hemant Makhija",
     role: "Advisor",
-    bio: "Strategic advisor on enterprise architecture and program delivery. Background spans Fortune-500 engineering leadership and digital banking.",
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80",
+    bio: "Hemant advises Querentia on enterprise hiring strategy and client delivery. His background spans large-scale technology programs and engineering leadership, helping clients build teams that ship.",
+    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
-// Headline words for stagger
-const LINE_1 = ["The", "people"];
-const LINE_2 = ["behind", "the", "practice."];
-
 export default function AboutPage() {
-  let i = 0;
-  const w = () => {
-    const d = 0.1 + i * 0.07;
-    i++;
-    return { animationDelay: `${d}s` } as React.CSSProperties;
-  };
-
   return (
     <>
       <script
@@ -96,187 +117,251 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
       />
 
-      {/* HERO */}
-      <section className="relative isolate overflow-hidden bg-deep-2 text-on-deep">
-        <div aria-hidden className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 animate-ken-burns">
-            <Image
-              src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2400&q=80"
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover opacity-55"
-            />
-          </div>
-          <span
+      {/* ---------- 1. HERO ---------- */}
+      <section className="relative isolate overflow-hidden bg-deep-2 pb-20 pt-36 text-on-deep md:pt-44">
+        <style>{`
+          @media (prefers-reduced-motion: no-preference) {
+            @keyframes about-float {
+              0%, 100% { transform: translateY(0); }
+              50% { transform: translateY(-10px); }
+            }
+            .about-float-a { animation: about-float 7s ease-in-out infinite; }
+            .about-float-b { animation: about-float 8s ease-in-out infinite; animation-delay: 1.6s; }
+          }
+        `}</style>
+
+        {/* Cyan radial ambient */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(115deg, rgba(11,12,10,0.92) 0%, rgba(11,12,10,0.7) 50%, rgba(11,12,10,0.5) 75%, rgba(11,12,10,0.92) 100%)",
+                "radial-gradient(ellipse 60% 45% at 70% 20%, rgba(0,194,255,0.12) 0%, transparent 60%)",
             }}
           />
-          <span className="grain absolute inset-0" />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 70% 50% at 20% 100%, rgba(0,194,255,0.10) 0%, transparent 60%)",
+            }}
+          />
         </div>
 
-        <div className="container-x relative pt-32 pb-20 md:pt-48 md:pb-28">
-          <div className="max-w-3xl">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-4 py-1.5 text-xs font-medium text-white/85 backdrop-blur-sm">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sage opacity-70" />
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-sage" />
-                </span>
-                About Querentia · Since {site.founded}
-              </span>
-            </Reveal>
-
-            <h1 className="mt-7 text-[clamp(2.75rem,8vw,6.5rem)] font-medium leading-[0.95] tracking-tight">
-              {LINE_1.map((word) => (
-                <span key={word} className="word mr-[0.22em]" style={w()}>
-                  {word}
-                </span>
-              ))}
-              <br />
-              {LINE_2.map((word) => (
-                <span key={word} className="word mr-[0.22em] text-white/70" style={w()}>
-                  {word}
-                </span>
-              ))}
-            </h1>
-
-            <Reveal delay={640}>
-              <p className="mt-7 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
-                Querentia is a specialist IT recruitment firm based in Oakville,
-                Canada. We connect Canada&apos;s leading enterprises with the
-                technology professionals they need to ship — without the resume
-                flood.
-              </p>
-            </Reveal>
-
-            <Reveal delay={780}>
-              <div className="mt-9 flex flex-wrap items-center gap-3">
-                <Link
-                  href="/contact"
-                  className="magnetic shine inline-flex items-center gap-2 rounded-full bg-green px-7 py-3.5 text-sm font-medium text-white shadow-[0_18px_40px_-12px_rgba(38,112,68,0.5)] transition-colors hover:bg-green-700"
-                >
-                  Talk to our team <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  href="/jobs"
-                  className="magnetic inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3.5 text-sm font-medium text-white backdrop-blur-md transition-colors hover:border-white/60 hover:bg-white/10"
-                >
-                  See open roles
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* STORY */}
-      <section className="bg-page py-20 md:py-28">
-        <div className="container-x grid items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
-          <Reveal>
-            <div className="relative mx-auto w-full max-w-md">
-              <div className="lift group relative aspect-[4/5] overflow-hidden rounded-3xl border border-border bg-card shadow-[0_30px_80px_-30px_rgba(11,12,10,0.25)]">
-                <Image
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=80"
-                  alt="A Querentia recruiter consulting a candidate"
-                  fill
-                  sizes="(min-width: 1024px) 28rem, 80vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                />
-                <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-border bg-white/95 px-3 py-1.5 text-xs font-medium text-deep shadow-md backdrop-blur-md">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-green opacity-70" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-green" />
-                  </span>
-                  Oakville, ON
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
+        <div className="container-x grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
+          {/* Copy */}
           <div>
             <Reveal>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green">
-                Our story
+              <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                <span className="inline-block h-px w-8 bg-cyan/60" />
+                About Us · Est. {site.founded}
               </p>
-              <h2
-                className="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[1.05] tracking-tight text-deep"
+            </Reveal>
+
+            <Reveal delay={120}>
+              <h1 className="text-[clamp(2.25rem,6vw,4.75rem)] font-medium leading-[1.02] tracking-tight text-on-deep">
+                The most trusted partner
+                <br />
+                <span
+                  className="text-cyan"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  in IT talent.
+                </span>
+              </h1>
+            </Reveal>
+
+            <Reveal delay={260}>
+              <p className="mt-7 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
+                Since {site.founded}, Querentia has delivered high-quality,
+                high-impact technology talent to Canada&apos;s leading
+                enterprises — with unmatched speed, precision, and integrity.
+              </p>
+            </Reveal>
+          </div>
+
+          {/* Circle cluster */}
+          <Reveal delay={300}>
+            <div className="relative mx-auto aspect-square w-full max-w-[26rem]">
+              {/* Concentric strokes */}
+              <span
+                aria-hidden
+                className="absolute inset-0 rounded-full border border-cyan/15"
+              />
+              <span
+                aria-hidden
+                className="absolute inset-10 rounded-full border border-cyan/10"
+              />
+
+              {/* Large circle photo */}
+              <div className="absolute left-1/2 top-1/2 h-[68%] w-[68%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full ring-2 ring-cyan/40">
+                <Image
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
+                  alt="The Querentia team collaborating on an enterprise search"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 20rem, 70vw"
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Small circle photo */}
+              <div className="about-float-b absolute bottom-6 left-2 h-28 w-28 overflow-hidden rounded-full ring-2 ring-cyan/40">
+                <Image
+                  src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=600&q=80"
+                  alt="Querentia office in Oakville"
+                  fill
+                  sizes="7rem"
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Accent dots */}
+              <span
+                aria-hidden
+                className="absolute right-12 top-10 h-2.5 w-2.5 rounded-full bg-cyan"
+              />
+              <span aria-hidden className="absolute bottom-16 right-6 flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green opacity-70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green" />
+              </span>
+
+              {/* Floating pill */}
+              <div className="about-float-a absolute right-0 top-4 inline-flex items-center gap-2.5 rounded-full border border-cyan/30 bg-deep-2 px-4 py-2 text-xs font-medium text-cyan shadow-[0_12px_30px_-12px_rgba(0,194,255,0.35)]">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-70" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyan" />
+                </span>
+                Oakville, Canada
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------- 2. MANIFESTO ---------- */}
+      <section className="bg-page py-20 md:py-24">
+        <div className="container-x mx-auto max-w-4xl text-center">
+          <Reveal>
+            <p className="mb-5 flex items-center justify-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <span className="inline-block h-px w-8 bg-cyan/60" />
+              Our Story
+              <span className="inline-block h-px w-8 bg-cyan/60" />
+            </p>
+          </Reveal>
+          <Reveal delay={130}>
+            <h2
+              className="text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.08] tracking-tight text-ink"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              We build,{" "}
+              <span className="text-cyan">attract and ignite</span> talent.
+            </h2>
+          </Reveal>
+          <Reveal delay={260}>
+            <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
+              Querentia was founded in {site.founded} in Oakville, Ontario, as a
+              specialist IT recruitment firm with a simple conviction: hiring
+              should be fast, precise, and honest. As industry experts, we know
+              exactly what internal recruiters and hiring leaders look for —
+              and we use that insight to place technology professionals in
+              permanent and contract roles with some of the biggest
+              organizations in Canada.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------- 3. WHO WE ARE ---------- */}
+      <section className="bg-page pb-20 md:pb-24">
+        <div className="container-x">
+          <Reveal>
+            <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <span className="inline-block h-px w-8 bg-cyan/60" />
+              Who We Are
+            </p>
+          </Reveal>
+          <Reveal delay={120}>
+            <h2 className="max-w-2xl text-[clamp(1.75rem,4vw,3rem)] font-medium leading-[1.08] tracking-tight text-ink">
+              Recruiters by trade.{" "}
+              <span
+                className="text-cyan"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                A decade of placing IT talent where it actually moves the needle.
-              </h2>
-            </Reveal>
-            <Reveal delay={140}>
-              <p className="mt-6 text-base leading-relaxed text-ink-muted md:text-lg">
-                Querentia was founded in {site.founded} with one conviction:
-                enterprise IT recruitment in Canada deserved better than the
-                resume-flood model. Better matches, faster shortlists, honest
-                feedback for candidates.
-              </p>
-              <p className="mt-4 text-base leading-relaxed text-ink-muted md:text-lg">
-                A decade later, we&apos;re trusted by Deloitte, Capgemini, CGI
-                and a roster of Canada&apos;s most respected firms to staff the
-                teams behind their most ambitious programs.
-              </p>
-            </Reveal>
-            <Reveal delay={280}>
-              <ul className="mt-7 space-y-3">
-                {[
-                  "Specialist IT-only practice",
-                  "Active network across cloud, data, security, digital",
-                  "Two-sided care — employers and candidates",
-                ].map((p) => (
-                  <li key={p} className="flex items-center gap-3 text-sm text-deep">
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-soft">
-                      <Check className="h-3 w-3 text-green" />
-                    </span>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+                Partners by design.
+              </span>
+            </h2>
+          </Reveal>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {whoWeAre.map((item, idx) => (
+              <Reveal key={item.title} delay={idx * 110}>
+                <div className="h-full rounded-3xl border border-border bg-card p-7 transition-colors duration-300 hover:border-cyan/40">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-cyan-soft text-cyan">
+                    <item.icon className="h-5 w-5" />
+                  </span>
+                  <h3
+                    className="mt-5 text-lg font-medium tracking-tight text-ink"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p className="mt-2.5 text-sm leading-relaxed text-ink-muted">
+                    {item.desc}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* VALUES */}
-      <section className="bg-deep py-20 text-on-deep md:py-28">
+      {/* ---------- 4. VALUES ---------- */}
+      <section className="relative isolate overflow-hidden bg-deep-2 py-20 text-on-deep md:py-24">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,194,255,0.10) 0%, transparent 60%)",
+            }}
+          />
+        </div>
+
         <div className="container-x">
           <Reveal>
-            <div className="mx-auto max-w-3xl text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sage">
-                What we stand for
-              </p>
-              <h2
-                className="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[1.05] tracking-tight text-white"
+            <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <span className="inline-block h-px w-8 bg-cyan/60" />
+              Our Values
+            </p>
+          </Reveal>
+          <Reveal delay={120}>
+            <h2 className="max-w-3xl text-[clamp(2rem,5vw,3.75rem)] font-medium leading-[1.05] tracking-tight text-on-deep">
+              Three words we answer to
+              <br />
+              <span
+                className="text-cyan"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                Four principles that run every search.
-              </h2>
-            </div>
+                on every single search.
+              </span>
+            </h2>
           </Reveal>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
             {values.map((v, idx) => (
-              <Reveal key={v.title} delay={idx * 110}>
-                <div className="group lift h-full rounded-3xl border border-white/10 bg-white/[0.04] p-7 transition-colors duration-500 hover:border-sage/40 hover:bg-white/[0.07]">
-                  <p
-                    className="text-3xl font-medium leading-none text-sage transition-transform duration-500 group-hover:scale-110 origin-left"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    0{idx + 1}
+              <Reveal key={v.num} delay={idx * 140}>
+                <div className="border-t border-cyan/25 pt-6">
+                  <p className="text-[11px] font-semibold tracking-[0.3em] text-cyan">
+                    {v.num}
                   </p>
                   <h3
-                    className="mt-4 text-xl font-medium tracking-tight text-white"
+                    className="mt-4 text-3xl font-medium tracking-tight text-on-deep md:text-4xl"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {v.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-on-deep-muted">
+                  <p className="mt-4 text-sm leading-relaxed text-on-deep-muted">
                     {v.desc}
                   </p>
                 </div>
@@ -286,36 +371,21 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* BY THE NUMBERS */}
-      <section className="bg-page py-20 md:py-28">
+      {/* ---------- 5. STAT BAND ---------- */}
+      <section className="bg-page py-20 md:py-24">
         <div className="container-x">
-          <Reveal>
-            <div className="mx-auto max-w-2xl text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green">
-                By the numbers
-              </p>
-              <h2
-                className="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[1.05] tracking-tight text-deep"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                A decade of compound progress.
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="mt-14 grid grid-cols-2 gap-y-12 border-y border-border md:grid-cols-4 md:divide-x md:divide-border md:py-12">
+          <div className="grid grid-cols-2 gap-y-12 border-y border-border py-12 md:grid-cols-4 md:divide-x md:divide-border">
             {stats.map((s, idx) => (
               <Reveal key={s.label} delay={idx * 110}>
-                <div className="group px-6 text-center">
+                <div className="px-6 text-center">
                   <p
-                    className="text-[clamp(2.5rem,5vw,4.5rem)] font-medium leading-none tracking-tight text-deep transition-transform duration-500 group-hover:scale-[1.04]"
+                    className="text-[clamp(2.75rem,6vw,4.5rem)] font-medium leading-none tracking-tight text-cyan"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     <CountUp value={s.value} />
                   </p>
-                  <span className="mx-auto mt-4 block h-[2px] w-8 bg-green transition-all duration-500 group-hover:w-16" />
-                  <p className="mt-3 text-sm font-medium text-deep">{s.label}</p>
-                  <p className="mt-1 text-xs text-ink-faint">{s.sub}</p>
+                  <p className="mt-4 text-sm font-medium text-ink">{s.label}</p>
+                  <p className="mt-1 text-xs text-ink-muted">{s.sub}</p>
                 </div>
               </Reveal>
             ))}
@@ -323,50 +393,61 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* LEADERSHIP */}
-      <section className="bg-page py-20 md:py-28">
+      {/* ---------- 6. LEADERSHIP ---------- */}
+      <section className="bg-page pb-20 md:pb-24">
         <div className="container-x">
           <Reveal>
-            <div className="mx-auto max-w-3xl text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green">
-                Leadership
-              </p>
-              <h2
-                className="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[1.05] tracking-tight text-deep"
+            <p className="mb-5 flex items-center justify-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <span className="inline-block h-px w-8 bg-cyan/60" />
+              Leadership
+              <span className="inline-block h-px w-8 bg-cyan/60" />
+            </p>
+          </Reveal>
+          <Reveal delay={120}>
+            <h2 className="mx-auto max-w-2xl text-center text-[clamp(1.75rem,4vw,3rem)] font-medium leading-[1.08] tracking-tight text-ink">
+              The people{" "}
+              <span
+                className="text-cyan"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                Senior recruiters. Real conversations.
-              </h2>
-            </div>
+                behind the practice.
+              </span>
+            </h2>
           </Reveal>
 
           <div className="mx-auto mt-14 grid max-w-3xl gap-5 md:grid-cols-2">
             {leadership.map((p, idx) => (
               <Reveal key={p.name} delay={idx * 140}>
-                <div className="group lift h-full overflow-hidden rounded-3xl border border-border bg-card p-6 hover:border-green/40">
-                  <div className="flex items-center gap-5">
-                    <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl">
+                <div className="h-full rounded-3xl border border-border bg-card p-8 text-center transition-colors duration-300 hover:border-cyan/40">
+                  <div className="relative mx-auto h-[140px] w-[140px]">
+                    <span
+                      aria-hidden
+                      className="absolute -inset-3 rounded-full border border-cyan/15"
+                    />
+                    <div className="relative h-full w-full overflow-hidden rounded-full ring-2 ring-cyan/40">
                       <Image
                         src={p.img}
-                        alt={`${p.name}, ${p.role}`}
+                        alt={`${p.name}, ${p.role} at Querentia`}
                         fill
-                        sizes="80px"
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        sizes="140px"
+                        className="object-cover"
                       />
                     </div>
-                    <div className="min-w-0">
-                      <h3
-                        className="text-lg font-medium tracking-tight text-deep"
-                        style={{ fontFamily: "var(--font-display)" }}
-                      >
-                        {p.name}
-                      </h3>
-                      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-green">
-                        {p.role}
-                      </p>
-                    </div>
+                    <span
+                      aria-hidden
+                      className="absolute -right-1 top-2 h-2.5 w-2.5 rounded-full bg-cyan"
+                    />
                   </div>
-                  <p className="mt-5 text-sm leading-relaxed text-ink-muted">{p.bio}</p>
+                  <h3
+                    className="mt-7 text-xl font-medium tracking-tight text-ink"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {p.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-ink-muted">{p.role}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+                    {p.bio}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -374,26 +455,61 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CLIENT STRIP */}
-      <section className="border-y border-border bg-page-2 py-12">
-        <div className="container-x">
+      {/* ---------- 7. FINAL CTA ---------- */}
+      <section className="relative isolate overflow-hidden bg-deep-2 py-20 text-on-deep md:py-24">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 55% 50% at 50% 50%, rgba(0,194,255,0.12) 0%, transparent 60%)",
+            }}
+          />
+        </div>
+
+        <div className="container-x mx-auto max-w-3xl text-center">
           <Reveal>
-            <p className="text-center text-xs uppercase tracking-[0.2em] text-ink-faint">
-              Trusted by top companies in Canada
+            <p className="mb-5 flex items-center justify-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <span className="inline-block h-px w-8 bg-cyan/60" />
+              Work With Us
+              <span className="inline-block h-px w-8 bg-cyan/60" />
             </p>
           </Reveal>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-5 lg:justify-between">
-            {clients.map((c, idx) => (
-              <Reveal key={c} delay={idx * 80}>
-                <span
-                  className="text-xl font-medium tracking-tight text-deep/60 transition-colors hover:text-deep md:text-2xl"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {c}
-                </span>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={130}>
+            <h2 className="text-[clamp(2.25rem,6vw,4.5rem)] font-medium leading-[1.05] tracking-tight text-on-deep">
+              Precision. Impact. Integrity.
+              <br />
+              <span
+                className="text-cyan"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Experience all three.
+              </span>
+            </h2>
+          </Reveal>
+          <Reveal delay={260}>
+            <p className="mx-auto mt-7 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
+              Whether you&apos;re building a team or building a career, our
+              recruiters are ready to add value from the first conversation.
+            </p>
+          </Reveal>
+          <Reveal delay={380}>
+            <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/for-companies"
+                className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
+              >
+                Hire Talent
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/for-talent"
+                className="inline-flex items-center gap-2.5 border border-white/25 px-8 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-on-deep transition-colors duration-300 hover:border-white/60 hover:bg-white/5"
+              >
+                Find Work
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
     </>

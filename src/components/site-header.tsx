@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/lib/site";
@@ -15,47 +15,32 @@ type MenuItem = {
 
 const menu: MenuItem[] = [
   { label: "About Us", href: "/about" },
-  {
-    label: "Talent Services",
-    href: "/jobs",
-    children: [{ label: "Open Positions", href: "/jobs" }],
-  },
-  { label: "Resume Services", href: "/resume-services" },
-  { label: "Interview Training", href: "/interview-training" },
-  { label: "Contact", href: "/contact" },
+  { label: "For Talent", href: "/for-talent" },
+  { label: "For Companies", href: "/for-companies" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
     <>
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "border-b border-white/10 bg-deep-2/90 backdrop-blur-xl"
-            : "border-b border-transparent bg-deep-2/40 backdrop-blur-sm"
-        }`}
-      >
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-deep-2/95 backdrop-blur-xl">
         <div className="container-x flex h-16 items-center justify-between md:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex shrink-0 items-center" aria-label={site.name}>
+          {/* Logo (official — includes ® + Precision.Impact.Integrity tagline) */}
+          <Link
+            href="/"
+            className="flex shrink-0 items-center"
+            aria-label={site.name}
+          >
             <Image
               src="/querentia-logo.png"
               alt={site.name}
-              width={350}
-              height={200}
+              width={568}
+              height={145}
               priority
-              className="h-9 w-auto brightness-0 invert md:h-10"
+              className="h-10 w-auto brightness-0 invert md:h-12"
             />
           </Link>
 

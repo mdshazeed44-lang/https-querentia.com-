@@ -1,0 +1,536 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { Reveal } from "@/components/ui/reveal";
+import { CountUp } from "@/components/ui/count-up";
+import { ArrowRight, Mail } from "@/components/ui/icons";
+import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "For Companies — Hire Senior IT Talent in Canada",
+  description:
+    "Querentia is the most trusted partner for high-quality, high-impact senior IT talent. 48-hour shortlists. 94% retention. Built for Canada's leading consulting firms and enterprise programs.",
+  alternates: { canonical: "/for-companies" },
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "IT Recruitment & Staffing for Companies",
+  serviceType: "IT staffing and recruitment",
+  url: `${site.url}/for-companies`,
+  description:
+    "Permanent and contract IT recruitment for Canada's leading consulting firms and enterprise programs. Pre-vetted senior shortlists in 48 hours across cloud, data, security, and engineering.",
+  areaServed: {
+    "@type": "Country",
+    name: "Canada",
+  },
+  audience: {
+    "@type": "BusinessAudience",
+    name: "Employers hiring senior IT talent in Canada",
+  },
+  provider: {
+    "@type": "Organization",
+    name: site.legalName,
+    url: site.url,
+    email: site.email,
+    telephone: site.phone,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: site.locality,
+      addressRegion: site.region,
+      addressCountry: site.country,
+    },
+  },
+};
+
+const PROOF = [
+  { value: "48h", label: "Avg. shortlist turnaround" },
+  { value: "94%", label: "Placement retention" },
+  { value: "500+", label: "Successful placements" },
+  { value: "10+", label: "Years placing senior IT" },
+];
+
+const STEPS = [
+  {
+    num: "01",
+    title: "Brief us",
+    body: "One call. We calibrate the role, the stack, and the culture fit you actually need — no forty-field intake forms, no committees.",
+  },
+  {
+    num: "02",
+    title: "Shortlist in 48h",
+    body: "Four to six pre-vetted senior candidates from our network — each one already screened for technical depth, not keyword overlap.",
+  },
+  {
+    num: "03",
+    title: "Interview",
+    body: "We coordinate every step; you decide. Honest feedback flows both ways, so nobody's time gets wasted on a maybe.",
+  },
+  {
+    num: "04",
+    title: "Place + retain",
+    body: "Offer, onboarding support, and 12-month retention follow-through. We stay accountable long after day one.",
+  },
+];
+
+const PILLARS = [
+  {
+    num: "01",
+    title: "Precision",
+    body: "People are the heart of our business. Every search starts with your stack, your team, and the outcome the hire must deliver — then we match for expertise and pathway, never for keyword overlap.",
+  },
+  {
+    num: "02",
+    title: "Impact",
+    body: "We are passionate about our clients' success. First-class service and top-class candidates, for permanent and contract roles alike — shortlists built to move your roadmap, not just fill a seat.",
+  },
+  {
+    num: "03",
+    title: "Integrity",
+    body: "Honest pipelines, honest timelines. End-to-end delivery from first brief to onboarding, with transparent feedback at every step — because trust is the only metric that compounds.",
+  },
+];
+
+const DISCIPLINES = [
+  "Cloud Technologies",
+  "Data Engineering",
+  "Data Analytics",
+  "Cyber Security",
+  "DevOps",
+  "Full Stack Development",
+  "ERP",
+  "Enterprise Architecture",
+  "Project Management",
+  "Business Analysis",
+  "Testing Automation",
+  "UI / UX Design",
+];
+
+const TESTIMONIAL = {
+  quote:
+    "Querentia turned around a 5-candidate shortlist in 36 hours for a Senior Cloud Architect mandate. The first hire is still with us at 18 months.",
+  author: "Practice Director",
+  role: "Tier-1 Consulting · Toronto",
+};
+
+export default function ForCompaniesPage() {
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+
+      <main className="min-h-screen bg-page text-ink">
+        {/* ---------- HERO ---------- */}
+        <section className="relative isolate overflow-hidden bg-deep-2 pb-20 pt-36 text-on-deep md:pt-44">
+          {/* Float animation for the orbiting tag pills (motion-safe only) */}
+          <style>{`
+            @media (prefers-reduced-motion: no-preference) {
+              @keyframes fc-float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-8px); }
+              }
+              .fc-float-a { animation: fc-float 7s ease-in-out infinite; }
+              .fc-float-b { animation: fc-float 8s ease-in-out infinite; animation-delay: 1.3s; }
+            }
+          `}</style>
+
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,194,255,0.12) 0%, transparent 60%)",
+            }}
+          />
+
+          <div className="container-x relative">
+            <div className="grid items-center gap-16 lg:grid-cols-2">
+              {/* Left — copy */}
+              <div className="max-w-xl">
+                <Reveal>
+                  <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                    <span className="inline-block h-px w-8 bg-cyan/60" />
+                    For Companies
+                  </p>
+                </Reveal>
+                <Reveal delay={140}>
+                  <h1 className="text-balance text-[clamp(2.25rem,6vw,4.75rem)] font-medium leading-[0.98] tracking-tight text-white">
+                    Hire senior IT talent.{" "}
+                    <span
+                      className="text-cyan"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      With unmatched speed and precision.
+                    </span>
+                  </h1>
+                </Reveal>
+                <Reveal delay={260}>
+                  <p className="mt-8 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
+                    Querentia is the most trusted partner for high-quality,
+                    high-impact talent — delivered to Canada&apos;s leading
+                    consulting firms and enterprise IT programs with unmatched
+                    speed, precision, and integrity.
+                  </p>
+                </Reveal>
+                <Reveal delay={400}>
+                  <div className="mt-10 flex flex-wrap items-center gap-4">
+                    <Link
+                      href="/contact"
+                      className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
+                    >
+                      Get a shortlist
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                    </Link>
+                    <Link
+                      href="/jobs"
+                      className="inline-flex items-center gap-2.5 border border-white/25 px-8 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
+                    >
+                      Browse open roles
+                    </Link>
+                  </div>
+                </Reveal>
+              </div>
+
+              {/* Right — signature circle cluster */}
+              <Reveal delay={250} className="hidden lg:block">
+                <div className="flex items-center justify-center">
+                  <div className="relative h-[440px] w-[440px]">
+                    {/* Concentric orbit strokes */}
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute left-1/2 top-1/2 h-[580px] w-[580px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan/15"
+                    />
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute left-1/2 top-1/2 h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan/15"
+                    />
+
+                    {/* Large circle photo — enterprise meeting */}
+                    <div className="absolute left-1/2 top-1/2 z-10 h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full ring-2 ring-cyan/40">
+                      <Image
+                        src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=80"
+                        alt="Enterprise hiring team in a planning meeting"
+                        fill
+                        priority
+                        sizes="340px"
+                        className="object-cover"
+                      />
+                    </div>
+
+                    {/* Small circle photo — top right */}
+                    <div className="absolute -top-2 right-4 z-10 h-[140px] w-[140px] overflow-hidden rounded-full ring-2 ring-cyan/40">
+                      <Image
+                        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
+                        alt="Senior technology executive placed by Querentia"
+                        fill
+                        sizes="140px"
+                        className="object-cover"
+                      />
+                    </div>
+
+                    {/* Accent dots */}
+                    <span
+                      aria-hidden
+                      className="absolute left-[52px] top-[70px] z-20 flex h-3 w-3"
+                    >
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-60" />
+                      <span className="relative inline-flex h-3 w-3 rounded-full bg-cyan" />
+                    </span>
+                    <span
+                      aria-hidden
+                      className="absolute bottom-[110px] right-[18px] z-20 inline-block h-2.5 w-2.5 rounded-full bg-green"
+                    />
+                    <span
+                      aria-hidden
+                      className="absolute -top-6 left-[200px] z-20 inline-block h-2 w-2 rounded-full bg-cyan"
+                    />
+
+                    {/* Floating pill tag badges */}
+                    <span className="fc-float-a absolute -left-8 top-[120px] z-20 inline-flex items-center rounded-full bg-cyan px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-deep shadow-lg">
+                      48h shortlists
+                    </span>
+                    <span className="fc-float-b absolute -bottom-2 right-9 z-20 inline-flex items-center rounded-full border border-cyan/30 bg-deep-2 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-cyan shadow-lg">
+                      94% retention
+                    </span>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+
+        {/* ---------- PROOF STAT BAND ---------- */}
+        <section className="border-y border-border bg-page py-16 md:py-20">
+          <div className="container-x">
+            <div className="grid grid-cols-2 gap-y-10 md:grid-cols-4 md:divide-x md:divide-border">
+              {PROOF.map((p, i) => (
+                <Reveal key={p.label} delay={i * 100}>
+                  <div className="px-6 text-center">
+                    <p
+                      className="text-[clamp(2.5rem,5vw,4rem)] font-medium leading-none tracking-tight text-cyan"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      <CountUp value={p.value} />
+                    </p>
+                    <p className="mt-4 text-[11px] uppercase tracking-[0.25em] text-ink-muted">
+                      {p.label}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ---------- HOW IT WORKS ---------- */}
+        <section className="bg-page py-20 md:py-24">
+          <div className="container-x">
+            <Reveal>
+              <div className="mb-14 max-w-2xl md:mb-16">
+                <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                  <span className="inline-block h-px w-8 bg-cyan/60" />
+                  How it works
+                </p>
+                <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.05] tracking-tight">
+                  From brief to hire.{" "}
+                  <span
+                    className="text-cyan"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    In four steps.
+                  </span>
+                </h2>
+              </div>
+            </Reveal>
+
+            <div className="relative">
+              {/* Connecting line through the step circles */}
+              <span
+                aria-hidden
+                className="absolute left-0 top-6 hidden h-px w-full bg-cyan/25 md:block"
+              />
+              <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-6 lg:gap-8">
+                {STEPS.map((s, i) => (
+                  <Reveal key={s.num} delay={i * 120}>
+                    <div className="relative">
+                      <span
+                        className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-cyan text-base font-semibold text-deep"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
+                        {s.num}
+                      </span>
+                      <div className="mt-6 h-full rounded-2xl border border-border bg-card p-7">
+                        <h3
+                          className="text-xl font-medium tracking-tight"
+                          style={{ fontFamily: "var(--font-display)" }}
+                        >
+                          {s.title}
+                        </h3>
+                        <p className="mt-4 text-[15px] leading-relaxed text-ink-muted">
+                          {s.body}
+                        </p>
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ---------- WHY QUERENTIA ---------- */}
+        <section className="relative isolate overflow-hidden bg-deep-2 py-20 text-on-deep md:py-24">
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 55% 45% at 50% 100%, rgba(0,194,255,0.10) 0%, transparent 60%)",
+            }}
+          />
+          <div className="container-x relative">
+            <Reveal>
+              <div className="mb-14 max-w-2xl md:mb-16">
+                <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                  <span className="inline-block h-px w-8 bg-cyan/60" />
+                  Why Querentia
+                </p>
+                <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.05] tracking-tight text-white">
+                  Three principles.{" "}
+                  <span
+                    className="text-cyan"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    Every mandate.
+                  </span>
+                </h2>
+              </div>
+            </Reveal>
+
+            <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-3 lg:gap-x-12">
+              {PILLARS.map((v, i) => (
+                <Reveal key={v.num} delay={i * 120}>
+                  <div>
+                    <span aria-hidden className="block h-px w-12 bg-cyan/60" />
+                    <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.3em] text-cyan">
+                      {v.num} · {v.title}
+                    </p>
+                    <h3
+                      className="mt-5 text-[1.65rem] font-medium leading-tight tracking-tight text-white"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      {v.title}.
+                    </h3>
+                    <p className="mt-5 text-base leading-relaxed text-on-deep-muted">
+                      {v.body}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Manifesto */}
+            <Reveal delay={200}>
+              <div className="mt-20 border-t border-white/10 pt-16 text-center md:mt-24">
+                <p
+                  className="mx-auto max-w-4xl text-balance text-[clamp(1.75rem,4vw,3rem)] font-medium leading-[1.15] tracking-tight text-white"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  High-quality, high-impact talent —{" "}
+                  <span className="text-cyan">delivered.</span>
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ---------- DISCIPLINES STRIP ---------- */}
+        <section className="bg-page py-20 md:py-24">
+          <div className="container-x">
+            <Reveal>
+              <div className="mb-10 max-w-2xl">
+                <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                  <span className="inline-block h-px w-8 bg-cyan/60" />
+                  What we recruit for
+                </p>
+                <p className="text-lg leading-relaxed text-ink-muted md:text-xl">
+                  From cloud platforms to risk and audit — if the role is
+                  senior and technical, our network already covers it.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={150}>
+              <div className="flex flex-wrap items-center gap-3">
+                {DISCIPLINES.map((d) => (
+                  <span
+                    key={d}
+                    className="inline-flex items-center rounded-full border border-ink/15 bg-card px-5 py-2.5 text-sm font-medium text-ink"
+                  >
+                    {d}
+                  </span>
+                ))}
+                <Link
+                  href="/"
+                  className="group inline-flex items-center gap-2 rounded-full border border-cyan/40 bg-cyan-soft px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-cyan"
+                >
+                  All 30 disciplines
+                  <ArrowRight className="h-3.5 w-3.5 text-cyan transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ---------- TESTIMONIAL ---------- */}
+        <section className="border-t border-border bg-page-2 py-20 md:py-24">
+          <div className="container-x">
+            <Reveal>
+              <figure className="mx-auto max-w-3xl border-t-2 border-cyan/70 bg-card p-10 shadow-[0_24px_50px_-20px_rgba(13,27,42,0.12)] md:p-14">
+                <span
+                  aria-hidden
+                  className="mb-5 block text-6xl leading-none text-cyan/35"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  &ldquo;
+                </span>
+                <blockquote className="text-balance text-xl leading-relaxed text-ink md:text-2xl">
+                  {TESTIMONIAL.quote}
+                </blockquote>
+                <figcaption className="mt-10 border-t border-ink/10 pt-6">
+                  <p className="text-sm font-medium text-ink">
+                    {TESTIMONIAL.author}
+                  </p>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-muted">
+                    {TESTIMONIAL.role}
+                  </p>
+                </figcaption>
+              </figure>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ---------- FINAL CTA ---------- */}
+        <section className="relative isolate overflow-hidden bg-deep-2 py-24 text-on-deep md:py-28">
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 50% 45% at 50% 50%, rgba(0,194,255,0.12) 0%, transparent 60%)",
+            }}
+          />
+          <div className="container-x relative">
+            <div className="mx-auto max-w-3xl text-center">
+              <Reveal>
+                <p className="mb-7 inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                  <span className="inline-block h-px w-8 bg-cyan/60" />
+                  Get in touch
+                  <span className="inline-block h-px w-8 bg-cyan/60" />
+                </p>
+              </Reveal>
+              <Reveal delay={130}>
+                <h2 className="mb-8 text-balance text-[clamp(2.25rem,5vw,3.75rem)] font-medium leading-[1.05] tracking-tight text-white">
+                  Tell us what you&apos;re hiring for.{" "}
+                  <span
+                    className="text-cyan"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    We&apos;ll do the rest.
+                  </span>
+                </h2>
+              </Reveal>
+              <Reveal delay={260}>
+                <p className="mx-auto mb-10 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
+                  Permanent or contract, one role or a whole squad — share
+                  your staffing needs and our team will add value from the
+                  first brief.
+                </p>
+              </Reveal>
+              <Reveal delay={380}>
+                <div className="flex flex-wrap items-center justify-center gap-4">
+                  <Link
+                    href="/contact"
+                    className="group inline-flex items-center gap-2.5 bg-green px-9 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
+                  >
+                    Contact Us
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
+                  <a
+                    href={`mailto:${site.email}`}
+                    className="inline-flex items-center gap-2.5 border border-white/25 px-8 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
+                  >
+                    <Mail className="h-4 w-4 text-cyan" />
+                    Email us
+                  </a>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
+  );
+}

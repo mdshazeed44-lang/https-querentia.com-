@@ -50,7 +50,7 @@ export default function JobsPage() {
             className="absolute inset-0 animate-gradient-pan"
             style={{
               background:
-                "linear-gradient(120deg, #0b0c0a 0%, #1a1c19 30%, #1f3a2a 60%, #1a1c19 100%)",
+                "linear-gradient(120deg, #0D1B2A 0%, #142235 30%, #16324C 60%, #142235 100%)",
             }}
           />
           <span className="grain absolute inset-0" />
@@ -71,20 +71,20 @@ export default function JobsPage() {
               className="mt-7 max-w-3xl text-[clamp(2.75rem,9vw,7.5rem)] font-medium leading-[0.95] tracking-tight"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              We want to <span className="text-white/70">work with you</span>.
+              High-impact roles. <span className="text-white/70">Matched with precision.</span>
             </h1>
           </Reveal>
           <Reveal delay={240}>
             <p className="mt-7 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
-              If you&apos;re a skilled technology professional looking for a
-              partner who actually listens — your search starts here.
+              Live senior IT mandates from Canada&apos;s leading consulting
+              firms and enterprises — represented honestly, moved fast.
             </p>
           </Reveal>
           <Reveal delay={360}>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <a
                 href="#results"
-                className="magnetic shine inline-flex items-center gap-2 rounded-full bg-green px-7 py-3.5 text-sm font-medium text-white shadow-[0_18px_40px_-12px_rgba(38,112,68,0.5)] transition-colors hover:bg-green-700"
+                className="magnetic shine inline-flex items-center gap-2 rounded-full bg-green px-7 py-3.5 text-sm font-medium text-white shadow-[0_18px_40px_-12px_rgba(255,107,43,0.5)] transition-colors hover:bg-green-700"
               >
                 See open roles <ArrowRight className="h-4 w-4" />
               </a>
@@ -111,13 +111,13 @@ export default function JobsPage() {
               className="grain animate-gradient-pan relative overflow-hidden rounded-3xl px-8 py-16 text-center text-white md:px-16 md:py-24"
               style={{
                 background:
-                  "linear-gradient(120deg, #0b0c0a 0%, #1a1c19 30%, #1f3a2a 60%, #1a1c19 100%)",
+                  "linear-gradient(120deg, #0D1B2A 0%, #142235 30%, #16324C 60%, #142235 100%)",
               }}
             >
               <span
                 aria-hidden
                 className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full blur-3xl"
-                style={{ background: "radial-gradient(circle, rgba(143,184,159,0.25), transparent 70%)" }}
+                style={{ background: "radial-gradient(circle, rgba(0,194,255,0.25), transparent 70%)" }}
               />
               <div className="relative">
                 <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
@@ -134,8 +134,8 @@ export default function JobsPage() {
                   >
                     Submit your CV <ArrowRight className="h-4 w-4" />
                   </Link>
-                  <Button href="/interview-training" variant="outline-light">
-                    See Interview Training
+                  <Button href="/for-talent" variant="outline-light">
+                    For Talent
                   </Button>
                 </div>
               </div>

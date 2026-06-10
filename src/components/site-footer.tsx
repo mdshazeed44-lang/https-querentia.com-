@@ -5,11 +5,11 @@ import { Mail, MapPin, Phone, Linkedin, Facebook, Instagram, Twitter, ArrowRight
 
 const groups = [
   {
-    title: "Services",
+    title: "Querentia",
     links: [
-      { label: "Talent Services", href: "/" },
-      { label: "Resume Services", href: "/resume-services" },
-      { label: "Interview Training", href: "/interview-training" },
+      { label: "About Us", href: "/about" },
+      { label: "For Talent", href: "/for-talent" },
+      { label: "For Companies", href: "/for-companies" },
       { label: "Open Roles", href: "/jobs" },
     ],
   },
@@ -58,17 +58,19 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
           {/* Brand block */}
           <div>
-            <Link href="/" className="flex items-center gap-2.5">
-              <Image src="/querentia-icon.png" alt="" width={150} height={150} className="h-9 w-9" />
-              <span
-                className="text-xl font-medium text-white"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {site.name}
-              </span>
+            <Link href="/" className="inline-flex" aria-label={site.name}>
+              <Image
+                src="/querentia-logo.png"
+                alt={site.name}
+                width={568}
+                height={145}
+                className="h-14 w-auto brightness-0 invert"
+              />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-on-deep-muted">
-              Specialist IT recruitment, based in {site.location}.
+              The trusted partner for high-quality, high-impact IT talent —
+              delivered with speed, precision, and integrity. Based in
+              Oakville, Ontario.
             </p>
 
             <ul className="mt-6 space-y-2 text-sm">
@@ -143,8 +145,8 @@ export function SiteFooter() {
             </h4>
             <ul className="mt-4 space-y-3">
               <li><Link href="/jobs" className="text-sm text-on-deep-muted hover:text-white">Find Jobs</Link></li>
+              <li><Link href="/for-talent" className="text-sm text-on-deep-muted hover:text-white">For Talent</Link></li>
               <li><Link href="/contact" className="text-sm text-on-deep-muted hover:text-white">Submit your CV</Link></li>
-              <li><Link href="/resume-services" className="text-sm text-on-deep-muted hover:text-white">Resume help</Link></li>
             </ul>
           </div>
         </div>

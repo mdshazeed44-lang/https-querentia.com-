@@ -1,59 +1,170 @@
-import { specializations } from "@/lib/site";
-import { Reveal } from "@/components/ui/reveal";
-import {
-  Bank, Cloud, Data, Code, Shield, Spark, Bolt, Globe, Sparkles,
-  Briefcase, Star, Users, BarChart, Network, Workflow, Lightbulb,
-  Layers, Coins,
-} from "@/components/ui/icons";
-import type { ComponentType, SVGProps } from "react";
+﻿import { Reveal } from "@/components/ui/reveal";
 
-const iconMap: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
-  bank: Bank, cloud: Cloud, data: Data, code: Code, shield: Shield, spark: Spark,
-  bolt: Bolt, globe: Globe, sparkles: Sparkles, briefcase: Briefcase, star: Star,
-  users: Users, barChart: BarChart, network: Network, workflow: Workflow,
-  lightbulb: Lightbulb, layers: Layers, coins: Coins,
-};
+// 30 disciplines grouped into 5 practice areas — editorial row layout
+const CATEGORIES = [
+  {
+    code: "01",
+    title: "Cloud, Data & AI",
+    items: [
+      "Cloud Technologies",
+      "DevOps",
+      "Data Engineering",
+      "Data Analytics",
+      "Data Science",
+      "Data Warehousing",
+      "SAS",
+      "Blockchain",
+    ],
+  },
+  {
+    code: "02",
+    title: "Engineering & Product",
+    items: [
+      "Full Stack Development",
+      "Web Development",
+      "Testing Automation",
+      "UI / UX Design",
+      "Application Integration",
+      "Pega",
+    ],
+  },
+  {
+    code: "03",
+    title: "Enterprise Platforms",
+    items: [
+      "ERP",
+      "Enterprise Architecture",
+      "Guidewire",
+      "Energy & Utilities",
+      "Supply Chain & Procurement",
+    ],
+  },
+  {
+    code: "04",
+    title: "Strategy & Delivery",
+    items: [
+      "Project Management",
+      "Program Management",
+      "Business Analysis",
+      "Agile Delivery",
+      "Org Change Management",
+    ],
+  },
+  {
+    code: "05",
+    title: "Security, Risk & Business",
+    items: [
+      "Cyber Security",
+      "Risk & Internal Audit",
+      "Financial Advisory",
+      "Taxation",
+      "Human Resources",
+      "Digital Marketing",
+    ],
+  },
+];
 
 export function Industries() {
+  const totalCount = CATEGORIES.reduce((sum, c) => sum + c.items.length, 0);
+
   return (
-    <section className="bg-deep py-20 text-on-deep md:py-28">
-      <div className="container-x">
+    <section className="relative isolate overflow-hidden border-t border-border bg-page py-20 text-ink md:py-24">
+      {/* Soft ambient accents */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-40 -top-40 h-[420px] w-[420px] rounded-full bg-cyan/[0.04] blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-40 -right-40 h-[520px] w-[520px] rounded-full bg-cyan/[0.14] blur-3xl"
+      />
+
+      <div className="container-x relative">
+        {/* Header */}
         <Reveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sage">
-              Our specialization
+          <div className="mb-14 max-w-4xl md:mb-20">
+            <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <span className="inline-block h-px w-8 bg-cyan/60" />
+              VI · Our expertise · {totalCount} disciplines · 5 practices
             </p>
-            <h2 className="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[1.05] tracking-tight text-white">
-              You&apos;re in good company.
+            <h2 className="mt-6 text-[clamp(2.25rem,5.5vw,4.25rem)] font-medium leading-[0.98] tracking-tight">
+              Across every discipline
+              <br className="hidden md:block" />{" "}
+              you{" "}
+              <span
+                className="text-cyan"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                actually
+              </span>{" "}
+              build on.
             </h2>
-            <p className="mt-5 text-base text-on-deep-muted md:text-lg">
-              Deep benches across the technology disciplines your enterprise
-              actually runs on.
+            <p className="mt-7 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
+              {`Five deep practices. ${totalCount} specialised disciplines. Built over a decade placing senior IT talent into Canada's largest consulting and enterprise programs.`}
             </p>
           </div>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4 lg:grid-cols-5">
-          {specializations.map((s, i) => {
-            const Icon = iconMap[s.icon] ?? Code;
-            return (
-              <Reveal key={s.title} delay={(i % 10) * 50}>
-                <div className="group relative flex h-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-7 text-center transition-all duration-500 hover:-translate-y-1 hover:border-sage/50 hover:bg-white/[0.08] hover:shadow-[0_18px_40px_-16px_rgba(143,184,159,0.35)]">
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sage/0 to-sage/0 opacity-0 transition-opacity duration-500 group-hover:from-sage/10 group-hover:opacity-100"
-                  />
-                  <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-white/[0.08] text-sage transition-all duration-500 group-hover:rotate-[8deg] group-hover:scale-110 group-hover:bg-sage/20">
-                    <Icon className="h-5 w-5" />
+        {/* Editorial row layout — magazine table of contents */}
+        <div className="border-y border-ink/10">
+          {CATEGORIES.map((cat, idx) => (
+            <Reveal key={cat.code} delay={idx * 80}>
+              <div
+                className={`group grid grid-cols-1 gap-6 py-9 transition-colors duration-500 hover:bg-ink/[0.015] md:grid-cols-[300px_1fr] md:gap-10 md:py-11 ${idx > 0 ? "border-t border-ink/10" : ""}`}
+              >
+                {/* Left — chapter heading */}
+                <div className="flex flex-col">
+                  <span className="mb-3 font-mono text-[10px] uppercase tracking-[0.3em] text-cyan">
+                    {cat.code} · Practice
                   </span>
-                  <h3 className="relative mt-4 text-sm font-medium leading-snug text-white transition-colors duration-300 group-hover:text-sage">
-                    {s.title}
+                  <h3
+                    className="text-[1.5rem] font-medium leading-[1.1] tracking-tight md:text-[1.75rem]"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {cat.title}
                   </h3>
+                  <span className="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-ink/40">
+                    {String(cat.items.length).padStart(2, "0")} disciplines
+                  </span>
                 </div>
-              </Reveal>
-            );
-          })}
+
+                {/* Right — tag pills */}
+                <div className="flex flex-wrap items-start gap-2 md:gap-2.5 md:pt-2">
+                  {cat.items.map((item) => (
+                    <span
+                      key={item}
+                      className="inline-flex items-center rounded-full border border-ink/15 bg-card px-3.5 py-1.5 text-xs font-medium text-ink/80 transition-all duration-300 hover:-translate-y-px hover:border-cyan hover:bg-cyan/[0.04] hover:text-ink"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
+
+        {/* Footnote band */}
+        <Reveal delay={550}>
+          <div className="mt-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+            <p className="text-sm text-ink-muted md:text-base">
+              Don&apos;t see your stack?{" "}
+              <span className="text-ink">We&apos;ve probably placed it.</span>
+            </p>
+            <a
+              href="/contact"
+              className="group inline-flex items-center gap-2 text-sm font-medium text-cyan transition-colors hover:text-ink"
+            >
+              Tell us what you&apos;re hiring for
+              <span
+                aria-hidden
+                className="inline-block transition-transform duration-300 group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

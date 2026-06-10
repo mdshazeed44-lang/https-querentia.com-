@@ -6,9 +6,9 @@ export const site = {
   legalName: "Querentia Inc.",
   domain: "querentia.com",
   url: "https://querentia.com",
-  tagline: "Talent Redefined.",
+  tagline: "Precision. Impact. Integrity.",
   description:
-    "Querentia is a Greater Toronto Area IT recruitment firm placing elite technology talent with Canada's leading enterprises. Specialist staffing for digital, cloud, data, and engineering teams.",
+    "Querentia is the most trusted partner for high-quality, high-impact IT talent — delivered to Canada's leading enterprises with unmatched speed, precision, and integrity. Specialist recruitment for cloud, data, security, and engineering teams across Canada.",
   location: "Oakville, Ontario, Canada",
   locality: "Oakville",
   region: "ON",
@@ -24,11 +24,10 @@ export const site = {
 } as const;
 
 export const nav = [
-  { label: "For Employers", href: "/employers" },
-  { label: "For Job Seekers", href: "/candidates" },
-  { label: "Open Roles", href: "/jobs" },
-  { label: "Industries", href: "/industries" },
-  { label: "About", href: "/about" },
+  { label: "About Us", href: "/about" },
+  { label: "For Talent", href: "/for-talent" },
+  { label: "For Companies", href: "/for-companies" },
+  { label: "Contact Us", href: "/contact" },
 ] as const;
 
 // Enterprise clients referenced across calls / scope
@@ -313,7 +312,7 @@ export const specializations = [
 
 export const stats = [
   { value: "10+", label: "Years placing IT talent", sub: "Since 2014", icon: "star" },
-  { value: "168+", label: "Live enterprise roles", sub: "Updated hourly", icon: "briefcase" },
+  { value: "500+", label: "Successful placements", sub: "Since 2014", icon: "briefcase" },
   { value: "48h", label: "Avg. shortlist turnaround", sub: "Qualified candidates", icon: "bolt" },
   { value: "94%", label: "Placement retention", sub: "Year over year", icon: "shield" },
 ] as const;

@@ -107,7 +107,7 @@ export function JobsBoard({ jobs }: Props) {
       >
         <div className="sticky top-28 rounded-3xl border border-border bg-card p-6 shadow-[0_1px_3px_rgba(15,27,51,0.05)]">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-bold uppercase tracking-[0.16em] text-green-700">
+            <h2 className="text-sm font-bold uppercase tracking-[0.16em] text-cyan">
               Filters
             </h2>
             {activeCount > 0 && (
@@ -169,7 +169,7 @@ export function JobsBoard({ jobs }: Props) {
             className="flex flex-col gap-2 rounded-2xl border border-border bg-card p-2 shadow-[0_1px_3px_rgba(15,27,51,0.05)] sm:flex-row sm:items-center sm:rounded-full"
           >
             <div className="flex flex-1 items-center gap-2 px-3">
-              <Search className="h-4 w-4 shrink-0 text-green-700" />
+              <Search className="h-4 w-4 shrink-0 text-cyan" />
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
@@ -179,7 +179,7 @@ export function JobsBoard({ jobs }: Props) {
             </div>
             <div className="hidden h-6 w-px bg-border sm:block" />
             <div className="flex flex-1 items-center gap-2 px-3">
-              <MapPin className="h-4 w-4 shrink-0 text-green-700" />
+              <MapPin className="h-4 w-4 shrink-0 text-cyan" />
               <input
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
@@ -190,11 +190,11 @@ export function JobsBoard({ jobs }: Props) {
             <button
               type="button"
               onClick={() => setFiltersOpen((o) => !o)}
-              className="flex items-center justify-center gap-2 rounded-full border border-border-2 bg-white px-4 py-2.5 text-sm font-medium text-deep transition-colors hover:border-green hover:text-green-700 lg:hidden"
+              className="flex items-center justify-center gap-2 rounded-full border border-border-2 bg-white px-4 py-2.5 text-sm font-medium text-deep transition-colors hover:border-cyan hover:text-cyan lg:hidden"
             >
               <Filter className="h-4 w-4" /> Filters
               {activeCount > 0 && (
-                <span className="rounded-full bg-green px-1.5 text-[10px] text-white">
+                <span className="rounded-full bg-cyan px-1.5 text-[10px] text-deep">
                   {activeCount}
                 </span>
               )}
@@ -214,7 +214,7 @@ export function JobsBoard({ jobs }: Props) {
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as "new" | "old")}
-              className="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-deep focus:border-green focus:outline-none"
+              className="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-deep focus:border-cyan focus:outline-none"
             >
               <option value="new">Newest first</option>
               <option value="old">Oldest first</option>
@@ -282,7 +282,7 @@ function ChipToggle({
       type="button"
       className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-all duration-200 ${
         active
-          ? "border-green bg-green-soft text-green-700"
+          ? "border-cyan bg-cyan-soft text-deep"
           : "border-border bg-white text-ink-muted hover:border-border-2 hover:text-deep"
       }`}
     >
@@ -306,19 +306,19 @@ function JobCard({ job }: { job: Job }) {
         <div className="flex min-w-0 flex-1 gap-4">
           <span
             className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110"
-            style={{ background: "linear-gradient(135deg, var(--color-green), var(--color-blue))" }}
+            style={{ background: "linear-gradient(135deg, var(--color-deep-2), var(--color-cyan))" }}
           >
             <Briefcase className="h-6 w-6" />
           </span>
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
-              <h3 className="text-lg font-bold text-deep transition-colors duration-300 group-hover:text-green-700 md:text-xl">
+              <h3 className="text-lg font-bold text-deep transition-colors duration-300 group-hover:text-cyan md:text-xl">
                 <Link href={href} className="after:absolute after:inset-0">
                   {job.title}
                 </Link>
               </h3>
               {job.isFeatured && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-green-soft px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-green-700">
+                <span className="inline-flex items-center gap-1 rounded-full bg-green-soft px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cyan">
                   <Bolt className="h-3 w-3" /> Featured
                 </span>
               )}

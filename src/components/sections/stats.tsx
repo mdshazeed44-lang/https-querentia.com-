@@ -1,35 +1,41 @@
-import { Reveal } from "@/components/ui/reveal";
+﻿import { Reveal } from "@/components/ui/reveal";
 import { CountUp } from "@/components/ui/count-up";
-import { stats } from "@/lib/site";
+
+const ROWS = [
+  { value: "94%", label: "Placement retention", accent: true },
+  { value: "500+", label: "Successful placements", accent: false },
+  { value: "48h", label: "Avg. shortlist turnaround", accent: false },
+  { value: "10+", label: "Years placing senior IT talent", accent: true },
+] as const;
 
 export function Stats() {
   return (
-    <section id="stats" className="bg-page py-20 md:py-28">
+    <section
+      id="stats"
+      className="border-y border-border bg-page py-24 md:py-28"
+    >
       <div className="container-x">
-        <Reveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-green">
-              By the numbers
-            </p>
-            <h2 className="mt-4 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[1.05] tracking-tight text-deep">
-              The best hires have always come through people you trust.
-            </h2>
-          </div>
-        </Reveal>
-
-        <div className="mt-14 grid grid-cols-2 gap-y-12 border-y border-border md:grid-cols-4 md:divide-x md:divide-border md:py-12">
-          {stats.map((s, i) => (
+        <div className="grid grid-cols-1 gap-y-14 md:grid-cols-4 md:gap-y-0">
+          {ROWS.map((s, i) => (
             <Reveal key={s.label} delay={i * 110}>
-              <div className="group px-6 text-center">
+              <div
+                className={`px-4 ${
+                  i !== ROWS.length - 1
+                    ? "md:border-r md:border-border md:pr-8"
+                    : ""
+                } md:px-6`}
+              >
                 <p
-                  className="text-[clamp(2.5rem,5vw,4.5rem)] font-medium leading-none tracking-tight text-deep transition-transform duration-500 group-hover:scale-[1.04]"
+                  className={`text-[clamp(3.5rem,6.5vw,5.5rem)] font-medium leading-none tracking-tight ${
+                    s.accent ? "text-cyan" : "text-ink"
+                  }`}
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   <CountUp value={s.value} />
                 </p>
-                <span className="mx-auto mt-4 block h-[2px] w-8 origin-center bg-green transition-all duration-500 group-hover:w-16" />
-                <p className="mt-3 text-sm font-medium text-deep">{s.label}</p>
-                <p className="mt-1 text-xs text-ink-faint">{s.sub}</p>
+                <p className="mt-6 text-[11px] uppercase tracking-[0.25em] text-ink-muted">
+                  {s.label}
+                </p>
               </div>
             </Reveal>
           ))}

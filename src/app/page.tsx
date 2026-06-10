@@ -1,18 +1,22 @@
 import { Hero } from "@/components/sections/hero";
-import { Stats } from "@/components/sections/stats";
-import { Audiences } from "@/components/sections/audiences";
+import { ClientWall } from "@/components/sections/client-wall";
+import { Services } from "@/components/sections/services";
+import { FeatureSpeed } from "@/components/sections/feature-speed";
 import { Industries } from "@/components/sections/industries";
-import { Process } from "@/components/sections/process";
+import { Testimonials } from "@/components/sections/testimonials";
+import { FAQ } from "@/components/sections/faq";
 import { CTA } from "@/components/sections/cta";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <Stats />
-      <Audiences />
+      <ClientWall />
+      <Services />
+      <FeatureSpeed />
       <Industries />
-      <Process />
+      <Testimonials />
+      <FAQ />
       <CTA />
     </>
   );

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Thin forest-green progress bar at the very top of the viewport that fills
+ * Thin electric-cyan progress bar at the very top of the viewport that fills
  * left-to-right as the page scrolls. Sits above the header (z-50 vs header z-40).
  * rAF-throttled, respects prefers-reduced-motion.
  */
@@ -46,7 +46,7 @@ export function ScrollProgress() {
     >
       <div
         ref={ref}
-        className="scroll-progress h-full bg-green"
+        className="scroll-progress h-full bg-cyan"
         style={{ ["--scroll" as string]: 0 }}
       />
     </div>

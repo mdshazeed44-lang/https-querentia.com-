@@ -1,46 +1,77 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "@/components/ui/icons";
+﻿import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
+import { ArrowRight } from "@/components/ui/icons";
 
 export function CTA() {
   return (
-    <section className="bg-page py-12 md:py-16">
-      <div className="container-x">
+    <section className="relative overflow-hidden border-t border-border bg-page py-24 text-ink md:py-28">
+      {/* Radial accent — soft cyan on light bg */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 50% 40% at 50% 50%, rgba(0,194,255,0.18) 0%, transparent 60%)",
+        }}
+      />
+
+      {/* Corner brackets */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute left-8 top-12 hidden h-14 w-14 border-l border-t border-ink/20 md:block"
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute right-8 top-12 hidden h-14 w-14 border-r border-t border-ink/20 md:block"
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute bottom-12 left-8 hidden h-14 w-14 border-b border-l border-ink/20 md:block"
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute bottom-12 right-8 hidden h-14 w-14 border-b border-r border-ink/20 md:block"
+      />
+
+      <div className="container-x relative z-10 mx-auto max-w-3xl text-center">
         <Reveal>
-          <div
-            className="grain relative overflow-hidden rounded-3xl px-8 py-16 md:px-16 md:py-24 animate-gradient-pan"
-            style={{
-              background:
-                "linear-gradient(120deg, #0b0c0a 0%, #1a1c19 30%, #1f3a2a 60%, #1a1c19 100%)",
-            }}
-          >
-            {/* Soft accent glow */}
+          <p className="mb-7 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+            IX · Get in touch
+          </p>
+        </Reveal>
+        <Reveal delay={130}>
+          <h2 className="mb-9 text-[clamp(2.25rem,6vw,4.5rem)] font-medium leading-[1.05] tracking-tight text-ink">
+            The most trusted partner
+            <br />
             <span
-              aria-hidden
-              className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full blur-3xl"
-              style={{ background: "radial-gradient(circle, rgba(143,184,159,0.25), transparent 70%)" }}
-            />
-            <div className="relative grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sage">
-                  Hunt with us
-                </p>
-                <h2
-                  className="mt-4 text-[clamp(2rem,5vw,4rem)] font-medium leading-[1.05] tracking-tight text-white"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  Your trusted partner in the talent department from you&apos;ll trust.
-                </h2>
-              </div>
-              <div className="flex flex-wrap items-center gap-3 lg:justify-end">
-                <Button href="/contact" variant="primary">
-                  Get in touch <ArrowRight className="h-4 w-4" />
-                </Button>
-                <Button href="/jobs" variant="outline-light">
-                  Browse roles
-                </Button>
-              </div>
-            </div>
+              className="text-cyan"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              for senior IT talent.
+            </span>
+          </h2>
+        </Reveal>
+        <Reveal delay={260}>
+          <p className="mx-auto mb-12 max-w-xl text-base text-ink-muted md:text-lg">
+            48-hour shortlists. 94% retention. High-quality, high-impact
+            talent — delivered with unmatched speed, precision, and integrity.
+          </p>
+        </Reveal>
+        <Reveal delay={380}>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/contact"
+              className="group inline-flex items-center gap-2.5 bg-green px-9 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
+            >
+              Get a shortlist
+              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/jobs"
+              className="inline-flex items-center gap-2.5 border border-ink/25 px-9 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-ink transition-colors duration-300 hover:border-ink/60 hover:bg-ink/5"
+            >
+              Browse roles
+            </Link>
           </div>
         </Reveal>
       </div>

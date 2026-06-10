@@ -55,7 +55,7 @@ export function ContactModal({ open, onClose }: Props) {
           <div
             aria-hidden
             className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full blur-3xl"
-            style={{ background: "radial-gradient(circle, rgba(37,99,235,0.55), transparent 70%)" }}
+            style={{ background: "radial-gradient(circle, rgba(0,194,255,0.55), transparent 70%)" }}
           />
           <button
             type="button"
@@ -83,23 +83,23 @@ export function ContactModal({ open, onClose }: Props) {
         >
           <div className="grid gap-3 sm:grid-cols-2">
             <label className="block text-xs font-medium text-ink-muted">
-              Your name <span className="text-green-700">*</span>
+              Your name <span className="text-red">*</span>
               <input
                 ref={firstFieldRef}
                 name="name"
                 required
                 placeholder="Jane Smith"
-                className="mt-1 w-full rounded-xl border border-border bg-white px-4 py-2.5 text-sm text-deep placeholder:text-ink-muted/55 focus:border-green focus:outline-none focus:ring-4 focus:ring-green/15"
+                className="mt-1 w-full rounded-xl border border-border bg-white px-4 py-2.5 text-sm text-deep placeholder:text-ink-muted/55 focus:border-cyan focus:outline-none focus:ring-4 focus:ring-cyan/15"
               />
             </label>
             <label className="block text-xs font-medium text-ink-muted">
-              Work email <span className="text-green-700">*</span>
+              Work email <span className="text-red">*</span>
               <input
                 name="email"
                 type="email"
                 required
                 placeholder="jane@company.com"
-                className="mt-1 w-full rounded-xl border border-border bg-white px-4 py-2.5 text-sm text-deep placeholder:text-ink-muted/55 focus:border-green focus:outline-none focus:ring-4 focus:ring-green/15"
+                className="mt-1 w-full rounded-xl border border-border bg-white px-4 py-2.5 text-sm text-deep placeholder:text-ink-muted/55 focus:border-cyan focus:outline-none focus:ring-4 focus:ring-cyan/15"
               />
             </label>
           </div>
@@ -108,23 +108,23 @@ export function ContactModal({ open, onClose }: Props) {
             <input
               name="company"
               placeholder="Optional"
-              className="mt-1 w-full rounded-xl border border-border bg-white px-4 py-2.5 text-sm text-deep placeholder:text-ink-muted/55 focus:border-green focus:outline-none focus:ring-4 focus:ring-green/15"
+              className="mt-1 w-full rounded-xl border border-border bg-white px-4 py-2.5 text-sm text-deep placeholder:text-ink-muted/55 focus:border-cyan focus:outline-none focus:ring-4 focus:ring-cyan/15"
             />
           </label>
           <label className="block text-xs font-medium text-ink-muted">
-            Message <span className="text-green-700">*</span>
+            Message <span className="text-red">*</span>
             <textarea
               name="message"
               required
               rows={4}
               placeholder="A short brief — role, location, timeline."
-              className="mt-1 w-full resize-none rounded-xl border border-border bg-white px-4 py-2.5 text-sm text-deep placeholder:text-ink-muted/55 focus:border-green focus:outline-none focus:ring-4 focus:ring-green/15"
+              className="mt-1 w-full resize-none rounded-xl border border-border bg-white px-4 py-2.5 text-sm text-deep placeholder:text-ink-muted/55 focus:border-cyan focus:outline-none focus:ring-4 focus:ring-cyan/15"
             />
           </label>
 
           <button
             type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_-8px_rgba(37,99,235,0.6)] transition-all duration-300 hover:scale-[1.01] hover:bg-green-700"
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_-8px_rgba(255,107,43,0.6)] transition-all duration-300 hover:scale-[1.01] hover:bg-green-700"
           >
             Send message <ArrowRight className="h-4 w-4" />
           </button>
@@ -133,20 +133,20 @@ export function ContactModal({ open, onClose }: Props) {
           <div className="mt-4 grid gap-2 border-t border-border pt-4 text-xs text-ink-muted sm:grid-cols-3">
             <a
               href={`mailto:${site.email}`}
-              className="flex items-center gap-2 transition-colors hover:text-green-700"
+              className="flex items-center gap-2 transition-colors hover:text-cyan"
             >
-              <Mail className="h-3.5 w-3.5 text-green-700" />
+              <Mail className="h-3.5 w-3.5 text-cyan" />
               {site.email}
             </a>
             <a
               href={`tel:${site.phone.replace(/[^+\d]/g, "")}`}
-              className="flex items-center gap-2 transition-colors hover:text-green-700"
+              className="flex items-center gap-2 transition-colors hover:text-cyan"
             >
-              <Phone className="h-3.5 w-3.5 text-green-700" />
+              <Phone className="h-3.5 w-3.5 text-cyan" />
               {site.phone}
             </a>
             <span className="flex items-center gap-2">
-              <MapPin className="h-3.5 w-3.5 text-green-700" />
+              <MapPin className="h-3.5 w-3.5 text-cyan" />
               {site.locality}, {site.region}
             </span>
           </div>

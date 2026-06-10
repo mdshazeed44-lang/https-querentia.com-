@@ -1,41 +1,51 @@
 @import "tailwindcss";
 
 /* ============================================================
-   QUERENTIA — Design System
-   - Inner pages: Hunt Club (cream + charcoal + forest green)
-   - HOMEPAGE: Futuristic dark + electric indigo (TECHUNT-style)
-   Fonts: Clash Display (futuristic display), Familjen Grotesk (inner),
-          DM Sans (body)
+   QUERENTIA — Brand System (Hemant's palette, 2026-06-10)
+   Primary:   Deep Navy #0D1B2A · Electric Cyan #00C2FF
+   Secondary: Arctic White #F4F7FA · Steel Grey #5A6478
+   Accent:    Maple Red #D94F3D · Frost Green #3DDC84
+   CTA:       Signal Orange #FF6B2B
+   Tagline:   Precision · Impact · Integrity
    ============================================================ */
 
 @theme inline {
-  /* Surfaces (warm) */
-  --color-page: #f9f7f3;        /* cream — primary bg */
-  --color-page-2: #f3f0ea;      /* softer cream tint */
+  /* Surfaces — Arctic White family */
+  --color-page: #F4F7FA;        /* Arctic White — primary bg */
+  --color-page-2: #EAEEF3;      /* softer cool tint */
   --color-card: #ffffff;
-  --color-tint: #ece8e0;
-  --color-border: #e5e0d6;
-  --color-border-2: #d5cfc3;
+  --color-tint: #E1E6ED;
+  --color-border: #DDE3EA;
+  --color-border-2: #C4CCD7;
 
-  /* Dark (charcoal-forest from Hunt Club) */
-  --color-deep: #1a1c19;        /* deep charcoal */
-  --color-deep-2: #0b0c0a;      /* black */
+  /* Dark — Deep Navy family */
+  --color-deep: #142235;        /* slightly lighter navy (header) */
+  --color-deep-2: #0D1B2A;      /* Deep Navy — primary dark */
 
-  /* Brand greens (forest from Hunt Club) */
-  --color-green: #267044;       /* primary CTA — darker forest */
-  --color-green-700: #1f5836;   /* hover */
-  --color-green-soft: #e6efe8;  /* light chip */
-  --color-blue: #3d9a66;        /* secondary accent / lighter green */
-  --color-sage: #8fb89f;        /* accent on dark */
+  /* Brand "green" tokens REPURPOSED for Signal Orange CTA
+     (so existing `bg-green` button classes auto-convert) */
+  --color-green: #FF6B2B;       /* Signal Orange — primary CTA */
+  --color-green-700: #E65800;   /* darker orange — hover */
+  --color-green-soft: rgba(255, 107, 43, 0.10); /* soft orange chip */
+
+  /* Accent — Electric Cyan (replaces forest accents) */
+  --color-blue: #00C2FF;        /* Electric Cyan — brand accent */
+  --color-sage: #00C2FF;        /* alias — same cyan on dark surfaces */
+  --color-cyan: #00C2FF;
+  --color-cyan-soft: rgba(0, 194, 255, 0.10);
+
+  /* Selective emphasis */
+  --color-red: #D94F3D;         /* Maple Red — emphasis */
+  --color-frost: #3DDC84;       /* Frost Green — success / states */
 
   /* Text on light */
-  --color-ink: #0b0c0a;
-  --color-ink-muted: #4a4a47;
-  --color-ink-faint: #7d7c77;
+  --color-ink: #0D1B2A;         /* Deep Navy — primary text */
+  --color-ink-muted: #5A6478;   /* Steel Grey — muted */
+  --color-ink-faint: #8B95A3;   /* faint steel */
 
   /* Text on dark */
-  --color-on-deep: #f9f7f3;
-  --color-on-deep-muted: #b6b4ad;
+  --color-on-deep: #F4F7FA;     /* Arctic White */
+  --color-on-deep-muted: #A5B1C0;
 
   /* Fonts */
   --font-display: var(--font-display), "Familjen Grotesk", system-ui, sans-serif;
@@ -71,12 +81,12 @@ h1, h2, h3, h4, h5 {
     width: 100%;
     max-width: 80rem;
     margin-inline: auto;
-    padding-inline: 1.5rem;
+    padding-inline: clamp(1.25rem, 5vw, 5rem);
   }
 
   /* Accent gradient (subtle, for emphasis words) */
   .text-gradient {
-    background: linear-gradient(95deg, var(--color-green) 0%, var(--color-blue) 100%);
+    background: linear-gradient(95deg, var(--color-cyan) 0%, var(--color-blue) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -213,7 +223,7 @@ h1, h2, h3, h4, h5 {
   }
   .lift:hover {
     transform: translateY(-6px);
-    box-shadow: 0 28px 60px -22px rgba(38, 112, 68, 0.25);
+    box-shadow: 0 28px 60px -22px rgba(13, 27, 42, 0.25);
   }
 
   /* Magnetic button — slight scale on hover */
@@ -228,6 +238,124 @@ h1, h2, h3, h4, h5 {
     transform: scaleX(var(--scroll, 0));
     transition: transform 0.1s linear;
   }
+
+}
+
+/* ============================================================
+   Hero scroll-driven theme transition (ToDesktop-inspired)
+   - Page loads with hero in LIGHT mode
+   - On scroll > ~80px, ScrollTheme client component adds .is-dark
+   - CSS variables flip smoothly via transition
+   ============================================================ */
+.hero-themed {
+  /* DARK mode (default state after scroll) */
+  --hb: var(--color-deep-2);
+  --ht: var(--color-on-deep);
+  --htm: rgba(255, 255, 255, 0.6);
+  --htd: rgba(255, 255, 255, 0.4);
+  --hborder: rgba(255, 255, 255, 0.15);
+  --hcorner: rgba(255, 255, 255, 0.15);
+  --haccent: var(--color-sage);
+  --haccent-soft: rgba(0, 194, 255, 0.7);
+  --hmockup-bg: rgba(255, 255, 255, 0.04);
+  --hmockup-bg-grad: linear-gradient(to bottom, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  --hmockup-border: rgba(255, 255, 255, 0.1);
+  --hmockup-chrome: rgba(255, 255, 255, 0.02);
+  --hmockup-dot: rgba(255, 255, 255, 0.15);
+  --hmockup-text: var(--color-on-deep);
+  --hmockup-text-muted: rgba(255, 255, 255, 0.55);
+  --hmockup-text-dim: rgba(255, 255, 255, 0.35);
+  --hmockup-step-done: rgba(255, 255, 255, 0.85);
+  --hmockup-step-pending: rgba(255, 255, 255, 0.35);
+  --hbtn-secondary-text: var(--color-on-deep);
+  --hbtn-secondary-border: rgba(255, 255, 255, 0.25);
+
+  background-color: var(--hb);
+  color: var(--ht);
+  transition: background-color 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-themed.is-light {
+  /* LIGHT mode (initial state at top of page) */
+  --hb: var(--color-page);
+  --ht: var(--color-ink);
+  --htm: rgba(13, 27, 42, 0.6);
+  --htd: rgba(13, 27, 42, 0.4);
+  --hborder: rgba(13, 27, 42, 0.12);
+  --hcorner: rgba(13, 27, 42, 0.2);
+  --haccent: var(--color-cyan);
+  --haccent-soft: rgba(0, 194, 255, 0.6);
+  --hmockup-bg: rgba(255, 255, 255, 0.85);
+  --hmockup-bg-grad: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.75));
+  --hmockup-border: rgba(13, 27, 42, 0.08);
+  --hmockup-chrome: rgba(13, 27, 42, 0.025);
+  --hmockup-dot: rgba(13, 27, 42, 0.18);
+  --hmockup-text: var(--color-ink);
+  --hmockup-text-muted: rgba(13, 27, 42, 0.55);
+  --hmockup-text-dim: rgba(13, 27, 42, 0.35);
+  --hmockup-step-done: rgba(13, 27, 42, 0.85);
+  --hmockup-step-pending: rgba(13, 27, 42, 0.35);
+  --hbtn-secondary-text: var(--color-ink);
+  --hbtn-secondary-border: rgba(13, 27, 42, 0.2);
+}
+
+/* Smooth color transitions for ALL hero descendants */
+.hero-themed *,
+.hero-themed *::before,
+.hero-themed *::after {
+  transition:
+    background-color 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.9s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* ---------- Editorial layout (Heritage Modernism) — Tailwind v4 @utility ---------- */
+@utility editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@utility ghost-line-v {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(13, 27, 42, 0.05);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@utility ghost-line-v-dark {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+@utility tracking-ultra {
+  letter-spacing: 0.2em;
+}
+
+@utility sector-card {
+  border-bottom: 1px solid rgba(13, 27, 42, 0.06);
+  transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+.sector-card:hover {
+  border-bottom-color: var(--color-cyan);
+  background-color: rgba(0, 194, 255, 0.08);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -237,12 +365,12 @@ h1, h2, h3, h4, h5 {
 }
 
 ::selection {
-  background: rgba(38, 112, 68, 0.2);
+  background: rgba(0, 194, 255, 0.25);
   color: var(--color-ink);
 }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: #efece5; }
-::-webkit-scrollbar-thumb { background: #c8c2b4; border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-green); }
+::-webkit-scrollbar-track { background: #E1E6ED; }
+::-webkit-scrollbar-thumb { background: #C4CCD7; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-cyan); }
 

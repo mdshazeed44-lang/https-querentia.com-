@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CustomCursor } from "@/components/custom-cursor";
 import { ScrollProgress } from "@/components/scroll-progress";
+import { ScrollTheme } from "@/components/scroll-theme";
 
 const sans = DM_Sans({
   variable: "--font-sans",
@@ -24,7 +25,7 @@ const display = Familjen_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Enterprise IT Recruitment in Canada`,
+    default: `${site.name} — Trusted Partner for High-Impact IT Talent in Canada`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
@@ -49,15 +50,15 @@ export const metadata: Metadata = {
     locale: "en_CA",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — Enterprise IT Recruitment in Canada`,
+    title: `${site.name} — Trusted Partner for High-Impact IT Talent in Canada`,
     description: site.description,
-    images: [{ url: "/querentia-logo.png", width: 1200, height: 630, alt: site.name }],
+    images: [{ url: "/querentia-logo-og.png", width: 1200, height: 630, alt: site.name }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Enterprise IT Recruitment in Canada`,
+    title: `${site.name} — Trusted Partner for High-Impact IT Talent in Canada`,
     description: site.description,
-    images: ["/querentia-logo.png"],
+    images: ["/querentia-logo-og.png"],
   },
   alternates: { canonical: site.url },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
@@ -143,6 +144,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
         />
         <ScrollProgress />
+        <ScrollTheme />
         <CustomCursor />
         <SiteHeader />
         <main className="flex-1">{children}</main>
