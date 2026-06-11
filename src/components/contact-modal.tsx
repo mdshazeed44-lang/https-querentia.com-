@@ -103,14 +103,26 @@ export function ContactModal({ open, onClose }: Props) {
               />
             </label>
           </div>
-          <label className="block text-xs font-medium text-ink-muted">
-            Company
-            <input
-              name="company"
-              placeholder="Optional"
-              className="mt-1 w-full rounded-xl border border-border bg-white px-4 py-2.5 text-sm text-deep placeholder:text-ink-muted/55 focus:border-cyan focus:outline-none focus:ring-4 focus:ring-cyan/15"
-            />
-          </label>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <label className="block text-xs font-medium text-ink-muted">
+              Phone
+              <input
+                name="phone"
+                type="tel"
+                autoComplete="tel"
+                placeholder="+1 (555) 123-4567"
+                className="mt-1 w-full rounded-xl border border-border bg-white px-4 py-2.5 text-sm text-deep placeholder:text-ink-muted/55 focus:border-cyan focus:outline-none focus:ring-4 focus:ring-cyan/15"
+              />
+            </label>
+            <label className="block text-xs font-medium text-ink-muted">
+              Company
+              <input
+                name="company"
+                placeholder="Optional"
+                className="mt-1 w-full rounded-xl border border-border bg-white px-4 py-2.5 text-sm text-deep placeholder:text-ink-muted/55 focus:border-cyan focus:outline-none focus:ring-4 focus:ring-cyan/15"
+              />
+            </label>
+          </div>
           <label className="block text-xs font-medium text-ink-muted">
             Message <span className="text-red">*</span>
             <textarea

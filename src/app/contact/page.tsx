@@ -335,7 +335,16 @@ export default function ContactPage() {
                   />
                 </div>
                 <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                  <Field
+                    name="phone"
+                    label="Phone"
+                    placeholder="+1 (555) 123-4567"
+                    type="tel"
+                    autoComplete="tel"
+                  />
                   <Field name="company" label="Company" placeholder="Optional" />
+                </div>
+                <div className="mt-4">
                   <Field name="role" label="Role" placeholder="Optional" />
                 </div>
                 <div className="mt-4">
@@ -494,12 +503,14 @@ function Field({
   placeholder,
   required,
   type = "text",
+  autoComplete,
 }: {
   name: string;
   label: string;
   placeholder?: string;
   required?: boolean;
   type?: string;
+  autoComplete?: string;
 }) {
   return (
     <label className="block text-xs font-medium text-ink-muted">
@@ -510,6 +521,7 @@ function Field({
         type={type}
         placeholder={placeholder}
         required={required}
+        autoComplete={autoComplete}
         className="mt-1.5 w-full rounded-xl border border-border bg-page px-4 py-3 text-sm text-ink transition-colors placeholder:text-ink-faint focus:border-cyan focus:outline-none focus:ring-4 focus:ring-cyan/15"
       />
     </label>
