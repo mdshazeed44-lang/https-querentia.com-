@@ -2,7 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
-import { ArrowRight } from "@/components/ui/icons";
+import {
+  ArrowRight,
+  Star,
+  Shield,
+  Chat,
+  Briefcase,
+  Target,
+  UserCheck,
+  Check,
+} from "@/components/ui/icons";
 
 export const metadata: Metadata = {
   title: "For Talent — Senior IT Careers with Querentia",
@@ -13,16 +22,19 @@ export const metadata: Metadata = {
 const BENEFITS = [
   {
     num: "01",
+    icon: Star,
     title: "Senior-only mandates",
     body: "Architects, principals, senior engineers, programme leads. We focus our network where impact compounds — no junior pipeline, no volume game.",
   },
   {
     num: "02",
+    icon: Shield,
     title: "Confidential roles",
     body: "Tier-1 consulting and direct-enterprise mandates that never reach a public board. Precision access, available only through our network.",
   },
   {
     num: "03",
+    icon: Chat,
     title: "Honest representation",
     body: "Real rates, real feedback, real timelines. No inflated CV, no surprises — and you are never shopped around behind your back.",
   },
@@ -31,21 +43,25 @@ const BENEFITS = [
 const STEPS = [
   {
     num: "01",
+    icon: Briefcase,
     title: "Share your CV",
     body: "Send your CV and tell us where you want to go next. It lands with a person who reads it — not a parser that scores it.",
   },
   {
     num: "02",
+    icon: Chat,
     title: "A real conversation",
     body: "You hear back from a recruiter who knows the role — not an auto-reply. We talk goals, rates, and what a great fit actually looks like.",
   },
   {
     num: "03",
+    icon: Target,
     title: "Matched with precision",
     body: "Role, rate, team, stack — all upfront before you commit an hour. Your profile goes nowhere without your explicit yes.",
   },
   {
     num: "04",
+    icon: UserCheck,
     title: "Placed and supported",
     body: "We stay with you through offer, onboarding and beyond. Trust that outlasts the placement is the whole point.",
   },
@@ -71,6 +87,17 @@ const VENDORS = ["AWS", "Azure", "Google Cloud", "SAP", "ServiceNow"];
 export default function ForTalentPage() {
   return (
     <main className="min-h-screen bg-page text-ink">
+      {/* page-scoped effects: dual-direction specialization marquee */}
+      <style>{`
+        @keyframes ft-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        .ft-track { animation: ft-marquee 44s linear infinite; }
+        .ft-track-rev { animation: ft-marquee 50s linear infinite reverse; }
+        .ft-pause:hover .ft-track, .ft-pause:hover .ft-track-rev { animation-play-state: paused; }
+        .ft-mask { -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+        @media (prefers-reduced-motion: reduce) {
+          .ft-track, .ft-track-rev { animation: none; }
+        }
+      `}</style>
       {/* 1. Hero */}
       <section className="relative isolate overflow-hidden bg-deep-2 pb-20 pt-36 text-on-deep md:pt-44">
         <div
@@ -213,23 +240,34 @@ export default function ForTalentPage() {
               </h2>
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-3 lg:gap-x-12">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {BENEFITS.map((b, i) => (
               <Reveal key={b.num} delay={i * 120}>
-                <div className="pt-7">
-                  <span aria-hidden className="block h-px w-12 bg-cyan/60" />
-                  <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.3em] text-cyan">
+                <div className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-cyan/40 hover:shadow-[0_28px_60px_-30px_rgba(13,27,42,0.3)]">
+                  {/* ghost number */}
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute -right-3 -top-7 select-none font-mono text-[5.5rem] font-bold leading-none text-ink/[0.04] transition-colors duration-500 group-hover:text-cyan/[0.09]"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
                     {b.num}
-                  </p>
+                  </span>
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-soft text-cyan transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+                    <b.icon className="h-5 w-5" />
+                  </span>
                   <h3
-                    className="mt-5 text-[1.55rem] font-medium leading-tight tracking-tight"
+                    className="mt-6 text-[1.45rem] font-medium leading-tight tracking-tight"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {b.title}
                   </h3>
-                  <p className="mt-5 text-base leading-relaxed text-ink-muted">
+                  <p className="mt-4 text-base leading-relaxed text-ink-muted">
                     {b.body}
                   </p>
+                  <span
+                    aria-hidden
+                    className="mt-6 block h-0.5 w-10 bg-cyan transition-all duration-500 group-hover:w-16"
+                  />
                 </div>
               </Reveal>
             ))}
@@ -265,26 +303,57 @@ export default function ForTalentPage() {
               </h2>
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-            {STEPS.map((s, i) => (
-              <Reveal key={s.num} delay={i * 110}>
-                <div className="pt-7">
-                  <span aria-hidden className="block h-px w-12 bg-cyan/60" />
-                  <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.3em] text-cyan">
-                    {s.num}
-                  </p>
-                  <h3
-                    className="mt-5 text-xl font-medium leading-tight tracking-tight text-white"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {s.title}
-                  </h3>
-                  <p className="mt-4 text-[15px] leading-relaxed text-on-deep-muted">
-                    {s.body}
-                  </p>
+          <div className="grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-12">
+            {/* steps — 2×2 */}
+            <div className="order-2 grid grid-cols-1 gap-x-6 gap-y-9 sm:grid-cols-2 lg:order-1">
+              {STEPS.map((s, i) => (
+                <Reveal key={s.num} delay={i * 110}>
+                  <div className="group">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-full border border-cyan/40 bg-white/[0.04] text-cyan transition-all duration-300 group-hover:bg-cyan group-hover:text-deep">
+                      <s.icon className="h-5 w-5" />
+                    </span>
+                    <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.3em] text-cyan">
+                      Step {s.num}
+                    </p>
+                    <h3
+                      className="mt-2 text-xl font-medium leading-tight tracking-tight text-white"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      {s.title}
+                    </h3>
+                    <p className="mt-3 text-[15px] leading-relaxed text-on-deep-muted">
+                      {s.body}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* precision-match visual — your profile, found and chosen */}
+            <Reveal delay={150} className="order-1 lg:order-2">
+              <div className="relative">
+                <div className="group overflow-hidden rounded-3xl border border-white/10 bg-white shadow-[0_40px_90px_-40px_rgba(0,0,0,0.6)]">
+                  <div className="relative h-[260px] sm:h-[320px]">
+                    <Image
+                      src="/talent/precision-match.png"
+                      alt="A senior candidate highlighted among profiles — matched with precision"
+                      fill
+                      sizes="(min-width: 1024px) 34rem, 100vw"
+                      className="object-contain p-3 transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                  </div>
                 </div>
-              </Reveal>
-            ))}
+                {/* floating chips */}
+                <div className="absolute -bottom-4 left-6 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-deep-2 px-4 py-2 text-xs font-medium text-cyan shadow-lg">
+                  <Target className="h-4 w-4" />
+                  Matched with precision
+                </div>
+                <div className="absolute -top-4 right-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-deep-2 px-4 py-2 text-xs font-medium text-on-deep shadow-lg">
+                  <Check className="h-4 w-4 text-frost" />
+                  Nothing moves without your yes
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -309,20 +378,44 @@ export default function ForTalentPage() {
               </h2>
             </div>
           </Reveal>
-          <Reveal delay={140}>
-            <div className="flex flex-wrap gap-3">
-              {SPECIALIZATIONS.map((s) => (
-                <span
-                  key={s}
-                  className="rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-ink"
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
-          </Reveal>
-          <Reveal delay={260}>
-            <div className="mt-5 flex flex-wrap gap-3">
+          <div className="ft-pause space-y-3">
+            <Reveal delay={140}>
+              <div className="ft-mask overflow-hidden">
+                <div className="ft-track flex w-max gap-3">
+                  {[...SPECIALIZATIONS.slice(0, 6), ...SPECIALIZATIONS.slice(0, 6)].map(
+                    (s, i) => (
+                      <span
+                        key={`${s}-${i}`}
+                        className="inline-flex shrink-0 items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-ink transition-colors duration-300 hover:border-cyan"
+                      >
+                        <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-cyan" />
+                        {s}
+                      </span>
+                    )
+                  )}
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={220}>
+              <div className="ft-mask overflow-hidden">
+                <div className="ft-track-rev flex w-max gap-3">
+                  {[...SPECIALIZATIONS.slice(6), ...SPECIALIZATIONS.slice(6)].map(
+                    (s, i) => (
+                      <span
+                        key={`${s}-${i}`}
+                        className="inline-flex shrink-0 items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-ink transition-colors duration-300 hover:border-cyan"
+                      >
+                        <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-cyan" />
+                        {s}
+                      </span>
+                    )
+                  )}
+                </div>
+              </div>
+            </Reveal>
+          </div>
+          <Reveal delay={300}>
+            <div className="mt-6 flex flex-wrap gap-3">
               {VENDORS.map((v) => (
                 <span
                   key={v}
@@ -394,42 +487,70 @@ export default function ForTalentPage() {
           }}
         />
         <div className="container-x relative">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-14">
+            {/* network visual — one community, connected coast to coast */}
             <Reveal>
-              <p className="mb-7 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-                Talent community
-              </p>
-            </Reveal>
-            <Reveal delay={130}>
-              <h2 className="text-balance text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.05] tracking-tight">
-                The roles you won&apos;t see on{" "}
-                <span
-                  className="text-cyan"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  any job board.
-                </span>
-              </h2>
-            </Reveal>
-            <Reveal delay={260}>
-              <p className="mx-auto mt-8 max-w-xl text-base leading-relaxed text-ink-muted md:text-lg">
-                Most of our mandates are confidential and filled from the
-                network before they&apos;re ever advertised. Join us and be the
-                first to hear about senior openings — and where the market is
-                moving next.
-              </p>
-            </Reveal>
-            <Reveal delay={380}>
-              <div className="mt-10 flex justify-center">
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
-                >
-                  Join the network
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
+              <div className="relative">
+                <div className="group overflow-hidden rounded-3xl border border-border bg-white shadow-[0_30px_80px_-40px_rgba(13,27,42,0.35)]">
+                  <div className="relative h-[260px] sm:h-[320px]">
+                    <Image
+                      src="/talent/network-globe.png"
+                      alt="Senior IT professionals connected through the Querentia talent network"
+                      fill
+                      sizes="(min-width: 1024px) 32rem, 100vw"
+                      className="object-contain p-3 transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                </div>
+                <div className="absolute -bottom-4 left-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium text-ink shadow-lg">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-70" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
+                  </span>
+                  Network-first · Canada-wide
+                </div>
               </div>
             </Reveal>
+
+            {/* copy */}
+            <div>
+              <Reveal>
+                <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                  <span className="inline-block h-px w-8 bg-cyan/60" />
+                  Talent community
+                </p>
+              </Reveal>
+              <Reveal delay={130}>
+                <h2 className="text-balance text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.05] tracking-tight">
+                  The roles you won&apos;t see on{" "}
+                  <span
+                    className="text-cyan"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    any job board.
+                  </span>
+                </h2>
+              </Reveal>
+              <Reveal delay={260}>
+                <p className="mt-7 max-w-xl text-base leading-relaxed text-ink-muted md:text-lg">
+                  Most of our mandates are confidential and filled from the
+                  network before they&apos;re ever advertised. Join us and be
+                  the first to hear about senior openings — and where the
+                  market is moving next.
+                </p>
+              </Reveal>
+              <Reveal delay={380}>
+                <div className="mt-9">
+                  <Link
+                    href="/contact"
+                    className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
+                  >
+                    Join the network
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
