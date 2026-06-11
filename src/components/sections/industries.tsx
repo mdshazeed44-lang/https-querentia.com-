@@ -1,10 +1,23 @@
-import { Reveal } from "@/components/ui/reveal";
+"use client";
 
-// 30 disciplines grouped into 5 practice areas — editorial row layout
+import { useState } from "react";
+import { Reveal } from "@/components/ui/reveal";
+import {
+  Cloud,
+  Code,
+  Layers,
+  Briefcase,
+  Shield,
+  ArrowRight,
+} from "@/components/ui/icons";
+
+// 30 disciplines grouped into 5 practice areas — interactive vertical tabs
 const CATEGORIES = [
   {
     code: "01",
     title: "Cloud, Data & AI",
+    blurb: "Platform, pipeline and intelligence talent for data-driven programs.",
+    Icon: Cloud,
     items: [
       "Cloud Technologies",
       "DevOps",
@@ -19,6 +32,8 @@ const CATEGORIES = [
   {
     code: "02",
     title: "Engineering & Product",
+    blurb: "Builders who ship — from full-stack squads to product design.",
+    Icon: Code,
     items: [
       "Full Stack Development",
       "Web Development",
@@ -31,6 +46,8 @@ const CATEGORIES = [
   {
     code: "03",
     title: "Enterprise Platforms",
+    blurb: "The systems your business actually runs on, staffed properly.",
+    Icon: Layers,
     items: [
       "ERP",
       "Enterprise Architecture",
@@ -42,6 +59,8 @@ const CATEGORIES = [
   {
     code: "04",
     title: "Strategy & Delivery",
+    blurb: "Leaders who keep regulated, multi-squad programs on schedule.",
+    Icon: Briefcase,
     items: [
       "Project Management",
       "Program Management",
@@ -53,6 +72,8 @@ const CATEGORIES = [
   {
     code: "05",
     title: "Security, Risk & Business",
+    blurb: "Defence, governance and the business functions that back them.",
+    Icon: Shield,
     items: [
       "Cyber Security",
       "Risk & Internal Audit",
@@ -66,9 +87,18 @@ const CATEGORIES = [
 
 export function Industries() {
   const totalCount = CATEGORIES.reduce((sum, c) => sum + c.items.length, 0);
+  const [active, setActive] = useState(0);
+  const cat = CATEGORIES[active];
 
   return (
     <section className="relative isolate overflow-hidden border-t border-border bg-page py-20 text-ink md:py-24">
+      {/* chip stagger-in animation (panel remounts on tab change) */}
+      <style>{`
+        @keyframes ind-chip-in { from { opacity: 0; transform: translateY(10px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .ind-chip { opacity: 0; animation: ind-chip-in 0.4s cubic-bezier(0.16,1,0.3,1) forwards; }
+        @media (prefers-reduced-motion: reduce) { .ind-chip { opacity: 1; animation: none; } }
+      `}</style>
+
       {/* Soft ambient accents */}
       <div
         aria-hidden
@@ -82,7 +112,7 @@ export function Industries() {
       <div className="container-x relative">
         {/* Header */}
         <Reveal>
-          <div className="mb-14 max-w-4xl md:mb-20">
+          <div className="mb-14 max-w-4xl md:mb-16">
             <p className="flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-8 bg-cyan/60" />
               VI · Our expertise · {totalCount} disciplines · 5 practices
@@ -105,47 +135,95 @@ export function Industries() {
           </div>
         </Reveal>
 
-        {/* Editorial row layout — magazine table of contents */}
-        <div className="border-y border-ink/10">
-          {CATEGORIES.map((cat, idx) => (
-            <Reveal key={cat.code} delay={idx * 80}>
-              <div
-                className={`group grid grid-cols-1 gap-6 py-9 transition-colors duration-500 hover:bg-ink/[0.015] md:grid-cols-[300px_1fr] md:gap-10 md:py-11 ${idx > 0 ? "border-t border-ink/10" : ""}`}
-              >
-                {/* Left — chapter heading */}
-                <div className="flex flex-col">
-                  <span className="mb-3 font-mono text-[11px] uppercase tracking-[0.3em] text-cyan">
-                    {cat.code} · Practice
-                  </span>
+        {/* Interactive vertical tabs */}
+        <Reveal delay={150}>
+          <div className="grid gap-8 lg:grid-cols-[360px_1fr] lg:gap-10">
+            {/* tab rail */}
+            <div role="tablist" aria-label="Practice areas" className="flex flex-col gap-1">
+              {CATEGORIES.map((c, i) => {
+                const isOn = i === active;
+                return (
+                  <button
+                    key={c.code}
+                    role="tab"
+                    aria-selected={isOn}
+                    onClick={() => setActive(i)}
+                    className={`group flex cursor-pointer items-center gap-4 rounded-xl px-5 py-4 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan ${
+                      isOn
+                        ? "bg-deep-2 text-on-deep shadow-lg"
+                        : "text-ink-muted hover:bg-card hover:text-ink"
+                    }`}
+                  >
+                    <span
+                      className={`font-mono text-sm font-semibold ${
+                        isOn ? "text-cyan" : "text-ink-faint group-hover:text-cyan"
+                      }`}
+                    >
+                      {c.code}
+                    </span>
+                    <span
+                      className="flex-1 text-base font-medium"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      {c.title}
+                    </span>
+                    <span
+                      className={`font-mono text-[11px] tracking-wider ${
+                        isOn ? "text-on-deep-muted" : "text-ink-faint"
+                      }`}
+                    >
+                      {String(c.items.length).padStart(2, "0")}
+                    </span>
+                    <ArrowRight
+                      className={`h-4 w-4 transition-all duration-300 ${
+                        isOn
+                          ? "translate-x-0 text-cyan opacity-100"
+                          : "-translate-x-1 opacity-0"
+                      }`}
+                    />
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* active panel — chips stagger in on change (key remount) */}
+            <div
+              key={active}
+              role="tabpanel"
+              className="rounded-2xl border border-border bg-card p-8 shadow-[0_24px_60px_-32px_rgba(13,27,42,0.18)]"
+            >
+              <div className="flex items-center gap-4">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-deep-2 text-cyan">
+                  <cat.Icon className="h-6 w-6" />
+                </span>
+                <div>
                   <h3
-                    className="text-[1.5rem] font-medium leading-[1.1] tracking-tight md:text-[1.75rem]"
+                    className="text-2xl text-ink"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {cat.title}
                   </h3>
-                  <span className="mt-3 font-mono text-[11px] uppercase tracking-[0.25em] text-ink/40">
-                    {String(cat.items.length).padStart(2, "0")} disciplines
-                  </span>
-                </div>
-
-                {/* Right — tag pills */}
-                <div className="flex flex-wrap items-start gap-2 md:gap-2.5 md:pt-2">
-                  {cat.items.map((item) => (
-                    <span
-                      key={item}
-                      className="inline-flex items-center rounded-full border border-ink/15 bg-card px-3.5 py-1.5 text-xs font-medium text-ink/80 transition-all duration-300 hover:-translate-y-px hover:border-cyan hover:bg-cyan/[0.04] hover:text-ink"
-                    >
-                      {item}
-                    </span>
-                  ))}
+                  <p className="mt-0.5 text-sm text-ink-muted">{cat.blurb}</p>
                 </div>
               </div>
-            </Reveal>
-          ))}
-        </div>
+              <div className="mt-7 flex flex-wrap gap-2.5">
+                {cat.items.map((t, i) => (
+                  <span
+                    key={t}
+                    className="ind-chip inline-flex items-center gap-2 rounded-full border border-border bg-page px-4 py-2 text-sm font-medium text-ink transition-colors duration-300 hover:border-cyan hover:bg-cyan/[0.06]"
+                    style={{ animationDelay: `${i * 55}ms` }}
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-cyan" aria-hidden />
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
 
         {/* Footnote band */}
-        <Reveal delay={550}>
+        <Reveal delay={350}>
           <div className="mt-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
             <p className="text-sm text-ink-muted md:text-base">
               Don&apos;t see your stack?{" "}
