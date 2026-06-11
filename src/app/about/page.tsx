@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
 import { CountUp } from "@/components/ui/count-up";
+import { MagneticButton } from "@/components/ui/magnetic-button";
+import { HeroTalentOrbit } from "@/components/ui/hero-talent-orbit";
 import {
   ArrowRight,
   Briefcase,
@@ -117,19 +119,9 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
       />
 
-      {/* ---------- 1. HERO ---------- */}
-      <section className="relative isolate overflow-hidden bg-deep-2 pb-20 pt-36 text-on-deep md:pt-44">
-        <style>{`
-          @media (prefers-reduced-motion: no-preference) {
-            @keyframes about-float {
-              0%, 100% { transform: translateY(0); }
-              50% { transform: translateY(-10px); }
-            }
-            .about-float-a { animation: about-float 7s ease-in-out infinite; }
-            .about-float-b { animation: about-float 8s ease-in-out infinite; animation-delay: 1.6s; }
-          }
-        `}</style>
-
+      {/* ---------- 1. HERO — homepage-style: copy left, figure pinned to
+           the section's bottom edge on the right ---------- */}
+      <section className="relative isolate flex h-screen min-h-[680px] flex-col justify-center overflow-hidden bg-deep-2 pb-14 pt-24 text-on-deep md:pb-16 md:pt-24 lg:pb-0">
         {/* Cyan radial ambient */}
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div
@@ -148,92 +140,111 @@ export default function AboutPage() {
           />
         </div>
 
-        <div className="container-x grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
-          {/* Copy */}
-          <div>
+        <div className="container-x relative z-10 grid items-center gap-16 lg:h-full lg:flex-1 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
+          {/* ---------- LEFT — copy ---------- */}
+          <div className="text-center lg:text-left">
             <Reveal>
-              <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-                <span className="inline-block h-px w-8 bg-cyan/60" />
-                About Us · Est. {site.founded}
+              <p className="mb-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                <span
+                  className="text-sm tracking-normal"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  I
+                </span>
+                <span className="inline-block h-px w-6 bg-current opacity-50" />
+                <span>About Us · Est. {site.founded}</span>
+                <span className="relative ml-1 flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-70" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyan" />
+                </span>
               </p>
             </Reveal>
 
-            <Reveal delay={120}>
-              <h1 className="text-[clamp(2.25rem,6vw,4.75rem)] font-medium leading-[1.02] tracking-tight text-on-deep">
+            <Reveal delay={140}>
+              <h1
+                className="mx-auto text-balance font-medium text-on-deep lg:mx-0"
+                style={{
+                  fontSize: "clamp(1.85rem, 3.9vw, 3.25rem)",
+                  lineHeight: 1.06,
+                  letterSpacing: "-0.022em",
+                  maxWidth: "17ch",
+                }}
+              >
                 The most trusted partner
-                <br />
+                <br className="hidden sm:block" />{" "}
                 <span
                   className="text-cyan"
-                  style={{ fontFamily: "var(--font-display)" }}
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontStyle: "italic",
+                  }}
                 >
                   in IT talent.
                 </span>
               </h1>
             </Reveal>
 
-            <Reveal delay={260}>
-              <p className="mt-7 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
+            <Reveal delay={300}>
+              <p className="mx-auto mt-5 max-w-md text-[14px] leading-relaxed text-on-deep-muted md:text-[15px] lg:mx-0">
                 Since {site.founded}, Querentia has delivered high-quality,
                 high-impact technology talent to Canada&apos;s leading
                 enterprises — with unmatched speed, precision, and integrity.
               </p>
             </Reveal>
+
+            <Reveal delay={440}>
+              <div className="mt-7 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+                <MagneticButton
+                  href="/for-companies"
+                  className="group inline-flex items-center bg-green px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
+                >
+                  Hire Talent
+                  <ArrowRight className="ml-2.5 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                </MagneticButton>
+                <Link
+                  href="/for-talent"
+                  className="group inline-flex items-center gap-2.5 border border-white/25 px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.25em] text-on-deep transition-colors duration-300 hover:border-white/60 hover:bg-white/5"
+                >
+                  Find Work
+                  <ArrowRight className="h-3.5 w-3.5 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
+                </Link>
+              </div>
+            </Reveal>
+
+            {/* Credibility row — instant trust signals */}
+            <Reveal delay={580}>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-white/15 pt-5 lg:justify-start">
+                {[
+                  { num: "94%", label: "Retention" },
+                  { num: "48h", label: "Shortlist" },
+                  { num: "10+", label: "Years" },
+                  { num: "500+", label: "Placements" },
+                ].map((s) => (
+                  <div key={s.num} className="flex items-baseline gap-2">
+                    <span
+                      className="text-[1.1rem] font-medium leading-none tracking-tight text-on-deep"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      {s.num}
+                    </span>
+                    <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-on-deep-muted">
+                      {s.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
           </div>
 
-          {/* Circle cluster */}
-          <Reveal delay={300}>
-            <div className="relative mx-auto aspect-square w-full max-w-[26rem]">
-              {/* Concentric strokes */}
-              <span
-                aria-hidden
-                className="absolute inset-0 rounded-full border border-cyan/15"
+          {/* ---------- RIGHT — orbit figure, pinned to section bottom ---------- */}
+          <Reveal delay={250} className="hidden lg:block lg:self-stretch">
+            {/* overshoot > max parallax+float lift so the figure never reveals
+                a gap above the section edge (same as homepage hero) */}
+            <div className="flex h-full items-end justify-center lg:-mb-8">
+              <HeroTalentOrbit
+                imgSrc="/people/about-hero.png"
+                imgAlt="Querentia — the people behind the practice"
               />
-              <span
-                aria-hidden
-                className="absolute inset-10 rounded-full border border-cyan/10"
-              />
-
-              {/* Large circle photo */}
-              <div className="absolute left-1/2 top-1/2 h-[68%] w-[68%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full ring-2 ring-cyan/40">
-                <Image
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
-                  alt="The Querentia team collaborating on an enterprise search"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 20rem, 70vw"
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Small circle photo */}
-              <div className="about-float-b absolute bottom-6 left-2 h-28 w-28 overflow-hidden rounded-full ring-2 ring-cyan/40">
-                <Image
-                  src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=600&q=80"
-                  alt="Querentia office in Oakville"
-                  fill
-                  sizes="7rem"
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Accent dots */}
-              <span
-                aria-hidden
-                className="absolute right-12 top-10 h-2.5 w-2.5 rounded-full bg-cyan"
-              />
-              <span aria-hidden className="absolute bottom-16 right-6 flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green opacity-70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-green" />
-              </span>
-
-              {/* Floating pill */}
-              <div className="about-float-a absolute right-0 top-4 inline-flex items-center gap-2.5 rounded-full border border-cyan/30 bg-deep-2 px-4 py-2 text-xs font-medium text-cyan shadow-[0_12px_30px_-12px_rgba(0,194,255,0.35)]">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-70" />
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyan" />
-                </span>
-                Oakville, Canada
-              </div>
             </div>
           </Reveal>
         </div>
