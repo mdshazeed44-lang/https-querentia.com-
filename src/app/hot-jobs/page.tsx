@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
 import {
@@ -42,84 +41,95 @@ function payLabel(j: Job) {
   return `$${j.payMin}–${j.payMax}${j.payUnit === "K" ? "K" : "/hr"}`;
 }
 
-const LINE_1 = ["Hot"];
-const LINE_2 = ["jobs."];
-
 export default function HotJobsPage() {
-  let i = 0;
-  const w = () => {
-    const d = 0.1 + i * 0.07;
-    i++;
-    return { animationDelay: `${d}s` } as React.CSSProperties;
-  };
-
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(listSchema) }} />
 
-      {/* HERO */}
+      {/* HERO — clean editorial intro, consistent with the rest of the site */}
       <section className="relative isolate overflow-hidden bg-deep-2 text-on-deep">
         <div aria-hidden className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 animate-ken-burns">
-            <Image
-              src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=2400&q=80"
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover opacity-55"
-            />
-          </div>
           <span
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(115deg, rgba(13,27,42,0.92) 0%, rgba(13,27,42,0.65) 50%, rgba(13,27,42,0.5) 75%, rgba(13,27,42,0.92) 100%)",
+                "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,194,255,0.12) 0%, transparent 60%)",
+            }}
+          />
+          <span
+            className="absolute -bottom-32 right-0 h-[26rem] w-[26rem] rounded-full blur-[140px]"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(255,107,43,0.10), transparent 70%)",
             }}
           />
           <span className="grain absolute inset-0" />
         </div>
 
-        <div className="container-x relative pt-32 pb-20 md:pt-44 md:pb-28">
+        <div className="container-x relative pb-16 pt-32 md:pb-20 md:pt-40">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-4 py-1.5 text-xs font-medium text-white/85 backdrop-blur-sm">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sage opacity-70" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-sage" />
+            <p className="mb-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <span
+                className="text-sm tracking-normal"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                I
               </span>
-              {hot.length} featured roles · Updated this week
-            </span>
-          </Reveal>
-
-          <h1 className="mt-7 text-[clamp(2.75rem,9vw,7.5rem)] font-medium leading-[0.95] tracking-tight">
-            {LINE_1.map((word) => (
-              <span key={word} className="word mr-[0.22em]" style={w()}>{word}</span>
-            ))}
-            <br />
-            {LINE_2.map((word) => (
-              <span key={word} className="word mr-[0.22em] text-white/70" style={w()}>{word}</span>
-            ))}
-          </h1>
-
-          <Reveal delay={400}>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
-              Handpicked with precision — standout enterprise IT mandates we are actively placing right now.
+              <span className="inline-block h-px w-6 bg-current opacity-50" />
+              <span>Hot Jobs</span>
+              <span className="relative ml-1 flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-70" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyan" />
+              </span>
             </p>
           </Reveal>
 
-          <Reveal delay={540}>
-            <div className="mt-9 flex flex-wrap items-center gap-3">
-              <Link
-                href="#featured"
-                className="magnetic shine inline-flex items-center gap-2 rounded-full bg-green px-7 py-3.5 text-sm font-medium text-white shadow-[0_18px_40px_-12px_rgba(255,107,43,0.5)] transition-colors hover:bg-green-700"
+          <Reveal delay={140}>
+            <h1
+              className="text-balance font-medium text-white"
+              style={{
+                fontSize: "clamp(1.85rem, 3.9vw, 3.25rem)",
+                lineHeight: 1.06,
+                letterSpacing: "-0.022em",
+                maxWidth: "17ch",
+              }}
+            >
+              Standout roles,
+              <br className="hidden sm:block" />{" "}
+              <span
+                className="text-cyan"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontStyle: "italic",
+                }}
               >
-                See featured <ArrowRight className="h-4 w-4" />
-              </Link>
+                placing right now.
+              </span>
+            </h1>
+          </Reveal>
+
+          <Reveal delay={300}>
+            <p className="mt-5 max-w-md text-[14px] leading-relaxed text-white/65 md:text-[15px]">
+              Handpicked enterprise IT mandates we are actively shortlisting —
+              senior, vetted, and moving fast.
+            </p>
+          </Reveal>
+
+          <Reveal delay={440}>
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/15 pt-5">
+              <span className="inline-flex items-center gap-2 text-sm text-white/70">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-frost opacity-70" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-frost" />
+                </span>
+                {hot.length} featured roles · Updated this week
+              </span>
               <Link
                 href="/jobs"
-                className="magnetic inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3.5 text-sm font-medium text-white backdrop-blur-md transition-colors hover:border-white/60 hover:bg-white/10"
+                className="group inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.25em] text-cyan transition-colors hover:text-white"
               >
                 View all open positions
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </div>
           </Reveal>
