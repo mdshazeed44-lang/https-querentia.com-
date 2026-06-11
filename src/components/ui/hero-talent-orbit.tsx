@@ -165,8 +165,16 @@ export function HeroTalentOrbit({
           --delay: 0s;
           z-index: 1;
         }
+        /* rings slowly revolve in place — eccentric ellipses give a gentle
+           orbital precession (paths sweep around the figure) */
         .wto-rings .wto-layer-inner {
-          animation: none;
+          animation: wtoRings 60s linear infinite;
+          transform-origin: 50% 50%;
+        }
+        @keyframes wtoRings {
+          to {
+            transform: rotate(360deg);
+          }
         }
         .wto-rings svg {
           width: 100%;
