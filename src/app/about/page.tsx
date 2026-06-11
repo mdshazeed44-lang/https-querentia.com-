@@ -148,6 +148,39 @@ export default function AboutPage() {
           />
         </div>
 
+        {/* Concentric circles + orbiting dots — dots slowly travel their
+            rings in place (two layers, opposite directions) */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-24 top-1/2 hidden -translate-y-1/2 lg:block"
+        >
+          <style>{`
+            @keyframes ab-orbit { to { transform: rotate(360deg); } }
+            .ab-spin-a { animation: ab-orbit 36s linear infinite; }
+            .ab-spin-b { animation: ab-orbit 24s linear infinite reverse; }
+            @media (prefers-reduced-motion: reduce) {
+              .ab-spin-a, .ab-spin-b { animation: none; }
+            }
+          `}</style>
+          <div className="relative h-[26rem] w-[26rem]">
+            <span className="absolute inset-0 rounded-full border border-cyan/15" />
+            <span className="absolute inset-10 rounded-full border border-cyan/15" />
+            <span className="absolute inset-20 rounded-full border border-cyan/10" />
+            {/* orbit layer A — clockwise */}
+            <div className="ab-spin-a absolute inset-0">
+              <span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan" />
+            </div>
+            {/* orbit layer B — counter-clockwise */}
+            <div className="ab-spin-b absolute inset-0">
+              <span className="absolute bottom-12 left-8 h-2 w-2 rounded-full bg-green" />
+              <span className="absolute right-2 top-1/3 flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
+              </span>
+            </div>
+          </div>
+        </div>
+
         <div className="container-x relative z-10">
           <div className="max-w-3xl">
             <Reveal>
