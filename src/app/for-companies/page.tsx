@@ -309,7 +309,7 @@ export default function ForCompaniesPage() {
         </section>
 
         {/* ---------- HOW IT WORKS ---------- */}
-        <section className="bg-page py-20 md:py-24">
+        <section id="process" className="scroll-mt-24 bg-page py-20 md:py-24">
           <div className="container-x">
             <Reveal>
               <div className="mb-14 max-w-2xl md:mb-16">
@@ -438,7 +438,7 @@ export default function ForCompaniesPage() {
         </section>
 
         {/* ---------- DISCIPLINES STRIP ---------- */}
-        <section className="bg-page py-20 md:py-24">
+        <section id="industries" className="scroll-mt-24 bg-page py-20 md:py-24">
           <div className="container-x">
             <Reveal>
               <div className="mb-10 max-w-2xl">

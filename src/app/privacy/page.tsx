@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/ui/reveal";
+import { Mail } from "@/components/ui/icons";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -9,109 +10,180 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 };
 
-export default function PrivacyPage() {
-  const updated = "January 2026";
+const UPDATED = "January 2026";
 
+const SECTIONS: {
+  num: string;
+  title: string;
+  body?: string;
+  bullets?: string[];
+}[] = [
+  {
+    num: "01",
+    title: "Information we collect",
+    body: "When you use our website or submit a contact form, we may collect your name, work email, phone number, company, role, and the message you send. Resume submissions additionally include the documents you choose to share. We also collect basic analytics (pages visited, device type, broad location) via Google Analytics.",
+  },
+  {
+    num: "02",
+    title: "How we use it",
+    bullets: [
+      "To respond to enquiries and shortlist requests.",
+      "To match candidates to enterprise roles we're actively staffing.",
+      "To improve our website and recruitment service.",
+      "To send relevant role updates (only if you opt in).",
+    ],
+  },
+  {
+    num: "03",
+    title: "Sharing",
+    body: "We share candidate profiles only with the specific hiring clients they're being considered for, and only after you've agreed. We do not sell personal data.",
+  },
+  {
+    num: "04",
+    title: "Storage & security",
+    body: "Data is stored on encrypted servers and inside our Applicant Tracking System (Ceipal). Access is limited to Querentia recruiters working on your file.",
+  },
+  {
+    num: "05",
+    title: "Your rights",
+    body: `You can ask us to access, correct, or delete the personal information we hold about you at any time — email ${site.email}.`,
+  },
+  {
+    num: "06",
+    title: "Contact",
+    body: `Questions? Reach out to ${site.legalName}, ${site.location} — ${site.email}.`,
+  },
+];
+
+export default function PrivacyPage() {
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden bg-deep-2 text-on-deep">
-        <div aria-hidden className="pointer-events-none absolute inset-0">
-          <div
-            className="animate-aurora absolute -top-32 left-[15%] h-[36rem] w-[36rem] rounded-full blur-[160px]"
-            style={{ background: "radial-gradient(circle, rgba(0,194,255,0.45), transparent 65%)" }}
+      {/* ---------- HERO — standard clean intro ---------- */}
+      <section className="relative isolate overflow-hidden bg-deep-2 text-on-deep">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <span
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,194,255,0.12) 0%, transparent 60%)",
+            }}
           />
+          <span className="grain absolute inset-0" />
         </div>
-        <div className="container-x relative pt-32 pb-12 md:pt-40 md:pb-16">
+
+        <div className="container-x relative pb-14 pt-32 md:pb-16 md:pt-40">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sage">
-              Last updated · {updated}
+            <p className="mb-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <span
+                className="text-sm tracking-normal"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                §
+              </span>
+              <span className="inline-block h-px w-6 bg-current opacity-50" />
+              <span>Privacy Policy</span>
             </p>
           </Reveal>
-          <Reveal delay={100}>
-            <h1 className="mt-3 text-3xl font-bold leading-[1.05] tracking-tight md:text-5xl">
-              Privacy <span className="text-blue">Policy</span>
+          <Reveal delay={140}>
+            <h1
+              className="text-balance font-medium text-white"
+              style={{
+                fontSize: "clamp(1.85rem, 3.9vw, 3.25rem)",
+                lineHeight: 1.06,
+                letterSpacing: "-0.022em",
+                maxWidth: "17ch",
+              }}
+            >
+              Your data,
+              <br className="hidden sm:block" />{" "}
+              <span
+                className="text-cyan"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontStyle: "italic",
+                }}
+              >
+                handled with integrity.
+              </span>
             </h1>
           </Reveal>
-          <Reveal delay={180}>
-            <p className="mt-4 max-w-2xl text-on-deep-muted md:text-lg">
-              How {site.legalName} handles your data when you visit our site
-              or submit information through our forms.
+          <Reveal delay={300}>
+            <p className="mt-5 max-w-md text-[14px] leading-relaxed text-white/65 md:text-[15px]">
+              How {site.legalName} handles your information when you visit our
+              site or submit details through our forms.
             </p>
           </Reveal>
+          <Reveal delay={440}>
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/15 pt-5 text-sm text-white/70">
+              <span>Last updated · {UPDATED}</span>
+              <a
+                href={`mailto:${site.email}`}
+                className="inline-flex items-center gap-2 text-cyan transition-colors hover:text-white"
+              >
+                <Mail className="h-4 w-4" /> {site.email}
+              </a>
+            </div>
+          </Reveal>
         </div>
-        <svg
-          aria-hidden
-          viewBox="0 0 1440 66"
-          preserveAspectRatio="none"
-          className="-mb-1.5 block h-8 w-full md:h-12"
-        >
-          <path d="M0 66V24C240 50 480 60 720 50C960 40 1200 12 1440 26V66H0Z" fill="var(--color-page)" />
-        </svg>
       </section>
 
-      {/* BODY */}
+      {/* ---------- BODY — numbered legal sections ---------- */}
       <section className="bg-page py-16 md:py-20">
-        <div className="container-x mx-auto max-w-3xl space-y-10 text-ink">
-          <div>
-            <h2 className="text-2xl font-bold text-deep md:text-3xl">1. Information we collect</h2>
-            <p className="mt-3 leading-relaxed text-ink-muted">
-              When you use our website or submit a contact form, we may collect
-              your name, work email, company, role, and the message you send.
-              Resume submissions additionally include the documents you choose
-              to share. We also collect basic analytics (pages visited, device
-              type, broad location) via Google Analytics.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-deep md:text-3xl">2. How we use it</h2>
-            <ul className="mt-3 space-y-2 leading-relaxed text-ink-muted">
-              <li>• To respond to enquiries and shortlist requests.</li>
-              <li>• To match candidates to enterprise roles we&apos;re actively staffing.</li>
-              <li>• To improve our website and recruitment service.</li>
-              <li>• To send relevant role updates (only if you opt in).</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-deep md:text-3xl">3. Sharing</h2>
-            <p className="mt-3 leading-relaxed text-ink-muted">
-              We share candidate profiles only with the specific hiring clients
-              they&apos;re being considered for, and only after you&apos;ve
-              agreed. We do not sell personal data.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-deep md:text-3xl">4. Storage &amp; security</h2>
-            <p className="mt-3 leading-relaxed text-ink-muted">
-              Data is stored on encrypted servers and inside our Applicant
-              Tracking System (Ceipal). Access is limited to Querentia
-              recruiters working on your file.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-deep md:text-3xl">5. Your rights</h2>
-            <p className="mt-3 leading-relaxed text-ink-muted">
-              You can ask us to access, correct, or delete the personal
-              information we hold about you at any time — email{" "}
-              <a href={`mailto:${site.email}`} className="font-semibold text-cyan hover:underline">
-                {site.email}
-              </a>.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-deep md:text-3xl">6. Contact</h2>
-            <p className="mt-3 leading-relaxed text-ink-muted">
-              Questions? Reach out to {site.legalName}, {site.location} —{" "}
-              <a href={`mailto:${site.email}`} className="font-semibold text-cyan hover:underline">
-                {site.email}
-              </a>
-              .
-            </p>
+        <div className="container-x mx-auto max-w-3xl">
+          <div className="divide-y divide-border">
+            {SECTIONS.map((s, i) => (
+              <Reveal key={s.num} delay={i * 60}>
+                <div className="grid gap-4 py-9 first:pt-0 sm:grid-cols-[72px_1fr] sm:gap-8">
+                  <span
+                    className="font-mono text-2xl font-semibold text-cyan/40 sm:text-3xl"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {s.num}
+                  </span>
+                  <div>
+                    <h2
+                      className="text-xl font-medium tracking-tight text-ink md:text-2xl"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      {s.title}
+                    </h2>
+                    {s.body ? (
+                      <p className="mt-3 leading-relaxed text-ink-muted">
+                        {s.body.split(site.email).map((part, idx, arr) => (
+                          <span key={idx}>
+                            {part}
+                            {idx < arr.length - 1 ? (
+                              <a
+                                href={`mailto:${site.email}`}
+                                className="font-medium text-cyan hover:underline"
+                              >
+                                {site.email}
+                              </a>
+                            ) : null}
+                          </span>
+                        ))}
+                      </p>
+                    ) : null}
+                    {s.bullets ? (
+                      <ul className="mt-3 space-y-2.5">
+                        {s.bullets.map((b) => (
+                          <li
+                            key={b}
+                            className="flex items-start gap-3 leading-relaxed text-ink-muted"
+                          >
+                            <span
+                              aria-hidden
+                              className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan"
+                            />
+                            {b}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>

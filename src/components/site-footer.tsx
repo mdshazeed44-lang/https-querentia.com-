@@ -26,7 +26,7 @@ const COLUMNS = [
     links: [
       { label: "How We Hire", href: "/for-companies" },
       { label: "Industries", href: "/for-companies#industries" },
-      { label: "48-Hour Shortlist", href: "/for-companies" },
+      { label: "48-Hour Shortlist", href: "/for-companies#process" },
       { label: "Get a Shortlist", href: "/contact" },
     ],
   },

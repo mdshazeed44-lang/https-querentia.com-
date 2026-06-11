@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/ui/reveal";
+import { Mail } from "@/components/ui/icons";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -9,112 +10,161 @@ export const metadata: Metadata = {
   alternates: { canonical: "/terms" },
 };
 
-export default function TermsPage() {
-  const updated = "January 2026";
+const UPDATED = "January 2026";
 
+const SECTIONS: {
+  num: string;
+  title: string;
+  body: string;
+}[] = [
+  {
+    num: "01",
+    title: "Acceptance",
+    body: "By accessing this website you agree to these terms. If you don't agree, please don't use the site.",
+  },
+  {
+    num: "02",
+    title: "Use of the site",
+    body: "The content is provided for information and recruitment-related purposes only. You agree not to misuse the site, attempt to compromise its security, or scrape candidate data.",
+  },
+  {
+    num: "03",
+    title: "Recruitment services",
+    body: `Engagements with ${site.legalName} for talent search, shortlisting, or placement are governed by a separate signed agreement. Open roles listed on this site may change or be removed at any time.`,
+  },
+  {
+    num: "04",
+    title: "Intellectual property",
+    body: `All branding, copy, and design on this site are owned by ${site.legalName}. You may not reuse them without written permission.`,
+  },
+  {
+    num: "05",
+    title: "Liability",
+    body: 'We work hard to keep information current, but the site is provided "as is." We\'re not liable for indirect losses arising from your use of it.',
+  },
+  {
+    num: "06",
+    title: "Governing law",
+    body: "These terms are governed by the laws of the Province of Ontario, Canada.",
+  },
+  {
+    num: "07",
+    title: "Contact",
+    body: `Questions about these terms? Reach ${site.email}.`,
+  },
+];
+
+export default function TermsPage() {
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden bg-deep-2 text-on-deep">
-        <div aria-hidden className="pointer-events-none absolute inset-0">
-          <div
-            className="animate-aurora absolute -top-32 left-[15%] h-[36rem] w-[36rem] rounded-full blur-[160px]"
-            style={{ background: "radial-gradient(circle, rgba(0,194,255,0.45), transparent 65%)" }}
+      {/* ---------- HERO — standard clean intro ---------- */}
+      <section className="relative isolate overflow-hidden bg-deep-2 text-on-deep">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <span
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,194,255,0.12) 0%, transparent 60%)",
+            }}
           />
+          <span className="grain absolute inset-0" />
         </div>
-        <div className="container-x relative pt-32 pb-12 md:pt-40 md:pb-16">
+
+        <div className="container-x relative pb-14 pt-32 md:pb-16 md:pt-40">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sage">
-              Last updated · {updated}
+            <p className="mb-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <span
+                className="text-sm tracking-normal"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                §
+              </span>
+              <span className="inline-block h-px w-6 bg-current opacity-50" />
+              <span>Terms of Use</span>
             </p>
           </Reveal>
-          <Reveal delay={100}>
-            <h1 className="mt-3 text-3xl font-bold leading-[1.05] tracking-tight md:text-5xl">
-              Terms of <span className="text-blue">Use</span>
+          <Reveal delay={140}>
+            <h1
+              className="text-balance font-medium text-white"
+              style={{
+                fontSize: "clamp(1.85rem, 3.9vw, 3.25rem)",
+                lineHeight: 1.06,
+                letterSpacing: "-0.022em",
+                maxWidth: "17ch",
+              }}
+            >
+              Clear terms,
+              <br className="hidden sm:block" />{" "}
+              <span
+                className="text-cyan"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontStyle: "italic",
+                }}
+              >
+                no fine-print games.
+              </span>
             </h1>
           </Reveal>
-          <Reveal delay={180}>
-            <p className="mt-4 max-w-2xl text-on-deep-muted md:text-lg">
+          <Reveal delay={300}>
+            <p className="mt-5 max-w-md text-[14px] leading-relaxed text-white/65 md:text-[15px]">
               The rules that apply when you use the {site.name} website or
               engage our recruitment services.
             </p>
           </Reveal>
+          <Reveal delay={440}>
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/15 pt-5 text-sm text-white/70">
+              <span>Last updated · {UPDATED}</span>
+              <a
+                href={`mailto:${site.email}`}
+                className="inline-flex items-center gap-2 text-cyan transition-colors hover:text-white"
+              >
+                <Mail className="h-4 w-4" /> {site.email}
+              </a>
+            </div>
+          </Reveal>
         </div>
-        <svg
-          aria-hidden
-          viewBox="0 0 1440 66"
-          preserveAspectRatio="none"
-          className="-mb-1.5 block h-8 w-full md:h-12"
-        >
-          <path d="M0 66V24C240 50 480 60 720 50C960 40 1200 12 1440 26V66H0Z" fill="var(--color-page)" />
-        </svg>
       </section>
 
-      {/* BODY */}
+      {/* ---------- BODY — numbered legal sections ---------- */}
       <section className="bg-page py-16 md:py-20">
-        <div className="container-x mx-auto max-w-3xl space-y-10 text-ink">
-          <div>
-            <h2 className="text-2xl font-bold text-deep md:text-3xl">1. Acceptance</h2>
-            <p className="mt-3 leading-relaxed text-ink-muted">
-              By accessing this website you agree to these terms. If you
-              don&apos;t agree, please don&apos;t use the site.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-deep md:text-3xl">2. Use of the site</h2>
-            <p className="mt-3 leading-relaxed text-ink-muted">
-              The content is provided for information and recruitment-related
-              purposes only. You agree not to misuse the site, attempt to
-              compromise its security, or scrape candidate data.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-deep md:text-3xl">3. Recruitment services</h2>
-            <p className="mt-3 leading-relaxed text-ink-muted">
-              Engagements with {site.legalName} for talent search,
-              shortlisting, or placement are governed by a separate signed
-              agreement. Open roles listed on this site may change or be
-              removed at any time.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-deep md:text-3xl">4. Intellectual property</h2>
-            <p className="mt-3 leading-relaxed text-ink-muted">
-              All branding, copy, and design on this site are owned by{" "}
-              {site.legalName}. You may not reuse them without written
-              permission.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-deep md:text-3xl">5. Liability</h2>
-            <p className="mt-3 leading-relaxed text-ink-muted">
-              We work hard to keep information current, but the site is
-              provided &quot;as is.&quot; We&apos;re not liable for indirect
-              losses arising from your use of it.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-deep md:text-3xl">6. Governing law</h2>
-            <p className="mt-3 leading-relaxed text-ink-muted">
-              These terms are governed by the laws of the Province of Ontario,
-              Canada.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-deep md:text-3xl">7. Contact</h2>
-            <p className="mt-3 leading-relaxed text-ink-muted">
-              Questions about these terms? Reach{" "}
-              <a href={`mailto:${site.email}`} className="font-semibold text-cyan hover:underline">
-                {site.email}
-              </a>
-              .
-            </p>
+        <div className="container-x mx-auto max-w-3xl">
+          <div className="divide-y divide-border">
+            {SECTIONS.map((s, i) => (
+              <Reveal key={s.num} delay={i * 60}>
+                <div className="grid gap-4 py-9 first:pt-0 sm:grid-cols-[72px_1fr] sm:gap-8">
+                  <span
+                    className="font-mono text-2xl font-semibold text-cyan/40 sm:text-3xl"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {s.num}
+                  </span>
+                  <div>
+                    <h2
+                      className="text-xl font-medium tracking-tight text-ink md:text-2xl"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      {s.title}
+                    </h2>
+                    <p className="mt-3 leading-relaxed text-ink-muted">
+                      {s.body.split(site.email).map((part, idx, arr) => (
+                        <span key={idx}>
+                          {part}
+                          {idx < arr.length - 1 ? (
+                            <a
+                              href={`mailto:${site.email}`}
+                              className="font-medium text-cyan hover:underline"
+                            >
+                              {site.email}
+                            </a>
+                          ) : null}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
