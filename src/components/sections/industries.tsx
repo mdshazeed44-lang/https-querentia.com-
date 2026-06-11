@@ -91,7 +91,7 @@ export function Industries() {
   const cat = CATEGORIES[active];
 
   return (
-    <section className="relative isolate overflow-hidden border-t border-border bg-page py-20 text-ink md:py-24">
+    <section className="relative isolate overflow-hidden border-t border-border bg-page pt-20 pb-14 text-ink md:pt-24 md:pb-16">
       {/* chip stagger-in animation (panel remounts on tab change) */}
       <style>{`
         @keyframes ind-chip-in { from { opacity: 0; transform: translateY(10px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }

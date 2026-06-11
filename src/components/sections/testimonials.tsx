@@ -25,10 +25,10 @@ export function Testimonials() {
   const [featured, ...supporting] = QUOTES;
 
   return (
-    <section className="bg-page-2 py-24 text-ink md:py-32">
+    <section className="bg-page-2 pt-14 pb-20 text-ink md:pt-16 md:pb-24">
       <div className="container-x">
         <Reveal>
-          <div className="mb-20 text-center">
+          <div className="mb-8 text-center">
             <p className="flex items-center justify-center gap-3 font-mono text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-8 bg-cyan/60" />
               IV &middot; In their words
@@ -38,13 +38,13 @@ export function Testimonials() {
         </Reveal>
 
         <Reveal delay={120}>
-          <figure className="mx-auto mb-20 max-w-4xl">
+          <figure className="mx-auto mb-14 max-w-4xl">
             <span
               aria-hidden
               className="block text-center leading-none text-cyan/70"
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(4rem, 7vw, 6rem)",
+                fontSize: "clamp(3rem, 5vw, 4rem)",
               }}
             >
               &ldquo;
