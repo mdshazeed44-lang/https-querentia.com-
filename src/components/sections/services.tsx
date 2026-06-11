@@ -10,7 +10,7 @@ const SERVICES = [
     body: "Brief us once. Get a qualified shortlist of senior engineers, architects, and program leaders inside 48 hours — pre-screened against your stack, your role and your culture. High-quality, high-impact placements delivered with the speed your roadmap demands.",
     href: "/for-companies",
     cta: "How we help you hire",
-    illustration: "/illustrations/services-companies.png",
+    illustration: "/illustrations/services-companies.webp",
     illustrationAlt: "Recruiter at laptop with floating tech-stack badges",
     tint: "rgba(0,194,255,0.08)",
     radial:
@@ -23,7 +23,7 @@ const SERVICES = [
     body: "Confidential mandates from Canada's largest consulting firms and enterprise IT programs. Senior-level placements with tier-1 clients — many of which never make it to a public job board.",
     href: "/for-talent",
     cta: "See open mandates",
-    illustration: "/illustrations/services-talent.png",
+    illustration: "/illustrations/services-talent.webp",
     illustrationAlt: "Senior IT professional collaborating with tier-1 team",
     tint: "rgba(255,107,43,0.08)",
     radial:

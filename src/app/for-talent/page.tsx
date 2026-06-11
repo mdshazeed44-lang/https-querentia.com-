@@ -181,7 +181,7 @@ export default function ForTalentPage() {
             <Reveal delay={250} className="hidden lg:block lg:self-stretch">
               <div className="flex h-full items-end justify-center lg:-mb-8">
                 <HeroTalentOrbit
-                  imgSrc="/people/about-hero.png"
+                  imgSrc="/people/about-hero.webp"
                   imgAlt="Senior IT professional represented by Querentia"
                   logos={ABOUT_ORBIT_LOGOS}
                 />
@@ -306,7 +306,7 @@ export default function ForTalentPage() {
                 <div className="group overflow-hidden rounded-3xl border border-white/10 bg-white shadow-[0_40px_90px_-40px_rgba(0,0,0,0.6)]">
                   <div className="relative h-[260px] sm:h-[320px]">
                     <Image
-                      src="/talent/precision-match.png"
+                      src="/talent/precision-match.webp"
                       alt="A senior candidate highlighted among profiles — matched with precision"
                       fill
                       sizes="(min-width: 1024px) 34rem, 100vw"
@@ -465,7 +465,7 @@ export default function ForTalentPage() {
                 <div className="group overflow-hidden rounded-3xl border border-border bg-white shadow-[0_30px_80px_-40px_rgba(13,27,42,0.35)]">
                   <div className="relative h-[260px] sm:h-[320px]">
                     <Image
-                      src="/talent/network-globe.png"
+                      src="/talent/network-globe.webp"
                       alt="Senior IT professionals connected through the Querentia talent network"
                       fill
                       sizes="(min-width: 1024px) 32rem, 100vw"

@@ -18,7 +18,7 @@ const DEFAULT_LOGOS = [
 ];
 
 export function HeroTalentOrbit({
-  imgSrc = "/people/hero-girl.png",
+  imgSrc = "/people/hero-girl.webp",
   imgAlt = "Senior IT talent",
   logos = DEFAULT_LOGOS,
 }: {
@@ -400,8 +400,14 @@ export function HeroTalentOrbit({
               {/* main person */}
               <div className="wto-layer wto-main" data-depth="100">
                 <div className="wto-layer-inner">
+                  {/* LCP element on pages that show the orbit — fetch eagerly */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={imgSrc} alt={imgAlt} />
+                  <img
+                    src={imgSrc}
+                    alt={imgAlt}
+                    fetchPriority="high"
+                    decoding="async"
+                  />
                 </div>
               </div>
             </div>

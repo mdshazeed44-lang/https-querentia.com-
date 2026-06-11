@@ -382,7 +382,7 @@ export default function AboutPage() {
               <div className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-white">
                 <div className="relative min-h-[260px] flex-1">
                   <Image
-                    src="/about/talent-network.png"
+                    src="/about/talent-network.webp"
                     alt="A Querentia recruiter connected to senior IT professionals across markets"
                     fill
                     sizes="(min-width: 1024px) 34rem, 100vw"
@@ -483,7 +483,7 @@ export default function AboutPage() {
                 <div className="group overflow-hidden rounded-3xl border border-border bg-white">
                   <div className="relative h-[230px] sm:h-[270px]">
                     <Image
-                      src="/about/screening-pipeline.png"
+                      src="/about/screening-pipeline.webp"
                       alt="A Querentia recruiter screening candidate profiles into a qualified shortlist"
                       fill
                       sizes="(min-width: 1024px) 34rem, 100vw"
