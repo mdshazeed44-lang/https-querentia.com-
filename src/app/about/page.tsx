@@ -158,8 +158,9 @@ export default function AboutPage() {
             @keyframes ab-orbit { to { transform: rotate(360deg); } }
             .ab-spin-a { animation: ab-orbit 36s linear infinite; }
             .ab-spin-b { animation: ab-orbit 24s linear infinite reverse; }
+            .ab-spin-c { animation: ab-orbit 30s linear infinite; }
             @media (prefers-reduced-motion: reduce) {
-              .ab-spin-a, .ab-spin-b { animation: none; }
+              .ab-spin-a, .ab-spin-b, .ab-spin-c { animation: none; }
             }
           `}</style>
           <div className="relative h-[26rem] w-[26rem]">
@@ -169,14 +170,20 @@ export default function AboutPage() {
             {/* orbit layer A — clockwise */}
             <div className="ab-spin-a absolute inset-0">
               <span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan" />
+              <span className="absolute bottom-8 right-16 h-2 w-2 rounded-full bg-red shadow-[0_0_10px_rgba(217,79,61,0.8)]" />
             </div>
             {/* orbit layer B — counter-clockwise */}
             <div className="ab-spin-b absolute inset-0">
-              <span className="absolute bottom-12 left-8 h-2 w-2 rounded-full bg-green" />
+              <span className="absolute bottom-12 left-8 h-2 w-2 rounded-full bg-green shadow-[0_0_10px_rgba(255,107,43,0.8)]" />
               <span className="absolute right-2 top-1/3 flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-70" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
               </span>
+            </div>
+            {/* orbit layer C — clockwise, middle ring */}
+            <div className="ab-spin-c absolute inset-10">
+              <span className="absolute left-3 top-1/4 h-2.5 w-2.5 rounded-full bg-frost shadow-[0_0_12px_rgba(61,220,132,0.9)]" />
+              <span className="absolute right-6 bottom-4 h-1.5 w-1.5 rounded-full bg-cyan/80 shadow-[0_0_8px_rgba(0,194,255,0.9)]" />
             </div>
           </div>
         </div>
