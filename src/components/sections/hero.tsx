@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section
       data-hero
-      className="hero-themed relative isolate flex h-screen min-h-[680px] flex-col justify-center overflow-hidden pb-14 pt-24 md:pb-16 md:pt-24"
+      className="hero-themed relative isolate flex h-screen min-h-[680px] flex-col justify-center overflow-hidden pb-14 pt-24 md:pb-16 md:pt-24 lg:pb-0"
     >
       {/* Ambient gradient backdrop (cyan radial accent — visible in both themes) */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
@@ -32,7 +32,7 @@ export function Hero() {
       {/* Cursor-tracking cyan glow (client component, respects reduced motion / touch) */}
       <HeroCursorGlow />
 
-      <div className="container-x relative z-10 grid items-center gap-16 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
+      <div className="container-x relative z-10 grid items-center gap-16 lg:h-full lg:flex-1 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
         {/* ---------- LEFT — copy + audience-split CTAs ---------- */}
         <div className="text-center lg:text-left">
           <Reveal>
@@ -157,9 +157,11 @@ export function Hero() {
           </Reveal>
         </div>
 
-        {/* ---------- RIGHT — interactive orbit ---------- */}
-        <Reveal delay={250} className="hidden lg:block">
-          <div className="flex items-center justify-center">
+        {/* ---------- RIGHT — interactive orbit, pinned to section bottom ---------- */}
+        <Reveal delay={250} className="hidden lg:block lg:self-stretch">
+          {/* overshoot > max parallax(18px)+float(6px) lift, so the figure never
+              reveals a gap above the section edge */}
+          <div className="flex h-full items-end justify-center lg:-mb-8">
             <HeroTalentOrbit />
           </div>
         </Reveal>

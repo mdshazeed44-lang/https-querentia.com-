@@ -221,7 +221,7 @@ export function HeroTalentOrbit() {
           margin-left: -186px;
           top: 130px;
           width: 372px;
-          height: 376px;
+          height: 430px; /* reaches stage bottom (130 + 430 = 560) */
           --depth: 100;
           --delay: 0.2s;
           --fdur: 9s;
