@@ -107,7 +107,7 @@ export function SiteFooter() {
             </ul>
 
             <div className="mt-7">
-              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.25em] text-on-deep-muted">
+              <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.25em] text-on-deep-muted">
                 Follow us
               </p>
               <div className="flex items-center gap-2.5">
@@ -136,7 +136,7 @@ export function SiteFooter() {
           {COLUMNS.map((col, i) => (
             <nav key={col.title} aria-label={col.title}>
               <div className="mb-5 flex items-center gap-2.5">
-                <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-cyan">
+                <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-cyan">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-white">

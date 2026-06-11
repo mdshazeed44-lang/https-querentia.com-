@@ -85,7 +85,7 @@ export default function ForTalentPage() {
           <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
             <div className="max-w-2xl">
               <Reveal>
-                <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                   <span className="inline-block h-px w-8 bg-cyan/60" />
                   For Talent · Precision · Impact · Integrity
                 </p>
@@ -114,14 +114,14 @@ export default function ForTalentPage() {
                 <div className="mt-10 flex flex-wrap items-center gap-4">
                   <Link
                     href="/jobs"
-                    className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
+                    className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
                   >
                     See open roles
                     <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2.5 border border-white/25 px-8 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
+                    className="inline-flex items-center gap-2.5 border border-white/25 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
                   >
                     Submit your CV
                   </Link>
@@ -180,10 +180,10 @@ export default function ForTalentPage() {
                   />
 
                   {/* Floating pills */}
-                  <span className="absolute -left-6 top-[120px] z-20 rounded-full border border-cyan/30 bg-deep-2 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan">
+                  <span className="absolute -left-6 top-[120px] z-20 rounded-full border border-cyan/30 bg-deep-2 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.2em] text-cyan">
                     Confidential mandates
                   </span>
-                  <span className="absolute -bottom-2 left-1/2 z-20 -translate-x-1/4 rounded-full bg-cyan px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-deep">
+                  <span className="absolute -bottom-2 left-1/2 z-20 -translate-x-1/4 rounded-full bg-cyan px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.2em] text-deep">
                     Senior roles only
                   </span>
                 </div>
@@ -198,7 +198,7 @@ export default function ForTalentPage() {
         <div className="container-x">
           <Reveal>
             <div className="mb-14 max-w-2xl">
-              <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                 <span className="inline-block h-px w-8 bg-cyan/60" />
                 What changes when you join our network
               </p>
@@ -218,7 +218,7 @@ export default function ForTalentPage() {
               <Reveal key={b.num} delay={i * 120}>
                 <div className="pt-7">
                   <span aria-hidden className="block h-px w-12 bg-cyan/60" />
-                  <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.3em] text-cyan">
+                  <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.3em] text-cyan">
                     {b.num}
                   </p>
                   <h3
@@ -250,7 +250,7 @@ export default function ForTalentPage() {
         <div className="container-x relative">
           <Reveal>
             <div className="mb-14 max-w-2xl">
-              <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                 <span className="inline-block h-px w-8 bg-cyan/60" />
                 How it works for you
               </p>
@@ -270,7 +270,7 @@ export default function ForTalentPage() {
               <Reveal key={s.num} delay={i * 110}>
                 <div className="pt-7">
                   <span aria-hidden className="block h-px w-12 bg-cyan/60" />
-                  <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.3em] text-cyan">
+                  <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.3em] text-cyan">
                     {s.num}
                   </p>
                   <h3
@@ -294,7 +294,7 @@ export default function ForTalentPage() {
         <div className="container-x">
           <Reveal>
             <div className="mb-12 max-w-2xl">
-              <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                 <span className="inline-block h-px w-8 bg-cyan/60" />
                 Where our network works
               </p>
@@ -349,7 +349,7 @@ export default function ForTalentPage() {
                 aria-hidden
                 className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full border border-cyan/15"
               />
-              <p className="mb-8 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <p className="mb-8 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                 <span className="inline-block h-px w-8 bg-cyan/60" />
                 From the network
               </p>
@@ -396,7 +396,7 @@ export default function ForTalentPage() {
         <div className="container-x relative">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <p className="mb-7 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <p className="mb-7 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                 Talent community
               </p>
             </Reveal>
@@ -423,7 +423,7 @@ export default function ForTalentPage() {
               <div className="mt-10 flex justify-center">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
+                  className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
                 >
                   Join the network
                   <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -447,7 +447,7 @@ export default function ForTalentPage() {
         <div className="container-x relative">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <p className="mb-7 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <p className="mb-7 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                 Your next move
               </p>
             </Reveal>
@@ -472,14 +472,14 @@ export default function ForTalentPage() {
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2.5 bg-green px-9 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
+                  className="group inline-flex items-center gap-2.5 bg-green px-9 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
                 >
                   Submit your CV
                   <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/jobs"
-                  className="inline-flex items-center gap-2.5 border border-white/25 px-9 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
+                  className="inline-flex items-center gap-2.5 border border-white/25 px-9 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
                 >
                   Browse roles
                 </Link>

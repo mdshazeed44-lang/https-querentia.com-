@@ -37,7 +37,7 @@ export function Hero() {
         <div className="text-center lg:text-left">
           <Reveal>
             <p
-              className="mb-6 inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em]"
+              className="mb-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em]"
               style={{ color: "var(--haccent)" }}
             >
               <span
@@ -101,14 +101,14 @@ export function Hero() {
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
               <MagneticButton
                 href="/for-companies"
-                className="group inline-flex items-center bg-green px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
+                className="group inline-flex items-center bg-green px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
               >
                 Hire Talent
                 <ArrowRight className="ml-2.5 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
               </MagneticButton>
               <Link
                 href="/for-talent"
-                className="group inline-flex items-center gap-2.5 px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.25em] transition-colors duration-300"
+                className="group inline-flex items-center gap-2.5 px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.25em] transition-colors duration-300"
                 style={{
                   color: "var(--hbtn-secondary-text)",
                   border: "1px solid var(--hbtn-secondary-border)",

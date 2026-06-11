@@ -39,7 +39,7 @@ export function Services() {
         <div className="mb-14 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between md:gap-12">
           <Reveal>
             <div className="max-w-2xl">
-              <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                 <span className="inline-block h-px w-8 bg-cyan/60" />
                 II · What we do
               </p>
@@ -73,7 +73,7 @@ export function Services() {
                   isFirst ? "" : "md:order-2"
                 }`}
               >
-                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan">
+                <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-cyan">
                   {s.num} · {s.title}
                 </p>
                 <h3
@@ -88,7 +88,7 @@ export function Services() {
                 <p className="text-base leading-relaxed text-ink-muted">
                   {s.body}
                 </p>
-                <span className="mt-10 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.25em] text-cyan transition-colors group-hover:text-ink">
+                <span className="mt-10 inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.25em] text-cyan transition-colors group-hover:text-ink">
                   {s.cta}
                   <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1.5" />
                 </span>

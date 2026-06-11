@@ -156,7 +156,7 @@ export default async function JobDetailPage({ params }: Params) {
                     {job.specialization}
                   </span>
                   {job.isFeatured && (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-green-soft px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-cyan">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-green-soft px-2 py-1 text-[11px] font-bold uppercase tracking-wide text-cyan">
                       <Bolt className="h-3 w-3" /> Featured
                     </span>
                   )}
@@ -192,7 +192,7 @@ export default async function JobDetailPage({ params }: Params) {
               <div className="flex flex-col items-start gap-4 rounded-2xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-md md:items-end md:text-right">
                 {pay && (
                   <div className="md:text-right">
-                    <p className="text-[10px] font-semibold uppercase tracking-wide text-on-deep-muted">
+                    <p className="text-[11px] font-semibold uppercase tracking-wide text-on-deep-muted">
                       Compensation
                     </p>
                     <p className="mt-1 text-2xl font-bold text-white">{pay}</p>

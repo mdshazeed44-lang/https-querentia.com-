@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -41,7 +41,7 @@ export function FAQ() {
           {/* Left — sticky heading */}
           <Reveal>
             <div className="lg:sticky lg:top-32 lg:self-start">
-              <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                 <span className="inline-block h-px w-8 bg-cyan/60" />
                 VII · Frequently asked
               </p>

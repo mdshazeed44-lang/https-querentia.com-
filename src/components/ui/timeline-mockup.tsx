@@ -47,10 +47,10 @@ export function TimelineMockup() {
       className="relative overflow-hidden rounded-sm border border-ink/10 bg-white shadow-[0_30px_80px_-20px_rgba(13,27,42,0.18)]"
     >
       <div className="flex items-center justify-between border-b border-ink/10 bg-ink/[0.025] px-5 py-3">
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/45">
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/45">
           Mandate · Avg. Timeline
         </p>
-        <p className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-cyan">
+        <p className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-cyan">
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-70" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyan" />

@@ -194,7 +194,7 @@ export function JobsBoard({ jobs }: Props) {
             >
               <Filter className="h-4 w-4" /> Filters
               {activeCount > 0 && (
-                <span className="rounded-full bg-cyan px-1.5 text-[10px] text-deep">
+                <span className="rounded-full bg-cyan px-1.5 text-[11px] text-deep">
                   {activeCount}
                 </span>
               )}
@@ -318,7 +318,7 @@ function JobCard({ job }: { job: Job }) {
                 </Link>
               </h3>
               {job.isFeatured && (
-                <span className="inline-flex items-center gap-1 rounded-full bg-green-soft px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cyan">
+                <span className="inline-flex items-center gap-1 rounded-full bg-green-soft px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-cyan">
                   <Bolt className="h-3 w-3" /> Featured
                 </span>
               )}
@@ -344,7 +344,7 @@ function JobCard({ job }: { job: Job }) {
               {job.skills.slice(0, 5).map((s) => (
                 <span
                   key={s}
-                  className="rounded-full bg-page-2 px-2.5 py-1 text-[11px] font-medium text-deep"
+                  className="rounded-full bg-page-2 px-2.5 py-1 text-[12px] font-medium text-deep"
                 >
                   {s}
                 </span>
@@ -357,7 +357,7 @@ function JobCard({ job }: { job: Job }) {
         <div className="flex shrink-0 flex-col items-end gap-3 md:min-w-[8rem]">
           {pay && (
             <div className="text-right">
-              <p className="text-[10px] font-semibold uppercase tracking-wide text-ink-faint">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-faint">
                 Compensation
               </p>
               <p className="text-base font-bold text-deep">{pay}</p>

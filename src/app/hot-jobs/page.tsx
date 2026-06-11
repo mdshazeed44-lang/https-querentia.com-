@@ -135,7 +135,7 @@ export default function HotJobsPage() {
               return (
                 <Reveal key={j.id} delay={idx * 110}>
                   <article className="group lift relative h-full overflow-hidden rounded-3xl border border-border bg-card p-7 hover:border-cyan/40 md:p-8">
-                    <span className="inline-flex items-center gap-1 rounded-full bg-green-soft px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-green">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-green-soft px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-green">
                       <Bolt className="h-3 w-3" /> Hot
                     </span>
                     <h3
@@ -158,7 +158,7 @@ export default function HotJobsPage() {
                     <div className="mt-5 flex items-end justify-between">
                       <div className="flex flex-wrap gap-1.5">
                         {j.skills.slice(0, 4).map((s) => (
-                          <span key={s} className="rounded-full bg-page-2 px-2.5 py-1 text-[11px] font-medium text-deep">
+                          <span key={s} className="rounded-full bg-page-2 px-2.5 py-1 text-[12px] font-medium text-deep">
                             {s}
                           </span>
                         ))}

@@ -152,7 +152,7 @@ export default function AboutPage() {
           {/* Copy */}
           <div>
             <Reveal>
-              <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                 <span className="inline-block h-px w-8 bg-cyan/60" />
                 About Us · Est. {site.founded}
               </p>
@@ -243,7 +243,7 @@ export default function AboutPage() {
       <section className="bg-page py-20 md:py-24">
         <div className="container-x mx-auto max-w-4xl text-center">
           <Reveal>
-            <p className="mb-5 flex items-center justify-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+            <p className="mb-5 flex items-center justify-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-8 bg-cyan/60" />
               Our Story
               <span className="inline-block h-px w-8 bg-cyan/60" />
@@ -276,7 +276,7 @@ export default function AboutPage() {
       <section className="bg-page pb-20 md:pb-24">
         <div className="container-x">
           <Reveal>
-            <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+            <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-8 bg-cyan/60" />
               Who We Are
             </p>
@@ -330,7 +330,7 @@ export default function AboutPage() {
 
         <div className="container-x">
           <Reveal>
-            <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+            <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-8 bg-cyan/60" />
               Our Values
             </p>
@@ -352,7 +352,7 @@ export default function AboutPage() {
             {values.map((v, idx) => (
               <Reveal key={v.num} delay={idx * 140}>
                 <div className="border-t border-cyan/25 pt-6">
-                  <p className="text-[11px] font-semibold tracking-[0.3em] text-cyan">
+                  <p className="text-[12px] font-semibold tracking-[0.3em] text-cyan">
                     {v.num}
                   </p>
                   <h3
@@ -397,7 +397,7 @@ export default function AboutPage() {
       <section className="bg-page pb-20 md:pb-24">
         <div className="container-x">
           <Reveal>
-            <p className="mb-5 flex items-center justify-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+            <p className="mb-5 flex items-center justify-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-8 bg-cyan/60" />
               Leadership
               <span className="inline-block h-px w-8 bg-cyan/60" />
@@ -469,7 +469,7 @@ export default function AboutPage() {
 
         <div className="container-x mx-auto max-w-3xl text-center">
           <Reveal>
-            <p className="mb-5 flex items-center justify-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+            <p className="mb-5 flex items-center justify-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-8 bg-cyan/60" />
               Work With Us
               <span className="inline-block h-px w-8 bg-cyan/60" />
@@ -497,14 +497,14 @@ export default function AboutPage() {
             <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/for-companies"
-                className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
+                className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
               >
                 Hire Talent
                 <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/for-talent"
-                className="inline-flex items-center gap-2.5 border border-white/25 px-8 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-on-deep transition-colors duration-300 hover:border-white/60 hover:bg-white/5"
+                className="inline-flex items-center gap-2.5 border border-white/25 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-on-deep transition-colors duration-300 hover:border-white/60 hover:bg-white/5"
               >
                 Find Work
               </Link>

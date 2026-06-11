@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
 import { TimelineMockup } from "@/components/ui/timeline-mockup";
 
@@ -10,7 +10,7 @@ export function FeatureSpeed() {
           {/* Copy */}
           <div className="order-2 lg:order-1">
             <Reveal>
-              <p className="mb-6 inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <p className="mb-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                 <span className="inline-block h-px w-8 bg-cyan/60" />
                 Speed
               </p>
@@ -39,7 +39,7 @@ export function FeatureSpeed() {
             <Reveal delay={340}>
               <Link
                 href="/for-companies"
-                className="group inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.25em] text-cyan transition-colors hover:text-ink"
+                className="group inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.25em] text-cyan transition-colors hover:text-ink"
               >
                 How it works
                 <span

@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
 import { ArrowRight } from "@/components/ui/icons";
 
@@ -35,7 +35,7 @@ export function CTA() {
 
       <div className="container-x relative z-10 mx-auto max-w-3xl text-center">
         <Reveal>
-          <p className="mb-7 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+          <p className="mb-7 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
             IX · Get in touch
           </p>
         </Reveal>
@@ -61,14 +61,14 @@ export function CTA() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2.5 bg-green px-9 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
+              className="group inline-flex items-center gap-2.5 bg-green px-9 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
             >
               Get a shortlist
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link
               href="/jobs"
-              className="inline-flex items-center gap-2.5 border border-ink/25 px-9 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-ink transition-colors duration-300 hover:border-ink/60 hover:bg-ink/5"
+              className="inline-flex items-center gap-2.5 border border-ink/25 px-9 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-ink transition-colors duration-300 hover:border-ink/60 hover:bg-ink/5"
             >
               Browse roles
             </Link>

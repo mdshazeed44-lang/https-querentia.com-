@@ -157,7 +157,7 @@ export default function ContactPage() {
         <div className="container-x relative pb-16 pt-36 md:pb-20 md:pt-44">
           <div className="max-w-3xl">
             <Reveal>
-              <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                 <span className="inline-block h-px w-8 bg-cyan/60" />
                 Contact Us
               </p>
@@ -197,7 +197,7 @@ export default function ContactPage() {
             {/* LEFT — contact channels */}
             <div>
               <Reveal>
-                <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                   <span className="inline-block h-px w-8 bg-cyan/60" />
                   Direct Lines
                 </p>
@@ -269,7 +269,7 @@ export default function ContactPage() {
                   className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full border border-cyan/15"
                 />
 
-                <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                   <span className="inline-block h-px w-8 bg-cyan/60" />
                   Send a Message
                 </p>
@@ -338,7 +338,7 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="group mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700 sm:w-auto"
+                  className="group mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700 sm:w-auto"
                 >
                   Send message
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -361,7 +361,7 @@ export default function ContactPage() {
             <div className="lift relative mx-auto max-w-5xl overflow-hidden rounded-3xl border border-border bg-card shadow-[0_30px_80px_-30px_rgba(13,27,42,0.2)] md:grid md:grid-cols-[0.9fr_1.1fr]">
               {/* Address block */}
               <div className="relative p-8 md:p-12">
-                <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                   <span className="inline-block h-px w-8 bg-cyan/60" />
                   Where to Find Us
                 </p>
@@ -391,7 +391,7 @@ export default function ContactPage() {
                   href={MAPS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group mt-8 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-cyan"
+                  className="group mt-8 inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.25em] text-cyan"
                 >
                   Get directions
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -453,14 +453,14 @@ export default function ContactPage() {
             <div className="mt-9 flex flex-wrap items-center justify-center gap-x-12 gap-y-4">
               <Link
                 href="/for-companies"
-                className="group inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-cyan"
+                className="group inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.25em] text-cyan"
               >
                 For Companies
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/for-talent"
-                className="group inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-cyan"
+                className="group inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.25em] text-cyan"
               >
                 For Talent
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

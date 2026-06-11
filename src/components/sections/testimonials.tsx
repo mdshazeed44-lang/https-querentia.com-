@@ -29,7 +29,7 @@ export function Testimonials() {
       <div className="container-x">
         <Reveal>
           <div className="mb-20 text-center">
-            <p className="flex items-center justify-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+            <p className="flex items-center justify-center gap-3 font-mono text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-8 bg-cyan/60" />
               IV &middot; In their words
               <span className="inline-block h-px w-8 bg-cyan/60" />
@@ -63,7 +63,7 @@ export function Testimonials() {
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-ink">
                 {featured.author}
               </p>
-              <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-ink-muted">
+              <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.3em] text-ink-muted">
                 {featured.role}
               </p>
             </figcaption>
@@ -82,7 +82,7 @@ export function Testimonials() {
                   <p className="text-xs font-medium uppercase tracking-[0.25em] text-ink">
                     {q.author}
                   </p>
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-ink-muted">
+                  <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.3em] text-ink-muted">
                     {q.role}
                   </p>
                 </figcaption>

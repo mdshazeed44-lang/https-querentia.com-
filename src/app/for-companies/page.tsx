@@ -151,7 +151,7 @@ export default function ForCompaniesPage() {
               {/* Left — copy */}
               <div className="max-w-xl">
                 <Reveal>
-                  <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                  <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                     <span className="inline-block h-px w-8 bg-cyan/60" />
                     For Companies
                   </p>
@@ -179,14 +179,14 @@ export default function ForCompaniesPage() {
                   <div className="mt-10 flex flex-wrap items-center gap-4">
                     <Link
                       href="/contact"
-                      className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
+                      className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
                     >
                       Get a shortlist
                       <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                     </Link>
                     <Link
                       href="/jobs"
-                      className="inline-flex items-center gap-2.5 border border-white/25 px-8 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
+                      className="inline-flex items-center gap-2.5 border border-white/25 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
                     >
                       Browse open roles
                     </Link>
@@ -249,10 +249,10 @@ export default function ForCompaniesPage() {
                     />
 
                     {/* Floating pill tag badges */}
-                    <span className="fc-float-a absolute -left-8 top-[120px] z-20 inline-flex items-center rounded-full bg-cyan px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-deep shadow-lg">
+                    <span className="fc-float-a absolute -left-8 top-[120px] z-20 inline-flex items-center rounded-full bg-cyan px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.15em] text-deep shadow-lg">
                       48h shortlists
                     </span>
-                    <span className="fc-float-b absolute -bottom-2 right-9 z-20 inline-flex items-center rounded-full border border-cyan/30 bg-deep-2 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-cyan shadow-lg">
+                    <span className="fc-float-b absolute -bottom-2 right-9 z-20 inline-flex items-center rounded-full border border-cyan/30 bg-deep-2 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.15em] text-cyan shadow-lg">
                       94% retention
                     </span>
                   </div>
@@ -275,7 +275,7 @@ export default function ForCompaniesPage() {
                     >
                       <CountUp value={p.value} />
                     </p>
-                    <p className="mt-4 text-[11px] uppercase tracking-[0.25em] text-ink-muted">
+                    <p className="mt-4 text-[12px] uppercase tracking-[0.25em] text-ink-muted">
                       {p.label}
                     </p>
                   </div>
@@ -290,7 +290,7 @@ export default function ForCompaniesPage() {
           <div className="container-x">
             <Reveal>
               <div className="mb-14 max-w-2xl md:mb-16">
-                <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                   <span className="inline-block h-px w-8 bg-cyan/60" />
                   How it works
                 </p>
@@ -354,7 +354,7 @@ export default function ForCompaniesPage() {
           <div className="container-x relative">
             <Reveal>
               <div className="mb-14 max-w-2xl md:mb-16">
-                <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                   <span className="inline-block h-px w-8 bg-cyan/60" />
                   Why Querentia
                 </p>
@@ -375,7 +375,7 @@ export default function ForCompaniesPage() {
                 <Reveal key={v.num} delay={i * 120}>
                   <div>
                     <span aria-hidden className="block h-px w-12 bg-cyan/60" />
-                    <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.3em] text-cyan">
+                    <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.3em] text-cyan">
                       {v.num} · {v.title}
                     </p>
                     <h3
@@ -412,7 +412,7 @@ export default function ForCompaniesPage() {
           <div className="container-x">
             <Reveal>
               <div className="mb-10 max-w-2xl">
-                <p className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                   <span className="inline-block h-px w-8 bg-cyan/60" />
                   What we recruit for
                 </p>
@@ -463,7 +463,7 @@ export default function ForCompaniesPage() {
                   <p className="text-sm font-medium text-ink">
                     {TESTIMONIAL.author}
                   </p>
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-muted">
+                  <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-muted">
                     {TESTIMONIAL.role}
                   </p>
                 </figcaption>
@@ -485,7 +485,7 @@ export default function ForCompaniesPage() {
           <div className="container-x relative">
             <div className="mx-auto max-w-3xl text-center">
               <Reveal>
-                <p className="mb-7 inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                <p className="mb-7 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                   <span className="inline-block h-px w-8 bg-cyan/60" />
                   Get in touch
                   <span className="inline-block h-px w-8 bg-cyan/60" />
@@ -513,14 +513,14 @@ export default function ForCompaniesPage() {
                 <div className="flex flex-wrap items-center justify-center gap-4">
                   <Link
                     href="/contact"
-                    className="group inline-flex items-center gap-2.5 bg-green px-9 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
+                    className="group inline-flex items-center gap-2.5 bg-green px-9 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
                   >
                     Contact Us
                     <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                   <a
                     href={`mailto:${site.email}`}
-                    className="inline-flex items-center gap-2.5 border border-white/25 px-8 py-4 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
+                    className="inline-flex items-center gap-2.5 border border-white/25 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
                   >
                     <Mail className="h-4 w-4 text-cyan" />
                     Email us

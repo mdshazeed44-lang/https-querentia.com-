@@ -1,4 +1,4 @@
-﻿import { Reveal } from "@/components/ui/reveal";
+import { Reveal } from "@/components/ui/reveal";
 
 // 30 disciplines grouped into 5 practice areas — editorial row layout
 const CATEGORIES = [
@@ -83,7 +83,7 @@ export function Industries() {
         {/* Header */}
         <Reveal>
           <div className="mb-14 max-w-4xl md:mb-20">
-            <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+            <p className="flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-8 bg-cyan/60" />
               VI · Our expertise · {totalCount} disciplines · 5 practices
             </p>
@@ -114,7 +114,7 @@ export function Industries() {
               >
                 {/* Left — chapter heading */}
                 <div className="flex flex-col">
-                  <span className="mb-3 font-mono text-[10px] uppercase tracking-[0.3em] text-cyan">
+                  <span className="mb-3 font-mono text-[11px] uppercase tracking-[0.3em] text-cyan">
                     {cat.code} · Practice
                   </span>
                   <h3
@@ -123,7 +123,7 @@ export function Industries() {
                   >
                     {cat.title}
                   </h3>
-                  <span className="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-ink/40">
+                  <span className="mt-3 font-mono text-[11px] uppercase tracking-[0.25em] text-ink/40">
                     {String(cat.items.length).padStart(2, "0")} disciplines
                   </span>
                 </div>
