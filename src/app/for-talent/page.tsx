@@ -113,48 +113,65 @@ export default function ForTalentPage() {
         />
         <div className="container-x relative lg:h-full lg:flex-1">
           <div className="grid grid-cols-1 items-center gap-14 lg:h-full lg:grid-cols-[1.05fr_1fr]">
-            <div className="max-w-2xl">
+            <div className="text-center lg:text-left">
               <Reveal>
-                <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-                  <span className="inline-block h-px w-8 bg-cyan/60" />
-                  For Talent · Precision · Impact · Integrity
+                <p className="mb-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                  <span
+                    className="text-sm tracking-normal"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    I
+                  </span>
+                  <span className="inline-block h-px w-6 bg-current opacity-50" />
+                  <span>For Talent</span>
+                  <span className="relative ml-1 flex h-1.5 w-1.5">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-70" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyan" />
+                  </span>
                 </p>
               </Reveal>
               <Reveal delay={140}>
-                <h1 className="text-balance text-[clamp(2.25rem,6vw,4.75rem)] font-medium leading-[0.98] tracking-tight text-white">
+                <h1
+                  className="mx-auto text-balance font-medium text-white lg:mx-0"
+                  style={{
+                    fontSize: "clamp(1.85rem, 3.9vw, 3.25rem)",
+                    lineHeight: 1.06,
+                    letterSpacing: "-0.022em",
+                    maxWidth: "17ch",
+                  }}
+                >
                   Take charge of your career.
-                  <br />
+                  <br className="hidden sm:block" />{" "}
                   <span
                     className="text-cyan"
-                    style={{ fontFamily: "var(--font-display)" }}
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontStyle: "italic",
+                    }}
                   >
-                    We&apos;ll take it to the next level.
+                    We&apos;ll take it further.
                   </span>
                 </h1>
               </Reveal>
-              <Reveal delay={260}>
-                <p className="mt-8 max-w-xl text-base leading-relaxed text-white/65 md:text-lg">
-                  Querentia represents senior IT professionals on confidential
-                  mandates with Canada&apos;s leading consulting firms and
-                  enterprise programs. Honest representation, precise matches,
-                  and the speed your next move deserves.
+              <Reveal delay={300}>
+                <p className="mx-auto mt-5 max-w-md text-[14px] leading-relaxed text-white/65 md:text-[15px] lg:mx-0">
+                  Confidential senior IT mandates with Canada&apos;s leading
+                  consulting firms and enterprise programs — honest
+                  representation, precise matches.
                 </p>
               </Reveal>
-              <Reveal delay={400}>
-                <div className="mt-10 flex flex-wrap items-center gap-4">
-                  <Link
-                    href="/jobs"
-                    className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
-                  >
-                    See open roles
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2.5 border border-white/25 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
-                  >
-                    Submit your CV
-                  </Link>
+              <Reveal delay={440}>
+                <div className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-white/15 pt-5 lg:justify-start">
+                  {["Senior-only", "Confidential", "Honest representation"].map(
+                    (t) => (
+                      <span
+                        key={t}
+                        className="inline-flex items-center gap-2 text-sm text-white/70"
+                      >
+                        <Check className="h-4 w-4 text-frost" /> {t}
+                      </span>
+                    )
+                  )}
                 </div>
               </Reveal>
             </div>
