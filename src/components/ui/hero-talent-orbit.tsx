@@ -11,12 +11,20 @@ const AWS_LOGO =
 const GCLOUD_LOGO =
   "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTMgNTEzIj4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjZmJiYzA1OwogICAgICB9CgogICAgICAuY2xzLTEsIC5jbHMtMiwgLmNscy0zLCAuY2xzLTQgewogICAgICAgIHN0cm9rZS13aWR0aDogMHB4OwogICAgICB9CgogICAgICAuY2xzLTIgewogICAgICAgIGZpbGw6ICMzNGE4NTM7CiAgICAgIH0KCiAgICAgIC5jbHMtMyB7CiAgICAgICAgZmlsbDogIzQyODVmNDsKICAgICAgfQoKICAgICAgLmNscy00IHsKICAgICAgICBmaWxsOiAjZWE0MzM1OwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik0yOTIuNDQsMjA4Ljk1aDguMTVsMjMuMjItMjMuMjIsMS4xNC05Ljg2Yy00My4yMi0zOC4xNC0xMDkuMTctMzQuMDMtMTQ3LjMyLDkuMTgtMTAuNiwxMi0xOC4yOSwyNi4yOS0yMi40OCw0MS43NCwyLjU5LTEuMDYsNS40NS0xLjIzLDguMTUtLjQ5bDQ2LjQ0LTcuNjZzMi4zNi0zLjkxLDMuNTgtMy42N2MyMC42Ni0yMi42OSw1NS40Mi0yNS4zMyw3OS4yOC02LjAzaC0uMTZaIi8+CiAgPHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMzU2Ljg5LDIyNi43OWMtNS4zNC0xOS42Ni0xNi4zLTM3LjMyLTMxLjUzLTUwLjg0bC0zMi41OSwzMi41OWMxMy43NiwxMS4yNCwyMS42LDI4LjE4LDIxLjI3LDQ1Ljk1djUuNzhjMTYuMDIsMCwyOS4wMSwxMi45OSwyOS4wMSwyOS4wMXMtMTIuOTksMjkuMDEtMjkuMDEsMjkuMDFoLTU4LjAxbC01Ljc4LDUuODd2MzQuNzlsNS43OCw1Ljc4aDU4LjAxYzQxLjY3LjMyLDc1LjcxLTMzLjE5LDc2LjAzLTc0Ljg2LjItMjUuMjUtMTIuMjYtNDguOTMtMzMuMTgtNjMuMDhaIi8+CiAgPHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTk3LjkzLDM2NC40MWg1OC4wMXYtNDYuNDRoLTU4LjAxYy00LjEzLDAtOC4yMi0uODktMTEuOTgtMi42MWwtOC4xNSwyLjUzLTIzLjM4LDIzLjIyLTIuMDQsOC4xNWMxMy4xMSw5LjksMjkuMTEsMTUuMjMsNDUuNTUsMTUuMTVaIi8+CiAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTk3LjkzLDIxMy43NmMtNDEuNjcuMjUtNzUuMjQsMzQuMjMtNzQuOTksNzUuOS4xNCwyMy4yNywxMS4wMSw0NS4xNywyOS40NSw1OS4zNWwzMy42NS0zMy42NWMtMTQuNi02LjYtMjEuMDktMjMuNzgtMTQuNDktMzguMzgsNi42LTE0LjYsMjMuNzgtMjEuMDksMzguMzgtMTQuNDksNi40MywyLjkxLDExLjU4LDguMDYsMTQuNDksMTQuNDlsMzMuNjUtMzMuNjVjLTE0LjMyLTE4LjcyLTM2LjU2LTI5LjY2LTYwLjEzLTI5LjU4WiIvPgo8L3N2Zz4=";
 
+const DEFAULT_LOGOS = [
+  { src: SAP_LOGO, alt: "SAP" },
+  { src: AWS_LOGO, alt: "AWS" },
+  { src: GCLOUD_LOGO, alt: "Google Cloud" },
+];
+
 export function HeroTalentOrbit({
   imgSrc = "/people/hero-girl.png",
   imgAlt = "Senior IT talent",
+  logos = DEFAULT_LOGOS,
 }: {
   imgSrc?: string;
   imgAlt?: string;
+  logos?: { src: string; alt: string }[];
 } = {}) {
   const fitRef = useRef<HTMLDivElement | null>(null);
   const scaleRef = useRef<HTMLDivElement | null>(null);
@@ -324,7 +332,7 @@ export function HeroTalentOrbit({
                   }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={SAP_LOGO} alt="SAP" />
+                  <img src={logos[0]?.src} alt={logos[0]?.alt ?? ""} />
                 </div>
               </div>
 
@@ -339,7 +347,7 @@ export function HeroTalentOrbit({
                   }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={AWS_LOGO} alt="AWS" />
+                  <img src={logos[1]?.src} alt={logos[1]?.alt ?? ""} />
                 </div>
               </div>
 
@@ -357,7 +365,7 @@ export function HeroTalentOrbit({
                   }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={GCLOUD_LOGO} alt="Google Cloud" />
+                  <img src={logos[2]?.src} alt={logos[2]?.alt ?? ""} />
                 </div>
               </div>
 

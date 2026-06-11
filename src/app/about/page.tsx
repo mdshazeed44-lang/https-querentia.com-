@@ -5,6 +5,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { CountUp } from "@/components/ui/count-up";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { HeroTalentOrbit } from "@/components/ui/hero-talent-orbit";
+import { ABOUT_ORBIT_LOGOS } from "@/components/ui/about-orbit-logos";
 import {
   ArrowRight,
   Briefcase,
@@ -244,6 +245,7 @@ export default function AboutPage() {
               <HeroTalentOrbit
                 imgSrc="/people/about-hero.png"
                 imgAlt="Querentia — the people behind the practice"
+                logos={ABOUT_ORBIT_LOGOS}
               />
             </div>
           </Reveal>
