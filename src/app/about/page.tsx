@@ -3,8 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
 import { CountUp } from "@/components/ui/count-up";
-import { HeroTalentOrbit } from "@/components/ui/hero-talent-orbit";
-import { ABOUT_ORBIT_LOGOS } from "@/components/ui/about-orbit-logos";
 import {
   ArrowRight,
   UserCheck,
@@ -129,9 +127,9 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
       />
 
-      {/* ---------- 1. HERO — homepage-style: copy left, figure pinned to
-           the section's bottom edge on the right ---------- */}
-      <section className="relative isolate flex h-screen min-h-[680px] flex-col justify-center overflow-hidden bg-deep-2 pb-14 pt-24 text-on-deep md:pb-16 md:pt-24 lg:pb-0">
+      {/* ---------- 1. HERO — clean editorial intro (orbit figure moved to
+           the For Talent page) ---------- */}
+      <section className="relative isolate overflow-hidden bg-deep-2 pb-20 pt-36 text-on-deep md:pt-44">
         {/* Cyan radial ambient */}
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div
@@ -150,9 +148,8 @@ export default function AboutPage() {
           />
         </div>
 
-        <div className="container-x relative z-10 grid items-center gap-16 lg:h-full lg:flex-1 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
-          {/* ---------- LEFT — copy ---------- */}
-          <div className="text-center lg:text-left">
+        <div className="container-x relative z-10">
+          <div className="max-w-3xl">
             <Reveal>
               <p className="mb-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                 <span
@@ -172,12 +169,11 @@ export default function AboutPage() {
 
             <Reveal delay={140}>
               <h1
-                className="mx-auto text-balance font-medium text-on-deep lg:mx-0"
+                className="text-balance font-medium text-on-deep"
                 style={{
-                  fontSize: "clamp(1.85rem, 3.9vw, 3.25rem)",
-                  lineHeight: 1.06,
+                  fontSize: "clamp(2.25rem, 5.5vw, 4.25rem)",
+                  lineHeight: 1.04,
                   letterSpacing: "-0.022em",
-                  maxWidth: "17ch",
                 }}
               >
                 The most trusted partner
@@ -195,7 +191,7 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal delay={300}>
-              <p className="mx-auto mt-5 max-w-md text-[14px] leading-relaxed text-on-deep-muted md:text-[15px] lg:mx-0">
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
                 Since {site.founded}, Querentia has delivered high-quality,
                 high-impact technology talent to Canada&apos;s leading
                 enterprises — with unmatched speed, precision, and integrity.
@@ -206,7 +202,7 @@ export default function AboutPage() {
                 and credibility stats carry the hero instead. */}
             <Reveal delay={440}>
               <p
-                className="mx-auto mt-7 max-w-md text-base text-cyan lg:mx-0"
+                className="mt-7 text-base text-cyan"
                 style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
               >
                 {site.tagline}
@@ -215,7 +211,7 @@ export default function AboutPage() {
 
             {/* Credibility row — instant trust signals */}
             <Reveal delay={560}>
-              <div className="mt-7 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-white/15 pt-5 lg:justify-start">
+              <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-white/15 pt-5">
                 {[
                   { num: "94%", label: "Retention" },
                   { num: "48h", label: "Shortlist" },
@@ -237,19 +233,6 @@ export default function AboutPage() {
               </div>
             </Reveal>
           </div>
-
-          {/* ---------- RIGHT — orbit figure, pinned to section bottom ---------- */}
-          <Reveal delay={250} className="hidden lg:block lg:self-stretch">
-            {/* overshoot > max parallax+float lift so the figure never reveals
-                a gap above the section edge (same as homepage hero) */}
-            <div className="flex h-full items-end justify-center lg:-mb-8">
-              <HeroTalentOrbit
-                imgSrc="/people/about-hero.png"
-                imgAlt="Querentia — the people behind the practice"
-                logos={ABOUT_ORBIT_LOGOS}
-              />
-            </div>
-          </Reveal>
         </div>
       </section>
 

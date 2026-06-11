@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
+import { HeroTalentOrbit } from "@/components/ui/hero-talent-orbit";
+import { ABOUT_ORBIT_LOGOS } from "@/components/ui/about-orbit-logos";
 import {
   ArrowRight,
   Star,
@@ -98,8 +100,9 @@ export default function ForTalentPage() {
           .ft-track, .ft-track-rev { animation: none; }
         }
       `}</style>
-      {/* 1. Hero */}
-      <section className="relative isolate overflow-hidden bg-deep-2 pb-20 pt-36 text-on-deep md:pt-44">
+      {/* 1. Hero — copy left, orbit figure pinned to the section's bottom
+           edge on the right (same pattern as the homepage hero) */}
+      <section className="relative isolate flex h-screen min-h-[680px] flex-col justify-center overflow-hidden bg-deep-2 pb-14 pt-24 text-on-deep md:pb-16 md:pt-24 lg:pb-0">
         <div
           aria-hidden
           className="absolute inset-0"
@@ -108,8 +111,8 @@ export default function ForTalentPage() {
               "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,194,255,0.12) 0%, transparent 60%)",
           }}
         />
-        <div className="container-x relative">
-          <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
+        <div className="container-x relative lg:h-full lg:flex-1">
+          <div className="grid grid-cols-1 items-center gap-14 lg:h-full lg:grid-cols-[1.05fr_1fr]">
             <div className="max-w-2xl">
               <Reveal>
                 <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
@@ -156,64 +159,15 @@ export default function ForTalentPage() {
               </Reveal>
             </div>
 
-            {/* Circle cluster */}
-            <Reveal delay={250} className="hidden lg:block">
-              <div className="flex items-center justify-center">
-                <div className="relative h-[440px] w-[440px]">
-                  {/* Concentric orbit strokes */}
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute left-1/2 top-1/2 h-[580px] w-[580px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan/15"
-                  />
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute left-1/2 top-1/2 h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan/15"
-                  />
-
-                  {/* Large circle photo */}
-                  <div className="absolute left-1/2 top-1/2 z-10 h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full ring-2 ring-cyan/40">
-                    <Image
-                      src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80"
-                      alt="Senior IT professional represented by Querentia"
-                      fill
-                      priority
-                      sizes="340px"
-                      className="object-cover"
-                    />
-                  </div>
-
-                  {/* Small circle photo — top right */}
-                  <div className="absolute -top-2 right-4 z-10 h-[130px] w-[130px] overflow-hidden rounded-full ring-2 ring-cyan/40">
-                    <Image
-                      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80"
-                      alt="Senior technology consultant"
-                      fill
-                      sizes="130px"
-                      className="object-cover"
-                    />
-                  </div>
-
-                  {/* Accent dots */}
-                  <span
-                    aria-hidden
-                    className="absolute left-[46px] top-[70px] z-20 flex h-3 w-3"
-                  >
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-60" />
-                    <span className="relative inline-flex h-3 w-3 rounded-full bg-cyan" />
-                  </span>
-                  <span
-                    aria-hidden
-                    className="absolute bottom-[58px] right-[28px] z-20 h-2.5 w-2.5 rounded-full bg-green"
-                  />
-
-                  {/* Floating pills */}
-                  <span className="absolute -left-6 top-[120px] z-20 rounded-full border border-cyan/30 bg-deep-2 px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.2em] text-cyan">
-                    Confidential mandates
-                  </span>
-                  <span className="absolute -bottom-2 left-1/2 z-20 -translate-x-1/4 rounded-full bg-cyan px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.2em] text-deep">
-                    Senior roles only
-                  </span>
-                </div>
+            {/* Orbit figure — moved from the About hero, pinned to the
+                section bottom (overshoot > max parallax+float lift) */}
+            <Reveal delay={250} className="hidden lg:block lg:self-stretch">
+              <div className="flex h-full items-end justify-center lg:-mb-8">
+                <HeroTalentOrbit
+                  imgSrc="/people/about-hero.png"
+                  imgAlt="Senior IT professional represented by Querentia"
+                  logos={ABOUT_ORBIT_LOGOS}
+                />
               </div>
             </Reveal>
           </div>
