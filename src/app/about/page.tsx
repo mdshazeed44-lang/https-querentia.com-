@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
 import { CountUp } from "@/components/ui/count-up";
-import { MagneticButton } from "@/components/ui/magnetic-button";
 import { HeroTalentOrbit } from "@/components/ui/hero-talent-orbit";
 import { ABOUT_ORBIT_LOGOS } from "@/components/ui/about-orbit-logos";
 import {
@@ -257,28 +256,20 @@ export default function AboutPage() {
               </p>
             </Reveal>
 
+            {/* About pages inform — no conversion CTAs here. The motto line
+                and credibility stats carry the hero instead. */}
             <Reveal delay={440}>
-              <div className="mt-7 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-                <MagneticButton
-                  href="/for-companies"
-                  className="group inline-flex items-center bg-green px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
-                >
-                  Hire Talent
-                  <ArrowRight className="ml-2.5 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                </MagneticButton>
-                <Link
-                  href="/for-talent"
-                  className="group inline-flex items-center gap-2.5 border border-white/25 px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.25em] text-on-deep transition-colors duration-300 hover:border-white/60 hover:bg-white/5"
-                >
-                  Find Work
-                  <ArrowRight className="h-3.5 w-3.5 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
-                </Link>
-              </div>
+              <p
+                className="mx-auto mt-7 max-w-md text-base text-cyan lg:mx-0"
+                style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
+              >
+                {site.tagline}
+              </p>
             </Reveal>
 
             {/* Credibility row — instant trust signals */}
-            <Reveal delay={580}>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-white/15 pt-5 lg:justify-start">
+            <Reveal delay={560}>
+              <div className="mt-7 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-white/15 pt-5 lg:justify-start">
                 {[
                   { num: "94%", label: "Retention" },
                   { num: "48h", label: "Shortlist" },
@@ -518,20 +509,16 @@ export default function AboutPage() {
             </h2>
           </Reveal>
 
-          <div className="relative mt-14">
-            {/* connector line (desktop) */}
-            <span
-              aria-hidden
-              className="absolute left-0 right-0 top-6 hidden h-px bg-gradient-to-r from-transparent via-cyan/40 to-transparent lg:block"
-            />
-            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          <div className="mt-12 grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-12">
+            {/* steps — 2×2 */}
+            <div className="order-2 grid gap-x-6 gap-y-9 sm:grid-cols-2 lg:order-1">
               {process.map((p, idx) => (
-                <Reveal key={p.num} delay={idx * 130}>
+                <Reveal key={p.num} delay={idx * 120}>
                   <div className="group relative">
                     <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-cyan/40 bg-page text-cyan transition-all duration-300 group-hover:bg-cyan group-hover:text-white">
                       <p.icon className="h-5 w-5" />
                     </span>
-                    <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.3em] text-cyan">
+                    <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.3em] text-cyan">
                       Step {p.num}
                     </p>
                     <h3
@@ -547,6 +534,29 @@ export default function AboutPage() {
                 </Reveal>
               ))}
             </div>
+
+            {/* pipeline visual — recruiter screening profiles into a shortlist */}
+            <Reveal delay={150} className="order-1 lg:order-2">
+              <div className="relative">
+                <div className="group overflow-hidden rounded-3xl border border-border bg-white">
+                  <div className="relative h-[230px] sm:h-[270px]">
+                    <Image
+                      src="/about/screening-pipeline.png"
+                      alt="A Querentia recruiter screening candidate profiles into a qualified shortlist"
+                      fill
+                      sizes="(min-width: 1024px) 34rem, 100vw"
+                      className="object-contain p-3 transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                </div>
+                {/* floating proof chip */}
+                <div className="absolute -bottom-4 left-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium text-ink shadow-[0_12px_30px_-12px_rgba(13,27,42,0.35)]">
+                  <Clock className="h-4 w-4 text-cyan" />
+                  Avg. shortlist:&nbsp;
+                  <span className="font-semibold text-cyan">48 hours</span>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -573,25 +583,53 @@ export default function AboutPage() {
             </h2>
           </Reveal>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {whoWeAre.map((item, idx) => (
-              <Reveal key={item.title} delay={idx * 110}>
-                <div className="h-full rounded-3xl border border-border bg-card p-7 transition-colors duration-300 hover:border-cyan/40">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-cyan-soft text-cyan">
-                    <item.icon className="h-5 w-5" />
-                  </span>
-                  <h3
-                    className="mt-5 text-lg font-medium tracking-tight text-ink"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {item.title}
-                  </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-ink-muted">
-                    {item.desc}
+          <div className="mt-12 grid gap-8 lg:grid-cols-[1fr_1.35fr] lg:items-stretch">
+            {/* network visual — one connected talent pool, every market */}
+            <Reveal>
+              <div className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-white">
+                <div className="relative min-h-[260px] flex-1">
+                  <Image
+                    src="/about/talent-network.png"
+                    alt="A Querentia recruiter connected to senior IT professionals across markets"
+                    fill
+                    sizes="(min-width: 1024px) 30rem, 100vw"
+                    className="object-contain p-3 transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="border-t border-border bg-card p-5">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-cyan">
+                    One network · Every market
+                  </p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
+                    An active, coast-to-coast network of senior IT
+                    professionals — so the right candidate is a call away, not
+                    a cold search.
                   </p>
                 </div>
-              </Reveal>
-            ))}
+              </div>
+            </Reveal>
+
+            {/* identity cards — 2×2 */}
+            <div className="grid gap-5 sm:grid-cols-2">
+              {whoWeAre.map((item, idx) => (
+                <Reveal key={item.title} delay={idx * 110}>
+                  <div className="h-full rounded-3xl border border-border bg-card p-7 transition-colors duration-300 hover:border-cyan/40">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-cyan-soft text-cyan">
+                      <item.icon className="h-5 w-5" />
+                    </span>
+                    <h3
+                      className="mt-5 text-lg font-medium tracking-tight text-ink"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p className="mt-2.5 text-sm leading-relaxed text-ink-muted">
+                      {item.desc}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
