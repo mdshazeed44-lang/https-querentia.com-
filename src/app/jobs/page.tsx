@@ -56,41 +56,68 @@ export default function JobsPage() {
           <span className="grain absolute inset-0" />
         </div>
 
-        <div className="container-x relative pt-32 pb-16 md:pt-44 md:pb-24">
+        <div className="container-x relative pb-16 pt-32 md:pb-20 md:pt-40">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.06] px-4 py-1.5 text-xs font-medium text-white/85 backdrop-blur-sm">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sage opacity-70" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-sage" />
+            <p className="mb-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <span
+                className="text-sm tracking-normal"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                I
               </span>
-              {openJobs.length} live roles · Updated this week
-            </span>
+              <span className="inline-block h-px w-6 bg-current opacity-50" />
+              <span>Open Roles</span>
+              <span className="relative ml-1 flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-70" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyan" />
+              </span>
+            </p>
           </Reveal>
-          <Reveal delay={120}>
+          <Reveal delay={140}>
             <h1
-              className="mt-7 max-w-3xl text-[clamp(2.75rem,9vw,7.5rem)] font-medium leading-[0.95] tracking-tight"
-              style={{ fontFamily: "var(--font-display)" }}
+              className="text-balance font-medium text-white"
+              style={{
+                fontSize: "clamp(1.85rem, 3.9vw, 3.25rem)",
+                lineHeight: 1.06,
+                letterSpacing: "-0.022em",
+                maxWidth: "17ch",
+              }}
             >
-              High-impact roles. <span className="text-white/70">Matched with precision.</span>
+              High-impact roles.
+              <br className="hidden sm:block" />{" "}
+              <span
+                className="text-cyan"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontStyle: "italic",
+                }}
+              >
+                Matched with precision.
+              </span>
             </h1>
           </Reveal>
-          <Reveal delay={240}>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
+          <Reveal delay={300}>
+            <p className="mt-5 max-w-md text-[14px] leading-relaxed text-white/65 md:text-[15px]">
               Live senior IT mandates from Canada&apos;s leading consulting
               firms and enterprises — represented honestly, moved fast.
             </p>
           </Reveal>
-          <Reveal delay={360}>
-            <div className="mt-9 flex flex-wrap items-center gap-3">
-              <a
-                href="#results"
-                className="magnetic shine inline-flex items-center gap-2 rounded-full bg-green px-7 py-3.5 text-sm font-medium text-white shadow-[0_18px_40px_-12px_rgba(255,107,43,0.5)] transition-colors hover:bg-green-700"
+          <Reveal delay={440}>
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/15 pt-5">
+              <span className="inline-flex items-center gap-2 text-sm text-white/70">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-frost opacity-70" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-frost" />
+                </span>
+                {openJobs.length} live roles · Updated this week
+              </span>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.25em] text-cyan transition-colors hover:text-white"
               >
-                See open roles <ArrowRight className="h-4 w-4" />
-              </a>
-              <Button href="/contact" variant="outline-light" className="magnetic">
                 Submit your CV
-              </Button>
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
             </div>
           </Reveal>
         </div>
