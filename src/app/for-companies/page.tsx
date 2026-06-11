@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
 import { CountUp } from "@/components/ui/count-up";
-import { ArrowRight, Mail } from "@/components/ui/icons";
+import { ArrowRight, Mail, Check, Clock } from "@/components/ui/icons";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -149,112 +148,136 @@ export default function ForCompaniesPage() {
           <div className="container-x relative">
             <div className="grid items-center gap-16 lg:grid-cols-2">
               {/* Left — copy */}
-              <div className="max-w-xl">
+              <div className="text-center lg:text-left">
                 <Reveal>
-                  <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-                    <span className="inline-block h-px w-8 bg-cyan/60" />
-                    For Companies
+                  <p className="mb-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                    <span
+                      className="text-sm tracking-normal"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      I
+                    </span>
+                    <span className="inline-block h-px w-6 bg-current opacity-50" />
+                    <span>For Companies</span>
+                    <span className="relative ml-1 flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-70" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyan" />
+                    </span>
                   </p>
                 </Reveal>
                 <Reveal delay={140}>
-                  <h1 className="text-balance text-[clamp(2.25rem,6vw,4.75rem)] font-medium leading-[0.98] tracking-tight text-white">
-                    Hire senior IT talent.{" "}
+                  <h1
+                    className="mx-auto text-balance font-medium text-white lg:mx-0"
+                    style={{
+                      fontSize: "clamp(1.85rem, 3.9vw, 3.25rem)",
+                      lineHeight: 1.06,
+                      letterSpacing: "-0.022em",
+                      maxWidth: "17ch",
+                    }}
+                  >
+                    Hire senior IT talent.
+                    <br className="hidden sm:block" />{" "}
                     <span
                       className="text-cyan"
-                      style={{ fontFamily: "var(--font-display)" }}
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        fontStyle: "italic",
+                      }}
                     >
-                      With unmatched speed and precision.
+                      Fast, precise, vetted.
                     </span>
                   </h1>
                 </Reveal>
-                <Reveal delay={260}>
-                  <p className="mt-8 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
-                    Querentia is the most trusted partner for high-quality,
-                    high-impact talent — delivered to Canada&apos;s leading
-                    consulting firms and enterprise IT programs with unmatched
-                    speed, precision, and integrity.
+                <Reveal delay={300}>
+                  <p className="mx-auto mt-5 max-w-md text-[14px] leading-relaxed text-on-deep-muted md:text-[15px] lg:mx-0">
+                    Pre-vetted senior shortlists for Canada&apos;s leading
+                    consulting firms and enterprise IT programs — in 48 hours.
                   </p>
                 </Reveal>
-                <Reveal delay={400}>
-                  <div className="mt-10 flex flex-wrap items-center gap-4">
-                    <Link
-                      href="/contact"
-                      className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
-                    >
-                      Get a shortlist
-                      <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                    </Link>
-                    <Link
-                      href="/jobs"
-                      className="inline-flex items-center gap-2.5 border border-white/25 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
-                    >
-                      Browse open roles
-                    </Link>
+                <Reveal delay={440}>
+                  <div className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-white/15 pt-5 lg:justify-start">
+                    {["48h shortlists", "94% retention", "Permanent & contract"].map(
+                      (t) => (
+                        <span
+                          key={t}
+                          className="inline-flex items-center gap-2 text-sm text-white/70"
+                        >
+                          <Check className="h-4 w-4 text-frost" /> {t}
+                        </span>
+                      )
+                    )}
                   </div>
                 </Reveal>
               </div>
 
-              {/* Right — signature circle cluster */}
+              {/* Right — mandate console mockup (shortlist in progress) */}
               <Reveal delay={250} className="hidden lg:block">
-                <div className="flex items-center justify-center">
-                  <div className="relative h-[440px] w-[440px]">
-                    {/* Concentric orbit strokes */}
-                    <div
-                      aria-hidden
-                      className="pointer-events-none absolute left-1/2 top-1/2 h-[580px] w-[580px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan/15"
-                    />
-                    <div
-                      aria-hidden
-                      className="pointer-events-none absolute left-1/2 top-1/2 h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan/15"
-                    />
+                <div className="relative mx-auto max-w-md">
+                  {/* floating proof pills */}
+                  <span className="fc-float-a absolute -left-6 -top-4 z-20 inline-flex items-center rounded-full bg-cyan px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.15em] text-deep shadow-lg">
+                    48h shortlists
+                  </span>
+                  <span className="fc-float-b absolute -bottom-4 -right-3 z-20 inline-flex items-center rounded-full border border-cyan/30 bg-deep-2 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.15em] text-cyan shadow-lg">
+                    94% retention
+                  </span>
 
-                    {/* Large circle photo — enterprise meeting */}
-                    <div className="absolute left-1/2 top-1/2 z-10 h-[340px] w-[340px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full ring-2 ring-cyan/40">
-                      <Image
-                        src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=800&q=80"
-                        alt="Enterprise hiring team in a planning meeting"
-                        fill
-                        priority
-                        sizes="340px"
-                        className="object-cover"
-                      />
+                  <div className="glass-card rounded-2xl p-5 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.6)]">
+                    {/* header */}
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-on-deep">
+                          Senior Cloud Architect
+                        </p>
+                        <p className="mt-0.5 text-xs text-on-deep-muted">
+                          Enterprise banking · Toronto · Hybrid
+                        </p>
+                      </div>
+                      <span className="rounded-full bg-green-soft px-2.5 py-1 text-[11px] font-medium text-green">
+                        ● Live mandate
+                      </span>
                     </div>
 
-                    {/* Small circle photo — top right */}
-                    <div className="absolute -top-2 right-4 z-10 h-[140px] w-[140px] overflow-hidden rounded-full ring-2 ring-cyan/40">
-                      <Image
-                        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80"
-                        alt="Senior technology executive placed by Querentia"
-                        fill
-                        sizes="140px"
-                        className="object-cover"
-                      />
+                    {/* shortlist rows */}
+                    <div className="mt-5 space-y-2.5">
+                      {[
+                        { initials: "CA", title: "Cloud Architect", meta: "12 yrs · AWS · Kubernetes" },
+                        { initials: "PE", title: "Platform Engineer", meta: "9 yrs · Terraform · GCP" },
+                        { initials: "SL", title: "SRE Lead", meta: "11 yrs · Azure · On-call at scale" },
+                      ].map((c) => (
+                        <div
+                          key={c.initials}
+                          className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3"
+                        >
+                          <span
+                            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan/15 text-xs font-semibold text-cyan"
+                            style={{ fontFamily: "var(--font-display)" }}
+                          >
+                            {c.initials}
+                          </span>
+                          <div className="min-w-0 flex-1">
+                            <p className="truncate text-sm font-medium text-on-deep">
+                              {c.title}
+                            </p>
+                            <p className="truncate text-xs text-on-deep-muted">
+                              {c.meta}
+                            </p>
+                          </div>
+                          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-frost/10 px-2.5 py-1 text-[11px] font-medium text-frost">
+                            <Check className="h-3 w-3" /> Vetted
+                          </span>
+                        </div>
+                      ))}
                     </div>
 
-                    {/* Accent dots */}
-                    <span
-                      aria-hidden
-                      className="absolute left-[52px] top-[70px] z-20 flex h-3 w-3"
-                    >
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-60" />
-                      <span className="relative inline-flex h-3 w-3 rounded-full bg-cyan" />
-                    </span>
-                    <span
-                      aria-hidden
-                      className="absolute bottom-[110px] right-[18px] z-20 inline-block h-2.5 w-2.5 rounded-full bg-green"
-                    />
-                    <span
-                      aria-hidden
-                      className="absolute -top-6 left-[200px] z-20 inline-block h-2 w-2 rounded-full bg-cyan"
-                    />
-
-                    {/* Floating pill tag badges */}
-                    <span className="fc-float-a absolute -left-8 top-[120px] z-20 inline-flex items-center rounded-full bg-cyan px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.15em] text-deep shadow-lg">
-                      48h shortlists
-                    </span>
-                    <span className="fc-float-b absolute -bottom-2 right-9 z-20 inline-flex items-center rounded-full border border-cyan/30 bg-deep-2 px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.15em] text-cyan shadow-lg">
-                      94% retention
-                    </span>
+                    {/* footer */}
+                    <div className="mt-4 flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3">
+                      <span className="inline-flex items-center gap-2 text-xs text-on-deep-muted">
+                        <Clock className="h-4 w-4 text-cyan" /> Brief → shortlist
+                      </span>
+                      <span className="text-sm font-semibold text-cyan">
+                        <CountUp value="48h" />
+                      </span>
+                    </div>
                   </div>
                 </div>
               </Reveal>
@@ -322,7 +345,7 @@ export default function ForCompaniesPage() {
                       >
                         {s.num}
                       </span>
-                      <div className="mt-6 h-full rounded-2xl border border-border bg-card p-7">
+                      <div className="mt-6 h-full rounded-2xl border border-border bg-card p-7 transition-all duration-300 hover:-translate-y-1 hover:border-cyan/40 hover:shadow-[0_24px_50px_-28px_rgba(13,27,42,0.3)]">
                         <h3
                           className="text-xl font-medium tracking-tight"
                           style={{ fontFamily: "var(--font-display)" }}
@@ -370,23 +393,30 @@ export default function ForCompaniesPage() {
               </div>
             </Reveal>
 
-            <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-3 lg:gap-x-12">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
               {PILLARS.map((v, i) => (
                 <Reveal key={v.num} delay={i * 120}>
-                  <div>
-                    <span aria-hidden className="block h-px w-12 bg-cyan/60" />
-                    <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.3em] text-cyan">
-                      {v.num} · {v.title}
-                    </p>
+                  <div className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition-colors duration-300 hover:border-cyan/40 hover:bg-white/[0.05]">
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute -right-3 -top-7 select-none font-mono text-[5.5rem] font-bold leading-none text-white/[0.05] transition-colors duration-500 group-hover:text-cyan/[0.12]"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      {v.num}
+                    </span>
                     <h3
-                      className="mt-5 text-[1.65rem] font-medium leading-tight tracking-tight text-white"
+                      className="text-[1.65rem] font-medium leading-tight tracking-tight text-white"
                       style={{ fontFamily: "var(--font-display)" }}
                     >
                       {v.title}.
                     </h3>
-                    <p className="mt-5 text-base leading-relaxed text-on-deep-muted">
+                    <p className="mt-4 text-base leading-relaxed text-on-deep-muted">
                       {v.body}
                     </p>
+                    <span
+                      aria-hidden
+                      className="mt-6 block h-0.5 w-10 bg-cyan transition-all duration-500 group-hover:w-16"
+                    />
                   </div>
                 </Reveal>
               ))}
@@ -427,8 +457,9 @@ export default function ForCompaniesPage() {
                 {DISCIPLINES.map((d) => (
                   <span
                     key={d}
-                    className="inline-flex items-center rounded-full border border-ink/15 bg-card px-5 py-2.5 text-sm font-medium text-ink"
+                    className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-card px-5 py-2.5 text-sm font-medium text-ink transition-all duration-300 hover:-translate-y-px hover:border-cyan"
                   >
+                    <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-cyan" />
                     {d}
                   </span>
                 ))}
