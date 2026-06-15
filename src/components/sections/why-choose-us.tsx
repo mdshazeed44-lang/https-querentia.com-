@@ -3,25 +3,21 @@ import { Shield, Star, Target, Award } from "@/components/ui/icons";
 
 const REASONS = [
   {
-    num: "01",
     Icon: Shield,
     title: "A partnership built on trust",
     body: "We work closely with you, acting as an extension of your team — transparent, thoughtful, and invested in your success.",
   },
   {
-    num: "02",
     Icon: Star,
     title: "A focus on exceptional people",
     body: "We prioritize quality over volume, curating talent who bring capability, character, and lasting impact.",
   },
   {
-    num: "03",
     Icon: Target,
     title: "A deep understanding of your needs",
     body: "We take the time to understand your culture, challenges, and ambitions, ensuring every hire strengthens your team.",
   },
   {
-    num: "04",
     Icon: Award,
     title: "A commitment to long-term success",
     body: "Our approach goes beyond filling roles — we help you build teams that thrive today and grow with you tomorrow.",
@@ -30,10 +26,16 @@ const REASONS = [
 
 export function WhyChooseUs() {
   return (
-    <section className="border-t border-border bg-page-2 py-20 text-ink md:py-24">
-      <div className="container-x">
+    <section className="relative isolate overflow-hidden border-t border-border bg-page-2 py-16 text-ink md:py-20">
+      {/* ambient cyan glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-24 right-0 h-[32rem] w-[32rem] rounded-full bg-cyan/[0.05] blur-3xl"
+      />
+
+      <div className="container-x relative">
         {/* Header */}
-        <div className="mb-14 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between md:gap-12">
+        <div className="mb-12 flex flex-col gap-6 md:mb-14 md:flex-row md:items-end md:justify-between md:gap-12">
           <Reveal>
             <div className="max-w-2xl">
               <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
@@ -73,24 +75,37 @@ export function WhyChooseUs() {
         {/* Cards */}
         <div className="grid gap-6 md:grid-cols-2 md:gap-7">
           {REASONS.map((r, i) => (
-            <Reveal key={r.num} delay={i * 110}>
-              <article className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all duration-500 hover:-translate-y-1 hover:border-cyan/40 hover:shadow-[0_30px_80px_-30px_rgba(13,27,42,0.3)] md:p-10">
-                <div className="relative">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-deep-2 text-cyan">
+            <Reveal key={r.title} delay={i * 110}>
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-cyan/40 hover:shadow-[0_40px_90px_-40px_rgba(13,27,42,0.35)] md:p-10">
+                {/* top accent line on hover */}
+                <span
+                  aria-hidden
+                  className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan/60 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                />
+                {/* corner glow on hover */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-cyan/[0.07] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
+                />
+
+                <div className="relative flex h-full flex-col">
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-deep-2 text-cyan shadow-[0_14px_34px_-12px_rgba(0,194,255,0.45)] transition-transform duration-500 group-hover:scale-105">
                     <r.Icon className="h-6 w-6" />
                   </span>
+
                   <h3
-                    className="mt-6 text-2xl font-medium leading-snug tracking-tight"
+                    className="mt-7 text-[22px] font-medium leading-snug tracking-tight text-ink md:text-2xl"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {r.title}
                   </h3>
-                  {/* Growing cyan underline */}
+
                   <span
                     aria-hidden
                     className="mt-4 block h-0.5 w-10 rounded-full bg-cyan transition-all duration-500 group-hover:w-16"
                   />
-                  <p className="mt-5 text-base leading-relaxed text-ink-muted">
+
+                  <p className="mt-5 flex-1 text-[15px] leading-relaxed text-ink-muted md:text-base">
                     {r.body}
                   </p>
                 </div>

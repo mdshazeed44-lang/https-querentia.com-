@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Reveal } from "@/components/ui/reveal";
 import {
   Cloud,
@@ -88,14 +88,45 @@ const CATEGORIES = [
 export function Industries() {
   const totalCount = CATEGORIES.reduce((sum, c) => sum + c.items.length, 0);
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [inView, setInView] = useState(false);
+  const [reduced, setReduced] = useState(true);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const cat = CATEGORIES[active];
 
+  // Start the auto-advance only while the section is on screen, and respect
+  // users who prefer reduced motion.
+  useEffect(() => {
+    setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // Auto-advance every 4s while the section is on screen; pause on hover and
+  // when the user prefers reduced motion. Resets on any active change.
+  useEffect(() => {
+    if (paused || reduced || !inView) return;
+    const id = window.setTimeout(
+      () => setActive((a) => (a + 1) % CATEGORIES.length),
+      4000,
+    );
+    return () => window.clearTimeout(id);
+  }, [active, paused, reduced, inView]);
+
   return (
-    <section className="relative isolate overflow-hidden border-t border-border bg-page pt-20 pb-14 text-ink md:pt-24 md:pb-16">
+    <section ref={sectionRef} className="relative isolate overflow-hidden border-t border-border bg-page pt-20 pb-14 text-ink md:pt-24 md:pb-16">
       {/* chip stagger-in animation (panel remounts on tab change) */}
       <style>{`
         @keyframes ind-chip-in { from { opacity: 0; transform: translateY(10px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
         .ind-chip { opacity: 0; animation: ind-chip-in 0.4s cubic-bezier(0.16,1,0.3,1) forwards; }
+        @keyframes ind-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        .ind-progress { animation: ind-progress 4s linear forwards; }
         @media (prefers-reduced-motion: reduce) { .ind-chip { opacity: 1; animation: none; } }
       `}</style>
 
@@ -137,7 +168,11 @@ export function Industries() {
 
         {/* Interactive vertical tabs */}
         <Reveal delay={150}>
-          <div className="grid gap-8 lg:grid-cols-[360px_1fr] lg:gap-10">
+          <div
+            className="grid gap-8 lg:grid-cols-[360px_1fr] lg:gap-10"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
             {/* tab rail */}
             <div role="tablist" aria-label="Practice areas" className="flex flex-col gap-1">
               {CATEGORIES.map((c, i) => {
@@ -148,7 +183,7 @@ export function Industries() {
                     role="tab"
                     aria-selected={isOn}
                     onClick={() => setActive(i)}
-                    className={`group flex cursor-pointer items-center gap-4 rounded-xl px-5 py-4 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan ${
+                    className={`group relative flex cursor-pointer items-center gap-4 rounded-xl px-5 py-4 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan ${
                       isOn
                         ? "bg-deep-2 text-on-deep shadow-lg"
                         : "text-ink-muted hover:bg-card hover:text-ink"
@@ -181,6 +216,17 @@ export function Industries() {
                           : "-translate-x-1 opacity-0"
                       }`}
                     />
+                    {isOn && !reduced && (
+                      <span
+                        key={active}
+                        aria-hidden
+                        className="ind-progress pointer-events-none absolute bottom-1.5 left-5 right-5 h-[3px] origin-left rounded-full bg-cyan/70"
+                        style={{
+                          animationPlayState:
+                            inView && !paused ? "running" : "paused",
+                        }}
+                      />
+                    )}
                   </button>
                 );
               })}

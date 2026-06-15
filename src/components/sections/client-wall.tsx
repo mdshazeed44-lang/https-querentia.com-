@@ -3,7 +3,7 @@ import { clients } from "@/lib/site";
 
 export function ClientWall() {
   return (
-    <section className="relative isolate overflow-hidden border-t border-border bg-page-2 py-16 text-ink md:py-20">
+    <section className="relative isolate overflow-hidden border-t border-border bg-page-2 py-11 text-ink md:py-14">
       {/* ambient cyan glow */}
       <div
         aria-hidden
@@ -22,11 +22,11 @@ export function ClientWall() {
 
         {/* Partner panel */}
         <Reveal delay={120}>
-          <div className="mx-auto mt-9 flex max-w-4xl flex-col divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_60px_-32px_rgba(13,27,42,0.22)] sm:flex-row sm:divide-x sm:divide-y-0 md:mt-11">
+          <div className="mx-auto mt-7 flex max-w-4xl flex-col divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_60px_-32px_rgba(13,27,42,0.22)] sm:flex-row sm:divide-x sm:divide-y-0 md:mt-8">
             {clients.map((c) => (
               <div
                 key={c}
-                className="group relative flex flex-1 items-center justify-center px-6 py-9 transition-colors duration-300 hover:bg-page-2 md:py-10"
+                className="group relative flex flex-1 items-center justify-center px-6 py-6 transition-colors duration-300 hover:bg-page-2 md:py-7"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -42,7 +42,7 @@ export function ClientWall() {
 
         {/* Trust microcopy */}
         <Reveal delay={220}>
-          <p className="mt-6 text-center text-[13px] leading-relaxed text-ink-muted">
+          <p className="mt-5 text-center text-[13px] leading-relaxed text-ink-muted">
             Trusted to deliver exceptional talent across consulting, technology,
             and enterprise teams.
           </p>

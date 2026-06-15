@@ -47,10 +47,10 @@ const SERVICES: Service[] = [
 
 export function Services() {
   return (
-    <section className="border-t border-border bg-page py-20 text-ink md:py-24">
+    <section className="border-t border-border bg-page py-14 text-ink md:py-16">
       <div className="container-x">
         {/* Header */}
-        <div className="mb-14 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between md:gap-12">
+        <div className="mb-10 flex flex-col gap-6 md:mb-12 md:flex-row md:items-end md:justify-between md:gap-12">
           <Reveal>
             <div className="max-w-2xl">
               <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
@@ -77,13 +77,13 @@ export function Services() {
         </div>
 
         {/* Cards — stacked, alternating */}
-        <div className="flex flex-col gap-10 md:gap-14">
+        <div className="flex flex-col gap-8 md:gap-10">
           {SERVICES.map((s, i) => {
             const isFirst = i === 0;
 
             const TextBlock = (
               <div
-                className={`flex flex-col justify-center px-8 py-10 md:px-12 md:py-14 ${
+                className={`flex flex-col justify-center px-8 py-9 md:px-12 md:py-11 ${
                   isFirst ? "" : "md:order-2"
                 }`}
               >
@@ -111,7 +111,7 @@ export function Services() {
 
             const Panel = (
               <div
-                className={`relative min-h-[280px] overflow-hidden bg-deep-2 sm:min-h-[340px] md:min-h-[460px] ${
+                className={`relative min-h-[260px] overflow-hidden bg-deep-2 sm:min-h-[320px] md:min-h-[410px] ${
                   isFirst ? "" : "md:order-1"
                 }`}
               >

@@ -33,7 +33,7 @@ export function Hero() {
           }
         }
       `}</style>
-      <div className="hero-arch-mask absolute inset-0 lg:left-[40%]">
+      <div className="hero-arch-mask absolute inset-0 lg:left-[40%] lg:top-16">
         <Image
           src="/hero-arch.webp"
           alt="A lone professional standing inside a sculptural concrete opening beneath an open sky"
@@ -80,8 +80,8 @@ export function Hero() {
             <h1
               className={`${playfair.className} mt-7 font-medium`}
               style={{
-                fontSize: "clamp(2.4rem, 5.4vw, 4.6rem)",
-                lineHeight: 1.06,
+                fontSize: "clamp(1.85rem, 4vw, 3.35rem)",
+                lineHeight: 1.1,
                 letterSpacing: "-0.01em",
                 color: "#F4F7FA",
               }}
