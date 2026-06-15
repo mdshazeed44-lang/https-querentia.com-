@@ -190,7 +190,7 @@ export function Industries() {
             <div
               key={active}
               role="tabpanel"
-              className="rounded-2xl border border-border bg-card p-8 shadow-[0_24px_60px_-32px_rgba(13,27,42,0.18)]"
+              className="rounded-2xl border border-border bg-card p-6 shadow-[0_24px_60px_-32px_rgba(13,27,42,0.18)] sm:p-8"
             >
               <div className="flex items-center gap-4">
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-deep-2 text-cyan">

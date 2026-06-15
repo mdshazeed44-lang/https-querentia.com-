@@ -123,7 +123,7 @@ export function Hero() {
           {/* Credibility row — instant trust signals */}
           <Reveal delay={580}>
             <div
-              className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 pt-5 lg:justify-start"
+              className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 pt-5 sm:gap-x-7 lg:justify-start"
               style={{ borderTop: "1px solid var(--hcorner)" }}
             >
               {[

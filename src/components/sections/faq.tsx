@@ -101,7 +101,7 @@ export function FAQ() {
                       overflow: "hidden",
                     }}
                   >
-                    <p className="pb-7 pr-10 text-base leading-relaxed text-ink-muted">
+                    <p className="pb-7 pr-2 text-base leading-relaxed text-ink-muted md:pr-10">
                       {item.a}
                     </p>
                   </div>

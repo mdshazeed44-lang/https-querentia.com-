@@ -4,7 +4,7 @@ import { ArrowRight } from "@/components/ui/icons";
 
 export function CTA() {
   return (
-    <section className="relative overflow-hidden border-t border-border bg-page py-24 text-ink md:py-28">
+    <section className="relative overflow-hidden border-t border-border bg-page py-20 text-ink md:py-28">
       {/* Radial accent — soft cyan on light bg */}
       <div
         aria-hidden

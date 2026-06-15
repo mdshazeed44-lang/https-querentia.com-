@@ -354,16 +354,16 @@ function JobCard({ job }: { job: Job }) {
         </div>
 
         {/* RIGHT */}
-        <div className="flex shrink-0 flex-col items-end gap-3 md:min-w-[8rem]">
+        <div className="flex shrink-0 flex-col items-start gap-3 md:items-end md:min-w-[8rem]">
           {pay && (
-            <div className="text-right">
+            <div className="md:text-right">
               <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-faint">
                 Compensation
               </p>
               <p className="text-base font-bold text-deep">{pay}</p>
             </div>
           )}
-          <span className="relative z-10 inline-flex items-center gap-2 rounded-full bg-deep px-4 py-2 text-xs font-semibold text-white transition-all duration-300 group-hover:bg-green group-hover:text-white">
+          <span className="relative z-10 inline-flex min-h-[44px] items-center gap-2 rounded-full bg-deep px-4 py-2 text-xs font-semibold text-white transition-all duration-300 group-hover:bg-green group-hover:text-white md:min-h-0">
             View role
             <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
           </span>

@@ -70,7 +70,7 @@ export function Testimonials() {
           </figure>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-12">
           {supporting.map((q, i) => (
             <Reveal key={i} delay={240 + i * 130}>
               <figure className="flex h-full flex-col">

@@ -330,12 +330,13 @@ export default function ForCompaniesPage() {
             </Reveal>
 
             <div className="relative">
-              {/* Connecting line through the step circles */}
+              {/* Connecting line through the step circles (only spans a single
+                  4-up row, so it appears at lg where the grid is 4 columns) */}
               <span
                 aria-hidden
-                className="absolute left-0 top-6 hidden h-px w-full bg-cyan/25 md:block"
+                className="absolute left-0 top-6 hidden h-px w-full bg-cyan/25 lg:block"
               />
-              <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-6 lg:gap-8">
+              <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:gap-6 lg:grid-cols-4 lg:gap-8">
                 {STEPS.map((s, i) => (
                   <Reveal key={s.num} delay={i * 120}>
                     <div className="relative">

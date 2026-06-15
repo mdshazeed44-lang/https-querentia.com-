@@ -20,10 +20,10 @@ export function ClientWall() {
       `}</style>
       <div className="container-x">
         <Reveal>
-          <p className="mb-10 flex items-center justify-center gap-4 text-center text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan md:mb-12">
-            <span className="inline-block h-px w-8 bg-cyan/60" />
+          <p className="mb-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center text-[11px] font-semibold uppercase tracking-[0.25em] text-cyan sm:text-[12px] sm:tracking-[0.3em] md:mb-12">
+            <span className="hidden h-px w-8 bg-cyan/60 sm:inline-block" />
             Trusted by Canada&apos;s enterprise IT programs
-            <span className="inline-block h-px w-8 bg-cyan/60" />
+            <span className="hidden h-px w-8 bg-cyan/60 sm:inline-block" />
           </p>
         </Reveal>
       </div>

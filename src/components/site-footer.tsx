@@ -56,7 +56,7 @@ export function SiteFooter() {
 
       {/* ───────── Main grid ───────── */}
       <div className="relative container-x py-16 md:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr_1fr_1fr] lg:gap-10">
+        <div className="grid gap-12 sm:grid-cols-2 sm:gap-10 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
           {/* Brand block */}
           <div>
             <Link href="/" className="inline-flex" aria-label={site.name}>
