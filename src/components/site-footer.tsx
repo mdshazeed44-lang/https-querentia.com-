@@ -63,28 +63,33 @@ export function SiteFooter() {
         }}
       />
 
-      <div className="relative container-x py-12 md:py-14">
+      <div className="relative container-x py-16 md:py-24">
         {/* ───────── Row 1 · brand + nav columns (aligned to top) ───────── */}
         <div className="grid gap-10 sm:grid-cols-2 sm:gap-9 lg:grid-cols-[1.7fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div>
             <Link
               href="/"
-              className="inline-flex flex-col items-start gap-0.5"
+              className="inline-flex flex-col items-start gap-1"
               aria-label={site.name}
             >
-              <Image
-                src="/querentia-wordmark.png"
-                alt={site.name}
-                width={556}
-                height={93}
-                className="h-9 w-auto brightness-0 invert"
-              />
+              <span className="flex items-start">
+                <Image
+                  src="/querentia-wm.png"
+                  alt={site.name}
+                  width={529}
+                  height={93}
+                  className="h-10 w-auto brightness-0 invert"
+                />
+                <span className="ml-1 mt-0.5 text-[13px] font-medium leading-none text-white">
+                  ®
+                </span>
+              </span>
               <span className="text-[9px] uppercase leading-none tracking-[0.25em] text-cyan">
                 Talent · Trust · Thrive
               </span>
             </Link>
-            <p className="mt-4 max-w-xs text-[13px] leading-relaxed text-on-deep-muted">
+            <p className="mt-5 max-w-xs text-[13px] leading-relaxed text-on-deep-muted">
               Your trusted recruitment partner. Connecting organizations with
               exceptional talent that elevates teams and drives growth.
             </p>

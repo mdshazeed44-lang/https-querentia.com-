@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/lib/site";
@@ -23,25 +23,49 @@ const menu: MenuItem[] = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
+
+  // Hide the header (and its logo) when scrolling down, reveal on scroll up.
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (y < 80) setHidden(false);
+      else if (y > lastY.current + 5) setHidden(true);
+      else if (y < lastY.current - 5) setHidden(false);
+      lastY.current = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-deep-2/95 backdrop-blur-xl">
+      <header
+        className={`fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-deep-2/95 backdrop-blur-xl transition-transform duration-300 ${
+          hidden && !open ? "-translate-y-full" : "translate-y-0"
+        }`}
+      >
         <div className="container-x flex h-14 items-center justify-between md:h-16">
           {/* Logo (wordmark only) + editable tagline lockup */}
           <Link
             href="/"
-            className="flex shrink-0 flex-col items-start gap-0.5"
+            className="flex shrink-0 flex-col items-center gap-0.5"
             aria-label={site.name}
           >
-            <Image
-              src="/querentia-wordmark.png"
-              alt={site.name}
-              width={556}
-              height={93}
-              priority
-              className="h-7 w-auto brightness-0 invert md:h-8"
-            />
+            <span className="flex items-start">
+              <Image
+                src="/querentia-wm.png"
+                alt={site.name}
+                width={529}
+                height={93}
+                priority
+                className="h-7 w-auto brightness-0 invert md:h-8"
+              />
+              <span className="ml-[3px] mt-0.5 text-[11px] font-medium leading-none text-white md:text-[13px]">
+                ®
+              </span>
+            </span>
             <span className="text-[8px] uppercase leading-none tracking-[0.2em] text-cyan md:text-[9px]">
               Talent · Trust · Thrive
             </span>

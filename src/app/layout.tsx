@@ -25,7 +25,7 @@ const display = Familjen_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Trusted Partner for High-Impact IT Talent in Canada`,
+    default: `${site.name} — Trusted Recruitment Partner in Canada`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
@@ -34,29 +34,29 @@ export const metadata: Metadata = {
   creator: site.legalName,
   publisher: site.legalName,
   keywords: [
-    "IT recruitment Canada",
-    "IT staffing Toronto",
-    "technology recruitment",
-    "enterprise IT talent",
-    "tech jobs Canada",
-    "IT consulting recruitment",
-    "Ceipal jobs Canada",
-    "cloud engineer jobs Toronto",
-    "data engineer jobs Canada",
-    "cybersecurity jobs Canada",
+    "recruitment agency Canada",
+    "talent acquisition Canada",
+    "staffing agency Toronto",
+    "executive search Canada",
+    "permanent and contract recruitment",
+    "professional staffing Ontario",
+    "technology recruitment Canada",
+    "finance and accounting recruitment",
+    "Oakville recruitment firm",
+    "hire exceptional talent Canada",
   ],
   openGraph: {
     type: "website",
     locale: "en_CA",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — Trusted Partner for High-Impact IT Talent in Canada`,
+    title: `${site.name} — Trusted Recruitment Partner in Canada`,
     description: site.description,
     images: [{ url: "/querentia-logo-og.png", width: 1200, height: 630, alt: site.name }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Trusted Partner for High-Impact IT Talent in Canada`,
+    title: `${site.name} — Trusted Recruitment Partner in Canada`,
     description: site.description,
     images: ["/querentia-logo-og.png"],
   },
@@ -80,47 +80,76 @@ export const viewport = {
   viewportFit: "cover",
 };
 
-const orgSchema = {
+const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: site.legalName,
-  alternateName: site.name,
-  url: site.url,
-  description: site.description,
-  email: site.email,
-  telephone: site.phone,
-  sameAs: [site.linkedin, site.facebook, site.instagram, site.twitter],
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: site.locality,
-    addressRegion: site.region,
-    addressCountry: site.country,
-  },
-  areaServed: "CA",
-  contactPoint: [
+  "@graph": [
     {
-      "@type": "ContactPoint",
-      contactType: "customer service",
+      "@type": ["Organization", "EmploymentAgency"],
+      "@id": `${site.url}#organization`,
+      name: site.legalName,
+      alternateName: site.name,
+      url: site.url,
+      logo: `${site.url}/querentia-logo-og.png`,
+      image: `${site.url}/querentia-logo-og.png`,
+      description: site.description,
+      slogan: site.tagline,
+      foundingDate: site.founded,
+      email: site.email,
       telephone: site.phone,
-      email: site.email,
-      areaServed: "CA",
-      availableLanguage: ["English"],
+      sameAs: [site.linkedin, site.facebook, site.instagram, site.twitter],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: site.locality,
+        addressRegion: site.region,
+        addressCountry: site.country,
+      },
+      areaServed: { "@type": "Country", name: "Canada" },
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "customer service",
+          telephone: site.phone,
+          email: site.email,
+          areaServed: "CA",
+          availableLanguage: ["English"],
+        },
+        {
+          "@type": "ContactPoint",
+          contactType: "sales",
+          telephone: site.phoneAlt,
+          email: site.email,
+          areaServed: "CA",
+          availableLanguage: ["English"],
+        },
+      ],
+      knowsAbout: [
+        "Recruitment",
+        "Talent Acquisition",
+        "Staffing",
+        "Executive Search",
+        "Permanent Placement",
+        "Contract Staffing",
+        "Technology Recruitment",
+        "Finance & Accounting Recruitment",
+      ],
     },
     {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      telephone: site.phoneAlt,
-      email: site.email,
-      areaServed: "CA",
-      availableLanguage: ["English"],
+      "@type": "WebSite",
+      "@id": `${site.url}#website`,
+      url: site.url,
+      name: site.name,
+      description: site.description,
+      inLanguage: "en-CA",
+      publisher: { "@id": `${site.url}#organization` },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${site.url}/jobs?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
     },
-  ],
-  knowsAbout: [
-    "IT Recruitment",
-    "Technology Staffing",
-    "Cloud Engineering",
-    "Data & AI",
-    "Cybersecurity",
   ],
 };
 
@@ -129,13 +158,13 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang="en"
+      lang="en-CA"
       className={`${sans.variable} ${display.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-page text-ink">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         <ScrollProgress />
         <ScrollTheme />

@@ -3,7 +3,7 @@ import { clients } from "@/lib/site";
 
 export function ClientWall() {
   return (
-    <section className="relative isolate overflow-hidden border-t border-border bg-page-2 py-11 text-ink md:py-14">
+    <section className="relative isolate overflow-hidden border-t border-border bg-page-2 pt-12 pb-9 text-ink md:pt-14 md:pb-10">
       {/* ambient cyan glow */}
       <div
         aria-hidden
@@ -38,14 +38,6 @@ export function ClientWall() {
               </div>
             ))}
           </div>
-        </Reveal>
-
-        {/* Trust microcopy */}
-        <Reveal delay={220}>
-          <p className="mt-5 text-center text-[13px] leading-relaxed text-ink-muted">
-            Trusted to deliver exceptional talent across consulting, technology,
-            and enterprise teams.
-          </p>
         </Reveal>
       </div>
     </section>

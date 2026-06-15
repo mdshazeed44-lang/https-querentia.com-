@@ -70,7 +70,7 @@ export function Hero() {
               className="text-[12px] font-semibold uppercase tracking-[0.3em] md:text-[13px]"
               style={{ color: "#00C2FF" }}
             >
-              Your Trusted Recruitment Partner
+              Talent · Trust · Thrive
             </p>
             <span
               className="mt-4 block h-px w-12"
@@ -93,11 +93,11 @@ export function Hero() {
             </h1>
 
             <p
-              className="mt-7 max-w-md text-[15px] leading-relaxed sm:text-[16px] lg:text-[18px]"
+              className="mt-7 max-w-lg text-[15px] leading-relaxed sm:text-[16px] lg:text-[18px]"
               style={{ color: "#c6cfda" }}
             >
-              Connecting organizations with exceptional talent that elevates
-              teams and drives growth.
+              Your trusted recruitment partner. Connecting organizations with
+              exceptional talent that elevates teams and drives growth.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-4">

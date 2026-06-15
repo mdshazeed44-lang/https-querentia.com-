@@ -127,44 +127,58 @@ export function Industries() {
         .ind-chip { opacity: 0; animation: ind-chip-in 0.4s cubic-bezier(0.16,1,0.3,1) forwards; }
         @keyframes ind-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
         .ind-progress { animation: ind-progress 4s linear forwards; }
-        @media (prefers-reduced-motion: reduce) { .ind-chip { opacity: 1; animation: none; } }
+        @keyframes ind-fade-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .ind-fade { opacity: 0; animation: ind-fade-up 0.5s cubic-bezier(0.16,1,0.3,1) forwards; }
+        @keyframes ind-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-22px); } }
+        .ind-glow-a { animation: ind-float 13s ease-in-out infinite; }
+        .ind-glow-b { animation: ind-float 17s ease-in-out infinite reverse; }
+        @media (prefers-reduced-motion: reduce) {
+          .ind-chip, .ind-fade { opacity: 1; animation: none; }
+          .ind-glow-a, .ind-glow-b { animation: none; }
+        }
       `}</style>
 
-      {/* Soft ambient accents */}
+      {/* Soft ambient accents (gently floating) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-40 -top-40 h-[420px] w-[420px] rounded-full bg-cyan/[0.04] blur-3xl"
+        className="ind-glow-a pointer-events-none absolute -left-40 -top-40 h-[420px] w-[420px] rounded-full bg-cyan/[0.04] blur-3xl"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-40 -right-40 h-[520px] w-[520px] rounded-full bg-cyan/[0.14] blur-3xl"
+        className="ind-glow-b pointer-events-none absolute -bottom-40 -right-40 h-[520px] w-[520px] rounded-full bg-cyan/[0.14] blur-3xl"
       />
 
       <div className="container-x relative">
         {/* Header */}
-        <Reveal>
-          <div className="mb-14 max-w-4xl md:mb-16">
+        <div className="mb-12 md:mb-16">
+          <Reveal>
             <p className="flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-8 bg-cyan/60" />
               IV · Our expertise · {totalCount} disciplines · 5 practices
             </p>
-            <h2 className="mt-6 text-[clamp(2.25rem,5.5vw,4.25rem)] font-medium leading-[0.98] tracking-tight">
-              Across every discipline
-              <br className="hidden md:block" />{" "}
-              you{" "}
-              <span
-                className="text-cyan"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                actually
-              </span>{" "}
-              build on.
-            </h2>
-            <p className="mt-7 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
-              {`Five deep practices. ${totalCount} specialised disciplines. Built over a decade placing exceptional talent into Canada's largest consulting and enterprise programs.`}
-            </p>
+          </Reveal>
+          <div className="mt-6 flex flex-col gap-7 md:mt-7 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+            <Reveal>
+              <h2 className="max-w-3xl text-[clamp(2.25rem,5vw,4rem)] font-medium leading-[0.98] tracking-tight">
+                Across every discipline
+                <br className="hidden md:block" />{" "}
+                you{" "}
+                <span
+                  className="text-cyan"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  actually
+                </span>{" "}
+                build on.
+              </h2>
+            </Reveal>
+            <Reveal delay={150}>
+              <p className="max-w-sm text-base leading-relaxed text-ink-muted lg:pb-2">
+                {`Five deep practices. ${totalCount} specialised disciplines. Built over a decade placing exceptional talent into Canada's largest consulting and enterprise programs.`}
+              </p>
+            </Reveal>
           </div>
-        </Reveal>
+        </div>
 
         {/* Interactive vertical tabs */}
         <Reveal delay={150}>
@@ -232,13 +246,20 @@ export function Industries() {
               })}
             </div>
 
-            {/* active panel — chips stagger in on change (key remount) */}
+            {/* active panel — content fades + chips stagger in on change (key remount) */}
             <div
               key={active}
               role="tabpanel"
-              className="rounded-2xl border border-border bg-card p-6 shadow-[0_24px_60px_-32px_rgba(13,27,42,0.18)] sm:p-8"
+              className="relative flex min-h-[300px] flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-[0_24px_60px_-32px_rgba(13,27,42,0.18)] sm:p-8"
             >
-              <div className="flex items-center gap-4">
+              {/* faded category watermark fills the empty space */}
+              <cat.Icon
+                aria-hidden
+                className="ind-fade pointer-events-none absolute -bottom-9 -right-9 h-48 w-48 text-cyan/[0.05]"
+                style={{ animationDelay: "120ms" }}
+              />
+
+              <div className="ind-fade relative flex items-center gap-4">
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-deep-2 text-cyan">
                   <cat.Icon className="h-6 w-6" />
                 </span>
@@ -252,17 +273,32 @@ export function Industries() {
                   <p className="mt-0.5 text-sm text-ink-muted">{cat.blurb}</p>
                 </div>
               </div>
-              <div className="mt-7 flex flex-wrap gap-2.5">
+
+              <div className="relative mt-7 flex flex-1 flex-wrap content-start gap-2.5">
                 {cat.items.map((t, i) => (
                   <span
                     key={t}
-                    className="ind-chip inline-flex items-center gap-2 rounded-full border border-border bg-page px-4 py-2 text-sm font-medium text-ink transition-colors duration-300 hover:border-cyan hover:bg-cyan/[0.06]"
+                    className="ind-chip inline-flex items-center gap-2 rounded-full border border-border bg-page px-4 py-2 text-sm font-medium text-ink transition-colors duration-300 hover:-translate-y-0.5 hover:border-cyan hover:bg-cyan/[0.06]"
                     style={{ animationDelay: `${i * 55}ms` }}
                   >
                     <span className="h-1.5 w-1.5 rounded-full bg-cyan" aria-hidden />
                     {t}
                   </span>
                 ))}
+              </div>
+
+              {/* bottom bar — count + contextual CTA fill the panel base */}
+              <div className="relative mt-7 flex items-center justify-between gap-4 border-t border-border pt-5">
+                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-muted">
+                  {String(cat.items.length).padStart(2, "0")} specialised disciplines
+                </span>
+                <a
+                  href="/contact"
+                  className="group inline-flex items-center gap-1.5 text-sm font-medium text-cyan transition-colors hover:text-ink"
+                >
+                  Hire for this practice
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
               </div>
             </div>
           </div>
