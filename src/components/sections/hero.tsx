@@ -1,135 +1,148 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Reveal } from "@/components/ui/reveal";
-import { MagneticButton } from "@/components/ui/magnetic-button";
-import { ArrowRight } from "@/components/ui/icons";
-import { HeroCursorGlow } from "./hero-cursor-glow";
-import { HeroTalentOrbit } from "@/components/ui/hero-talent-orbit";
+import { Playfair_Display } from "next/font/google";
+
+/**
+ * Homepage hero — "Premium Executive Search" (client-approved reference).
+ * Serif Playfair headline, split layout: copy left, sculptural architectural
+ * image right (blends into navy). Renders as a full-height section beneath the
+ * fixed SiteHeader; the partner row is handled by the ClientWall section below.
+ */
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 export function Hero() {
   return (
     <section
       data-hero
-      className="hero-themed relative isolate flex h-screen min-h-[680px] flex-col justify-center overflow-hidden pb-14 pt-24 md:pb-16 md:pt-24 lg:pb-0"
+      className="relative isolate h-screen min-h-[620px] overflow-hidden"
+      style={{ backgroundColor: "#0D1B2A" }}
     >
-      {/* Ambient gradient backdrop (cyan radial accent — visible in both themes) */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(0,194,255,0.10) 0%, transparent 60%)",
-          }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0,194,255,0.08) 0%, transparent 60%)",
-          }}
+      {/* On desktop the image sits to the right and its left edge is feathered
+          into the navy with a mask — no hard seam, no shade band. On mobile it
+          is a full-bleed backdrop under a veil. */}
+      <style>{`
+        @media (min-width: 1024px) {
+          .hero-arch-mask {
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 32%, #000 100%);
+            mask-image: linear-gradient(90deg, transparent 0%, #000 32%, #000 100%);
+          }
+        }
+      `}</style>
+      <div className="hero-arch-mask absolute inset-0 lg:left-[40%]">
+        <Image
+          src="/hero-arch.webp"
+          alt="A lone professional standing inside a sculptural concrete opening beneath an open sky"
+          fill
+          priority
+          sizes="(min-width:1024px) 60vw, 100vw"
+          className="object-cover object-center"
         />
       </div>
+      {/* mobile veil */}
+      <div
+        aria-hidden
+        className="absolute inset-0 lg:hidden"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(13,27,42,0.78), rgba(13,27,42,0.92))",
+        }}
+      />
+      {/* desktop: gentle navy wash on the far left for copy depth (mask does the blend) */}
+      <div
+        aria-hidden
+        className="absolute inset-0 hidden lg:block"
+        style={{
+          background:
+            "linear-gradient(90deg, #0D1B2A 0%, rgba(13,27,42,0.85) 26%, rgba(13,27,42,0.2) 40%, rgba(13,27,42,0) 52%)",
+        }}
+      />
 
-      {/* Cursor-tracking cyan glow (client component, respects reduced motion / touch) */}
-      <HeroCursorGlow />
-
-      <div className="container-x relative z-10 grid items-center gap-16 lg:h-full lg:flex-1 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
-        {/* ---------- LEFT — copy + audience-split CTAs ---------- */}
-        <div className="text-center lg:text-left">
-          <Reveal>
+      {/* Copy */}
+      <div className="relative z-10 flex h-full items-center">
+        <div className="container-x w-full">
+          <div className="max-w-xl">
             <p
-              className="mb-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em]"
-              style={{ color: "var(--haccent)" }}
+              className="text-[12px] font-semibold uppercase tracking-[0.3em] md:text-[13px]"
+              style={{ color: "#00C2FF" }}
             >
-              <span
-                className="text-sm tracking-normal"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                I
-              </span>
-              <span className="inline-block h-px w-6 bg-current opacity-50" />
-              <span>Talent · Trust · Thrive</span>
-              <span className="relative ml-1 flex h-1.5 w-1.5">
-                <span
-                  className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-70"
-                  style={{ background: "var(--haccent)" }}
-                />
-                <span
-                  className="relative inline-flex h-1.5 w-1.5 rounded-full"
-                  style={{ background: "var(--haccent)" }}
-                />
-              </span>
+              Your Trusted Recruitment Partner
             </p>
-          </Reveal>
+            <span
+              className="mt-4 block h-px w-12"
+              style={{ background: "rgba(0,194,255,0.6)" }}
+            />
 
-          <Reveal delay={140}>
             <h1
-              className="text-balance font-medium"
+              className={`${playfair.className} mt-7 font-medium`}
               style={{
-                fontSize: "clamp(1.85rem, 3.9vw, 3.25rem)",
+                fontSize: "clamp(2.4rem, 5.4vw, 4.6rem)",
                 lineHeight: 1.06,
-                letterSpacing: "-0.022em",
-                color: "var(--ht)",
-                maxWidth: "20ch",
+                letterSpacing: "-0.01em",
+                color: "#F4F7FA",
               }}
             >
-              Delivering the talent that helps your
-              <br className="hidden sm:block" />{" "}
-              <span
-                style={{
-                  fontFamily: "var(--font-display)",
-                  color: "var(--haccent)",
-                  fontStyle: "italic",
-                }}
-              >
-                business thrive.
+              Delivering the talent that helps your business{" "}
+              <span style={{ color: "#00C2FF", fontStyle: "italic" }}>
+                thrive.
               </span>
             </h1>
-          </Reveal>
 
-          <Reveal delay={300}>
             <p
-              className="mx-auto mt-5 max-w-lg text-[14px] leading-relaxed md:text-[15px] lg:mx-0"
-              style={{ color: "var(--htm)" }}
+              className="mt-7 max-w-md text-[15px] leading-relaxed sm:text-[16px] lg:text-[18px]"
+              style={{ color: "#c6cfda" }}
             >
-              Your trusted recruitment partner. Connecting organizations with
-              exceptional talent that elevates teams and drives growth.
+              Connecting organizations with exceptional talent that elevates
+              teams and drives growth.
             </p>
-          </Reveal>
 
-          <Reveal delay={440}>
-            <div className="mt-7 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-              <MagneticButton
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              <Link
                 href="/for-companies"
-                className="group inline-flex items-center bg-green px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
+                className="group inline-flex items-center gap-3 rounded-lg px-7 py-4 text-[14px] font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5"
+                style={{ background: "#FF6B2B" }}
               >
                 Hire Talent
-                <ArrowRight className="ml-2.5 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-              </MagneticButton>
+                <svg
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2.2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
               <Link
                 href="/jobs"
-                className="group inline-flex items-center gap-2.5 px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.25em] transition-colors duration-300"
-                style={{
-                  color: "var(--hbtn-secondary-text)",
-                  border: "1px solid var(--hbtn-secondary-border)",
-                }}
+                className="group inline-flex items-center gap-3 rounded-lg px-7 py-4 text-[14px] font-semibold transition-colors duration-300 hover:bg-cyan/5"
+                style={{ color: "#00C2FF", border: "1px solid rgba(0,194,255,0.55)" }}
               >
                 View Roles
-                <ArrowRight className="h-3.5 w-3.5 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
+                <svg
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2.2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
               </Link>
             </div>
-          </Reveal>
-        </div>
-
-        {/* ---------- RIGHT — interactive orbit, pinned to section bottom ---------- */}
-        <Reveal delay={250} className="hidden lg:block lg:self-stretch">
-          {/* overshoot > max parallax(18px)+float(6px) lift, so the figure never
-              reveals a gap above the section edge */}
-          <div className="flex h-full items-end justify-center lg:-mb-8">
-            <HeroTalentOrbit />
           </div>
-        </Reveal>
+        </div>
       </div>
-
     </section>
   );
 }

@@ -3,68 +3,51 @@ import { clients } from "@/lib/site";
 
 export function ClientWall() {
   return (
-    <section className="relative border-t border-border bg-page py-16 text-ink md:py-20">
-      <style>{`
-        @media (prefers-reduced-motion: no-preference) {
-          @keyframes marquee {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-          }
-          .marquee-track {
-            animation: marquee 30s linear infinite;
-          }
-          .marquee-track:hover {
-            animation-play-state: paused;
-          }
-        }
-      `}</style>
-      <div className="container-x">
+    <section className="relative isolate overflow-hidden border-t border-border bg-page-2 py-16 text-ink md:py-20">
+      {/* ambient cyan glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 h-64 w-[40rem] -translate-x-1/2 rounded-full bg-cyan/[0.06] blur-3xl"
+      />
+
+      <div className="container-x relative">
+        {/* Eyebrow */}
         <Reveal>
-          <p className="mb-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center text-[11px] font-semibold uppercase tracking-[0.25em] text-cyan sm:text-[12px] sm:tracking-[0.3em] md:mb-12">
+          <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center text-[11px] font-semibold uppercase tracking-[0.25em] text-cyan sm:text-[12px] sm:tracking-[0.3em]">
             <span className="hidden h-px w-8 bg-cyan/60 sm:inline-block" />
             Partnered with Leading Organizations
             <span className="hidden h-px w-8 bg-cyan/60 sm:inline-block" />
           </p>
         </Reveal>
-      </div>
-      <Reveal delay={120}>
-        <div className="relative w-full overflow-hidden">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[120px] bg-gradient-to-r from-page to-transparent"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-[120px] bg-gradient-to-l from-page to-transparent"
-          />
-          <div className="marquee-track flex w-max items-center">
-            <ul className="flex items-center">
-              {clients.map((c) => (
-                <li key={c} className="pr-16 md:pr-24">
-                  <span
-                    className="whitespace-nowrap text-2xl font-medium tracking-tight text-ink/35 transition-colors duration-500 hover:text-ink md:text-3xl"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {c}
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <ul className="flex items-center" aria-hidden="true">
-              {clients.map((c) => (
-                <li key={c} className="pr-16 md:pr-24">
-                  <span
-                    className="whitespace-nowrap text-2xl font-medium tracking-tight text-ink/35 transition-colors duration-500 hover:text-ink md:text-3xl"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {c}
-                  </span>
-                </li>
-              ))}
-            </ul>
+
+        {/* Partner panel */}
+        <Reveal delay={120}>
+          <div className="mx-auto mt-9 flex max-w-4xl flex-col divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_60px_-32px_rgba(13,27,42,0.22)] sm:flex-row sm:divide-x sm:divide-y-0 md:mt-11">
+            {clients.map((c) => (
+              <div
+                key={c}
+                className="group relative flex flex-1 items-center justify-center px-6 py-9 transition-colors duration-300 hover:bg-page-2 md:py-10"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/logos/${c.toLowerCase()}.png`}
+                  alt={c}
+                  loading="lazy"
+                  className="h-10 w-auto max-w-[180px] object-contain opacity-90 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-100 md:h-11"
+                />
+              </div>
+            ))}
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
+
+        {/* Trust microcopy */}
+        <Reveal delay={220}>
+          <p className="mt-6 text-center text-[13px] leading-relaxed text-ink-muted">
+            Trusted to deliver exceptional talent across consulting, technology,
+            and enterprise teams.
+          </p>
+        </Reveal>
+      </div>
     </section>
   );
 }
