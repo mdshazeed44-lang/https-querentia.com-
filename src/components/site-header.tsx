@@ -27,21 +27,24 @@ export function SiteHeader() {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-deep-2/95 backdrop-blur-xl">
-        <div className="container-x flex h-16 items-center justify-between md:h-20">
-          {/* Logo (official — includes ® + Precision.Impact.Integrity tagline) */}
+        <div className="container-x flex h-14 items-center justify-between md:h-16">
+          {/* Logo (wordmark only) + editable tagline lockup */}
           <Link
             href="/"
-            className="flex shrink-0 items-center"
+            className="flex shrink-0 flex-col items-start gap-0.5"
             aria-label={site.name}
           >
             <Image
-              src="/querentia-logo.png"
+              src="/querentia-wordmark.png"
               alt={site.name}
-              width={568}
-              height={145}
+              width={556}
+              height={93}
               priority
-              className="h-10 w-auto brightness-0 invert md:h-12"
+              className="h-7 w-auto brightness-0 invert md:h-8"
             />
+            <span className="text-[8px] uppercase leading-none tracking-[0.2em] text-cyan md:text-[9px]">
+              Talent · Trust · Thrive
+            </span>
           </Link>
 
           {/* Desktop nav */}

@@ -1,33 +1,47 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
-import { ArrowRight } from "@/components/ui/icons";
+import { ArrowRight, Check } from "@/components/ui/icons";
 
-const SERVICES = [
+type Service = {
+  num: string;
+  title: string;
+  headline: string;
+  body: string;
+  href: string;
+  cta: string;
+  image: string;
+  imageAlt: string;
+  bullets: [string, string];
+  glow: string;
+};
+
+const SERVICES: Service[] = [
   {
     num: "01",
     title: "For Companies",
-    headline: "Hire senior IT talent — fast, precise, vetted.",
-    body: "Brief us once. Get a qualified shortlist of senior engineers, architects, and program leaders inside 48 hours — pre-screened against your stack, your role and your culture. High-quality, high-impact placements delivered with the speed your roadmap demands.",
+    headline: "Hire exceptional talent — fast, precise, vetted.",
+    body: "We connect exceptional people with meaningful roles where they can grow, contribute, and make an impact. Whether you're exploring your next move or seeking a long-term career path, we're here to support your journey.",
     href: "/for-companies",
     cta: "How we help you hire",
-    illustration: "/illustrations/services-companies.webp",
-    illustrationAlt: "Recruiter at laptop with floating tech-stack badges",
-    tint: "rgba(0,194,255,0.08)",
-    radial:
-      "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,194,255,0.16) 0%, transparent 65%)",
+    image: "/services/companies-team.webp",
+    imageAlt:
+      "A diverse professional team collaborating in a strategy meeting",
+    bullets: ["Qualified shortlist in 48 hours", "Vetted for skills, role and culture"],
+    glow: "radial-gradient(ellipse 70% 60% at 50% 30%, rgba(0,194,255,0.18) 0%, transparent 70%)",
   },
   {
     num: "02",
     title: "For Talent",
-    headline: "Land the senior IT role you actually want.",
-    body: "Confidential mandates from Canada's largest consulting firms and enterprise IT programs. Senior-level placements with tier-1 clients — many of which never make it to a public job board.",
+    headline: "Find opportunities where your talent can thrive",
+    body: "We take the time to understand your strengths, goals, and aspirations — then connect you with organizations that value exceptional people and offer meaningful opportunities to grow and make an impact.",
     href: "/for-talent",
     cta: "See open mandates",
-    illustration: "/illustrations/services-talent.webp",
-    illustrationAlt: "Senior IT professional collaborating with tier-1 team",
-    tint: "rgba(255,107,43,0.08)",
-    radial:
-      "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,107,43,0.16) 0%, transparent 65%)",
+    image: "/services/talent-workplace.webp",
+    imageAlt:
+      "A professional thriving in a vibrant modern workplace",
+    bullets: ["Roles many never reach a job board", "A partner invested in your growth"],
+    glow: "radial-gradient(ellipse 70% 60% at 50% 30%, rgba(0,194,255,0.18) 0%, transparent 70%)",
   },
 ];
 
@@ -44,20 +58,20 @@ export function Services() {
                 II · What we do
               </p>
               <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.05] tracking-tight">
-                Two sides.{" "}
+                Two Sides.{" "}
                 <span
                   className="text-cyan"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
-                  One standard.
+                  One Purpose.
                 </span>
               </h2>
             </div>
           </Reveal>
           <Reveal delay={150}>
             <p className="max-w-sm text-base leading-relaxed text-ink-muted">
-              Precision · Impact · Integrity — the same standard whether
-              you&apos;re building a team or building a career.
+              Helping organizations and talent thrive through trusted
+              recruitment partnerships.
             </p>
           </Reveal>
         </div>
@@ -95,19 +109,41 @@ export function Services() {
               </div>
             );
 
-            const Illustration = (
+            const Panel = (
               <div
-                className={`relative overflow-hidden md:min-h-[460px] ${
+                className={`relative min-h-[280px] overflow-hidden bg-deep-2 sm:min-h-[340px] md:min-h-[460px] ${
                   isFirst ? "" : "md:order-1"
                 }`}
-                style={{ backgroundColor: "#ffffff" }}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={s.illustration}
-                  alt={s.illustrationAlt}
-                  className="absolute inset-0 h-full w-full object-contain p-4 md:p-6"
+                {/* Photographic backdrop */}
+                <Image
+                  src={s.image}
+                  alt={s.imageAlt}
+                  fill
+                  sizes="(min-width: 768px) 45vw, 100vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                 />
+                {/* Bottom scrim only — keep the photo bright, make bullets legible */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(13,27,42,0) 0%, rgba(13,27,42,0) 48%, rgba(13,27,42,0.55) 76%, rgba(13,27,42,0.94) 100%)",
+                  }}
+                />
+                {/* Bullets pinned to the bottom */}
+                <ul className="absolute inset-x-0 bottom-0 flex flex-col gap-2.5 p-7 md:p-9">
+                  {s.bullets.map((b) => (
+                    <li
+                      key={b}
+                      className="flex items-center gap-3 text-[13px] font-medium leading-snug text-on-deep md:text-[14px]"
+                    >
+                      <Check className="h-4 w-4 shrink-0 text-frost" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             );
 
@@ -119,7 +155,7 @@ export function Services() {
                 >
                   <div className="grid items-stretch md:grid-cols-2 lg:grid-cols-[1.05fr_1fr]">
                     {TextBlock}
-                    {Illustration}
+                    {Panel}
                   </div>
                 </Link>
               </Reveal>

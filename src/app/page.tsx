@@ -1,10 +1,9 @@
 import { Hero } from "@/components/sections/hero";
 import { ClientWall } from "@/components/sections/client-wall";
 import { Services } from "@/components/sections/services";
-import { FeatureSpeed } from "@/components/sections/feature-speed";
+import { WhyChooseUs } from "@/components/sections/why-choose-us";
 import { Industries } from "@/components/sections/industries";
 import { Testimonials } from "@/components/sections/testimonials";
-import { FAQ } from "@/components/sections/faq";
 import { CTA } from "@/components/sections/cta";
 
 export default function HomePage() {
@@ -13,10 +12,9 @@ export default function HomePage() {
       <Hero />
       <ClientWall />
       <Services />
-      <FeatureSpeed />
+      <WhyChooseUs />
       <Industries />
       <Testimonials />
-      <FAQ />
       <CTA />
     </>
   );

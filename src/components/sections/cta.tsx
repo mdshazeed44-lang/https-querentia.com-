@@ -36,25 +36,25 @@ export function CTA() {
       <div className="container-x relative z-10 mx-auto max-w-3xl text-center">
         <Reveal>
           <p className="mb-7 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-            IX · Get in touch
+            VI · Get in touch
           </p>
         </Reveal>
         <Reveal delay={130}>
           <h2 className="mb-9 text-[clamp(2.25rem,6vw,4.5rem)] font-medium leading-[1.05] tracking-tight text-ink">
-            The most trusted partner
+            Most trusted partner
             <br />
             <span
               className="text-cyan"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              for senior IT talent.
+              for exceptional talent.
             </span>
           </h2>
         </Reveal>
         <Reveal delay={260}>
           <p className="mx-auto mb-12 max-w-xl text-base text-ink-muted md:text-lg">
-            48-hour shortlists. 94% retention. High-quality, high-impact
-            talent — delivered with unmatched speed, precision, and integrity.
+            Connecting organizations with exceptional talent that elevates
+            teams and drives growth.
           </p>
         </Reveal>
         <Reveal delay={380}>
@@ -63,14 +63,14 @@ export function CTA() {
               href="/contact"
               className="group inline-flex items-center gap-2.5 bg-green px-9 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
             >
-              Get a shortlist
+              Hire Talent
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link
               href="/jobs"
               className="inline-flex items-center gap-2.5 border border-ink/25 px-9 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-ink transition-colors duration-300 hover:border-ink/60 hover:bg-ink/5"
             >
-              Browse roles
+              View Roles
             </Link>
           </div>
         </Reveal>

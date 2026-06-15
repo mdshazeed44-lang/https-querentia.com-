@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { site } from "@/lib/site";
+import { site, addresses } from "@/lib/site";
 import {
   Mail,
   MapPin,
@@ -41,7 +41,16 @@ const COLUMNS = [
   },
 ];
 
+const SOCIALS = [
+  { Icon: Linkedin, href: site.linkedin, label: "LinkedIn" },
+  { Icon: Twitter, href: site.twitter, label: "Twitter / X" },
+  { Icon: Instagram, href: site.instagram, label: "Instagram" },
+  { Icon: Facebook, href: site.facebook, label: "Facebook" },
+];
+
 export function SiteFooter() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="relative mt-auto overflow-hidden bg-deep-2 text-on-deep">
       {/* ambient cyan glow at top */}
@@ -54,26 +63,33 @@ export function SiteFooter() {
         }}
       />
 
-      {/* ───────── Main grid ───────── */}
-      <div className="relative container-x py-16 md:py-20">
-        <div className="grid gap-12 sm:grid-cols-2 sm:gap-10 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
-          {/* Brand block */}
+      <div className="relative container-x py-12 md:py-14">
+        {/* ───────── Row 1 · brand + nav columns (aligned to top) ───────── */}
+        <div className="grid gap-10 sm:grid-cols-2 sm:gap-9 lg:grid-cols-[1.7fr_1fr_1fr_1fr]">
+          {/* Brand */}
           <div>
-            <Link href="/" className="inline-flex" aria-label={site.name}>
+            <Link
+              href="/"
+              className="inline-flex flex-col items-start gap-0.5"
+              aria-label={site.name}
+            >
               <Image
-                src="/querentia-logo.png"
+                src="/querentia-wordmark.png"
                 alt={site.name}
-                width={568}
-                height={145}
-                className="h-12 w-auto brightness-0 invert"
+                width={556}
+                height={93}
+                className="h-9 w-auto brightness-0 invert"
               />
+              <span className="text-[9px] uppercase leading-none tracking-[0.25em] text-cyan">
+                Talent · Trust · Thrive
+              </span>
             </Link>
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-on-deep-muted">
-              Canada&apos;s most trusted partner for senior IT placements —
-              delivered with precision, impact, and integrity since 2014.
+            <p className="mt-4 max-w-xs text-[13px] leading-relaxed text-on-deep-muted">
+              Your trusted recruitment partner. Connecting organizations with
+              exceptional talent that elevates teams and drives growth.
             </p>
 
-            <ul className="mt-7 space-y-3 text-sm">
+            <ul className="mt-5 space-y-2.5 text-sm">
               <li className="flex items-start gap-3 text-on-deep-muted">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-cyan" />
                 <span className="flex flex-col">
@@ -100,42 +116,13 @@ export function SiteFooter() {
                   {site.email}
                 </a>
               </li>
-              <li className="flex items-start gap-3 text-on-deep-muted">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-cyan" />
-                {site.location}
-              </li>
             </ul>
-
-            <div className="mt-7">
-              <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.25em] text-on-deep-muted">
-                Follow us
-              </p>
-              <div className="flex items-center gap-2.5">
-                {[
-                  { Icon: Linkedin, href: site.linkedin, label: "LinkedIn" },
-                  { Icon: Twitter, href: site.twitter, label: "Twitter / X" },
-                  { Icon: Instagram, href: site.instagram, label: "Instagram" },
-                  { Icon: Facebook, href: site.facebook, label: "Facebook" },
-                ].map(({ Icon, href, label }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="group flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-on-deep-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan hover:bg-cyan/10 hover:text-white"
-                  >
-                    <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Link columns */}
           {COLUMNS.map((col, i) => (
             <nav key={col.title} aria-label={col.title}>
-              <div className="mb-5 flex items-center gap-2.5">
+              <div className="mb-4 flex items-center gap-2.5">
                 <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-cyan">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -143,7 +130,7 @@ export function SiteFooter() {
                   {col.title}
                 </h4>
               </div>
-              <ul className="space-y-3.5">
+              <ul className="space-y-3">
                 {col.links.map((l) => (
                   <li key={l.label}>
                     <Link
@@ -158,6 +145,53 @@ export function SiteFooter() {
               </ul>
             </nav>
           ))}
+        </div>
+
+        {/* ───────── Row 2 · offices (full-width, 3-up) ───────── */}
+        <div className="mt-10 border-t border-white/10 pt-8 md:mt-12 md:pt-9">
+          <div className="mb-4 flex items-center gap-2.5 md:mb-5">
+            <MapPin className="h-4 w-4 shrink-0 text-cyan" />
+            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-on-deep-muted">
+              Our Offices
+            </p>
+          </div>
+          <ul className="grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3 md:gap-y-6">
+            {addresses.map((office) => (
+              <li key={office.city} className="text-[13px] leading-snug">
+                <p className="font-semibold text-white">{office.city}</p>
+                <address className="mt-1 not-italic text-on-deep-muted">
+                  {office.lines.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </address>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* ───────── Bottom bar · copyright + social ───────── */}
+      <div className="relative border-t border-white/10">
+        <div className="container-x flex flex-col items-center justify-between gap-4 py-5 sm:flex-row">
+          <p className="text-center text-[12px] text-on-deep-muted sm:text-left">
+            © {year} {site.legalName}. All rights reserved.
+          </p>
+          <div className="flex items-center gap-2.5">
+            {SOCIALS.map(({ Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="group flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-on-deep-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan hover:bg-cyan/10 hover:text-white"
+              >
+                <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

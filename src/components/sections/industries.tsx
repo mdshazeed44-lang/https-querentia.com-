@@ -115,7 +115,7 @@ export function Industries() {
           <div className="mb-14 max-w-4xl md:mb-16">
             <p className="flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-8 bg-cyan/60" />
-              VI · Our expertise · {totalCount} disciplines · 5 practices
+              IV · Our expertise · {totalCount} disciplines · 5 practices
             </p>
             <h2 className="mt-6 text-[clamp(2.25rem,5.5vw,4.25rem)] font-medium leading-[0.98] tracking-tight">
               Across every discipline
@@ -130,7 +130,7 @@ export function Industries() {
               build on.
             </h2>
             <p className="mt-7 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
-              {`Five deep practices. ${totalCount} specialised disciplines. Built over a decade placing senior IT talent into Canada's largest consulting and enterprise programs.`}
+              {`Five deep practices. ${totalCount} specialised disciplines. Built over a decade placing exceptional talent into Canada's largest consulting and enterprise programs.`}
             </p>
           </div>
         </Reveal>
@@ -226,7 +226,7 @@ export function Industries() {
         <Reveal delay={350}>
           <div className="mt-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
             <p className="text-sm text-ink-muted md:text-base">
-              Don&apos;t see your stack?{" "}
+              Don&apos;t see your discipline?{" "}
               <span className="text-ink">We&apos;ve probably placed it.</span>
             </p>
             <a

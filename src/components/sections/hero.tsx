@@ -47,7 +47,7 @@ export function Hero() {
                 I
               </span>
               <span className="inline-block h-px w-6 bg-current opacity-50" />
-              <span>Precision · Impact · Integrity</span>
+              <span>Talent · Trust · Thrive</span>
               <span className="relative ml-1 flex h-1.5 w-1.5">
                 <span
                   className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-70"
@@ -69,10 +69,10 @@ export function Hero() {
                 lineHeight: 1.06,
                 letterSpacing: "-0.022em",
                 color: "var(--ht)",
-                maxWidth: "17ch",
+                maxWidth: "20ch",
               }}
             >
-              Senior tech talent,
+              Delivering the talent that helps your
               <br className="hidden sm:block" />{" "}
               <span
                 style={{
@@ -81,19 +81,18 @@ export function Hero() {
                   fontStyle: "italic",
                 }}
               >
-                delivered with precision.
+                business thrive.
               </span>
             </h1>
           </Reveal>
 
           <Reveal delay={300}>
             <p
-              className="mx-auto mt-5 max-w-md text-[14px] leading-relaxed md:text-[15px] lg:mx-0"
+              className="mx-auto mt-5 max-w-lg text-[14px] leading-relaxed md:text-[15px] lg:mx-0"
               style={{ color: "var(--htm)" }}
             >
-              Canada&apos;s most trusted partner for senior IT placements —
-              48-hour shortlists, tier-1 clients, and a decade of high-impact
-              hires across Toronto and Oakville.
+              Your trusted recruitment partner. Connecting organizations with
+              exceptional talent that elevates teams and drives growth.
             </p>
           </Reveal>
 
@@ -107,52 +106,16 @@ export function Hero() {
                 <ArrowRight className="ml-2.5 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
               </MagneticButton>
               <Link
-                href="/for-talent"
+                href="/jobs"
                 className="group inline-flex items-center gap-2.5 px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.25em] transition-colors duration-300"
                 style={{
                   color: "var(--hbtn-secondary-text)",
                   border: "1px solid var(--hbtn-secondary-border)",
                 }}
               >
-                Find Work
+                View Roles
                 <ArrowRight className="h-3.5 w-3.5 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100" />
               </Link>
-            </div>
-          </Reveal>
-
-          {/* Credibility row — instant trust signals */}
-          <Reveal delay={580}>
-            <div
-              className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 pt-5 sm:gap-x-7 lg:justify-start"
-              style={{ borderTop: "1px solid var(--hcorner)" }}
-            >
-              {[
-                { num: "94%", label: "Retention" },
-                { num: "48h", label: "Shortlist" },
-                { num: "10+", label: "Years" },
-                { num: "500+", label: "Placements" },
-              ].map((s) => (
-                <div
-                  key={s.num}
-                  className="flex items-baseline gap-2"
-                >
-                  <span
-                    className="text-[1.1rem] font-medium leading-none tracking-tight"
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      color: "var(--ht)",
-                    }}
-                  >
-                    {s.num}
-                  </span>
-                  <span
-                    className="font-mono text-[9px] uppercase tracking-[0.22em]"
-                    style={{ color: "var(--htm)" }}
-                  >
-                    {s.label}
-                  </span>
-                </div>
-              ))}
             </div>
           </Reveal>
         </div>
