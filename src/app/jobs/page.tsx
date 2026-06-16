@@ -89,7 +89,6 @@ export default function JobsPage() {
                 className="text-cyan"
                 style={{
                   fontFamily: "var(--font-display)",
-                  fontStyle: "italic",
                 }}
               >
                 Matched with precision.

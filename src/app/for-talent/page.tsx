@@ -146,7 +146,6 @@ export default function ForTalentPage() {
                     className="text-cyan"
                     style={{
                       fontFamily: "var(--font-display)",
-                      fontStyle: "italic",
                     }}
                   >
                     We&apos;ll take it further.

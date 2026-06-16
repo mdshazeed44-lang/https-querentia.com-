@@ -1,27 +1,27 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
-import { CountUp } from "@/components/ui/count-up";
-import {
-  ArrowRight,
-  UserCheck,
-  Chat,
-  Search,
-  Bolt,
-  Target,
-  Clock,
-  Check,
-  Mail,
-  Phone,
-  MapPin,
-} from "@/components/ui/icons";
-import { site, stats } from "@/lib/site";
+import { ArrowRight, MapPin } from "@/components/ui/icons";
+import { site } from "@/lib/site";
+
+/**
+ * About — "The Manifesto".
+ * Editorial / executive-search aesthetic (think Korn Ferry, Egon Zehnder):
+ * quiet, confident, typography-led. Playfair serif + navy + cyan accent.
+ */
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Querentia is the most trusted partner for high-quality, high-impact IT talent in Canada — delivered with speed, precision, and integrity since 2014.",
+    "Querentia is Canada's trusted recruitment partner since 2014 — placing all talent, tech and non-tech, with the organizations and leaders shaping the country's future. Talent. Trust. Thrive.",
   alternates: { canonical: "/about" },
 };
 
@@ -55,67 +55,73 @@ const aboutSchema = {
   },
 };
 
-/* ── What we do — engagement models (mirrors live job board types) ─────── */
-const engagements = [
+/* ── Our story, told as a vertical timeline ─────────────────────────────── */
+const milestones = [
   {
-    icon: UserCheck,
-    title: "Permanent hires",
-    desc: "Full-time engineers, architects, and program leaders — matched to your stack, team, and culture for the long run.",
+    year: "2014",
+    title: "Founded in Oakville",
+    body: "Querentia opens its doors in Oakville, Ontario, on a single conviction: hiring should be fast, precise, and honest — for talent and employer alike.",
   },
   {
-    icon: Clock,
-    title: "Contract & contract-to-hire",
-    desc: "Senior contractors for programs, backfills, and surge capacity — with the option to convert when the fit is proven.",
+    year: "2017",
+    title: "First 100 placements",
+    body: "Word travels. A growing roster of Canadian enterprises trust us with their most important hires, and our first hundred placements take root.",
   },
   {
-    icon: Target,
-    title: "Specialist & niche search",
-    desc: "Hard-to-find skills across 30+ disciplines — cloud, data, cybersecurity, SAP, Pega, Guidewire, and more.",
+    year: "2020",
+    title: "Three offices, coast to coast",
+    body: "We expand beyond our Oakville headquarters to Toronto and Vancouver — closer to the markets, the leaders, and the talent we serve.",
+  },
+  {
+    year: "2023",
+    title: "All talent, every discipline",
+    body: "Tech and non-tech alike. We grow into a full-spectrum partner across 30+ disciplines — from engineering, data, cloud, and security to finance, HR, marketing, and supply chain.",
+  },
+  {
+    year: "Today",
+    title: "500+ placements · 94% retention",
+    body: "A decade of conviction, compounded. Five practices, 30+ disciplines, and a retention rate that proves the right person changes everything.",
   },
 ];
 
-/* ── How we hire — the process behind the 48-hour shortlist ────────────── */
-const process = [
+/* ── What we stand for — three numbered principles ──────────────────────── */
+const principles = [
   {
     num: "01",
-    icon: Chat,
-    title: "Brief us once",
-    desc: "A single intake call — role, stack, team, and culture. We ask the questions internal recruiters ask.",
+    name: "Precision",
+    body: "We listen before we search. Every shortlist is matched to the role, the team, and the culture — not to keywords. The right person, not merely an available one.",
   },
   {
     num: "02",
-    icon: Search,
-    title: "Source & screen",
-    desc: "We work an active network, not job-board keywords. Every profile is vetted by a recruiter who understands the technology.",
+    name: "Impact",
+    body: "A placement is a beginning, not a transaction. We measure ourselves by the careers we accelerate and the teams that ship — long after the offer is signed.",
   },
   {
     num: "03",
-    icon: Bolt,
-    title: "Shortlist in 48 hours",
-    desc: "A qualified shortlist in your inbox — pre-screened against the role, ready to interview.",
-  },
-  {
-    num: "04",
-    icon: Check,
-    title: "Interview to offer",
-    desc: "Honest feedback both ways, momentum to offer, and support through onboarding. 94% of placements are still delivering a year later.",
+    name: "Integrity",
+    body: "Honest feedback, both ways. Candid counsel, even when it costs us the placement. Trust is the only asset that compounds, and we guard it on every search.",
   },
 ];
 
+/* ── Leadership — editorial portraits + pull-quotes ─────────────────────── */
 const leadership = [
-  {
-    name: "Seema Makhija",
-    role: "Director",
-    focus: "Recruitment practice · Search delivery",
-    bio: "Seema leads Querentia's recruitment practice, guiding every search from intake to offer. She has spent her career placing technology professionals with some of Canada's largest consulting, banking, and enterprise organizations.",
-    img: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80",
-  },
   {
     name: "Hemant Makhija",
     role: "Advisor",
     focus: "Enterprise hiring strategy · Client delivery",
-    bio: "Hemant advises Querentia on enterprise hiring strategy and client delivery. His background spans large-scale technology programs and engineering leadership, helping clients build teams that ship.",
+    quote:
+      "Great hiring is strategy made human. Get it right, and everything else follows.",
+    bio: "Hemant advises on enterprise hiring strategy and client delivery, helping Canada's leading organizations build teams that perform across every function.",
     img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    name: "Seema Makhija",
+    role: "Director",
+    focus: "Recruitment practice · Search delivery",
+    quote:
+      "The right person doesn't fill a seat. They change the trajectory of a team.",
+    bio: "Seema leads Querentia's recruitment practice and search delivery, guiding every engagement from first brief to signed offer across both tech and non-tech disciplines.",
+    img: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
@@ -127,405 +133,160 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
       />
 
-      {/* ---------- 1. HERO — clean editorial intro (orbit figure moved to
-           the For Talent page) ---------- */}
-      <section className="relative isolate overflow-hidden bg-deep-2 pb-20 pt-36 text-on-deep md:pt-44">
-        {/* Cyan radial ambient */}
+      {/* ---------- 1. HERO — a single editorial statement ---------- */}
+      <section className="relative isolate overflow-hidden bg-deep-2 pb-14 pt-28 text-on-deep md:pb-20 md:pt-36">
+        {/* one quiet cyan ambient — no orbit dots, keep it editorial */}
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 60% 45% at 70% 20%, rgba(0,194,255,0.12) 0%, transparent 60%)",
+                "radial-gradient(ellipse 65% 50% at 75% 15%, rgba(0,194,255,0.10) 0%, transparent 62%)",
             }}
           />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(ellipse 70% 50% at 20% 100%, rgba(0,194,255,0.10) 0%, transparent 60%)",
-            }}
-          />
-        </div>
-
-        {/* Concentric circles + orbiting dots — dots slowly travel their
-            rings in place (two layers, opposite directions) */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-24 top-1/2 hidden -translate-y-1/2 lg:block"
-        >
-          <style>{`
-            @keyframes ab-orbit { to { transform: rotate(360deg); } }
-            .ab-spin-a { animation: ab-orbit 36s linear infinite; }
-            .ab-spin-b { animation: ab-orbit 24s linear infinite reverse; }
-            .ab-spin-c { animation: ab-orbit 30s linear infinite; }
-            @media (prefers-reduced-motion: reduce) {
-              .ab-spin-a, .ab-spin-b, .ab-spin-c { animation: none; }
-            }
-          `}</style>
-          <div className="relative h-[26rem] w-[26rem]">
-            <span className="absolute inset-0 rounded-full border border-cyan/15" />
-            <span className="absolute inset-10 rounded-full border border-cyan/15" />
-            <span className="absolute inset-20 rounded-full border border-cyan/10" />
-            {/* orbit layer A — clockwise */}
-            <div className="ab-spin-a absolute inset-0">
-              <span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan" />
-              <span className="absolute bottom-8 right-16 h-2 w-2 rounded-full bg-red shadow-[0_0_10px_rgba(217,79,61,0.8)]" />
-            </div>
-            {/* orbit layer B — counter-clockwise */}
-            <div className="ab-spin-b absolute inset-0">
-              <span className="absolute bottom-12 left-8 h-2 w-2 rounded-full bg-green shadow-[0_0_10px_rgba(255,107,43,0.8)]" />
-              <span className="absolute right-2 top-1/3 flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
-              </span>
-            </div>
-            {/* orbit layer C — clockwise, middle ring */}
-            <div className="ab-spin-c absolute inset-10">
-              <span className="absolute left-3 top-1/4 h-2.5 w-2.5 rounded-full bg-frost shadow-[0_0_12px_rgba(61,220,132,0.9)]" />
-              <span className="absolute right-6 bottom-4 h-1.5 w-1.5 rounded-full bg-cyan/80 shadow-[0_0_8px_rgba(0,194,255,0.9)]" />
-            </div>
-          </div>
         </div>
 
         <div className="container-x relative z-10">
-          <div className="max-w-3xl">
+          <div className="max-w-4xl">
             <Reveal>
-              <p className="mb-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-                <span
-                  className="text-sm tracking-normal"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  I
-                </span>
-                <span className="inline-block h-px w-6 bg-current opacity-50" />
-                <span>About Us · Est. {site.founded}</span>
-                <span className="relative ml-1 flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-70" />
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyan" />
-                </span>
+              <p className="mb-8 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.32em] text-cyan">
+                <span className="inline-block h-px w-8 bg-cyan/60" />
+                About Querentia · Est. {site.founded}
               </p>
             </Reveal>
 
             <Reveal delay={140}>
               <h1
-                className="text-balance font-medium text-on-deep"
+                className={`${playfair.className} text-balance font-medium text-on-deep`}
                 style={{
-                  fontSize: "clamp(2.25rem, 5.5vw, 4.25rem)",
-                  lineHeight: 1.04,
-                  letterSpacing: "-0.022em",
+                  fontSize: "clamp(2.4rem, 6vw, 5rem)",
+                  lineHeight: 1.08,
+                  letterSpacing: "-0.015em",
                 }}
               >
-                The most trusted partner
-                <br className="hidden sm:block" />{" "}
-                <span
-                  className="text-cyan"
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontStyle: "italic",
-                  }}
-                >
-                  in IT talent.
+                We believe the right person{" "}
+                <span style={{ color: "#00C2FF" }}>
+                  changes everything.
                 </span>
               </h1>
             </Reveal>
 
             <Reveal delay={300}>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
-                Since {site.founded}, Querentia has delivered high-quality,
-                high-impact technology talent to Canada&apos;s leading
-                enterprises — with unmatched speed, precision, and integrity.
+              <p className="mt-7 max-w-2xl text-base leading-relaxed text-on-deep-muted md:text-lg">
+                Since {site.founded}, Querentia has been Canada&apos;s trusted
+                recruitment partner — placing all talent, tech and non-tech,
+                with the organizations and leaders shaping the country&apos;s
+                future. {site.tagline}
               </p>
-            </Reveal>
-
-            {/* About pages inform — no conversion CTAs here. The motto line
-                and credibility stats carry the hero instead. */}
-            <Reveal delay={440}>
-              <p
-                className="mt-7 text-base text-cyan"
-                style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}
-              >
-                {site.tagline}
-              </p>
-            </Reveal>
-
-            {/* Credibility row — instant trust signals */}
-            <Reveal delay={560}>
-              <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-white/15 pt-5">
-                {[
-                  { num: "94%", label: "Retention" },
-                  { num: "48h", label: "Shortlist" },
-                  { num: "10+", label: "Years" },
-                  { num: "500+", label: "Placements" },
-                ].map((s) => (
-                  <div key={s.num} className="flex items-baseline gap-2">
-                    <span
-                      className="text-[1.1rem] font-medium leading-none tracking-tight text-on-deep"
-                      style={{ fontFamily: "var(--font-display)" }}
-                    >
-                      {s.num}
-                    </span>
-                    <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-on-deep-muted">
-                      {s.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ---------- 2. OUR STORY + MOTTO ---------- */}
-      <section className="bg-page py-20 md:py-24">
-        <div className="container-x grid items-start gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
-          <div>
+      {/* ---------- 2. OUR STORY — vertical timeline ---------- */}
+      <section className="bg-page py-16 md:py-20">
+        <div className="container-x">
+          <div className="mb-10 max-w-2xl md:mb-12">
             <Reveal>
               <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-                <span className="font-mono">II</span>
                 <span className="inline-block h-px w-8 bg-cyan/60" />
                 Our Story
               </p>
             </Reveal>
             <Reveal delay={130}>
               <h2
-                className="text-[clamp(1.9rem,4vw,3.25rem)] font-medium leading-[1.08] tracking-tight text-ink"
-                style={{ fontFamily: "var(--font-display)" }}
+                className={`${playfair.className} text-[clamp(1.9rem,4.5vw,3.25rem)] font-medium leading-[1.1] tracking-tight text-ink`}
               >
-                We build,{" "}
-                <span className="text-cyan">attract and ignite</span> talent.
+                A decade of conviction,{" "}
+                <span className="text-cyan">compounded.</span>
               </h2>
             </Reveal>
-            <Reveal delay={260}>
-              <p className="mt-7 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
-                Querentia was founded in {site.founded} in Oakville, Ontario, as
-                a specialist IT recruitment firm with a simple conviction:
-                hiring should be fast, precise, and honest. As industry experts,
-                we know exactly what internal recruiters and hiring leaders look
-                for — and we use that insight to place technology professionals
-                in permanent and contract roles with some of the biggest
-                organizations in Canada.
-              </p>
-            </Reveal>
-            <Reveal delay={360}>
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted md:text-lg">
-                A decade on, that conviction has compounded into 500+ successful
-                placements, a 48-hour average shortlist, and a 94% placement
-                retention rate — across cloud, data, security, engineering, and
-                30+ specialist disciplines.
-              </p>
-            </Reveal>
           </div>
 
-          {/* Motto card */}
-          <Reveal delay={250}>
-            <div className="grain relative overflow-hidden rounded-3xl bg-deep-2 p-8 text-on-deep md:p-10">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full blur-3xl"
-                style={{
-                  background:
-                    "radial-gradient(circle, rgba(0,194,255,0.22), transparent 70%)",
-                }}
-              />
-              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-cyan">
-                Our motto
-              </p>
-              <p
-                className="mt-5 text-3xl leading-tight md:text-4xl"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Precision.
-                <br />
-                Impact.
-                <br />
-                Integrity.
-              </p>
-              <p className="mt-5 text-sm leading-relaxed text-on-deep-muted">
-                Three words on every search — whether you&apos;re building a
-                team or building a career.
-              </p>
-              <div className="mt-7 flex items-center gap-2 border-t border-white/10 pt-5 text-xs text-on-deep-muted">
-                <MapPin className="h-4 w-4 text-cyan" />
-                Headquartered in {site.location}
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------- 3. WHAT WE DO — network visual + engagement models ---------- */}
-      <section className="bg-page-2 py-20 md:py-24">
-        <div className="container-x">
-          <Reveal>
-            <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-              <span className="font-mono">III</span>
-              <span className="inline-block h-px w-8 bg-cyan/60" />
-              What We Do
-            </p>
-          </Reveal>
-          <Reveal delay={120}>
-            <h2 className="max-w-2xl text-[clamp(1.75rem,4vw,3rem)] font-medium leading-[1.08] tracking-tight text-ink">
-              Specialist IT recruitment,{" "}
-              <span
-                className="text-cyan"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                three ways.
-              </span>
-            </h2>
-          </Reveal>
-
-          <div className="mt-12 grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-stretch">
-            {/* network visual — one connected talent pool, every market */}
-            <Reveal>
-              <div className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-white">
-                <div className="relative min-h-[260px] flex-1">
-                  <Image
-                    src="/about/talent-network.webp"
-                    alt="A Querentia recruiter connected to senior IT professionals across markets"
-                    fill
-                    sizes="(min-width: 1024px) 34rem, 100vw"
-                    className="object-contain p-3 transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
-                </div>
-                <div className="border-t border-border bg-card p-5">
-                  <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-cyan">
-                    One network · Every market
-                  </p>
-                  <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
-                    An active, coast-to-coast network of senior IT
-                    professionals — so the right candidate is a call away, not
-                    a cold search.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* engagement models — stacked */}
-            <div className="flex flex-col gap-5">
-              {engagements.map((e, idx) => (
-                <Reveal key={e.title} delay={idx * 110}>
-                  <div className="group flex h-full items-start gap-5 rounded-3xl border border-border bg-card p-6 transition-colors duration-300 hover:border-cyan/40">
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cyan-soft text-cyan transition-transform duration-300 group-hover:scale-110">
-                      <e.icon className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <h3
-                        className="text-lg font-medium tracking-tight text-ink"
-                        style={{ fontFamily: "var(--font-display)" }}
-                      >
-                        {e.title}
-                      </h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
-                        {e.desc}
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- 4. HOW WE WORK — process + screening visual ---------- */}
-      <section className="bg-page py-20 md:py-24">
-        <div className="container-x">
-          <Reveal>
-            <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-              <span className="font-mono">IV</span>
-              <span className="inline-block h-px w-8 bg-cyan/60" />
-              How We Work
-            </p>
-          </Reveal>
-          <Reveal delay={120}>
-            <h2 className="max-w-2xl text-[clamp(1.75rem,4vw,3rem)] font-medium leading-[1.08] tracking-tight text-ink">
-              From intake to offer,{" "}
-              <span
-                className="text-cyan"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                with momentum.
-              </span>
-            </h2>
-          </Reveal>
-
-          <div className="mt-12 grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-12">
-            {/* steps — 2×2 */}
-            <div className="order-2 grid gap-x-6 gap-y-9 sm:grid-cols-2 lg:order-1">
-              {process.map((p, idx) => (
-                <Reveal key={p.num} delay={idx * 120}>
-                  <div className="group relative">
-                    <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-cyan/40 bg-page text-cyan transition-all duration-300 group-hover:bg-cyan group-hover:text-white">
-                      <p.icon className="h-5 w-5" />
-                    </span>
-                    <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.3em] text-cyan">
-                      Step {p.num}
-                    </p>
-                    <h3
-                      className="mt-2 text-lg font-medium tracking-tight text-ink"
-                      style={{ fontFamily: "var(--font-display)" }}
-                    >
-                      {p.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                      {p.desc}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* pipeline visual — recruiter screening profiles into a shortlist */}
-            <Reveal delay={150} className="order-1 lg:order-2">
-              <div className="relative">
-                <div className="group overflow-hidden rounded-3xl border border-border bg-white">
-                  <div className="relative h-[230px] sm:h-[270px]">
-                    <Image
-                      src="/about/screening-pipeline.webp"
-                      alt="A Querentia recruiter screening candidate profiles into a qualified shortlist"
-                      fill
-                      sizes="(min-width: 1024px) 34rem, 100vw"
-                      className="object-contain p-3 transition-transform duration-700 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                </div>
-                {/* floating proof chip */}
-                <div className="absolute -bottom-4 left-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium text-ink shadow-[0_12px_30px_-12px_rgba(13,27,42,0.35)]">
-                  <Clock className="h-4 w-4 text-cyan" />
-                  Avg. shortlist:&nbsp;
-                  <span className="font-semibold text-cyan">48 hours</span>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- 5. TRACK RECORD ---------- */}
-      <section className="bg-page-2 py-20 md:py-24">
-        <div className="container-x">
-          <Reveal>
-            <p className="mb-10 flex items-center justify-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-              <span className="font-mono">V</span>
-              <span className="inline-block h-px w-8 bg-cyan/60" />
-              Track Record
-              <span className="inline-block h-px w-8 bg-cyan/60" />
-            </p>
-          </Reveal>
-          <div className="grid grid-cols-2 gap-y-12 border-y border-border bg-card py-12 md:grid-cols-4 md:divide-x md:divide-border">
-            {stats.map((s, idx) => (
-              <Reveal key={s.label} delay={idx * 110}>
-                <div className="px-6 text-center">
-                  <p
-                    className="text-[clamp(2.5rem,5.5vw,4rem)] font-medium leading-none tracking-tight text-cyan"
-                    style={{ fontFamily: "var(--font-display)" }}
+          {/* timeline */}
+          <div className="relative mx-auto max-w-3xl">
+            {/* vertical line */}
+            <span
+              aria-hidden
+              className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-cyan/50 via-border to-transparent md:left-[11px]"
+            />
+            <ol className="space-y-9 md:space-y-11">
+              {milestones.map((m, idx) => (
+                <li key={m.year} className="relative pl-10 md:pl-16">
+                  {/* node */}
+                  <span
+                    aria-hidden
+                    className="absolute left-0 top-1.5 flex h-4 w-4 items-center justify-center md:h-6 md:w-6"
                   >
-                    <CountUp value={s.value} />
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-cyan/20" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan md:h-2.5 md:w-2.5" />
+                  </span>
+                  <Reveal delay={idx * 90}>
+                    <p
+                      className={`${playfair.className} text-2xl font-medium leading-none tracking-tight text-cyan md:text-3xl`}
+                    >
+                      {m.year}
+                    </p>
+                    <h3 className="mt-3 text-lg font-medium tracking-tight text-ink md:text-xl">
+                      {m.title}
+                    </h3>
+                    <p className="mt-2.5 max-w-xl text-[15px] leading-relaxed text-ink-muted md:text-base">
+                      {m.body}
+                    </p>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- 3. WHAT WE STAND FOR — numbered principles ---------- */}
+      <section className="bg-page-2 py-16 md:py-20">
+        <div className="container-x">
+          <div className="mb-10 text-center md:mb-12">
+            <Reveal>
+              <p className="mb-5 flex items-center justify-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                <span className="inline-block h-px w-8 bg-cyan/60" />
+                What We Stand For
+                <span className="inline-block h-px w-8 bg-cyan/60" />
+              </p>
+            </Reveal>
+            <Reveal delay={130}>
+              <h2
+                className={`${playfair.className} mx-auto max-w-2xl text-[clamp(1.9rem,4.5vw,3.25rem)] font-medium leading-[1.1] tracking-tight text-ink`}
+              >
+                Precision. Impact.{" "}
+                <span className="text-cyan">Integrity.</span>
+              </h2>
+            </Reveal>
+          </div>
+
+          <div className="mx-auto max-w-4xl divide-y divide-border">
+            {principles.map((p, idx) => (
+              <Reveal key={p.num} delay={idx * 110}>
+                <div
+                  className={`flex flex-col gap-5 py-8 md:flex-row md:items-baseline md:gap-12 md:py-10 ${
+                    idx % 2 === 1 ? "md:flex-row-reverse md:text-right" : ""
+                  }`}
+                >
+                  {/* big serif numeral */}
+                  <p
+                    className={`${playfair.className} shrink-0 text-[clamp(3.5rem,9vw,6rem)] font-medium leading-none text-cyan/25`}
+                    style={{ minWidth: "5rem" }}
+                  >
+                    {p.num}
                   </p>
-                  <p className="mt-4 text-sm font-medium text-ink">{s.label}</p>
-                  <p className="mt-1 text-xs text-ink-muted">{s.sub}</p>
+                  <div className={idx % 2 === 1 ? "md:ml-auto" : ""}>
+                    <h3
+                      className={`${playfair.className} text-3xl font-medium tracking-tight text-ink md:text-4xl`}
+                    >
+                      {p.name}
+                    </h3>
+                    <p className="mt-4 max-w-xl text-base leading-relaxed text-ink-muted md:text-lg">
+                      {p.body}
+                    </p>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -533,140 +294,133 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ---------- 6. LEADERSHIP / FOUNDERS ---------- */}
-      <section className="bg-page py-20 md:py-24">
+      {/* ---------- 4. LEADERSHIP — editorial portraits + pull-quotes ---------- */}
+      <section className="bg-page py-16 md:py-20">
         <div className="container-x">
-          <Reveal>
-            <p className="mb-5 flex items-center justify-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-              <span className="font-mono">VI</span>
-              <span className="inline-block h-px w-8 bg-cyan/60" />
-              Leadership
-              <span className="inline-block h-px w-8 bg-cyan/60" />
-            </p>
-          </Reveal>
-          <Reveal delay={120}>
-            <h2 className="mx-auto max-w-2xl text-center text-[clamp(1.75rem,4vw,3rem)] font-medium leading-[1.08] tracking-tight text-ink">
-              The people{" "}
-              <span
-                className="text-cyan"
-                style={{ fontFamily: "var(--font-display)" }}
+          <div className="mb-10 max-w-2xl md:mb-12">
+            <Reveal>
+              <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                <span className="inline-block h-px w-8 bg-cyan/60" />
+                Leadership
+              </p>
+            </Reveal>
+            <Reveal delay={130}>
+              <h2
+                className={`${playfair.className} text-[clamp(1.9rem,4.5vw,3.25rem)] font-medium leading-[1.1] tracking-tight text-ink`}
               >
-                behind the practice.
-              </span>
-            </h2>
-          </Reveal>
+                The people{" "}
+                <span className="text-cyan">behind the practice.</span>
+              </h2>
+            </Reveal>
+          </div>
 
-          <div className="mx-auto mt-14 grid max-w-4xl gap-6 md:grid-cols-2">
+          <div className="space-y-10 md:space-y-14">
             {leadership.map((p, idx) => (
-              <Reveal key={p.name} delay={idx * 140}>
-                <div className="group h-full overflow-hidden rounded-3xl border border-border bg-card transition-colors duration-300 hover:border-cyan/40">
-                  <div className="relative h-64 overflow-hidden">
+              <Reveal key={p.name} delay={idx * 120}>
+                <div
+                  className={`grid items-center gap-8 md:gap-14 ${
+                    idx % 2 === 1
+                      ? "md:grid-cols-[1fr_minmax(0,18rem)]"
+                      : "md:grid-cols-[minmax(0,18rem)_1fr]"
+                  }`}
+                >
+                  {/* portrait */}
+                  <div
+                    className={`relative aspect-[4/5] overflow-hidden rounded-2xl shadow-[0_24px_60px_-32px_rgba(13,27,42,0.4)] ${
+                      idx % 2 === 1 ? "md:order-2" : ""
+                    }`}
+                  >
                     <Image
                       src={p.img}
                       alt={`${p.name}, ${p.role} at Querentia`}
                       fill
-                      sizes="(min-width: 768px) 28rem, 90vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(min-width: 768px) 18rem, 90vw"
+                      className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-deep-2/85 via-deep-2/10 to-transparent" />
-                    <div className="absolute bottom-4 left-5 right-5">
-                      <h3
-                        className="text-xl font-medium tracking-tight text-white"
-                        style={{ fontFamily: "var(--font-display)" }}
-                      >
-                        {p.name}
-                      </h3>
-                      <p className="mt-0.5 text-sm text-white/80">{p.role}</p>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-deep-2/40 to-transparent" />
                   </div>
-                  <div className="p-6">
-                    <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-cyan">
-                      {p.focus}
+
+                  {/* pull-quote + bio */}
+                  <div className={idx % 2 === 1 ? "md:order-1" : ""}>
+                    <p
+                      aria-hidden
+                      className={`${playfair.className} text-5xl leading-none text-cyan/30`}
+                    >
+                      &ldquo;
                     </p>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                      {p.bio}
-                    </p>
+                    <blockquote
+                      className={`${playfair.className} -mt-4 text-[clamp(1.4rem,2.6vw,2rem)] font-medium leading-snug tracking-tight text-ink`}
+                    >
+                      {p.quote}
+                    </blockquote>
+                    <div className="mt-7 border-t border-border pt-5">
+                      <p className="text-base font-medium tracking-tight text-ink">
+                        {p.name}
+                      </p>
+                      <p className="mt-0.5 font-mono text-[11px] uppercase tracking-[0.22em] text-cyan">
+                        {p.focus}
+                      </p>
+                      <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-muted">
+                        {p.bio}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </Reveal>
             ))}
           </div>
 
-          {/* direct contact strip */}
-          <Reveal delay={300}>
-            <div className="mx-auto mt-8 flex max-w-4xl flex-col items-center justify-between gap-4 rounded-2xl border border-border bg-card px-6 py-5 sm:flex-row">
-              <p className="text-sm text-ink-muted">
-                Want to speak with the team directly?
-              </p>
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-                <a
-                  href={`mailto:${site.email}`}
-                  className="inline-flex items-center gap-2 font-medium text-ink transition-colors hover:text-cyan"
-                >
-                  <Mail className="h-4 w-4 text-cyan" /> {site.email}
-                </a>
-                <a
-                  href={`tel:${site.phone.replace(/[^+\d]/g, "")}`}
-                  className="inline-flex items-center gap-2 font-medium text-ink transition-colors hover:text-cyan"
-                >
-                  <Phone className="h-4 w-4 text-cyan" /> {site.phone}
-                </a>
-              </div>
-            </div>
+          {/* HQ line */}
+          <Reveal delay={200}>
+            <p className="mt-10 flex items-center justify-center gap-2 text-sm text-ink-faint md:mt-14">
+              <MapPin className="h-4 w-4 text-cyan" />
+              Headquartered in {site.location}
+            </p>
           </Reveal>
         </div>
       </section>
 
-      {/* ---------- 7. FINAL CTA ---------- */}
-      <section className="relative isolate overflow-hidden bg-deep-2 py-20 text-on-deep md:py-24">
+      {/* ---------- 5. CLOSING CTA ---------- */}
+      <section className="relative isolate overflow-hidden bg-deep-2 py-16 text-on-deep md:py-20">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 55% 50% at 50% 50%, rgba(0,194,255,0.12) 0%, transparent 60%)",
+                "radial-gradient(ellipse 55% 55% at 50% 45%, rgba(0,194,255,0.12) 0%, transparent 62%)",
             }}
           />
         </div>
 
         <div className="container-x mx-auto max-w-3xl text-center">
           <Reveal>
-            <p className="mb-5 flex items-center justify-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-              <span className="inline-block h-px w-8 bg-cyan/60" />
-              Work With Us
-              <span className="inline-block h-px w-8 bg-cyan/60" />
-            </p>
-          </Reveal>
-          <Reveal delay={130}>
-            <h2 className="text-[clamp(2.25rem,6vw,4.5rem)] font-medium leading-[1.05] tracking-tight text-on-deep">
-              Precision. Impact. Integrity.
-              <br />
-              <span
-                className="text-cyan"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Experience all three.
+            <h2
+              className={`${playfair.className} text-[clamp(2.5rem,7vw,5rem)] font-medium leading-[1.05] tracking-tight text-on-deep`}
+            >
+              Talent. Trust.{" "}
+              <span style={{ color: "#00C2FF" }}>
+                Thrive.
               </span>
             </h2>
           </Reveal>
-          <Reveal delay={260}>
+          <Reveal delay={160}>
             <p className="mx-auto mt-7 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
-              Whether you&apos;re building a team or building a career, our
-              recruiters are ready to add value from the first conversation.
+              Whether you&apos;re building a team or building a career, the right
+              conversation starts here.
             </p>
           </Reveal>
-          <Reveal delay={380}>
+          <Reveal delay={300}>
             <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/for-companies"
-                className="group inline-flex items-center gap-2.5 bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
+                className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
               >
                 Hire Talent
                 <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/for-talent"
-                className="inline-flex items-center gap-2.5 border border-white/25 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-on-deep transition-colors duration-300 hover:border-white/60 hover:bg-white/5"
+                className="inline-flex items-center gap-2.5 rounded-lg border border-white/25 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-on-deep transition-colors duration-300 hover:border-white/60 hover:bg-white/5"
               >
                 Find Work
               </Link>

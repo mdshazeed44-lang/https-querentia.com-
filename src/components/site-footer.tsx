@@ -125,16 +125,11 @@ export function SiteFooter() {
           </div>
 
           {/* Link columns */}
-          {COLUMNS.map((col, i) => (
+          {COLUMNS.map((col) => (
             <nav key={col.title} aria-label={col.title}>
-              <div className="mb-4 flex items-center gap-2.5">
-                <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-cyan">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
-                  {col.title}
-                </h4>
-              </div>
+              <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white">
+                {col.title}
+              </h4>
               <ul className="space-y-3">
                 {col.links.map((l) => (
                   <li key={l.label}>

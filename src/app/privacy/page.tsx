@@ -100,7 +100,6 @@ export default function PrivacyPage() {
                 className="text-cyan"
                 style={{
                   fontFamily: "var(--font-display)",
-                  fontStyle: "italic",
                 }}
               >
                 handled with integrity.

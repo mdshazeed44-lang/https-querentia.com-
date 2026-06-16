@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/lib/site";
@@ -24,18 +24,19 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const lastY = useRef(0);
 
-  // Hide the header (and its logo) when scrolling down, reveal on scroll up.
+  // Header stays sticky/visible while scrolling, and only hides once the footer
+  // scrolls into view — so it never overlaps or duplicates the footer's logo.
   useEffect(() => {
     const onScroll = () => {
-      const y = window.scrollY;
-      if (y < 80) setHidden(false);
-      else if (y > lastY.current + 5) setHidden(true);
-      else if (y < lastY.current - 5) setHidden(false);
-      lastY.current = y;
+      const footer = document.querySelector("footer");
+      const footerVisible = footer
+        ? footer.getBoundingClientRect().top < window.innerHeight - 60
+        : false;
+      setHidden(window.scrollY > 80 && footerVisible);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 

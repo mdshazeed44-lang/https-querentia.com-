@@ -100,7 +100,6 @@ export default function HotJobsPage() {
                 className="text-cyan"
                 style={{
                   fontFamily: "var(--font-display)",
-                  fontStyle: "italic",
                 }}
               >
                 placing right now.

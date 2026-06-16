@@ -32,6 +32,19 @@ export function Hero() {
             mask-image: linear-gradient(90deg, transparent 0%, #000 32%, #000 100%);
           }
         }
+        @keyframes hero-rise {
+          from { opacity: 0; transform: translateY(28px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes hero-img-in {
+          from { opacity: 0; transform: scale(1.12); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        .hero-rise { opacity: 0; animation: hero-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .hero-img-in { animation: hero-img-in 1.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-rise, .hero-img-in { animation: none; opacity: 1; transform: none; }
+        }
       `}</style>
       <div className="hero-arch-mask absolute inset-0 lg:left-[40%] lg:top-16">
         <Image
@@ -40,7 +53,7 @@ export function Hero() {
           fill
           priority
           sizes="(min-width:1024px) 60vw, 100vw"
-          className="object-cover object-center"
+          className="hero-img-in object-cover object-center"
         />
       </div>
       {/* mobile veil */}
@@ -67,40 +80,44 @@ export function Hero() {
         <div className="container-x w-full">
           <div className="max-w-xl">
             <p
-              className="text-[12px] font-semibold uppercase tracking-[0.3em] md:text-[13px]"
-              style={{ color: "#00C2FF" }}
+              className="hero-rise text-[12px] font-semibold uppercase tracking-[0.3em] md:text-[13px]"
+              style={{ color: "#00C2FF", animationDelay: "0.1s" }}
             >
-              Talent · Trust · Thrive
+              Recruitment &amp; Talent Solutions
             </p>
             <span
-              className="mt-4 block h-px w-12"
-              style={{ background: "rgba(0,194,255,0.6)" }}
+              className="hero-rise mt-4 block h-px w-12"
+              style={{ background: "rgba(0,194,255,0.6)", animationDelay: "0.2s" }}
             />
 
             <h1
-              className={`${playfair.className} mt-7 font-medium`}
+              className={`hero-rise ${playfair.className} mt-7 font-medium`}
               style={{
                 fontSize: "clamp(1.85rem, 4vw, 3.35rem)",
                 lineHeight: 1.1,
                 letterSpacing: "-0.01em",
                 color: "#F4F7FA",
+                animationDelay: "0.28s",
               }}
             >
               Delivering the talent that helps your business{" "}
-              <span style={{ color: "#00C2FF", fontStyle: "italic" }}>
+              <span style={{ color: "#00C2FF" }}>
                 thrive.
               </span>
             </h1>
 
             <p
-              className="mt-7 max-w-lg text-[15px] leading-relaxed sm:text-[16px] lg:text-[18px]"
-              style={{ color: "#c6cfda" }}
+              className="hero-rise mt-7 max-w-lg text-[15px] leading-relaxed sm:text-[16px] lg:text-[18px]"
+              style={{ color: "#c6cfda", animationDelay: "0.42s" }}
             >
               Your trusted recruitment partner. Connecting organizations with
               exceptional talent that elevates teams and drives growth.
             </p>
 
-            <div className="mt-9 flex flex-wrap items-center gap-4">
+            <div
+              className="hero-rise mt-9 flex flex-wrap items-center gap-4"
+              style={{ animationDelay: "0.55s" }}
+            >
               <Link
                 href="/for-companies"
                 className="group inline-flex items-center gap-3 rounded-lg px-7 py-4 text-[14px] font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5"
