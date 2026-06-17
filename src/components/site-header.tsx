@@ -25,16 +25,18 @@ export function SiteHeader() {
   const [modalOpen, setModalOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
 
-  // Header stays sticky/visible while scrolling, and only hides once the
-  // footer's own logo scrolls into view — so the two logos never appear at the
-  // same time, but the header stays put through the final CTA section above it.
+  // Header stays sticky/visible while scrolling, and only hides once you've
+  // actually scrolled into the footer — i.e. the footer's logo has risen near
+  // the top of the viewport. This keeps the header present through the final
+  // CTA section and the footer's first appearance, hiding only when the footer
+  // takes over the top of the screen.
   useEffect(() => {
     const onScroll = () => {
       const footerLogo = document.querySelector("footer img");
-      const footerLogoVisible = footerLogo
-        ? footerLogo.getBoundingClientRect().top < window.innerHeight - 20
+      const footerReachedTop = footerLogo
+        ? footerLogo.getBoundingClientRect().top < 100
         : false;
-      setHidden(window.scrollY > 80 && footerLogoVisible);
+      setHidden(window.scrollY > 80 && footerReachedTop);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -62,7 +64,7 @@ export function SiteHeader() {
                 width={529}
                 height={93}
                 priority
-                className="h-7 w-auto brightness-0 invert md:h-8"
+                className="h-6 w-auto brightness-0 invert md:h-7"
               />
               <span className="ml-[3px] mt-0.5 text-[11px] font-medium leading-none text-white md:text-[13px]">
                 ®
