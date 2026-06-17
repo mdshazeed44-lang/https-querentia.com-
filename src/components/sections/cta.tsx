@@ -36,7 +36,7 @@ export function CTA() {
       <div className="container-x relative z-10 mx-auto max-w-3xl text-center">
         <Reveal>
           <p className="mb-7 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-            VI · Get in touch
+            Get in touch
           </p>
         </Reveal>
         <Reveal delay={130}>

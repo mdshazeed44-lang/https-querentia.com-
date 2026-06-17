@@ -154,7 +154,7 @@ export function Industries() {
           <Reveal>
             <p className="flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-8 bg-cyan/60" />
-              IV · Our expertise · {totalCount} disciplines · 5 practices
+              Our expertise · {totalCount} disciplines · 5 practices
             </p>
           </Reveal>
           <div className="mt-6 flex flex-col gap-7 md:mt-7 lg:flex-row lg:items-end lg:justify-between lg:gap-12">

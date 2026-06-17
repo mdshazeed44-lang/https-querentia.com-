@@ -40,7 +40,7 @@ export function WhyChooseUs() {
             <div className="max-w-2xl">
               <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
                 <span className="inline-block h-px w-8 bg-cyan/60" />
-                III · Why choose us
+                Why choose us
               </p>
               <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.05] tracking-tight">
                 Because the right talent{" "}

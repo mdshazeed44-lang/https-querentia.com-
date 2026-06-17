@@ -214,14 +214,6 @@ export default function ForTalentPage() {
             {BENEFITS.map((b, i) => (
               <Reveal key={b.num} delay={i * 120}>
                 <div className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-cyan/40 hover:shadow-[0_28px_60px_-30px_rgba(13,27,42,0.3)]">
-                  {/* ghost number */}
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute -right-3 -top-7 select-none font-mono text-[5.5rem] font-bold leading-none text-ink/[0.04] transition-colors duration-500 group-hover:text-cyan/[0.09]"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {b.num}
-                  </span>
                   <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-soft text-cyan transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
                     <b.icon className="h-5 w-5" />
                   </span>

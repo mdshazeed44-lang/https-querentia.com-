@@ -344,14 +344,6 @@ export default function AboutPage() {
               return (
                 <Reveal key={p.num} delay={idx * 110}>
                   <div className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-7 transition-all duration-300 hover:-translate-y-1 hover:border-cyan/40 hover:shadow-[0_34px_80px_-40px_rgba(13,27,42,0.35)] md:p-8">
-                    {/* faint serif numeral watermark, slides up on hover */}
-                    <p
-                      aria-hidden
-                      className={`${playfair.className} pointer-events-none absolute -right-2 -top-3 select-none text-[6rem] font-medium leading-none text-cyan/[0.07] transition-all duration-500 group-hover:-translate-y-1 group-hover:text-cyan/[0.12]`}
-                    >
-                      {p.num}
-                    </p>
-
                     <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-deep-2 text-cyan shadow-[0_14px_34px_-12px_rgba(0,194,255,0.45)] transition-transform duration-300 group-hover:scale-105">
                       <Icon className="h-6 w-6" />
                     </span>
