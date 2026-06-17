@@ -18,8 +18,7 @@ import { site } from "@/lib/site";
  */
 const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["500", "600"],
-  style: ["normal", "italic"],
+  weight: ["500"],
   display: "swap",
 });
 
