@@ -3,13 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
-import { ArrowRight, MapPin } from "@/components/ui/icons";
+import { CountUp } from "@/components/ui/count-up";
+import { ArrowRight, MapPin, Target, Sparkles, Shield } from "@/components/ui/icons";
 import { site } from "@/lib/site";
 
 /**
- * About — "The Manifesto".
+ * About — "The Manifesto", elevated.
  * Editorial / executive-search aesthetic (think Korn Ferry, Egon Zehnder):
- * quiet, confident, typography-led. Playfair serif + navy + cyan accent.
+ * quiet, confident, typography-led — now with tasteful CSS-keyframe motion:
+ * staggered hero rise, floating ambient glows, a timeline line that draws in,
+ * nodes that scale/pulse in, hover-lift milestones, and richer principle +
+ * leadership cards. Playfair serif + navy + cyan accent. Server component —
+ * all interactivity is pure CSS keyframes + Reveal/CountUp.
  */
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -89,16 +94,19 @@ const principles = [
   {
     num: "01",
     name: "Precision",
+    Icon: Target,
     body: "We listen before we search. Every shortlist is matched to the role, the team, and the culture — not to keywords. The right person, not merely an available one.",
   },
   {
     num: "02",
     name: "Impact",
+    Icon: Sparkles,
     body: "A placement is a beginning, not a transaction. We measure ourselves by the careers we accelerate and the teams that ship — long after the offer is signed.",
   },
   {
     num: "03",
     name: "Integrity",
+    Icon: Shield,
     body: "Honest feedback, both ways. Candid counsel, even when it costs us the placement. Trust is the only asset that compounds, and we guard it on every search.",
   },
 ];
@@ -133,9 +141,48 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
       />
 
+      {/* ── Page-scoped keyframes (all guarded by prefers-reduced-motion) ── */}
+      <style>{`
+        @keyframes ab-rise {
+          from { opacity: 0; transform: translateY(22px); filter: blur(6px); }
+          to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+        .ab-rise { opacity: 0; animation: ab-rise 0.9s cubic-bezier(0.16,1,0.3,1) forwards; }
+
+        @keyframes ab-float {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          50%      { transform: translateY(-26px) translateX(14px); }
+        }
+        .ab-glow-a { animation: ab-float 15s ease-in-out infinite; }
+        .ab-glow-b { animation: ab-float 19s ease-in-out infinite reverse; }
+
+        @keyframes ab-underline { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        .ab-underline { transform-origin: left; animation: ab-underline 1.1s cubic-bezier(0.16,1,0.3,1) 0.6s both; }
+
+        @keyframes ab-shimmer {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+
+        /* timeline vertical line draws in as the section scrolls into view */
+        @keyframes ab-draw { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+        .ab-line { transform-origin: top; animation: ab-draw 1.6s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
+
+        /* node ping + core scale-in */
+        @keyframes ab-ping { 0% { transform: scale(0.6); opacity: 0.7; } 70% { transform: scale(2.4); opacity: 0; } 100% { transform: scale(2.4); opacity: 0; } }
+        .ab-ping { animation: ab-ping 3.2s ease-out infinite; }
+        @keyframes ab-pop { from { transform: scale(0); } to { transform: scale(1); } }
+        .ab-node { animation: ab-pop 0.6s cubic-bezier(0.34,1.56,0.64,1) both; }
+
+        @media (prefers-reduced-motion: reduce) {
+          .ab-rise, .ab-underline, .ab-line, .ab-node { opacity: 1; transform: none; filter: none; animation: none; }
+          .ab-glow-a, .ab-glow-b, .ab-ping { animation: none; }
+        }
+      `}</style>
+
       {/* ---------- 1. HERO — a single editorial statement ---------- */}
-      <section className="relative isolate overflow-hidden bg-deep-2 pb-14 pt-28 text-on-deep md:pb-20 md:pt-36">
-        {/* one quiet cyan ambient — no orbit dots, keep it editorial */}
+      <section className="relative isolate overflow-hidden bg-deep-2 pb-16 pt-28 text-on-deep md:pb-20 md:pt-36">
+        {/* floating ambient cyan glows — gently drifting */}
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
           <div
             className="absolute inset-0"
@@ -144,47 +191,59 @@ export default function AboutPage() {
                 "radial-gradient(ellipse 65% 50% at 75% 15%, rgba(0,194,255,0.10) 0%, transparent 62%)",
             }}
           />
+          <div className="ab-glow-a absolute -right-24 top-4 h-[460px] w-[460px] rounded-full bg-cyan/[0.10] blur-3xl" />
+          <div className="ab-glow-b absolute -left-32 bottom-0 h-[380px] w-[380px] rounded-full bg-cyan/[0.05] blur-3xl" />
         </div>
 
         <div className="container-x relative z-10">
           <div className="max-w-4xl">
-            <Reveal>
-              <p className="mb-8 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.32em] text-cyan">
-                <span className="inline-block h-px w-8 bg-cyan/60" />
-                About Querentia · Est. {site.founded}
-              </p>
-            </Reveal>
+            <p
+              className="ab-rise mb-8 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.32em] text-cyan"
+              style={{ animationDelay: "0.05s" }}
+            >
+              <span className="inline-block h-px w-8 bg-cyan/60" />
+              About Querentia · Est. {site.founded}
+            </p>
 
-            <Reveal delay={140}>
-              <h1
-                className={`${playfair.className} text-balance font-medium text-on-deep`}
-                style={{
-                  fontSize: "clamp(2.4rem, 6vw, 5rem)",
-                  lineHeight: 1.08,
-                  letterSpacing: "-0.015em",
-                }}
-              >
-                We believe the right person{" "}
-                <span style={{ color: "#00C2FF" }}>
-                  changes everything.
-                </span>
-              </h1>
-            </Reveal>
+            <h1
+              className={`${playfair.className} ab-rise text-balance font-medium text-on-deep`}
+              style={{
+                fontSize: "clamp(2.4rem, 6vw, 5rem)",
+                lineHeight: 1.08,
+                letterSpacing: "-0.015em",
+                animationDelay: "0.2s",
+              }}
+            >
+              We believe the right person{" "}
+              <span className="relative inline-block" style={{ color: "#00C2FF" }}>
+                changes everything.
+                <span
+                  aria-hidden
+                  className="ab-underline absolute -bottom-2 left-0 h-[3px] w-full rounded-full"
+                  style={{ background: "linear-gradient(90deg, #00C2FF, rgba(0,194,255,0))" }}
+                />
+              </span>
+            </h1>
 
-            <Reveal delay={300}>
-              <p className="mt-7 max-w-2xl text-base leading-relaxed text-on-deep-muted md:text-lg">
-                Since {site.founded}, Querentia has been Canada&apos;s trusted
-                recruitment partner — placing all talent, tech and non-tech,
-                with the organizations and leaders shaping the country&apos;s
-                future. {site.tagline}
-              </p>
-            </Reveal>
+            <p
+              className="ab-rise mt-9 max-w-2xl text-base leading-relaxed text-on-deep-muted md:text-lg"
+              style={{ animationDelay: "0.4s" }}
+            >
+              Since {site.founded}, Querentia has been Canada&apos;s trusted
+              recruitment partner — placing all talent, tech and non-tech, with
+              the organizations and leaders shaping the country&apos;s future.{" "}
+              {site.tagline}
+            </p>
           </div>
         </div>
       </section>
 
       {/* ---------- 2. OUR STORY — vertical timeline ---------- */}
-      <section className="bg-page py-16 md:py-20">
+      <section className="relative isolate overflow-hidden bg-page py-16 md:py-20">
+        <div
+          aria-hidden
+          className="ab-glow-a pointer-events-none absolute -left-40 top-24 -z-10 h-[420px] w-[420px] rounded-full bg-cyan/[0.04] blur-3xl"
+        />
         <div className="container-x">
           <div className="mb-10 max-w-2xl md:mb-12">
             <Reveal>
@@ -205,21 +264,27 @@ export default function AboutPage() {
 
           {/* timeline */}
           <div className="relative mx-auto max-w-3xl">
-            {/* vertical line */}
+            {/* vertical line — draws in on load */}
             <span
               aria-hidden
-              className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-cyan/50 via-border to-transparent md:left-[11px]"
+              className="ab-line absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-cyan/60 via-border to-transparent md:left-[11px]"
             />
             <ol className="space-y-9 md:space-y-11">
               {milestones.map((m, idx) => (
-                <li key={m.year} className="relative pl-10 md:pl-16">
+                <li
+                  key={m.year}
+                  className="group relative pl-10 transition-transform duration-300 hover:-translate-y-0.5 md:pl-16"
+                >
                   {/* node */}
                   <span
                     aria-hidden
                     className="absolute left-0 top-1.5 flex h-4 w-4 items-center justify-center md:h-6 md:w-6"
                   >
-                    <span className="absolute inline-flex h-full w-full rounded-full bg-cyan/20" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan md:h-2.5 md:w-2.5" />
+                    <span className="ab-ping absolute inline-flex h-2 w-2 rounded-full bg-cyan/40 md:h-2.5 md:w-2.5" />
+                    <span
+                      className="ab-node relative inline-flex h-2.5 w-2.5 rounded-full bg-cyan ring-4 ring-cyan/15 transition-all duration-300 group-hover:scale-125 group-hover:ring-cyan/25 md:h-3 md:w-3"
+                      style={{ animationDelay: `${0.25 + idx * 0.12}s` }}
+                    />
                   </span>
                   <Reveal delay={idx * 90}>
                     <p
@@ -227,8 +292,15 @@ export default function AboutPage() {
                     >
                       {m.year}
                     </p>
-                    <h3 className="mt-3 text-lg font-medium tracking-tight text-ink md:text-xl">
-                      {m.title}
+                    <h3 className="mt-3 text-lg font-medium tracking-tight text-ink transition-colors duration-300 group-hover:text-cyan md:text-xl">
+                      {idx === milestones.length - 1 ? (
+                        <>
+                          <CountUp value="500" duration={1600} />+ placements ·{" "}
+                          <CountUp value="94%" duration={1600} /> retention
+                        </>
+                      ) : (
+                        m.title
+                      )}
                     </h3>
                     <p className="mt-2.5 max-w-xl text-[15px] leading-relaxed text-ink-muted md:text-base">
                       {m.body}
@@ -241,8 +313,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ---------- 3. WHAT WE STAND FOR — numbered principles ---------- */}
-      <section className="bg-page-2 py-16 md:py-20">
+      {/* ---------- 3. WHAT WE STAND FOR — numbered principle cards ---------- */}
+      <section className="relative isolate overflow-hidden bg-page-2 py-16 md:py-20">
+        <div
+          aria-hidden
+          className="ab-glow-b pointer-events-none absolute -right-40 bottom-0 -z-10 h-[480px] w-[480px] rounded-full bg-cyan/[0.05] blur-3xl"
+        />
         <div className="container-x">
           <div className="mb-10 text-center md:mb-12">
             <Reveal>
@@ -262,40 +338,53 @@ export default function AboutPage() {
             </Reveal>
           </div>
 
-          <div className="mx-auto max-w-4xl divide-y divide-border">
-            {principles.map((p, idx) => (
-              <Reveal key={p.num} delay={idx * 110}>
-                <div
-                  className={`flex flex-col gap-5 py-8 md:flex-row md:items-baseline md:gap-12 md:py-10 ${
-                    idx % 2 === 1 ? "md:flex-row-reverse md:text-right" : ""
-                  }`}
-                >
-                  {/* big serif numeral */}
-                  <p
-                    className={`${playfair.className} shrink-0 text-[clamp(3.5rem,9vw,6rem)] font-medium leading-none text-cyan/25`}
-                    style={{ minWidth: "5rem" }}
-                  >
-                    {p.num}
-                  </p>
-                  <div className={idx % 2 === 1 ? "md:ml-auto" : ""}>
+          <div className="grid gap-6 md:grid-cols-3 md:gap-7">
+            {principles.map((p, idx) => {
+              const Icon = p.Icon;
+              return (
+                <Reveal key={p.num} delay={idx * 110}>
+                  <div className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-7 transition-all duration-300 hover:-translate-y-1 hover:border-cyan/40 hover:shadow-[0_34px_80px_-40px_rgba(13,27,42,0.35)] md:p-8">
+                    {/* faint serif numeral watermark, slides up on hover */}
+                    <p
+                      aria-hidden
+                      className={`${playfair.className} pointer-events-none absolute -right-2 -top-3 select-none text-[6rem] font-medium leading-none text-cyan/[0.07] transition-all duration-500 group-hover:-translate-y-1 group-hover:text-cyan/[0.12]`}
+                    >
+                      {p.num}
+                    </p>
+
+                    <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-deep-2 text-cyan shadow-[0_14px_34px_-12px_rgba(0,194,255,0.45)] transition-transform duration-300 group-hover:scale-105">
+                      <Icon className="h-6 w-6" />
+                    </span>
+
                     <h3
-                      className={`${playfair.className} text-3xl font-medium tracking-tight text-ink md:text-4xl`}
+                      className={`${playfair.className} relative mt-6 text-3xl font-medium tracking-tight text-ink md:text-4xl`}
                     >
                       {p.name}
                     </h3>
-                    <p className="mt-4 max-w-xl text-base leading-relaxed text-ink-muted md:text-lg">
+
+                    {/* accent line grows on hover */}
+                    <span
+                      aria-hidden
+                      className="relative mt-4 block h-px w-10 origin-left bg-cyan/60 transition-all duration-300 group-hover:w-20"
+                    />
+
+                    <p className="relative mt-5 text-[15px] leading-relaxed text-ink-muted md:text-base">
                       {p.body}
                     </p>
                   </div>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ---------- 4. LEADERSHIP — editorial portraits + pull-quotes ---------- */}
-      <section className="bg-page py-16 md:py-20">
+      <section className="relative isolate overflow-hidden bg-page py-16 md:py-20">
+        <div
+          aria-hidden
+          className="ab-glow-a pointer-events-none absolute -right-32 top-10 -z-10 h-[420px] w-[420px] rounded-full bg-cyan/[0.04] blur-3xl"
+        />
         <div className="container-x">
           <div className="mb-10 max-w-2xl md:mb-12">
             <Reveal>
@@ -314,11 +403,11 @@ export default function AboutPage() {
             </Reveal>
           </div>
 
-          <div className="space-y-10 md:space-y-14">
+          <div className="space-y-8 md:space-y-10">
             {leadership.map((p, idx) => (
               <Reveal key={p.name} delay={idx * 120}>
                 <div
-                  className={`grid items-center gap-8 md:gap-14 ${
+                  className={`group grid items-center gap-8 overflow-hidden rounded-3xl border border-border bg-card p-6 transition-all duration-300 hover:border-cyan/40 hover:shadow-[0_40px_90px_-44px_rgba(13,27,42,0.35)] md:gap-12 md:p-9 ${
                     idx % 2 === 1
                       ? "md:grid-cols-[1fr_minmax(0,18rem)]"
                       : "md:grid-cols-[minmax(0,18rem)_1fr]"
@@ -335,21 +424,25 @@ export default function AboutPage() {
                       alt={`${p.name}, ${p.role} at Querentia`}
                       fill
                       sizes="(min-width: 768px) 18rem, 90vw"
-                      className="object-cover"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-deep-2/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-deep-2/45 to-transparent" />
+                    {/* role badge */}
+                    <span className="absolute bottom-3 left-3 inline-flex items-center rounded-full border border-cyan/30 bg-deep-2/85 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-cyan backdrop-blur">
+                      {p.role}
+                    </span>
                   </div>
 
                   {/* pull-quote + bio */}
                   <div className={idx % 2 === 1 ? "md:order-1" : ""}>
                     <p
                       aria-hidden
-                      className={`${playfair.className} text-5xl leading-none text-cyan/30`}
+                      className={`${playfair.className} text-6xl leading-none text-cyan/25 transition-all duration-300 group-hover:text-cyan/40`}
                     >
                       &ldquo;
                     </p>
                     <blockquote
-                      className={`${playfair.className} -mt-4 text-[clamp(1.4rem,2.6vw,2rem)] font-medium leading-snug tracking-tight text-ink`}
+                      className={`${playfair.className} -mt-5 text-[clamp(1.4rem,2.6vw,2rem)] font-medium leading-snug tracking-tight text-ink`}
                     >
                       {p.quote}
                     </blockquote>
@@ -390,6 +483,7 @@ export default function AboutPage() {
                 "radial-gradient(ellipse 55% 55% at 50% 45%, rgba(0,194,255,0.12) 0%, transparent 62%)",
             }}
           />
+          <div className="ab-glow-a absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan/[0.08] blur-3xl" />
         </div>
 
         <div className="container-x mx-auto max-w-3xl text-center">
@@ -398,9 +492,7 @@ export default function AboutPage() {
               className={`${playfair.className} text-[clamp(2.5rem,7vw,5rem)] font-medium leading-[1.05] tracking-tight text-on-deep`}
             >
               Talent. Trust.{" "}
-              <span style={{ color: "#00C2FF" }}>
-                Thrive.
-              </span>
+              <span style={{ color: "#00C2FF" }}>Thrive.</span>
             </h2>
           </Reveal>
           <Reveal delay={160}>
