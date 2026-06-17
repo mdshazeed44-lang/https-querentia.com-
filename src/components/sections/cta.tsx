@@ -15,24 +15,6 @@ export function CTA() {
         }}
       />
 
-      {/* Corner brackets */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute left-8 top-12 hidden h-14 w-14 border-l border-t border-ink/20 md:block"
-      />
-      <span
-        aria-hidden
-        className="pointer-events-none absolute right-8 top-12 hidden h-14 w-14 border-r border-t border-ink/20 md:block"
-      />
-      <span
-        aria-hidden
-        className="pointer-events-none absolute bottom-12 left-8 hidden h-14 w-14 border-b border-l border-ink/20 md:block"
-      />
-      <span
-        aria-hidden
-        className="pointer-events-none absolute bottom-12 right-8 hidden h-14 w-14 border-b border-r border-ink/20 md:block"
-      />
-
       <div className="container-x relative z-10 mx-auto max-w-3xl text-center">
         <Reveal>
           <p className="mb-7 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
