@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: "For Talent — Senior IT Careers with Querentia",
   description:
     "Take charge of your career with Querentia. Confidential senior IT mandates with Canada's leading consulting firms and enterprise programs — delivered with precision, impact, and integrity.",
+  alternates: { canonical: "/for-talent" },
 };
 
 const BENEFITS = [

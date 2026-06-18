@@ -197,7 +197,7 @@ export function Industries() {
                     role="tab"
                     aria-selected={isOn}
                     onClick={() => setActive(i)}
-                    className={`group relative flex cursor-pointer items-center gap-4 rounded-xl px-5 py-4 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan ${
+                    className={`group relative flex cursor-pointer items-center gap-3 rounded-xl px-4 py-4 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan sm:gap-4 sm:px-5 ${
                       isOn
                         ? "bg-deep-2 text-on-deep shadow-lg"
                         : "text-ink-muted hover:bg-card hover:text-ink"

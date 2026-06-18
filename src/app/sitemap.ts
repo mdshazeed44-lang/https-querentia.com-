@@ -8,6 +8,7 @@ const routes = [
   { path: "/hot-jobs", priority: 0.8, changeFrequency: "daily" as const },
   { path: "/for-talent", priority: 0.9, changeFrequency: "monthly" as const },
   { path: "/for-companies", priority: 0.9, changeFrequency: "monthly" as const },
+  { path: "/industries", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/about", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/contact", priority: 0.9, changeFrequency: "yearly" as const },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" as const },

@@ -31,9 +31,11 @@ export function ClientWall() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/logos/${c.toLowerCase()}.png`}
-                  alt={c}
+                  alt={`${c} logo`}
                   loading="lazy"
-                  className="h-10 w-auto max-w-[180px] object-contain opacity-90 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-100 md:h-11"
+                  width={180}
+                  height={44}
+                  className="h-10 w-auto max-w-[140px] object-contain opacity-90 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-100 sm:max-w-[180px] md:h-11"
                 />
               </div>
             ))}

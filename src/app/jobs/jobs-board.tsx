@@ -162,6 +162,7 @@ export function JobsBoard({ jobs }: Props) {
 
       {/* ---------- RESULTS ---------- */}
       <div>
+        <h2 className="sr-only">Search open roles</h2>
         {/* Search bar */}
         <Reveal>
           <form

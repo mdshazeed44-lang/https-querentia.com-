@@ -95,7 +95,7 @@ export default function IndustriesPage() {
 
       <main className="bg-page text-ink">
         {/* ---------- HERO ---------- */}
-        <section className="relative isolate overflow-hidden bg-deep-2 pb-16 pt-32 text-on-deep md:pb-20 md:pt-40">
+        <section className="relative isolate overflow-hidden bg-deep-2 pb-16 pt-28 text-on-deep sm:pt-32 md:pb-20 md:pt-40">
           <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
             <div
               className="absolute inset-0"

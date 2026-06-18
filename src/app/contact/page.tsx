@@ -295,7 +295,7 @@ export default function ContactPage() {
                               defaultChecked={idx === 0}
                               className="sr-only"
                             />
-                            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-page px-4 py-2 text-xs font-medium text-ink-muted transition-all group-has-[:checked]:border-cyan group-has-[:checked]:bg-cyan-soft group-has-[:checked]:text-ink group-has-[:focus-visible]:ring-4 group-has-[:focus-visible]:ring-cyan/15">
+                            <span className="inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-border bg-page px-4 py-2.5 text-xs font-medium text-ink-muted transition-all group-has-[:checked]:border-cyan group-has-[:checked]:bg-cyan-soft group-has-[:checked]:text-ink group-has-[:focus-visible]:ring-4 group-has-[:focus-visible]:ring-cyan/15">
                               <Check className="h-3 w-3 text-cyan opacity-0 transition-opacity group-has-[:checked]:opacity-100" />
                               {r.label}
                             </span>

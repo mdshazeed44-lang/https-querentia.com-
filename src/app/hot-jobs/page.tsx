@@ -138,6 +138,7 @@ export default function HotJobsPage() {
       {/* CARDS */}
       <section id="featured" className="bg-page py-16 md:py-20">
         <div className="container-x">
+          <h2 className="sr-only">Featured roles</h2>
           <div className="grid gap-5 md:grid-cols-2">
             {hot.map((j, idx) => {
               const pay = payLabel(j);
