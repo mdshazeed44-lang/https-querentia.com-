@@ -63,9 +63,9 @@ export const metadata: Metadata = {
   alternates: { canonical: site.url },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   icons: {
-    icon: [{ url: "/favicon.png" }],
-    apple: [{ url: "/favicon.png" }],
-    shortcut: "/favicon.png",
+    icon: [{ url: "/favicon.png?v=2", sizes: "96x96", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png?v=2", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon.png?v=2",
   },
   category: "business",
 };
