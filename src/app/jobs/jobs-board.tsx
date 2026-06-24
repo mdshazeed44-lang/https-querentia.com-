@@ -167,7 +167,7 @@ export function JobsBoard({ jobs }: Props) {
         <Reveal>
           <form
             onSubmit={(e) => e.preventDefault()}
-            className="flex flex-col gap-2 rounded-2xl border border-border bg-card p-2 shadow-[0_1px_3px_rgba(15,27,51,0.05)] sm:flex-row sm:items-center sm:rounded-full"
+            className="flex flex-col gap-2 rounded-2xl border border-border bg-card p-2 shadow-[0_1px_3px_rgba(15,27,51,0.05)] transition-colors focus-within:border-cyan focus-within:ring-2 focus-within:ring-cyan/30 sm:flex-row sm:items-center sm:rounded-full"
           >
             <div className="flex flex-1 items-center gap-2 px-3">
               <Search className="h-4 w-4 shrink-0 text-cyan" />
@@ -175,6 +175,7 @@ export function JobsBoard({ jobs }: Props) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Role, skill or keyword"
+                aria-label="Search jobs by role, skill or keyword"
                 className="w-full bg-transparent py-2.5 text-sm text-deep placeholder:text-ink-muted/70 focus:outline-none"
               />
             </div>
@@ -185,6 +186,7 @@ export function JobsBoard({ jobs }: Props) {
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="Location"
+                aria-label="Filter jobs by location"
                 className="w-full bg-transparent py-2.5 text-sm text-deep placeholder:text-ink-muted/70 focus:outline-none"
               />
             </div>

@@ -20,14 +20,11 @@ export function ClientWall() {
           </p>
         </Reveal>
 
-        {/* Partner panel */}
+        {/* Logo row — clean & borderless, evenly spaced, muted until hover */}
         <Reveal delay={120}>
-          <div className="mx-auto mt-7 flex max-w-4xl flex-col divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card shadow-[0_24px_60px_-32px_rgba(13,27,42,0.22)] sm:flex-row sm:divide-x sm:divide-y-0 md:mt-8">
+          <div className="mx-auto mt-9 grid max-w-5xl grid-cols-2 items-center gap-x-8 gap-y-9 sm:grid-cols-3 sm:gap-x-10 lg:grid-cols-5 lg:gap-x-12 md:mt-11">
             {clients.map((c) => (
-              <div
-                key={c}
-                className="group relative flex flex-1 items-center justify-center px-6 py-6 transition-colors duration-300 hover:bg-page-2 md:py-7"
-              >
+              <div key={c} className="flex items-center justify-center">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/logos/${c.toLowerCase()}.png`}
@@ -35,7 +32,7 @@ export function ClientWall() {
                   loading="lazy"
                   width={180}
                   height={44}
-                  className="h-10 w-auto max-w-[140px] object-contain opacity-90 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-100 sm:max-w-[180px] md:h-11"
+                  className="h-9 w-auto max-w-[150px] object-contain opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0 md:h-10"
                 />
               </div>
             ))}

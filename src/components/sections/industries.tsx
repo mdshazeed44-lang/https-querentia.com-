@@ -8,15 +8,17 @@ import {
   Layers,
   Briefcase,
   Shield,
+  Network,
+  Coins,
   ArrowRight,
 } from "@/components/ui/icons";
 
-// 30 disciplines grouped into 5 practice areas — interactive vertical tabs
+// 42 disciplines grouped into 7 practice areas — interactive vertical tabs
 const CATEGORIES = [
   {
     code: "01",
     title: "Cloud, Data & AI",
-    blurb: "Platform, pipeline and intelligence talent for data-driven programs.",
+    blurb: "Talent that powers intelligent, cloud-first, data-driven enterprises.",
     Icon: Cloud,
     items: [
       "Cloud Technologies",
@@ -27,12 +29,14 @@ const CATEGORIES = [
       "Data Warehousing",
       "SAS",
       "Blockchain",
+      "AI & Machine Learning",
+      "Platform Engineering",
     ],
   },
   {
     code: "02",
     title: "Engineering & Product",
-    blurb: "Builders who ship — from full-stack squads to product design.",
+    blurb: "High-caliber engineering talent that builds modern, resilient digital products.",
     Icon: Code,
     items: [
       "Full Stack Development",
@@ -40,26 +44,28 @@ const CATEGORIES = [
       "Testing Automation",
       "UI / UX Design",
       "Application Integration",
-      "Pega",
+      "Mobile Engineering",
+      "Quality Assurance",
     ],
   },
   {
     code: "03",
     title: "Enterprise Platforms",
-    blurb: "The systems your business actually runs on, staffed properly.",
+    blurb: "Specialists who deliver complex enterprise transformations with precision.",
     Icon: Layers,
     items: [
-      "ERP",
       "Enterprise Architecture",
-      "Guidewire",
-      "Energy & Utilities",
-      "Supply Chain & Procurement",
+      "Pega",
+      "ServiceNow",
+      "Salesforce",
+      "SAP",
+      "Microsoft Dynamics 365",
     ],
   },
   {
     code: "04",
     title: "Strategy & Delivery",
-    blurb: "Leaders who keep regulated, multi-squad programs on schedule.",
+    blurb: "Leaders who drive clarity, alignment, and successful delivery across the enterprise.",
     Icon: Briefcase,
     items: [
       "Project Management",
@@ -67,26 +73,49 @@ const CATEGORIES = [
       "Business Analysis",
       "Agile Delivery",
       "Org Change Management",
+      "Agile Coaches",
     ],
   },
   {
     code: "05",
     title: "Security, Risk & Business",
-    blurb: "Defence, governance and the business functions that back them.",
+    blurb: "Talent that protects your business and strengthens resilience.",
     Icon: Shield,
     items: [
       "Cyber Security",
+      "Governance, Risk & Compliance (GRC)",
+      "Identity & Access Management (IAM)",
+      "Business Continuity & Resilience",
+    ],
+  },
+  {
+    code: "06",
+    title: "Infrastructure, Networking & IT Operations",
+    blurb: "Talent that keeps your technology resilient, secure, and running at scale.",
+    Icon: Network,
+    items: [
+      "Network Engineering & Architecture",
+      "Systems Engineering (Windows, Linux)",
+      "Cloud & On-Prem Infrastructure",
+      "IT Support & Service Desk",
+      "ITSM & Operations",
+    ],
+  },
+  {
+    code: "07",
+    title: "Business, Finance, Risk",
+    blurb: "Talent that strengthens financial integrity and drives confident decision-making.",
+    Icon: Coins,
+    items: [
       "Risk & Internal Audit",
       "Financial Advisory",
       "Taxation",
-      "Human Resources",
-      "Digital Marketing",
+      "Compliance & Regulatory",
     ],
   },
 ];
 
 export function Industries() {
-  const totalCount = CATEGORIES.reduce((sum, c) => sum + c.items.length, 0);
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [inView, setInView] = useState(false);
@@ -154,7 +183,7 @@ export function Industries() {
           <Reveal>
             <p className="flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-8 bg-cyan/60" />
-              Our expertise · {totalCount} disciplines · 5 practices
+              Our expertise
             </p>
           </Reveal>
           <div className="mt-6 flex flex-col gap-7 md:mt-7 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
@@ -173,8 +202,9 @@ export function Industries() {
               </h2>
             </Reveal>
             <Reveal delay={150}>
-              <p className="max-w-sm text-base leading-relaxed text-ink-muted lg:pb-2">
-                {`Five deep practices. ${totalCount} specialised disciplines. Built over a decade placing exceptional talent into Canada's largest consulting and enterprise programs.`}
+              <p className="max-w-sm text-[clamp(1.05rem,1.7vw,1.4rem)] font-medium leading-snug tracking-tight text-ink lg:pb-1">
+                Seven practices. Forty-two disciplines.{" "}
+                <span className="text-cyan">One partner you can trust.</span>
               </p>
             </Reveal>
           </div>

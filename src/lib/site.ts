@@ -8,7 +8,7 @@ export const site = {
   url: "https://querentia.com",
   tagline: "Talent. Trust. Thrive.",
   description:
-    "Querentia is your trusted recruitment partner — connecting organizations with exceptional talent that elevates teams and drives growth. We deliver all talent, tech and non-tech, across Canada.",
+    "Querentia is a trusted talent partner — connecting organizations with exceptional people who elevate teams and accelerate growth. We deliver all talent, tech and non-tech, across Canada.",
   location: "Oakville, Ontario, Canada",
   locality: "Oakville",
   region: "ON",
@@ -31,7 +31,7 @@ export const nav = [
 ] as const;
 
 // Enterprise clients referenced across calls / scope
-export const clients = ["Deloitte", "Capgemini", "Curasion"] as const;
+export const clients = ["Deloitte", "Capgemini", "CGI", "Curasion", "Browne"] as const;
 
 // Office addresses — sample/placeholder locations for the footer.
 export const addresses = [

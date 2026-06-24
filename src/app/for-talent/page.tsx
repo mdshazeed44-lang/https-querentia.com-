@@ -89,7 +89,7 @@ const VENDORS = ["AWS", "Azure", "Google Cloud", "SAP", "ServiceNow"];
 
 export default function ForTalentPage() {
   return (
-    <main className="min-h-screen bg-page text-ink">
+    <div className="min-h-screen bg-page text-ink">
       {/* page-scoped effects: dual-direction specialization marquee */}
       <style>{`
         @keyframes ft-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -572,6 +572,6 @@ export default function ForTalentPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

@@ -1,6 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Playfair_Display } from "next/font/google";
+import { HeroCursorGlow } from "@/components/sections/hero-cursor-glow";
+import { MagneticButton } from "@/components/ui/magnetic-button";
 
 /**
  * Homepage hero — "Premium Executive Search" (client-approved reference).
@@ -75,6 +76,10 @@ export function Hero() {
         }}
       />
 
+      {/* Subtle cyan glow that follows the cursor — atmospheric depth accent.
+          Off on touch / reduced-motion. */}
+      <HeroCursorGlow />
+
       {/* Copy */}
       <div className="relative z-10 flex h-full items-center">
         <div className="container-x w-full">
@@ -110,18 +115,17 @@ export function Hero() {
               className="hero-rise mt-7 max-w-lg text-[15px] leading-relaxed sm:text-[16px] lg:text-[18px]"
               style={{ color: "#c6cfda", animationDelay: "0.42s" }}
             >
-              Your trusted recruitment partner. Connecting organizations with
-              exceptional talent that elevates teams and drives growth.
+              A trusted talent partner connecting organizations with
+              exceptional people who elevate teams and accelerate growth.
             </p>
 
             <div
               className="hero-rise mt-9 flex flex-wrap items-center gap-4"
               style={{ animationDelay: "0.55s" }}
             >
-              <Link
+              <MagneticButton
                 href="/for-companies"
-                className="group inline-flex items-center gap-3 rounded-lg px-7 py-4 text-[14px] font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5"
-                style={{ background: "#FF6B2B" }}
+                className="group inline-flex items-center gap-3 rounded-lg bg-green px-7 py-4 text-[14px] font-semibold text-white transition-colors duration-300 hover:bg-green-700"
               >
                 Hire Talent
                 <svg
@@ -136,11 +140,10 @@ export function Hero() {
                 >
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
-              </Link>
-              <Link
+              </MagneticButton>
+              <MagneticButton
                 href="/jobs"
-                className="group inline-flex items-center gap-3 rounded-lg px-7 py-4 text-[14px] font-semibold transition-colors duration-300 hover:bg-cyan/5"
-                style={{ color: "#00C2FF", border: "1px solid rgba(0,194,255,0.55)" }}
+                className="group inline-flex items-center gap-3 rounded-lg border border-cyan/60 px-7 py-4 text-[14px] font-semibold text-cyan transition-colors duration-300 hover:bg-cyan/5"
               >
                 View Roles
                 <svg
@@ -155,7 +158,7 @@ export function Hero() {
                 >
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
-              </Link>
+              </MagneticButton>
             </div>
           </div>
         </div>

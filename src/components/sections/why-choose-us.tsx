@@ -53,15 +53,6 @@ export function WhyChooseUs() {
               </h2>
             </div>
           </Reveal>
-          <Reveal delay={150}>
-            <p className="max-w-md text-base leading-relaxed text-ink-muted">
-              Exceptional people don&apos;t just fill roles — they elevate teams,
-              strengthen culture, and drive meaningful growth. We&apos;re
-              committed to understanding what makes your organization unique, then
-              connecting you with talent that aligns with your goals, values, and
-              long-term vision.
-            </p>
-          </Reveal>
         </div>
 
         {/* Sub-label */}

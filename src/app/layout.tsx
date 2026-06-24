@@ -162,6 +162,9 @@ export default function RootLayout({
       className={`${sans.variable} ${display.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-page text-ink">
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -170,7 +173,7 @@ export default function RootLayout({
         <ScrollTheme />
         <CustomCursor />
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main id="main" className="flex-1">{children}</main>
         <SiteFooter />
       </body>
     </html>

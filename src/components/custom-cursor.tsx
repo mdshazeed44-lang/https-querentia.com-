@@ -35,6 +35,7 @@ export function CustomCursor() {
       target.current.y = e.clientY;
       // Dot tracks instantly (1:1)
       dot.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+      startRing();
     };
 
     const INTERACTIVE = "a, button, input, textarea, select, [role='button'], label";
@@ -56,14 +57,29 @@ export function CustomCursor() {
       ring.style.opacity = "1";
     };
 
-    // rAF loop: smooth ring follow with lerp
+    // rAF loop: smooth ring follow with lerp — runs only while the ring is
+    // still catching up to the cursor, then idles (no perpetual loop, so the
+    // page can settle and battery isn't drained while the mouse is still).
+    let running = false;
     const tick = () => {
       ringPos.current.x += (target.current.x - ringPos.current.x) * 0.18;
       ringPos.current.y += (target.current.y - ringPos.current.y) * 0.18;
       ring.style.transform = `translate3d(${ringPos.current.x}px, ${ringPos.current.y}px, 0) translate(-50%, -50%)`;
-      rafRef.current = requestAnimationFrame(tick);
+      if (
+        Math.abs(target.current.x - ringPos.current.x) > 0.1 ||
+        Math.abs(target.current.y - ringPos.current.y) > 0.1
+      ) {
+        rafRef.current = requestAnimationFrame(tick);
+      } else {
+        running = false;
+      }
     };
-    rafRef.current = requestAnimationFrame(tick);
+    const startRing = () => {
+      if (!running) {
+        running = true;
+        rafRef.current = requestAnimationFrame(tick);
+      }
+    };
 
     window.addEventListener("mousemove", onMove, { passive: true });
     document.addEventListener("mouseover", onOver, true);

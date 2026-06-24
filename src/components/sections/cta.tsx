@@ -35,8 +35,8 @@ export function CTA() {
         </Reveal>
         <Reveal delay={260}>
           <p className="mx-auto mb-12 max-w-xl text-base text-ink-muted md:text-lg">
-            Connecting organizations with exceptional talent that elevates
-            teams and drives growth.
+            Connecting organizations with exceptional people who elevate
+            teams and accelerate growth.
           </p>
         </Reveal>
         <Reveal delay={380}>

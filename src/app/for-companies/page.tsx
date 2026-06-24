@@ -126,7 +126,7 @@ export default function ForCompaniesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
 
-      <main className="min-h-screen bg-page text-ink">
+      <div className="min-h-screen bg-page text-ink">
         {/* ---------- HERO ---------- */}
         <section className="relative isolate flex min-h-screen items-center overflow-hidden bg-deep-2 pb-16 pt-24 text-on-deep sm:pt-28 md:pb-20">
           <div
@@ -429,7 +429,7 @@ export default function ForCompaniesPage() {
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 }

@@ -131,7 +131,7 @@ export default function ContactPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
       />
 
-      <main className="bg-page text-ink">
+      <div className="bg-page text-ink">
         {/* ---------- HERO ---------- */}
         <section className="relative isolate overflow-hidden bg-deep-2 pb-16 pt-32 text-on-deep md:pb-20 md:pt-40">
           {/* one quiet cyan ambient — no orbit dots, keep it editorial */}
@@ -482,7 +482,7 @@ export default function ContactPage() {
             </Reveal>
           </div>
         </section>
-      </main>
+      </div>
     </>
   );
 }

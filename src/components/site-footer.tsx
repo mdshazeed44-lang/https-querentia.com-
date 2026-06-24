@@ -90,8 +90,8 @@ export function SiteFooter() {
               </span>
             </Link>
             <p className="mt-5 max-w-xs text-[13px] leading-relaxed text-on-deep-muted">
-              Your trusted recruitment partner. Connecting organizations with
-              exceptional talent that elevates teams and drives growth.
+              A trusted talent partner connecting organizations with
+              exceptional people who elevate teams and accelerate growth.
             </p>
 
             <ul className="mt-5 space-y-2.5 text-sm">
@@ -175,9 +175,22 @@ export function SiteFooter() {
       {/* ───────── Bottom bar · copyright + social ───────── */}
       <div className="relative border-t border-white/10">
         <div className="container-x flex flex-col items-center justify-between gap-4 py-5 sm:flex-row">
-          <p className="text-center text-[12px] text-on-deep-muted sm:text-left">
-            © {year} {site.legalName}. All rights reserved.
-          </p>
+          <div className="flex flex-col items-center gap-1 text-center sm:items-start sm:text-left">
+            <p className="text-[12px] text-on-deep-muted">
+              © {year} {site.legalName}. All rights reserved.
+            </p>
+            <p className="text-[12px] text-on-deep-muted">
+              Designed by{" "}
+              <a
+                href="https://www.incrementors.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-on-deep-muted transition-colors hover:text-cyan"
+              >
+                Incrementors
+              </a>
+            </p>
+          </div>
           <div className="flex items-center gap-2.5">
             {SOCIALS.map(({ Icon, href, label }) => (
               <a

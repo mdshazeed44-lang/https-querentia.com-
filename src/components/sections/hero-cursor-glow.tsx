@@ -33,13 +33,27 @@ export function HeroCursorGlow() {
     let currentX = 0;
     let currentY = 0;
     let raf = 0;
+    let running = false;
     let initialized = false;
 
     const tick = () => {
       currentX += (targetX - currentX) * LERP;
       currentY += (targetY - currentY) * LERP;
       el.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0)`;
-      raf = window.requestAnimationFrame(tick);
+      // Keep ticking only while still catching up to the cursor; idle otherwise
+      // (no perpetual rAF loop — better for battery and lets the page settle).
+      if (Math.abs(targetX - currentX) > 0.2 || Math.abs(targetY - currentY) > 0.2) {
+        raf = window.requestAnimationFrame(tick);
+      } else {
+        running = false;
+      }
+    };
+
+    const start = () => {
+      if (!running) {
+        running = true;
+        raf = window.requestAnimationFrame(tick);
+      }
     };
 
     const onMove = (e: MouseEvent) => {
@@ -53,6 +67,7 @@ export function HeroCursorGlow() {
         el.style.opacity = "1";
         initialized = true;
       }
+      start();
     };
 
     const onLeave = () => {
@@ -67,7 +82,6 @@ export function HeroCursorGlow() {
     parent.addEventListener("mousemove", onMove);
     parent.addEventListener("mouseleave", onLeave);
     parent.addEventListener("mouseenter", onEnter);
-    raf = window.requestAnimationFrame(tick);
 
     return () => {
       parent.removeEventListener("mousemove", onMove);
@@ -81,7 +95,7 @@ export function HeroCursorGlow() {
     <div
       ref={ref}
       aria-hidden
-      className="pointer-events-none absolute left-0 top-0 -z-10 h-[700px] w-[700px]"
+      className="pointer-events-none absolute left-0 top-0 z-0 h-[700px] w-[700px]"
       style={{
         marginLeft: "-350px",
         marginTop: "-350px",
