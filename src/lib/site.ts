@@ -20,7 +20,7 @@ export const site = {
   facebook: "https://www.facebook.com/querentia",
   instagram: "https://www.instagram.com/querentia",
   twitter: "https://twitter.com/querentia",
-  founded: "2014",
+  founded: "2021",
 } as const;
 
 export const nav = [
@@ -318,8 +318,8 @@ export const specializations = [
 ] as const;
 
 export const stats = [
-  { value: "10+", label: "Years placing IT talent", sub: "Since 2014", icon: "star" },
-  { value: "500+", label: "Successful placements", sub: "Since 2014", icon: "briefcase" },
+  { value: "5+", label: "Years placing IT talent", sub: "Since 2021", icon: "star" },
+  { value: "500+", label: "Successful placements", sub: "Since 2021", icon: "briefcase" },
   { value: "48h", label: "Avg. shortlist turnaround", sub: "Qualified candidates", icon: "bolt" },
   { value: "94%", label: "Placement retention", sub: "Year over year", icon: "shield" },
 ] as const;

@@ -81,18 +81,18 @@ const STEPS = [
 const PILLARS = [
   {
     num: "01",
-    title: "Precision",
-    body: "People are the heart of our business. Every search starts with your role, your team, and the outcome the hire must deliver — then we match for capability and pathway, never for keyword overlap.",
+    title: "Talent",
+    body: "People are the heart of every hire. Every search starts with your role, your team, and the outcome the hire must deliver — we match for capability and pathway, never keyword overlap.",
   },
   {
     num: "02",
-    title: "Impact",
-    body: "We are passionate about our clients' success. First-class service and top-class candidates, for permanent and contract roles alike — shortlists built to move your roadmap, not just fill a seat.",
+    title: "Trust",
+    body: "Honest pipelines, honest timelines. End-to-end delivery from first brief to onboarding, with transparent feedback at every step — because trust is the only metric that compounds.",
   },
   {
     num: "03",
-    title: "Integrity",
-    body: "Honest pipelines, honest timelines. End-to-end delivery from first brief to onboarding, with transparent feedback at every step — because trust is the only metric that compounds.",
+    title: "Thrive",
+    body: "We measure ourselves by your success. First-class service and top-class candidates, permanent or contract — shortlists built to move your roadmap and help your teams thrive.",
   },
 ];
 

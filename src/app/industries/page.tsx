@@ -162,9 +162,9 @@ export default function IndustriesPage() {
               </Reveal>
               <Reveal delay={150}>
                 <p className="max-w-md text-base leading-relaxed text-ink-muted">
-                  A decade of placements has built us genuine reach in each of
-                  these sectors — so the right person is a conversation away, not
-                  a cold search.
+                  Years of focused placements have built us genuine reach in
+                  each of these sectors — so the right person is a conversation
+                  away, not a cold search.
                 </p>
               </Reveal>
             </div>

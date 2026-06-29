@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
-import { CountUp } from "@/components/ui/count-up";
-import { ArrowRight, MapPin, Target, Sparkles, Shield } from "@/components/ui/icons";
+import { AboutTimeline } from "@/components/about-timeline";
+import { ArrowRight, MapPin, Users, Sparkles, Shield } from "@/components/ui/icons";
 import { site } from "@/lib/site";
 
 /**
@@ -14,7 +14,7 @@ import { site } from "@/lib/site";
  * staggered hero rise, floating ambient glows, a timeline line that draws in,
  * nodes that scale/pulse in, hover-lift milestones, and richer principle +
  * leadership cards. Playfair serif + navy + cyan accent. Server component —
- * all interactivity is pure CSS keyframes + Reveal/CountUp.
+ * all interactivity is pure CSS keyframes + Reveal.
  */
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -26,7 +26,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Querentia is Canada's trusted recruitment partner since 2014 — placing all talent, tech and non-tech, with the organizations and leaders shaping the country's future. Talent. Trust. Thrive.",
+    "Querentia is a trusted talent partner since 2021 — delivering exceptional people, tech and non-tech, who help organizations thrive. Talent. Trust. Thrive.",
   alternates: { canonical: "/about" },
 };
 
@@ -54,8 +54,11 @@ const aboutSchema = {
       },
     },
     employee: [
-      { "@type": "Person", name: "Seema Makhija", jobTitle: "Director" },
-      { "@type": "Person", name: "Hemant Makhija", jobTitle: "Advisor" },
+      {
+        "@type": "Person",
+        name: "Seema Makhija",
+        jobTitle: "Director, Talent Services",
+      },
     ],
   },
 };
@@ -63,72 +66,68 @@ const aboutSchema = {
 /* ── Our story, told as a vertical timeline ─────────────────────────────── */
 const milestones = [
   {
-    year: "2014",
-    title: "Founded in Oakville",
-    body: "Querentia opens its doors in Oakville, Ontario, on a single conviction: hiring should be fast, precise, and honest — for talent and employer alike.",
+    year: "2021",
+    title: "The Beginning",
+    body: "We launched Querentia with a mission to deliver exceptional talent and began building partnerships that shaped our foundation.",
   },
   {
-    year: "2017",
-    title: "First 100 placements",
-    body: "Word travels. A growing roster of Canadian enterprises trust us with their most important hires, and our first hundred placements take root.",
-  },
-  {
-    year: "2020",
-    title: "Three offices, coast to coast",
-    body: "We expand beyond our Oakville headquarters to Toronto and Vancouver — closer to the markets, the leaders, and the talent we serve.",
+    year: "2022",
+    title: "Expanding Our Reach",
+    body: "Our capabilities grew as we supported increasingly complex mandates and strengthened our reputation for precision and trust.",
   },
   {
     year: "2023",
-    title: "All talent, every discipline",
-    body: "Tech and non-tech alike. We grow into a full-spectrum partner across 30+ disciplines — from engineering, data, cloud, and security to finance, HR, marketing, and supply chain.",
+    title: "Deepening Our Expertise",
+    body: "We evolved into a preferred partner for high-impact roles, accelerating delivery across critical functions nationwide.",
   },
   {
-    year: "Today",
-    title: "500+ placements · 94% retention",
-    body: "A decade of conviction, compounded. Five practices, 30+ disciplines, and a retention rate that proves the right person changes everything.",
+    year: "2024",
+    title: "Scaling With Purpose",
+    body: "Our network and capabilities matured, enabling us to support larger teams and more strategic hiring initiatives.",
+  },
+  {
+    year: "2025",
+    title: "Defining Our Identity",
+    body: "We refined our brand pillars — Talent. Trust. Thrive. — and elevated our digital presence to reflect our evolution.",
+  },
+  {
+    year: "2026",
+    title: "Thriving Forward",
+    body: "Querentia continues to grow as a modern, high-performance recruitment partner delivering talent that drives meaningful business impact.",
   },
 ];
 
-/* ── What we stand for — three numbered principles ──────────────────────── */
+/* ── What we stand for — Talent. Trust. Thrive. ─────────────────────────── */
 const principles = [
   {
     num: "01",
-    name: "Precision",
-    Icon: Target,
-    body: "We listen before we search. Every shortlist is matched to the role, the team, and the culture — not to keywords. The right person, not merely an available one.",
+    name: "Talent",
+    Icon: Users,
+    body: "We look beyond keywords to find people who elevate teams, culture, and outcomes.",
   },
   {
     num: "02",
-    name: "Impact",
-    Icon: Sparkles,
-    body: "A placement is a beginning, not a transaction. We measure ourselves by the careers we accelerate and the teams that ship — long after the offer is signed.",
+    name: "Trust",
+    Icon: Shield,
+    body: "We build partnerships through clarity, honesty, and consistent delivery.",
   },
   {
     num: "03",
-    name: "Integrity",
-    Icon: Shield,
-    body: "Honest feedback, both ways. Candid counsel, even when it costs us the placement. Trust is the only asset that compounds, and we guard it on every search.",
+    name: "Thrive",
+    Icon: Sparkles,
+    body: "We place talent that drives performance, strengthens culture, and fuels growth.",
   },
 ];
 
 /* ── Leadership — editorial portraits + pull-quotes ─────────────────────── */
 const leadership = [
   {
-    name: "Hemant Makhija",
-    role: "Advisor",
-    focus: "Enterprise hiring strategy · Client delivery",
-    quote:
-      "Great hiring is strategy made human. Get it right, and everything else follows.",
-    bio: "Hemant advises on enterprise hiring strategy and client delivery, helping Canada's leading organizations build teams that perform across every function.",
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80",
-  },
-  {
     name: "Seema Makhija",
-    role: "Director",
-    focus: "Recruitment practice · Search delivery",
+    role: "Director, Talent Services",
+    focus: "Director, Talent Services",
     quote:
-      "The right person doesn't fill a seat. They change the trajectory of a team.",
-    bio: "Seema leads Querentia's recruitment practice and search delivery, guiding every engagement from first brief to signed offer across both tech and non-tech disciplines.",
+      "Exceptional talent doesn't just join a team — it elevates everything around it.",
+    bio: "Seema oversees Querentia's full recruitment lifecycle, leading every search with clarity, precision, and a commitment to delivering exceptional tech and non-tech talent.",
     img: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80",
   },
 ];
@@ -159,64 +158,86 @@ export default function AboutPage() {
         @keyframes ab-underline { from { transform: scaleX(0); } to { transform: scaleX(1); } }
         .ab-underline { transform-origin: left; animation: ab-underline 1.1s cubic-bezier(0.16,1,0.3,1) 0.6s both; }
 
-        @keyframes ab-shimmer {
-          0%   { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
+        /* hero image: full-bleed on the right, left edge feathered into navy (homepage treatment) */
+        @media (min-width: 1024px) {
+          .ab-hero-mask {
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 34%, #000 100%);
+            mask-image: linear-gradient(90deg, transparent 0%, #000 34%, #000 100%);
+          }
         }
-
-        /* timeline vertical line draws in as the section scrolls into view */
-        @keyframes ab-draw { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-        .ab-line { transform-origin: top; animation: ab-draw 1.6s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
-
-        /* node ping + core scale-in */
-        @keyframes ab-ping { 0% { transform: scale(0.6); opacity: 0.7; } 70% { transform: scale(2.4); opacity: 0; } 100% { transform: scale(2.4); opacity: 0; } }
-        .ab-ping { animation: ab-ping 3.2s ease-out infinite; }
-        @keyframes ab-pop { from { transform: scale(0); } to { transform: scale(1); } }
-        .ab-node { animation: ab-pop 0.6s cubic-bezier(0.34,1.56,0.64,1) both; }
+        @keyframes ab-img-in { from { opacity: 0; transform: scale(1.12); } to { opacity: 1; transform: scale(1); } }
+        .ab-img-in { animation: ab-img-in 1.6s cubic-bezier(0.16,1,0.3,1) both; }
 
         @media (prefers-reduced-motion: reduce) {
-          .ab-rise, .ab-underline, .ab-line, .ab-node { opacity: 1; transform: none; filter: none; animation: none; }
-          .ab-glow-a, .ab-glow-b, .ab-ping { animation: none; }
+          .ab-rise, .ab-underline, .ab-img-in { opacity: 1; transform: none; filter: none; animation: none; }
+          .ab-glow-a, .ab-glow-b { animation: none; }
         }
       `}</style>
 
-      {/* ---------- 1. HERO — a single editorial statement ---------- */}
-      <section className="relative isolate overflow-hidden bg-deep-2 pb-16 pt-28 text-on-deep md:pb-20 md:pt-36">
-        {/* floating ambient cyan glows — gently drifting */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(ellipse 65% 50% at 75% 15%, rgba(0,194,255,0.10) 0%, transparent 62%)",
-            }}
+      {/* ---------- 1. HERO — full-bleed, homepage-style split ---------- */}
+      <section
+        className="relative isolate flex min-h-[96vh] items-center overflow-hidden text-on-deep"
+        style={{ backgroundColor: "#0D1B2A" }}
+      >
+        {/* full-bleed image on the right; left edge feathered into navy via mask */}
+        <div className="ab-hero-mask absolute inset-0 lg:left-[42%] lg:top-16">
+          <Image
+            src="/about-hero.webp"
+            alt="The Querentia team collaborating in a modern office — the people behind every placement."
+            fill
+            priority
+            sizes="(min-width:1024px) 58vw, 100vw"
+            className="ab-img-in object-cover object-center"
           />
-          <div className="ab-glow-a absolute -right-24 top-4 h-[460px] w-[460px] rounded-full bg-cyan/[0.10] blur-3xl" />
-          <div className="ab-glow-b absolute -left-32 bottom-0 h-[380px] w-[380px] rounded-full bg-cyan/[0.05] blur-3xl" />
         </div>
 
-        <div className="container-x relative z-10">
-          <div className="max-w-4xl">
+        {/* mobile veil so copy stays readable over the full-bleed image */}
+        <div
+          aria-hidden
+          className="absolute inset-0 lg:hidden"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(13,27,42,0.80), rgba(13,27,42,0.93))",
+          }}
+        />
+        {/* desktop: navy wash on the far left for copy depth (mask does the blend) */}
+        <div
+          aria-hidden
+          className="absolute inset-0 hidden lg:block"
+          style={{
+            background:
+              "linear-gradient(90deg, #0D1B2A 0%, rgba(13,27,42,0.85) 26%, rgba(13,27,42,0.2) 42%, rgba(13,27,42,0) 54%)",
+          }}
+        />
+        {/* ambient cyan glow — subtle depth on the copy side */}
+        <div
+          aria-hidden
+          className="ab-glow-b pointer-events-none absolute -left-32 bottom-0 -z-10 h-[380px] w-[380px] rounded-full bg-cyan/[0.06] blur-3xl"
+        />
+
+        {/* copy */}
+        <div className="container-x relative z-10 w-full">
+          <div className="max-w-2xl">
             <p
               className="ab-rise mb-8 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.32em] text-cyan"
               style={{ animationDelay: "0.05s" }}
             >
               <span className="inline-block h-px w-8 bg-cyan/60" />
-              About Querentia · Est. {site.founded}
+              About Querentia · Est. 2021
             </p>
 
             <h1
               className={`${playfair.className} ab-rise text-balance font-medium text-on-deep`}
               style={{
-                fontSize: "clamp(2.4rem, 6vw, 5rem)",
-                lineHeight: 1.08,
+                fontSize: "clamp(1.85rem, 4vw, 3.35rem)",
+                lineHeight: 1.1,
                 letterSpacing: "-0.015em",
                 animationDelay: "0.2s",
               }}
             >
-              We believe the right person{" "}
+              We&apos;re built on a simple belief:{" "}
               <span className="relative inline-block" style={{ color: "#00C2FF" }}>
-                changes everything.
+                exceptional talent transforms businesses.
                 <span
                   aria-hidden
                   className="ab-underline absolute -bottom-2 left-0 h-[3px] w-full rounded-full"
@@ -226,13 +247,11 @@ export default function AboutPage() {
             </h1>
 
             <p
-              className="ab-rise mt-9 max-w-2xl text-base leading-relaxed text-on-deep-muted md:text-lg"
+              className="ab-rise mt-9 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg"
               style={{ animationDelay: "0.4s" }}
             >
-              Since {site.founded}, Querentia has been Canada&apos;s trusted
-              recruitment partner — placing all talent, tech and non-tech, with
-              the organizations and leaders shaping the country&apos;s future.{" "}
-              {site.tagline}
+              Since 2021, Querentia has been a trusted talent partner —
+              delivering exceptional people who help organizations thrive.
             </p>
           </div>
         </div>
@@ -256,60 +275,14 @@ export default function AboutPage() {
               <h2
                 className={`${playfair.className} text-[clamp(1.9rem,4.5vw,3.25rem)] font-medium leading-[1.1] tracking-tight text-ink`}
               >
-                A decade of conviction,{" "}
-                <span className="text-cyan">compounded.</span>
+                A Journey Built on Talent, Trust, and{" "}
+                <span className="text-cyan">Momentum.</span>
               </h2>
             </Reveal>
           </div>
 
-          {/* timeline */}
-          <div className="relative mx-auto max-w-3xl">
-            {/* vertical line — draws in on load */}
-            <span
-              aria-hidden
-              className="ab-line absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-cyan/60 via-border to-transparent md:left-[11px]"
-            />
-            <ol className="space-y-9 md:space-y-11">
-              {milestones.map((m, idx) => (
-                <li
-                  key={m.year}
-                  className="group relative pl-10 transition-transform duration-300 hover:-translate-y-0.5 md:pl-16"
-                >
-                  {/* node */}
-                  <span
-                    aria-hidden
-                    className="absolute left-0 top-1.5 flex h-4 w-4 items-center justify-center md:h-6 md:w-6"
-                  >
-                    <span className="ab-ping absolute inline-flex h-2 w-2 rounded-full bg-cyan/40 md:h-2.5 md:w-2.5" />
-                    <span
-                      className="ab-node relative inline-flex h-2.5 w-2.5 rounded-full bg-cyan ring-4 ring-cyan/15 transition-all duration-300 group-hover:scale-125 group-hover:ring-cyan/25 md:h-3 md:w-3"
-                      style={{ animationDelay: `${0.25 + idx * 0.12}s` }}
-                    />
-                  </span>
-                  <Reveal delay={idx * 90}>
-                    <p
-                      className={`${playfair.className} text-2xl font-medium leading-none tracking-tight text-cyan md:text-3xl`}
-                    >
-                      {m.year}
-                    </p>
-                    <h3 className="mt-3 text-lg font-medium tracking-tight text-ink transition-colors duration-300 group-hover:text-cyan md:text-xl">
-                      {idx === milestones.length - 1 ? (
-                        <>
-                          <CountUp value="500" duration={1600} />+ placements ·{" "}
-                          <CountUp value="94%" duration={1600} /> retention
-                        </>
-                      ) : (
-                        m.title
-                      )}
-                    </h3>
-                    <p className="mt-2.5 max-w-xl text-[15px] leading-relaxed text-ink-muted md:text-base">
-                      {m.body}
-                    </p>
-                  </Reveal>
-                </li>
-              ))}
-            </ol>
-          </div>
+          {/* timeline — scroll-driven beam + node activation */}
+          <AboutTimeline milestones={milestones} headingFont={playfair.className} />
         </div>
       </section>
 
@@ -332,8 +305,8 @@ export default function AboutPage() {
               <h2
                 className={`${playfair.className} mx-auto max-w-2xl text-[clamp(1.9rem,4.5vw,3.25rem)] font-medium leading-[1.1] tracking-tight text-ink`}
               >
-                Precision. Impact.{" "}
-                <span className="text-cyan">Integrity.</span>
+                Talent. Trust.{" "}
+                <span className="text-cyan">Thrive.</span>
               </h2>
             </Reveal>
           </div>
@@ -389,8 +362,8 @@ export default function AboutPage() {
               <h2
                 className={`${playfair.className} text-[clamp(1.9rem,4.5vw,3.25rem)] font-medium leading-[1.1] tracking-tight text-ink`}
               >
-                The people{" "}
-                <span className="text-cyan">behind the practice.</span>
+                The People Behind{" "}
+                <span className="text-cyan">Querentia.</span>
               </h2>
             </Reveal>
           </div>

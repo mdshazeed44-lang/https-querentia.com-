@@ -454,8 +454,8 @@ export default function ContactPage() {
               <h2
                 className={`${playfair.className} text-[clamp(2.25rem,6vw,4.25rem)] font-medium leading-[1.06] tracking-tight text-white`}
               >
-                Precision. <span style={{ color: "#00C2FF" }}>Impact.</span>{" "}
-                Integrity.
+                Talent. <span style={{ color: "#00C2FF" }}>Trust.</span>{" "}
+                Thrive.
               </h2>
             </Reveal>
             <Reveal delay={160}>

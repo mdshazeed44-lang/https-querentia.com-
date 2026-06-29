@@ -1,10 +1,10 @@
 # Querentia
 
-> Querentia Inc. is Canada's trusted recruitment partner, placing exceptional talent — both tech and non-tech — with leading organizations across the country since 2014. Tagline: Talent. Trust. Thrive.
+> Querentia Inc. is Canada's trusted recruitment partner, placing exceptional talent — both tech and non-tech — with leading organizations across the country since 2021. Tagline: Talent. Trust. Thrive.
 
-Querentia is a recruitment and talent-solutions firm headquartered in Oakville, Ontario, with offices in Toronto and Vancouver. We connect employers with high-quality, high-impact candidates across 30+ disciplines and 5 practice areas, for permanent and contract roles. Our promise: Precision. Impact. Integrity.
+Querentia is a recruitment and talent-solutions firm headquartered in Oakville, Ontario, with offices in Toronto and Vancouver. We connect employers with high-quality, high-impact candidates across 30+ disciplines and 5 practice areas, for permanent and contract roles. Our promise: Talent. Trust. Thrive.
 
-- Founded: 2014
+- Founded: 2021
 - Headquarters: Oakville, Ontario, Canada (offices in Toronto and Vancouver)
 - Area served: all of Canada
 - Audiences: employers hiring talent, and candidates seeking roles
@@ -15,7 +15,7 @@ Querentia is a recruitment and talent-solutions firm headquartered in Oakville, 
 ## Key pages
 
 - [Home](https://querentia.com/): Overview of Querentia's recruitment services and value proposition.
-- [About Us](https://querentia.com/about): Company story since 2014, principles (Precision, Impact, Integrity), and leadership.
+- [About Us](https://querentia.com/about): Company story since 2021, principles (Talent, Trust, Thrive), and leadership.
 - [For Companies](https://querentia.com/for-companies): How employers hire with Querentia — 48-hour shortlists, the process, and disciplines covered.
 - [For Talent](https://querentia.com/for-talent): For job seekers — how Querentia helps candidates find the right role.
 - [Industries](https://querentia.com/industries): The business sectors Querentia serves.
