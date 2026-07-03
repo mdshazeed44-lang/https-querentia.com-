@@ -238,7 +238,7 @@ export default function ContactPage() {
                                       ? "noopener noreferrer"
                                       : undefined
                                   }
-                                  className="block break-words text-sm text-ink transition-colors hover:text-cyan"
+                                  className="block w-fit break-words text-sm text-ink underline-offset-4 transition-colors hover:text-cyan hover:underline hover:decoration-cyan/40"
                                 >
                                   {l.label}
                                 </a>
@@ -295,7 +295,7 @@ export default function ContactPage() {
                               defaultChecked={idx === 0}
                               className="sr-only"
                             />
-                            <span className="inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-border bg-page px-4 py-2.5 text-xs font-medium text-ink-muted transition-all group-has-[:checked]:border-cyan group-has-[:checked]:bg-cyan-soft group-has-[:checked]:text-ink group-has-[:focus-visible]:ring-4 group-has-[:focus-visible]:ring-cyan/15">
+                            <span className="inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-border bg-page px-4 py-2.5 text-xs font-medium text-ink-muted transition-all duration-200 hover:border-cyan/40 active:scale-[0.97] group-has-[:checked]:border-cyan group-has-[:checked]:bg-cyan-soft group-has-[:checked]:text-ink group-has-[:focus-visible]:ring-4 group-has-[:focus-visible]:ring-cyan/15">
                               <Check className="h-3 w-3 text-cyan opacity-0 transition-opacity group-has-[:checked]:opacity-100" />
                               {r.label}
                             </span>
@@ -310,6 +310,7 @@ export default function ContactPage() {
                         label="Your name"
                         required
                         placeholder="Jane Smith"
+                        autoComplete="name"
                       />
                       <Field
                         name="email"
@@ -317,6 +318,7 @@ export default function ContactPage() {
                         required
                         placeholder="jane@company.com"
                         type="email"
+                        autoComplete="email"
                       />
                     </div>
                     <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -331,10 +333,16 @@ export default function ContactPage() {
                         name="company"
                         label="Company"
                         placeholder="Optional"
+                        autoComplete="organization"
                       />
                     </div>
                     <div className="mt-4">
-                      <Field name="role" label="Role" placeholder="Optional" />
+                      <Field
+                        name="role"
+                        label="Role"
+                        placeholder="Optional"
+                        autoComplete="organization-title"
+                      />
                     </div>
                     <div className="mt-4">
                       <label className="block text-xs font-medium text-ink-muted">
@@ -345,14 +353,14 @@ export default function ContactPage() {
                           rows={4}
                           required
                           placeholder="Role, location, timeline — anything that helps."
-                          className="mt-1.5 w-full rounded-xl border border-border bg-page px-4 py-3 text-sm text-ink transition-colors placeholder:text-ink-faint focus:border-cyan focus:outline-none focus:ring-4 focus:ring-cyan/15"
+                          className="mt-1.5 min-h-[120px] w-full resize-y rounded-xl border border-border bg-page px-4 py-3 text-sm text-ink transition-colors placeholder:text-ink-faint focus:border-cyan focus:outline-none focus:ring-4 focus:ring-cyan/15"
                         />
                       </label>
                     </div>
 
                     <button
                       type="submit"
-                      className="group mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700 sm:w-auto"
+                      className="group mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white shadow-[0_18px_40px_-16px_rgba(255,107,43,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-700 hover:shadow-[0_24px_52px_-16px_rgba(255,107,43,0.65)] active:translate-y-0 active:shadow-[0_12px_30px_-16px_rgba(255,107,43,0.5)] sm:w-auto"
                     >
                       Send message
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -414,7 +422,15 @@ export default function ContactPage() {
                 </div>
 
                 {/* Map */}
-                <div className="relative min-h-[300px] md:min-h-full">
+                <div className="relative min-h-[300px] overflow-hidden bg-deep-2 md:min-h-full">
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0"
+                    style={{
+                      background:
+                        "radial-gradient(ellipse 70% 60% at 50% 38%, rgba(0,194,255,0.14) 0%, transparent 65%)",
+                    }}
+                  />
                   <iframe
                     title="Querentia office — Oakville, Ontario, Canada"
                     src="https://maps.google.com/maps?q=Oakville,%20Ontario,%20Canada&t=&z=12&ie=UTF8&iwloc=&output=embed"
