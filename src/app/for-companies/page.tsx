@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
-import { ArrowRight, Mail, Check } from "@/components/ui/icons";
+import { ArrowRight, Mail, Check, ChevronDown } from "@/components/ui/icons";
+import { Industries } from "@/components/sections/industries";
 import { site } from "@/lib/site";
 
 /**
@@ -20,28 +21,59 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "For Companies — Hire Exceptional Talent in Canada",
   description:
-    "Querentia is Canada's trusted recruitment partner for exceptional talent, tech and non-tech. 48-hour shortlists. 94% retention. Permanent and contract hiring across 30+ disciplines.",
+    "Querentia is Canada's trusted recruitment partner for exceptional talent — tech and non-tech. Thoughtful, transparent, permanent and contract hiring across 42 disciplines and 7 practice areas.",
   alternates: { canonical: "/for-companies" },
 };
 
+/* ── FAQ — answer-oriented content for AI search (GEO) + FAQPage schema ── */
+const FAQS = [
+  {
+    q: "What does Querentia do for companies hiring in Canada?",
+    a: "Querentia is a Canadian recruitment partner that helps organizations hire exceptional talent — both technical and non-technical — across 42 disciplines and 7 practice areas. We deliver pre-vetted shortlists for permanent and contract roles, matching candidates for capability, trajectory, and cultural fit rather than keyword overlap.",
+  },
+  {
+    q: "How does Querentia's hiring process work?",
+    a: "It starts with a single briefing call to calibrate the role, the skills, and the culture fit you need. We then draw on our specialist network to build a curated shortlist of pre-screened candidates, coordinate interviews with honest two-way feedback, and support the offer, onboarding, and long-term retention.",
+  },
+  {
+    q: "Do you recruit for non-technical roles as well as technology?",
+    a: "Yes. Querentia recruits across both tech and non-tech functions — from cloud, data, AI, engineering, and cyber security to finance, HR, project delivery, risk, and business operations.",
+  },
+  {
+    q: "What is the difference between permanent and contract recruitment?",
+    a: "Querentia supports both. Permanent recruitment places full-time employees for long-term roles, while contract and contract-to-hire staffing delivers specialists for defined projects or interim needs. We can staff a single role or an entire team.",
+  },
+  {
+    q: "Which industries and disciplines does Querentia cover?",
+    a: "We cover 7 practice areas and 42 disciplines — including Cloud, Data & AI; Engineering & Product; Enterprise Platforms; Strategy & Delivery; Security, Risk & Business; Infrastructure, Networking & IT Operations; and Business, Finance & Risk — serving sectors from banking and insurance to technology, public sector, healthcare, and professional services.",
+  },
+  {
+    q: "Where in Canada is Querentia based?",
+    a: "Querentia is headquartered in Oakville, Ontario, with offices in Toronto and Vancouver, and serves clients across all of Canada.",
+  },
+];
+
 const serviceSchema = {
-  "@context": "https://schema.org",
   "@type": "Service",
+  "@id": `${site.url}/for-companies#service`,
   name: "Recruitment & Staffing for Companies",
   serviceType: "Staffing and recruitment",
   url: `${site.url}/for-companies`,
   description:
-    "Permanent and contract recruitment for Canada's leading organizations. Pre-vetted shortlists in 48 hours across 30+ disciplines, tech and non-tech — from cloud, data and security to finance, HR, marketing and supply chain.",
-  areaServed: {
-    "@type": "Country",
-    name: "Canada",
-  },
+    "Permanent and contract recruitment for Canada's leading organizations. Thoughtful, transparent shortlists across 42 disciplines and 7 practice areas, tech and non-tech — from cloud, data and security to finance, HR, project delivery and risk.",
+  areaServed: [
+    { "@type": "Country", name: "Canada" },
+    { "@type": "City", name: "Oakville" },
+    { "@type": "City", name: "Toronto" },
+    { "@type": "City", name: "Vancouver" },
+  ],
   audience: {
     "@type": "BusinessAudience",
     name: "Employers hiring talent in Canada",
   },
   provider: {
     "@type": "Organization",
+    "@id": `${site.url}#organization`,
     name: site.legalName,
     url: site.url,
     email: site.email,
@@ -53,77 +85,92 @@ const serviceSchema = {
       addressCountry: site.country,
     },
   },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Recruitment services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Permanent recruitment",
+          description:
+            "Full-time placements across 42 tech and non-tech disciplines.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Contract & contract-to-hire staffing",
+          description:
+            "Specialist contract talent for defined projects and interim needs.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Executive & specialist search",
+          description: "Niche and leadership hiring across 7 practice areas.",
+        },
+      },
+    ],
+  },
 };
 
-const STEPS = [
-  {
-    num: "01",
-    title: "Brief us",
-    body: "One call. We calibrate the role, the skills, and the culture fit you actually need — no forty-field intake forms, no committees.",
-  },
-  {
-    num: "02",
-    title: "Shortlist in 48h",
-    body: "Four to six pre-vetted candidates from our network — each one already screened for real capability, not keyword overlap.",
-  },
-  {
-    num: "03",
-    title: "Interview",
-    body: "We coordinate every step; you decide. Honest feedback flows both ways, so nobody's time gets wasted on a maybe.",
-  },
-  {
-    num: "04",
-    title: "Place + retain",
-    body: "Offer, onboarding support, and 12-month retention follow-through. We stay accountable long after day one.",
-  },
-];
+const faqSchema = {
+  "@type": "FAQPage",
+  "@id": `${site.url}/for-companies#faq`,
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const breadcrumbSchema = {
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "For Companies",
+      item: `${site.url}/for-companies`,
+    },
+  ],
+};
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [serviceSchema, faqSchema, breadcrumbSchema],
+};
 
 const PILLARS = [
   {
     num: "01",
     title: "Talent",
-    body: "People are the heart of every hire. Every search starts with your role, your team, and the outcome the hire must deliver — we match for capability and pathway, never keyword overlap.",
+    body: "We deliver candidates who elevate your teams, strengthen your culture, and drive meaningful outcomes — matching for capability, trajectory, and impact, not keyword overlap.",
   },
   {
     num: "02",
     title: "Trust",
-    body: "Honest pipelines, honest timelines. End-to-end delivery from first brief to onboarding, with transparent feedback at every step — because trust is the only metric that compounds.",
+    body: "Clear communication, honest timelines, and transparent pipelines. From first brief to onboarding, we operate with consistency and integrity — because trust is the foundation of every successful hire.",
   },
   {
     num: "03",
     title: "Thrive",
-    body: "We measure ourselves by your success. First-class service and top-class candidates, permanent or contract — shortlists built to move your roadmap and help your teams thrive.",
+    body: "Your success is our metric. Thoughtful service and high-calibre talent, permanent or contract — shortlists built to advance your roadmap and help your teams thrive.",
   },
 ];
-
-const DISCIPLINES = [
-  "Cloud Technologies",
-  "Data Engineering",
-  "Cyber Security",
-  "Full Stack Development",
-  "Project Management",
-  "Business Analysis",
-  "Financial Advisory",
-  "Human Resources",
-  "Digital Marketing",
-  "Supply Chain & Procurement",
-  "Risk & Internal Audit",
-  "UI / UX Design",
-];
-
-const TESTIMONIAL = {
-  quote:
-    "Querentia turned around a five-person shortlist in 36 hours for a hard-to-fill leadership role. The first hire is still with us at 18 months.",
-  author: "Talent Acquisition Lead",
-  role: "Enterprise · Toronto",
-};
 
 export default function ForCompaniesPage() {
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
       />
 
       <div className="min-h-screen bg-page text-ink">
@@ -158,25 +205,23 @@ export default function ForCompaniesPage() {
                       fontSize: "clamp(2rem, 4.2vw, 3.4rem)",
                       lineHeight: 1.08,
                       letterSpacing: "-0.015em",
-                      maxWidth: "18ch",
+                      maxWidth: "20ch",
                     }}
                   >
-                    Hire exceptional talent.
-                    <br className="hidden sm:block" />{" "}
-                    <span style={{ color: "#00C2FF" }}>
-                      Fast, precise, vetted.
-                    </span>
+                    Where Talent Meets Trust — And Companies{" "}
+                    <span style={{ color: "#00C2FF" }}>Thrive.</span>
                   </h1>
                 </Reveal>
                 <Reveal delay={300}>
-                  <p className="mx-auto mt-6 max-w-md text-[14px] leading-relaxed text-on-deep-muted md:text-[15px] lg:mx-0">
-                    Pre-vetted shortlists for Canada&apos;s leading organizations
-                    — across every discipline, tech and non-tech, in 48 hours.
+                  <p className="mx-auto mt-6 max-w-lg text-[14px] leading-relaxed text-on-deep-muted md:text-[15px] lg:mx-0">
+                    We build high-performing teams through thoughtful,
+                    transparent recruitment that elevates your culture and drives
+                    results.
                   </p>
                 </Reveal>
                 <Reveal delay={440}>
                   <div className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-white/15 pt-5 lg:justify-start">
-                    {["48h shortlists", "94% retention", "Permanent & contract"].map(
+                    {["94% retention", "Permanent & contract"].map(
                       (t) => (
                         <span
                           key={t}
@@ -188,60 +233,6 @@ export default function ForCompaniesPage() {
                     )}
                   </div>
                 </Reveal>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ---------- HOW IT WORKS ---------- */}
-        <section id="process" className="scroll-mt-24 bg-page py-16 md:py-20">
-          <div className="container-x">
-            <Reveal>
-              <div className="mb-12 max-w-2xl md:mb-14">
-                <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-                  <span className="inline-block h-px w-8 bg-cyan/60" />
-                  How it works
-                </p>
-                <h2
-                  className={`${playfair.className} text-[clamp(1.9rem,4.5vw,3.25rem)] font-medium leading-[1.1] tracking-tight`}
-                >
-                  From brief to hire.{" "}
-                  <span className="text-cyan">In four steps.</span>
-                </h2>
-              </div>
-            </Reveal>
-
-            <div className="relative">
-              {/* Connecting line through the step circles (only spans a single
-                  4-up row, so it appears at lg where the grid is 4 columns) */}
-              <span
-                aria-hidden
-                className="absolute left-0 top-6 hidden h-px w-full bg-cyan/25 lg:block"
-              />
-              <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:gap-6 lg:grid-cols-4 lg:gap-8">
-                {STEPS.map((s, i) => (
-                  <Reveal key={s.num} delay={i * 120}>
-                    <div className="relative">
-                      <span
-                        className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-cyan text-base font-semibold text-deep"
-                        style={{ fontFamily: "var(--font-display)" }}
-                      >
-                        {s.num}
-                      </span>
-                      <div className="mt-6 h-full rounded-2xl border border-border bg-card p-7 transition-all duration-300 hover:-translate-y-1 hover:border-cyan/40 hover:shadow-[0_24px_50px_-28px_rgba(13,27,42,0.3)]">
-                        <h3
-                          className="text-xl font-medium tracking-tight"
-                          style={{ fontFamily: "var(--font-display)" }}
-                        >
-                          {s.title}
-                        </h3>
-                        <p className="mt-4 text-[15px] leading-relaxed text-ink-muted">
-                          {s.body}
-                        </p>
-                      </div>
-                    </div>
-                  </Reveal>
-                ))}
               </div>
             </div>
           </div>
@@ -268,7 +259,7 @@ export default function ForCompaniesPage() {
                   className={`${playfair.className} text-[clamp(1.9rem,4.5vw,3.25rem)] font-medium leading-[1.1] tracking-tight text-white`}
                 >
                   Three principles.{" "}
-                  <span className="text-cyan">Every mandate.</span>
+                  <span className="text-cyan">Every partnership.</span>
                 </h2>
               </div>
             </Reveal>
@@ -308,70 +299,68 @@ export default function ForCompaniesPage() {
           </div>
         </section>
 
-        {/* ---------- DISCIPLINES STRIP ---------- */}
-        <section id="industries" className="scroll-mt-24 bg-page py-16 md:py-20">
-          <div className="container-x">
-            <Reveal>
-              <div className="mb-10 max-w-2xl">
-                <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-                  <span className="inline-block h-px w-8 bg-cyan/60" />
-                  What we recruit for
-                </p>
-                <p className="text-lg leading-relaxed text-ink-muted md:text-xl">
-                  From cloud and data to finance, HR and marketing — if the role
-                  matters to your business, our network already covers it.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={150}>
-              <div className="flex flex-wrap items-center gap-3">
-                {DISCIPLINES.map((d) => (
-                  <span
-                    key={d}
-                    className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-card px-5 py-2.5 text-sm font-medium text-ink transition-all duration-300 hover:-translate-y-px hover:border-cyan"
-                  >
-                    <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-cyan" />
-                    {d}
-                  </span>
-                ))}
-                <Link
-                  href="/"
-                  className="group inline-flex items-center gap-2 rounded-full border border-cyan/40 bg-cyan-soft px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-cyan"
-                >
-                  All 30 disciplines
-                  <ArrowRight className="h-3.5 w-3.5 text-cyan transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-        </section>
+        {/* ---------- OUR EXPERTISE (shared homepage section) ---------- */}
+        <div id="expertise" className="scroll-mt-24">
+          <Industries />
+        </div>
 
-        {/* ---------- TESTIMONIAL ---------- */}
-        <section className="border-t border-border bg-page-2 py-16 md:py-20">
+        {/* ---------- FAQ (answer content for AI search + FAQPage schema) ---------- */}
+        <section
+          id="faq"
+          className="scroll-mt-24 border-t border-border bg-page-2 py-16 md:py-20"
+        >
+          <style>{`
+            #faq details > summary svg { transition: transform .3s ease; }
+            #faq details[open] > summary svg { transform: rotate(180deg); }
+          `}</style>
           <div className="container-x">
-            <Reveal>
-              <figure className="mx-auto max-w-3xl border-t-2 border-cyan/70 bg-card p-10 shadow-[0_24px_50px_-20px_rgba(13,27,42,0.12)] md:p-14">
-                <span
-                  aria-hidden
-                  className={`${playfair.className} mb-5 block text-6xl leading-none text-cyan/35`}
-                >
-                  &ldquo;
-                </span>
-                <blockquote
-                  className={`${playfair.className} text-balance text-xl leading-relaxed text-ink md:text-2xl`}
-                >
-                  {TESTIMONIAL.quote}
-                </blockquote>
-                <figcaption className="mt-10 border-t border-ink/10 pt-6">
-                  <p className="text-sm font-medium text-ink">
-                    {TESTIMONIAL.author}
+            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+              <Reveal>
+                <div className="lg:sticky lg:top-28">
+                  <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                    <span className="inline-block h-px w-8 bg-cyan/60" />
+                    Questions, answered
                   </p>
-                  <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-muted">
-                    {TESTIMONIAL.role}
+                  <h2
+                    className={`${playfair.className} text-[clamp(1.9rem,4.5vw,3.25rem)] font-medium leading-[1.1] tracking-tight`}
+                  >
+                    Common questions from{" "}
+                    <span className="text-cyan">hiring teams.</span>
+                  </h2>
+                  <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-ink-muted">
+                    Everything you need to know about partnering with Querentia
+                    to hire in Canada. Still curious?{" "}
+                    <Link
+                      href="/contact"
+                      className="font-medium text-cyan underline-offset-4 hover:underline"
+                    >
+                      Talk to our team
+                    </Link>
+                    .
                   </p>
-                </figcaption>
-              </figure>
-            </Reveal>
+                </div>
+              </Reveal>
+
+              <Reveal delay={120}>
+                <div className="border-t border-border">
+                  {FAQS.map((f) => (
+                    <details key={f.q} className="group border-b border-border">
+                      <summary className="flex cursor-pointer list-none items-start justify-between gap-5 py-5 [&::-webkit-details-marker]:hidden">
+                        <h3
+                          className={`${playfair.className} text-lg font-medium leading-snug tracking-tight text-ink transition-colors duration-200 group-hover:text-cyan md:text-xl`}
+                        >
+                          {f.q}
+                        </h3>
+                        <ChevronDown className="mt-1 h-5 w-5 flex-shrink-0 text-cyan transition-transform duration-300 group-open:rotate-180" />
+                      </summary>
+                      <p className="mb-6 max-w-2xl text-[15px] leading-relaxed text-ink-muted">
+                        {f.a}
+                      </p>
+                    </details>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
           </div>
         </section>
 
@@ -398,14 +387,15 @@ export default function ForCompaniesPage() {
                 <h2
                   className={`${playfair.className} mb-8 text-balance text-[clamp(2.25rem,5vw,3.75rem)] font-medium leading-[1.08] tracking-tight text-white`}
                 >
-                  Tell us what you&apos;re hiring for.{" "}
-                  <span className="text-cyan">We&apos;ll do the rest.</span>
+                  You define the role.{" "}
+                  <span className="text-cyan">We deliver the talent.</span>
                 </h2>
               </Reveal>
               <Reveal delay={260}>
                 <p className="mx-auto mb-10 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
                   Permanent or contract, one role or a whole team — share your
-                  hiring needs and our team will add value from the first brief.
+                  hiring needs and we&apos;ll add value from the very first
+                  brief.
                 </p>
               </Reveal>
               <Reveal delay={380}>

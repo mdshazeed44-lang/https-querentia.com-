@@ -234,7 +234,7 @@ export default function IndustriesPage() {
               <Reveal delay={380}>
                 <div className="mt-9">
                   <Link
-                    href="/for-companies#industries"
+                    href="/for-companies#expertise"
                     className="group inline-flex items-center gap-2 text-sm font-medium text-cyan transition-colors hover:text-ink"
                   >
                     Explore the disciplines we recruit for
