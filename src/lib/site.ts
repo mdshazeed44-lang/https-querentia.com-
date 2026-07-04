@@ -8,7 +8,7 @@ export const site = {
   url: "https://querentia.com",
   tagline: "Talent. Trust. Thrive.",
   description:
-    "Querentia is a trusted talent partner — connecting organizations with exceptional people who elevate teams and accelerate growth. We deliver all talent, tech and non-tech, across Canada.",
+    "Querentia is a trusted talent partner, connecting organizations with exceptional people who elevate teams and accelerate growth. We deliver all talent, tech and non-tech, across Canada.",
   location: "Oakville, Ontario, Canada",
   locality: "Oakville",
   region: "ON",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
@@ -7,7 +8,7 @@ import { Industries } from "@/components/sections/industries";
 import { site } from "@/lib/site";
 
 /**
- * For Companies — premium editorial aesthetic, matching the About "Manifesto"
+ * For Companies: premium editorial aesthetic, matching the About "Manifesto"
  * and homepage hero: Playfair serif headings + navy/cyan. All-talent
  * positioning (tech and non-tech across 30+ disciplines).
  */
@@ -19,17 +20,17 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "For Companies — Hire Exceptional Talent in Canada",
+  title: "For Companies: Hire Exceptional Talent in Canada",
   description:
-    "Querentia is Canada's trusted recruitment partner for exceptional talent — tech and non-tech. Thoughtful, transparent, permanent and contract hiring across 42 disciplines and 7 practice areas.",
+    "Querentia is Canada's trusted recruitment partner for exceptional talent, tech and non-tech. Thoughtful, transparent, permanent and contract hiring across 42 disciplines and 7 practice areas.",
   alternates: { canonical: "/for-companies" },
 };
 
-/* ── FAQ — answer-oriented content for AI search (GEO) + FAQPage schema ── */
+/* ── FAQ: answer-oriented content for AI search (GEO) + FAQPage schema ── */
 const FAQS = [
   {
     q: "What does Querentia do for companies hiring in Canada?",
-    a: "Querentia is a Canadian recruitment partner that helps organizations hire exceptional talent — both technical and non-technical — across 42 disciplines and 7 practice areas. We deliver pre-vetted shortlists for permanent and contract roles, matching candidates for capability, trajectory, and cultural fit rather than keyword overlap.",
+    a: "Querentia is a Canadian recruitment partner that helps organizations hire exceptional talent, both technical and non-technical, across 42 disciplines and 7 practice areas. We deliver pre-vetted shortlists for permanent and contract roles, matching candidates for capability, trajectory, and cultural fit rather than keyword overlap.",
   },
   {
     q: "How does Querentia's hiring process work?",
@@ -37,7 +38,7 @@ const FAQS = [
   },
   {
     q: "Do you recruit for non-technical roles as well as technology?",
-    a: "Yes. Querentia recruits across both tech and non-tech functions — from cloud, data, AI, engineering, and cyber security to finance, HR, project delivery, risk, and business operations.",
+    a: "Yes. Querentia recruits across both tech and non-tech functions, from cloud, data, AI, engineering, and cyber security to finance, HR, project delivery, risk, and business operations.",
   },
   {
     q: "What is the difference between permanent and contract recruitment?",
@@ -45,7 +46,7 @@ const FAQS = [
   },
   {
     q: "Which industries and disciplines does Querentia cover?",
-    a: "We cover 7 practice areas and 42 disciplines — including Cloud, Data & AI; Engineering & Product; Enterprise Platforms; Strategy & Delivery; Security, Risk & Business; Infrastructure, Networking & IT Operations; and Business, Finance & Risk — serving sectors from banking and insurance to technology, public sector, healthcare, and professional services.",
+    a: "We cover 7 practice areas and 42 disciplines, including Cloud, Data & AI; Engineering & Product; Enterprise Platforms; Strategy & Delivery; Security, Risk & Business; Infrastructure, Networking & IT Operations; and Business, Finance & Risk. We serve sectors from banking and insurance to technology, public sector, healthcare, and professional services.",
   },
   {
     q: "Where in Canada is Querentia based?",
@@ -60,7 +61,7 @@ const serviceSchema = {
   serviceType: "Staffing and recruitment",
   url: `${site.url}/for-companies`,
   description:
-    "Permanent and contract recruitment for Canada's leading organizations. Thoughtful, transparent shortlists across 42 disciplines and 7 practice areas, tech and non-tech — from cloud, data and security to finance, HR, project delivery and risk.",
+    "Permanent and contract recruitment for Canada's leading organizations. Thoughtful, transparent shortlists across 42 disciplines and 7 practice areas, tech and non-tech, from cloud, data and security to finance, HR, project delivery and risk.",
   areaServed: [
     { "@type": "Country", name: "Canada" },
     { "@type": "City", name: "Oakville" },
@@ -151,17 +152,17 @@ const PILLARS = [
   {
     num: "01",
     title: "Talent",
-    body: "We deliver candidates who elevate your teams, strengthen your culture, and drive meaningful outcomes — matching for capability, trajectory, and impact, not keyword overlap.",
+    body: "We deliver candidates who elevate your teams, strengthen your culture, and drive meaningful outcomes, matching for capability, trajectory, and impact, not keyword overlap.",
   },
   {
     num: "02",
     title: "Trust",
-    body: "Clear communication, honest timelines, and transparent pipelines. From first brief to onboarding, we operate with consistency and integrity — because trust is the foundation of every successful hire.",
+    body: "Clear communication, honest timelines, and transparent pipelines. From first brief to onboarding, we operate with consistency and integrity, because trust is the foundation of every successful hire.",
   },
   {
     num: "03",
     title: "Thrive",
-    body: "Your success is our metric. Thoughtful service and high-calibre talent, permanent or contract — shortlists built to advance your roadmap and help your teams thrive.",
+    body: "Your success is our metric. Thoughtful service and high-calibre talent, permanent or contract, with shortlists built to advance your roadmap and help your teams thrive.",
   },
 ];
 
@@ -174,14 +175,63 @@ export default function ForCompaniesPage() {
       />
 
       <div className="min-h-screen bg-page text-ink">
-        {/* ---------- HERO ---------- */}
-        <section className="relative isolate flex min-h-screen items-center overflow-hidden bg-deep-2 pb-16 pt-24 text-on-deep sm:pt-28 md:pb-20">
+        {/* ---------- HERO: full-bleed image, homepage-style split ---------- */}
+        <section
+          className="relative isolate flex min-h-screen items-center overflow-hidden pb-16 pt-24 text-on-deep sm:pt-28 md:pb-20"
+          style={{ backgroundColor: "#0D1B2A" }}
+        >
+          <style>{`
+            @media (min-width: 1024px) {
+              .fc-hero-mask {
+                -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.45) 30%, #000 62%, #000 100%);
+                mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.45) 30%, #000 62%, #000 100%);
+              }
+            }
+            @keyframes fc-img-in { from { opacity: 0; transform: scale(1.12); } to { opacity: 1; transform: scale(1); } }
+            .fc-img-in { animation: fc-img-in 1.6s cubic-bezier(0.16,1,0.3,1) both; }
+            @media (prefers-reduced-motion: reduce) {
+              .fc-img-in { animation: none; opacity: 1; transform: none; }
+            }
+          `}</style>
+
+          {/* full-bleed image on the right; left edge feathered into navy via mask */}
+          <div className="fc-hero-mask absolute inset-0 lg:left-[42%] lg:top-16">
+            <Image
+              src="/companies-hero.webp"
+              alt="A modern open-plan office with teams working across rows of desks"
+              fill
+              priority
+              sizes="(min-width:1024px) 58vw, 100vw"
+              className="fc-img-in object-cover object-center"
+            />
+          </div>
+
+          {/* mobile veil so copy stays readable over the full-bleed image */}
           <div
             aria-hidden
-            className="absolute inset-0"
+            className="absolute inset-0 lg:hidden"
             style={{
               background:
-                "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,194,255,0.12) 0%, transparent 60%)",
+                "linear-gradient(180deg, rgba(13,27,42,0.80), rgba(13,27,42,0.93))",
+            }}
+          />
+          {/* desktop: navy wash on the far left for copy depth (mask does the blend) */}
+          <div
+            aria-hidden
+            className="absolute inset-0 hidden lg:block"
+            style={{
+              background:
+                "linear-gradient(90deg, #0D1B2A 0%, rgba(13,27,42,0.92) 30%, rgba(13,27,42,0.55) 48%, rgba(13,27,42,0.18) 62%, rgba(13,27,42,0) 74%)",
+            }}
+          />
+          {/* desktop: top + bottom navy fades and a soft overall tint so the
+              image settles into the hero instead of floating on it */}
+          <div
+            aria-hidden
+            className="absolute inset-0 hidden lg:block"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(13,27,42,0.85) 0%, rgba(13,27,42,0.25) 16%, rgba(13,27,42,0) 32%, rgba(13,27,42,0) 72%, rgba(13,27,42,0.45) 100%), rgba(13,27,42,0.22)",
             }}
           />
 
@@ -208,7 +258,7 @@ export default function ForCompaniesPage() {
                       maxWidth: "20ch",
                     }}
                   >
-                    Where Talent Meets Trust — And Companies{" "}
+                    Where Talent Meets Trust. And Companies{" "}
                     <span style={{ color: "#00C2FF" }}>Thrive.</span>
                   </h1>
                 </Reveal>
@@ -291,7 +341,7 @@ export default function ForCompaniesPage() {
                 <p
                   className={`${playfair.className} mx-auto max-w-4xl text-balance text-[clamp(1.75rem,4vw,3rem)] font-medium leading-[1.15] tracking-tight text-white`}
                 >
-                  High-quality, high-impact talent —{" "}
+                  High-quality, high-impact talent,{" "}
                   <span className="text-cyan">delivered.</span>
                 </p>
               </div>
@@ -393,7 +443,7 @@ export default function ForCompaniesPage() {
               </Reveal>
               <Reveal delay={260}>
                 <p className="mx-auto mb-10 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
-                  Permanent or contract, one role or a whole team — share your
+                  Permanent or contract, one role or a whole team. Share your
                   hiring needs and we&apos;ll add value from the very first
                   brief.
                 </p>
