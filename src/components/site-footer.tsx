@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Playfair_Display } from "next/font/google";
 import { site, addresses } from "@/lib/site";
 import {
+  ArrowRight,
   Mail,
   MapPin,
   Phone,
@@ -10,6 +12,13 @@ import {
   Instagram,
   Twitter,
 } from "@/components/ui/icons";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 const COLUMNS = [
   {
@@ -62,9 +71,55 @@ export function SiteFooter() {
             "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(0,194,255,0.12) 0%, transparent 65%)",
         }}
       />
+      {/* oversized wordmark watermark — subtle premium texture */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center overflow-hidden"
+      >
+        <Image
+          src="/querentia-wm.png"
+          alt=""
+          width={529}
+          height={93}
+          className="w-[130%] max-w-none translate-y-[26%] opacity-[0.035] brightness-0 invert sm:w-[112%]"
+        />
+      </div>
 
-      <div className="relative container-x py-16 md:py-24">
-        {/* ───────── Row 1 · brand + nav columns (aligned to top) ───────── */}
+      {/* ───────── Top · brand statement + dual CTA ───────── */}
+      <div className="relative border-b border-white/10">
+        <div className="container-x flex flex-col gap-7 py-11 md:flex-row md:items-center md:justify-between md:gap-10 md:py-12">
+          <div>
+            <p className="mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">
+              <span className="inline-block h-px w-8 bg-cyan/60" />
+              Talent · Trust · Thrive
+            </p>
+            <h2
+              className={`${playfair.className} text-balance text-[clamp(1.6rem,3.2vw,2.5rem)] font-medium leading-[1.12] tracking-tight text-white`}
+            >
+              The right people change{" "}
+              <span className="text-cyan">everything.</span>
+            </h2>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              href="/for-companies"
+              className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.22em] text-white shadow-[0_16px_40px_-16px_rgba(255,107,43,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-700"
+            >
+              Hire talent
+              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/for-talent"
+              className="inline-flex items-center gap-2.5 rounded-lg border border-white/25 px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.22em] text-white transition-colors hover:border-cyan/60 hover:bg-white/5"
+            >
+              Find your role
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* ───────── Main · brand + nav columns ───────── */}
+      <div className="relative container-x py-14 md:py-16">
         <div className="grid gap-10 sm:grid-cols-2 sm:gap-9 lg:grid-cols-[1.7fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div>
@@ -94,7 +149,7 @@ export function SiteFooter() {
               exceptional people who elevate teams and accelerate growth.
             </p>
 
-            <ul className="mt-5 space-y-2.5 text-sm">
+            <ul className="mt-6 space-y-2.5 text-sm">
               <li className="flex items-start gap-3 text-on-deep-muted">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-cyan" />
                 <span className="flex flex-col">
@@ -122,6 +177,22 @@ export function SiteFooter() {
                 </a>
               </li>
             </ul>
+
+            {/* socials */}
+            <div className="mt-6 flex items-center gap-2.5">
+              {SOCIALS.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="group flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-on-deep-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan hover:bg-cyan/10 hover:text-white"
+                >
+                  <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Link columns */}
@@ -147,32 +218,39 @@ export function SiteFooter() {
           ))}
         </div>
 
-        {/* ───────── Row 2 · offices (full-width, 3-up) ───────── */}
-        <div className="mt-10 border-t border-white/10 pt-8 md:mt-12 md:pt-9">
-          <div className="mb-4 flex items-center gap-2.5 md:mb-5">
-            <MapPin className="h-4 w-4 shrink-0 text-cyan" />
-            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-on-deep-muted">
-              Our Offices
+        {/* ───────── Offices — balanced 3-up ───────── */}
+        <div className="mt-12 grid gap-8 border-t border-white/10 pt-9 sm:grid-cols-2 lg:grid-cols-3 md:mt-14 md:pt-10">
+          <div>
+            <div className="mb-3 flex items-center gap-2.5">
+              <MapPin className="h-4 w-4 shrink-0 text-cyan" />
+              <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-on-deep-muted">
+                Our Offices
+              </p>
+            </div>
+            <p className="max-w-xs text-[13px] leading-relaxed text-on-deep-muted">
+              Serving talent and employers across Canada. Meetings by
+              appointment.
             </p>
           </div>
-          <ul className="grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3 md:gap-y-6">
-            {addresses.map((office) => (
-              <li key={office.city} className="text-[13px] leading-snug">
-                <p className="font-semibold text-white">{office.city}</p>
-                <address className="mt-1 not-italic text-on-deep-muted">
-                  {office.lines.map((line) => (
-                    <span key={line} className="block">
-                      {line}
-                    </span>
-                  ))}
-                </address>
-              </li>
-            ))}
-          </ul>
+          {addresses.map((office) => (
+            <div
+              key={office.city}
+              className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 text-[13px] leading-snug transition-colors duration-300 hover:border-cyan/30 hover:bg-white/[0.04]"
+            >
+              <p className="font-semibold text-white">{office.city}</p>
+              <address className="mt-1.5 not-italic text-on-deep-muted">
+                {office.lines.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
+              </address>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* ───────── Bottom bar · copyright + social ───────── */}
+      {/* ───────── Bottom bar · copyright + back-to-top ───────── */}
       <div className="relative border-t border-white/10">
         <div className="container-x flex flex-col items-center justify-between gap-4 py-5 sm:flex-row">
           <div className="flex flex-col items-center gap-1 text-center sm:items-start sm:text-left">
@@ -183,20 +261,15 @@ export function SiteFooter() {
               Querentia® is a registered trademark in Canada.
             </p>
           </div>
-          <div className="flex items-center gap-2.5">
-            {SOCIALS.map(({ Icon, href, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="group flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-on-deep-muted transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan hover:bg-cyan/10 hover:text-white"
-              >
-                <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
-              </a>
-            ))}
-          </div>
+          <a
+            href="#main"
+            className="group inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em] text-on-deep-muted transition-colors hover:text-cyan"
+          >
+            Back to top
+            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/15 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-cyan">
+              <ArrowRight className="h-3 w-3 -rotate-90" />
+            </span>
+          </a>
         </div>
       </div>
     </footer>
