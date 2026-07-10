@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
-import { ArrowRight, Mail, Check, ChevronDown } from "@/components/ui/icons";
+import { ArrowRight, Mail, ChevronDown } from "@/components/ui/icons";
 import { Industries } from "@/components/sections/industries";
 import { site } from "@/lib/site";
 
@@ -50,7 +50,7 @@ const FAQS = [
   },
   {
     q: "Where in Canada is Querentia based?",
-    a: "Querentia is headquartered in Oakville, Ontario, with offices in Toronto and Vancouver, and serves clients across all of Canada.",
+    a: "Querentia is headquartered in Oakville, Ontario, with an additional office in Toronto, and serves clients across Canada.",
   },
 ];
 
@@ -66,7 +66,6 @@ const serviceSchema = {
     { "@type": "Country", name: "Canada" },
     { "@type": "City", name: "Oakville" },
     { "@type": "City", name: "Toronto" },
-    { "@type": "City", name: "Vancouver" },
   ],
   audience: {
     "@type": "BusinessAudience",
@@ -268,20 +267,6 @@ export default function ForCompaniesPage() {
                     transparent recruitment that elevates your culture and drives
                     results.
                   </p>
-                </Reveal>
-                <Reveal delay={440}>
-                  <div className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-white/15 pt-5 lg:justify-start">
-                    {["94% retention", "Permanent & contract"].map(
-                      (t) => (
-                        <span
-                          key={t}
-                          className="inline-flex items-center gap-2 text-sm text-white/70"
-                        >
-                          <Check className="h-4 w-4 text-frost" /> {t}
-                        </span>
-                      )
-                    )}
-                  </div>
                 </Reveal>
               </div>
             </div>

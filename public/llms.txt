@@ -2,10 +2,10 @@
 
 > Querentia Inc. is Canada's trusted recruitment partner, placing exceptional talent — both tech and non-tech — with leading organizations across the country since 2021. Tagline: Talent. Trust. Thrive.
 
-Querentia is a recruitment and talent-solutions firm headquartered in Oakville, Ontario, with offices in Toronto and Vancouver. We connect employers with high-quality, high-impact candidates across 30+ disciplines and 5 practice areas, for permanent and contract roles. Our promise: Talent. Trust. Thrive.
+Querentia is a recruitment and talent-solutions firm headquartered in Oakville, Ontario, with an additional office in Toronto. We connect employers with high-quality, high-impact candidates across 42 disciplines and 7 practice areas, for permanent and contract roles. Our promise: Talent. Trust. Thrive.
 
 - Founded: 2021
-- Headquarters: Oakville, Ontario, Canada (offices in Toronto and Vancouver)
+- Headquarters: Oakville, Ontario, Canada (additional office in Toronto)
 - Area served: all of Canada
 - Audiences: employers hiring talent, and candidates seeking roles
 - Specialties: technology AND non-tech — engineering, data, cloud, cybersecurity, finance, HR, marketing, supply chain, project delivery, and more
@@ -52,5 +52,5 @@ Querentia is a recruitment and talent-solutions firm headquartered in Oakville, 
 
 - Email: info@querentia.com
 - Phone: +1 (905) 409-5422
-- Offices: Oakville (head office), Toronto, Vancouver — Canada
+- Offices: Oakville (head office), Toronto, Canada
 - LinkedIn: https://www.linkedin.com/company/querentia

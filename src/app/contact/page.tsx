@@ -100,7 +100,7 @@ const channels: {
   {
     icon: MapPin,
     title: "Our offices",
-    note: "Oakville HQ, plus Toronto and Vancouver. Serving talent and employers Canada-wide.",
+    note: "Oakville HQ, plus an additional office in Toronto. Serving talent and employers Canada-wide.",
     links: [{ label: site.location, href: MAPS_URL, external: true }],
   },
   {
@@ -403,8 +403,8 @@ export default function ContactPage() {
                         {site.location}
                       </p>
                       <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
-                        Oakville headquarters, with offices in Toronto and
-                        Vancouver — serving talent and employers across Canada.
+                        Oakville headquarters, with an additional office in
+                        Toronto, serving talent and employers across Canada.
                         Meetings by appointment.
                       </p>
                     </div>

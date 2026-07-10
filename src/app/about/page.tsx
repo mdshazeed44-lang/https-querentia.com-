@@ -128,7 +128,7 @@ const leadership = [
     quote:
       "Exceptional talent doesn't just join a team — it elevates everything around it.",
     bio: "Seema oversees Querentia's full recruitment lifecycle, leading every search with clarity, precision, and a commitment to delivering exceptional tech and non-tech talent.",
-    img: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80",
+    img: "/seema-makhija.webp",
   },
 ];
 

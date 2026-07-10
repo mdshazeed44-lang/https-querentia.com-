@@ -180,15 +180,7 @@ export function SiteFooter() {
               © {year} {site.legalName}. All rights reserved.
             </p>
             <p className="text-[12px] text-on-deep-muted">
-              Designed by{" "}
-              <a
-                href="https://www.incrementors.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-on-deep-muted transition-colors hover:text-cyan"
-              >
-                Incrementors
-              </a>
+              Querentia® is a registered trademark in Canada.
             </p>
           </div>
           <div className="flex items-center gap-2.5">

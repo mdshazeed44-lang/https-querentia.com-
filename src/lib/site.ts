@@ -37,7 +37,6 @@ export const clients = ["Deloitte", "Capgemini", "CGI", "Curasion", "Browne"] as
 export const addresses = [
   { city: "Oakville (Head Office)", lines: ["2010 Winston Park Dr, Suite 200", "Oakville, ON L6H 5R7", "Canada"] },
   { city: "Toronto", lines: ["100 King St W, Suite 5600", "Toronto, ON M5X 1C9", "Canada"] },
-  { city: "Vancouver", lines: ["1055 W Georgia St, Suite 2400", "Vancouver, BC V6E 3P3", "Canada"] },
 ] as const;
 
 // Industry verticals (used in the header dropdown menu)
