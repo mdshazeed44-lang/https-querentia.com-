@@ -1,6 +1,14 @@
 import Link from "next/link";
+import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
 import { ArrowRight } from "@/components/ui/icons";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 export function CTA() {
   return (
@@ -22,15 +30,12 @@ export function CTA() {
           </p>
         </Reveal>
         <Reveal delay={130}>
-          <h2 className="mb-9 text-[clamp(2.25rem,6vw,4.5rem)] font-medium leading-[1.05] tracking-tight text-ink">
+          <h2
+            className={`${playfair.className} mb-9 text-balance text-[clamp(2.25rem,6vw,4.25rem)] font-medium leading-[1.08] tracking-tight text-ink`}
+          >
             Most trusted partner
             <br />
-            <span
-              className="text-cyan"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              for exceptional talent.
-            </span>
+            <span className="text-cyan">for exceptional talent.</span>
           </h2>
         </Reveal>
         <Reveal delay={260}>

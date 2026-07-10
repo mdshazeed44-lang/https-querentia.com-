@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
+import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
 import { Mail } from "@/components/ui/icons";
 import { site } from "@/lib/site";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -86,24 +94,17 @@ export default function PrivacyPage() {
           </Reveal>
           <Reveal delay={140}>
             <h1
-              className="text-balance font-medium text-white"
+              className={`${playfair.className} text-balance font-medium text-white`}
               style={{
-                fontSize: "clamp(1.85rem, 3.9vw, 3.25rem)",
-                lineHeight: 1.06,
-                letterSpacing: "-0.022em",
-                maxWidth: "17ch",
+                fontSize: "clamp(1.95rem, 4vw, 3.4rem)",
+                lineHeight: 1.08,
+                letterSpacing: "-0.015em",
+                maxWidth: "18ch",
               }}
             >
               Your data,
               <br className="hidden sm:block" />{" "}
-              <span
-                className="text-cyan"
-                style={{
-                  fontFamily: "var(--font-display)",
-                }}
-              >
-                handled with integrity.
-              </span>
+              <span className="text-cyan">handled with integrity.</span>
             </h1>
           </Reveal>
           <Reveal delay={300}>
@@ -141,8 +142,7 @@ export default function PrivacyPage() {
                   </span>
                   <div>
                     <h2
-                      className="text-xl font-medium tracking-tight text-ink md:text-2xl"
-                      style={{ fontFamily: "var(--font-display)" }}
+                      className={`${playfair.className} text-xl font-medium tracking-tight text-ink md:text-2xl`}
                     >
                       {s.title}
                     </h2>

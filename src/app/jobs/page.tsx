@@ -1,9 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "@/components/ui/icons";
 import { site, openJobs } from "@/lib/site";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 import { JobsBoard } from "./jobs-board";
 
 export const metadata: Metadata = {
@@ -59,12 +67,6 @@ export default function JobsPage() {
         <div className="container-x relative pb-16 pt-32 md:pb-20 md:pt-40">
           <Reveal>
             <p className="mb-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-              <span
-                className="text-sm tracking-normal"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                I
-              </span>
               <span className="inline-block h-px w-6 bg-current opacity-50" />
               <span>Open Roles</span>
               <span className="relative ml-1 flex h-1.5 w-1.5">
@@ -75,24 +77,17 @@ export default function JobsPage() {
           </Reveal>
           <Reveal delay={140}>
             <h1
-              className="text-balance font-medium text-white"
+              className={`${playfair.className} text-balance font-medium text-white`}
               style={{
-                fontSize: "clamp(1.85rem, 3.9vw, 3.25rem)",
-                lineHeight: 1.06,
-                letterSpacing: "-0.022em",
-                maxWidth: "17ch",
+                fontSize: "clamp(1.95rem, 4vw, 3.4rem)",
+                lineHeight: 1.08,
+                letterSpacing: "-0.015em",
+                maxWidth: "18ch",
               }}
             >
               High-impact roles.
               <br className="hidden sm:block" />{" "}
-              <span
-                className="text-cyan"
-                style={{
-                  fontFamily: "var(--font-display)",
-                }}
-              >
-                Matched with precision.
-              </span>
+              <span className="text-cyan">Matched with precision.</span>
             </h1>
           </Reveal>
           <Reveal delay={300}>

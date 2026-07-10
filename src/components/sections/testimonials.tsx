@@ -1,6 +1,14 @@
+import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
 import { Star, Briefcase, Bank, Shield } from "@/components/ui/icons";
 import type { ComponentType, SVGProps } from "react";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 type Quote = {
   quote: string;
@@ -59,19 +67,15 @@ export function Testimonials() {
         {/* Header */}
         <Reveal>
           <div className="mb-12 text-center md:mb-14">
-            <p className="mb-5 flex items-center justify-center gap-3 font-mono text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
+            <p className="mb-5 flex items-center justify-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-8 bg-cyan/60" />
-              V &middot; Testimonials
+              Testimonials
               <span className="inline-block h-px w-8 bg-cyan/60" />
             </p>
-            <h2 className="text-[clamp(2rem,4.5vw,3.25rem)] font-medium leading-[1.05] tracking-tight">
-              In their{" "}
-              <span
-                className="text-cyan"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                words
-              </span>
+            <h2
+              className={`${playfair.className} text-[clamp(2rem,4.5vw,3.25rem)] font-medium leading-[1.1] tracking-tight`}
+            >
+              In their <span className="text-cyan">words.</span>
             </h2>
           </div>
         </Reveal>
@@ -109,9 +113,8 @@ export function Testimonials() {
                     <Stars />
                     <span
                       aria-hidden
-                      className="leading-none"
+                      className={`${playfair.className} leading-none`}
                       style={{
-                        fontFamily: "var(--font-display)",
                         fontSize: "2.75rem",
                         color: q.dark
                           ? "rgba(0,194,255,0.45)"

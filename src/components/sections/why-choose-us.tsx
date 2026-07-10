@@ -1,5 +1,13 @@
+import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
 import { Shield, Star, Target, Award } from "@/components/ui/icons";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 const REASONS = [
   {
@@ -42,14 +50,11 @@ export function WhyChooseUs() {
                 <span className="inline-block h-px w-8 bg-cyan/60" />
                 Why choose us
               </p>
-              <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] font-medium leading-[1.05] tracking-tight">
+              <h2
+                className={`${playfair.className} text-[clamp(2rem,4.5vw,3.4rem)] font-medium leading-[1.1] tracking-tight`}
+              >
                 Because the right talent{" "}
-                <span
-                  className="text-cyan"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  changes everything
-                </span>
+                <span className="text-cyan">changes everything.</span>
               </h2>
             </div>
           </Reveal>
@@ -85,8 +90,7 @@ export function WhyChooseUs() {
                   </span>
 
                   <h3
-                    className="mt-7 text-[22px] font-medium leading-snug tracking-tight text-ink md:text-2xl"
-                    style={{ fontFamily: "var(--font-display)" }}
+                    className={`${playfair.className} mt-7 text-[22px] font-medium leading-snug tracking-tight text-ink md:text-[1.6rem]`}
                   >
                     {r.title}
                   </h3>

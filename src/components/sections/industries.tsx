@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
 import {
   Cloud,
@@ -12,6 +13,13 @@ import {
   Coins,
   ArrowRight,
 } from "@/components/ui/icons";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 // 42 disciplines grouped into 7 practice areas — interactive vertical tabs
 const CATEGORIES = [
@@ -188,17 +196,12 @@ export function Industries() {
           </Reveal>
           <div className="mt-6 flex flex-col gap-7 md:mt-7 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
             <Reveal>
-              <h2 className="max-w-3xl text-[clamp(2.25rem,5vw,4rem)] font-medium leading-[0.98] tracking-tight">
+              <h2
+                className={`${playfair.className} max-w-3xl text-[clamp(2.25rem,5vw,3.75rem)] font-medium leading-[1.05] tracking-tight`}
+              >
                 Across every discipline
                 <br className="hidden md:block" />{" "}
-                you{" "}
-                <span
-                  className="text-cyan"
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  actually
-                </span>{" "}
-                build on.
+                you <span className="text-cyan">actually</span> build on.
               </h2>
             </Reveal>
             <Reveal delay={150}>
@@ -294,10 +297,7 @@ export function Industries() {
                   <cat.Icon className="h-6 w-6" />
                 </span>
                 <div>
-                  <h3
-                    className="text-2xl text-ink"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
+                  <h3 className={`${playfair.className} text-2xl text-ink`}>
                     {cat.title}
                   </h3>
                   <p className="mt-0.5 text-sm text-ink-muted">{cat.blurb}</p>
