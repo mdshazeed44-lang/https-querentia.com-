@@ -293,64 +293,76 @@ export default function ForTalentPage() {
           className="ft-orb-b pointer-events-none absolute -right-40 top-24 -z-10 h-[440px] w-[440px] rounded-full bg-cyan/[0.05] blur-3xl"
         />
         <div className="container-x">
-          <Reveal>
-            <div className="mb-12 max-w-2xl md:mb-16">
-              <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-                <span className="inline-block h-px w-8 bg-cyan/60" />
-                What you can expect
-              </p>
-              <h2
-                className={`${playfair.className} text-[clamp(1.9rem,4.5vw,3.25rem)] font-medium leading-[1.1] tracking-tight`}
-              >
-                What you can expect{" "}
-                <span className="text-cyan">from Querentia.</span>
-              </h2>
-            </div>
-          </Reveal>
-
-          <div className="grid gap-5 md:grid-cols-2 md:gap-6">
-            {EXPECTATIONS.map((e, i) => (
-              <Reveal
-                key={e.num}
-                delay={(i % 2) * 90}
-                className={i === 4 ? "md:col-span-2" : ""}
-              >
-                <div className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-cyan/40 hover:shadow-[0_44px_90px_-46px_rgba(0,194,255,0.4)] md:p-8">
-                  <span aria-hidden className="ft-sheen" />
-                  {/* corner glow on hover */}
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-cyan/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
-                  />
-                  <div className="relative flex items-start gap-5">
-                    <div className="flex shrink-0 flex-col items-center gap-2">
-                      <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan/25 to-cyan/[0.06] text-cyan shadow-[0_12px_30px_-12px_rgba(0,194,255,0.55)] ring-1 ring-cyan/25 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-                        <e.icon className="h-6 w-6" />
-                      </span>
-                      <span
-                        className={`${playfair.className} text-sm font-medium text-cyan/45 transition-colors duration-300 group-hover:text-cyan`}
-                      >
-                        {e.num}
-                      </span>
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h3
-                        className={`${playfair.className} text-[1.35rem] font-medium leading-tight tracking-tight text-ink md:text-[1.45rem]`}
-                      >
-                        {e.title}
-                      </h3>
-                      <p className="mt-3 text-[15px] leading-relaxed text-ink-muted">
-                        {e.body}
-                      </p>
-                      <span
-                        aria-hidden
-                        className="mt-5 block h-[3px] w-10 rounded-full bg-cyan/50 transition-all duration-500 group-hover:w-24 group-hover:bg-cyan"
-                      />
-                    </div>
-                  </div>
+          <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16 xl:gap-24">
+            {/* LEFT — sticky editorial intro */}
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <Reveal>
+                <p className="mb-5 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
+                  <span className="inline-block h-px w-8 bg-cyan/60" />
+                  What you can expect
+                </p>
+                <h2
+                  className={`${playfair.className} text-[clamp(2rem,4.5vw,3.4rem)] font-medium leading-[1.08] tracking-tight`}
+                >
+                  What you can expect{" "}
+                  <span className="text-cyan">from Querentia.</span>
+                </h2>
+                <p className="mt-6 max-w-md text-base leading-relaxed text-ink-muted">
+                  From the first conversation to long after you are placed, this
+                  is what a partnership with Querentia looks like: five
+                  commitments we hold to every professional we represent.
+                </p>
+                <div className="mt-8 flex items-center gap-4">
+                  <Link
+                    href="/contact"
+                    className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.25em] text-white shadow-[0_16px_40px_-16px_rgba(255,107,43,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-700"
+                  >
+                    Submit your CV
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
+                  <span
+                    className={`${playfair.className} text-sm text-ink-faint`}
+                  >
+                    05 commitments
+                  </span>
                 </div>
               </Reveal>
-            ))}
+            </div>
+
+            {/* RIGHT — refined editorial rows */}
+            <div>
+              {EXPECTATIONS.map((e, i) => (
+                <Reveal key={e.num} delay={i * 80}>
+                  <div className="group relative grid grid-cols-[auto_1fr] items-start gap-5 border-t border-ink/10 py-7 first:border-t-0 first:pt-0 sm:gap-7 md:py-8">
+                    {/* soft hover wash behind the row */}
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute inset-y-2 inset-x-[-1rem] rounded-2xl bg-gradient-to-r from-cyan/[0.07] via-cyan/[0.02] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:inset-x-[-1.5rem]"
+                    />
+                    <span className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-soft text-cyan ring-1 ring-cyan/15 transition-all duration-500 group-hover:scale-105 group-hover:bg-cyan group-hover:text-white group-hover:shadow-[0_14px_34px_-10px_rgba(0,194,255,0.65)] md:h-14 md:w-14">
+                      <e.icon className="h-5 w-5 md:h-6 md:w-6" />
+                    </span>
+                    <div className="relative min-w-0">
+                      <div className="flex items-baseline gap-3">
+                        <span
+                          className={`${playfair.className} text-[15px] font-medium text-cyan/60 transition-colors duration-300 group-hover:text-cyan`}
+                        >
+                          {e.num}
+                        </span>
+                        <h3
+                          className={`${playfair.className} text-[1.3rem] font-medium leading-tight tracking-tight text-ink transition-colors duration-300 group-hover:text-cyan md:text-[1.5rem]`}
+                        >
+                          {e.title}
+                        </h3>
+                      </div>
+                      <p className="mt-2.5 max-w-xl text-[15px] leading-relaxed text-ink-muted">
+                        {e.body}
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
