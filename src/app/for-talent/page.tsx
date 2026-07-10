@@ -17,7 +17,8 @@ import {
 
 /**
  * For Talent: premium editorial aesthetic matching the homepage, About and
- * For Companies pages. Playfair serif headings + navy/cyan, full-bleed hero.
+ * For Companies pages. Playfair serif headings + navy/cyan, full-bleed hero,
+ * with layered ambient motion, hover sheen, and staggered scroll reveals.
  */
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -137,7 +138,7 @@ function initials(role: string) {
 export default function ForTalentPage() {
   return (
     <div className="min-h-screen bg-page text-ink">
-      {/* page-scoped effects: full-bleed hero image blend */}
+      {/* page-scoped effects */}
       <style>{`
         @media (min-width: 1024px) {
           .ft-hero-mask {
@@ -147,8 +148,26 @@ export default function ForTalentPage() {
         }
         @keyframes ft-img-in { from { opacity: 0; transform: scale(1.12); } to { opacity: 1; transform: scale(1); } }
         .ft-img-in { animation: ft-img-in 1.6s cubic-bezier(0.16,1,0.3,1) both; }
+
+        /* drifting ambient orbs */
+        @keyframes ft-drift { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(26px,-30px) scale(1.08); } }
+        .ft-orb-a { animation: ft-drift 17s ease-in-out infinite; }
+        .ft-orb-b { animation: ft-drift 23s ease-in-out infinite reverse; }
+
+        /* hover sheen sweep across cards */
+        .ft-sheen { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, transparent 36%, rgba(0,194,255,0.10) 50%, transparent 64%); transform: translateX(-130%); transition: transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+        .group:hover .ft-sheen { transform: translateX(130%); }
+
+        /* gradient accent shimmer */
+        @keyframes ft-shimmer { to { background-position: 200% center; } }
+        .ft-line { background: linear-gradient(90deg, rgba(0,194,255,0.15), rgba(0,194,255,0.9), rgba(0,194,255,0.15)); background-size: 200% auto; animation: ft-shimmer 3.5s linear infinite; }
+
+        /* floating scroll cue */
+        @keyframes ft-bob { 0%,100% { transform: translateY(0); opacity: 0.55; } 50% { transform: translateY(7px); opacity: 1; } }
+        .ft-bob { animation: ft-bob 1.9s ease-in-out infinite; }
+
         @media (prefers-reduced-motion: reduce) {
-          .ft-img-in { animation: none; opacity: 1; transform: none; }
+          .ft-img-in, .ft-orb-a, .ft-orb-b, .ft-sheen, .ft-line, .ft-bob { animation: none !important; transform: none !important; }
         }
       `}</style>
 
@@ -197,6 +216,11 @@ export default function ForTalentPage() {
               "linear-gradient(180deg, rgba(13,27,42,0.85) 0%, rgba(13,27,42,0.25) 16%, rgba(13,27,42,0) 32%, rgba(13,27,42,0) 72%, rgba(13,27,42,0.45) 100%), rgba(13,27,42,0.22)",
           }}
         />
+        {/* drifting cyan glow on the copy side */}
+        <div
+          aria-hidden
+          className="ft-orb-a pointer-events-none absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-cyan/[0.10] blur-3xl"
+        />
 
         <div className="container-x relative w-full">
           <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
@@ -235,7 +259,7 @@ export default function ForTalentPage() {
               <div className="mt-9 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
+                  className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white shadow-[0_16px_40px_-16px_rgba(255,107,43,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-700"
                 >
                   Submit your CV
                   <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -250,10 +274,24 @@ export default function ForTalentPage() {
             </Reveal>
           </div>
         </div>
+
+        {/* scroll cue */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-6 hidden justify-center lg:flex"
+        >
+          <span className="ft-bob flex h-9 w-6 items-start justify-center rounded-full border border-white/25 p-1.5">
+            <span className="h-1.5 w-1 rounded-full bg-cyan" />
+          </span>
+        </div>
       </section>
 
       {/* 2. What You Can Expect From Querentia */}
-      <section className="bg-page py-16 md:py-24">
+      <section className="relative isolate overflow-hidden bg-page py-16 md:py-24">
+        <div
+          aria-hidden
+          className="ft-orb-b pointer-events-none absolute -right-40 top-24 -z-10 h-[440px] w-[440px] rounded-full bg-cyan/[0.05] blur-3xl"
+        />
         <div className="container-x">
           <Reveal>
             <div className="mb-12 max-w-2xl md:mb-16">
@@ -270,29 +308,45 @@ export default function ForTalentPage() {
             </div>
           </Reveal>
 
-          <div className="space-y-px overflow-hidden rounded-3xl border border-border bg-card">
+          <div className="grid gap-5 md:grid-cols-2 md:gap-6">
             {EXPECTATIONS.map((e, i) => (
-              <Reveal key={e.num} delay={i * 90}>
-                <div className="group grid gap-5 border-b border-border p-7 transition-colors duration-300 last:border-b-0 hover:bg-page-2 sm:grid-cols-[auto_1fr] sm:gap-8 md:p-9">
-                  <div className="flex items-center gap-5">
-                    <span
-                      className={`${playfair.className} w-10 text-[1.6rem] font-medium leading-none text-cyan/40 transition-colors duration-300 group-hover:text-cyan`}
-                    >
-                      {e.num}
-                    </span>
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-cyan-soft text-cyan transition-transform duration-300 group-hover:scale-110">
-                      <e.icon className="h-5 w-5" />
-                    </span>
-                  </div>
-                  <div>
-                    <h3
-                      className={`${playfair.className} text-[1.4rem] font-medium leading-tight tracking-tight text-ink`}
-                    >
-                      {e.title}
-                    </h3>
-                    <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-ink-muted md:text-base">
-                      {e.body}
-                    </p>
+              <Reveal
+                key={e.num}
+                delay={(i % 2) * 90}
+                className={i === 4 ? "md:col-span-2" : ""}
+              >
+                <div className="group relative h-full overflow-hidden rounded-3xl border border-border bg-card p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-cyan/40 hover:shadow-[0_44px_90px_-46px_rgba(0,194,255,0.4)] md:p-8">
+                  <span aria-hidden className="ft-sheen" />
+                  {/* corner glow on hover */}
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-cyan/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+                  />
+                  <div className="relative flex items-start gap-5">
+                    <div className="flex shrink-0 flex-col items-center gap-2">
+                      <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan/25 to-cyan/[0.06] text-cyan shadow-[0_12px_30px_-12px_rgba(0,194,255,0.55)] ring-1 ring-cyan/25 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+                        <e.icon className="h-6 w-6" />
+                      </span>
+                      <span
+                        className={`${playfair.className} text-sm font-medium text-cyan/45 transition-colors duration-300 group-hover:text-cyan`}
+                      >
+                        {e.num}
+                      </span>
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h3
+                        className={`${playfair.className} text-[1.35rem] font-medium leading-tight tracking-tight text-ink md:text-[1.45rem]`}
+                      >
+                        {e.title}
+                      </h3>
+                      <p className="mt-3 text-[15px] leading-relaxed text-ink-muted">
+                        {e.body}
+                      </p>
+                      <span
+                        aria-hidden
+                        className="mt-5 block h-[3px] w-10 rounded-full bg-cyan/50 transition-all duration-500 group-hover:w-24 group-hover:bg-cyan"
+                      />
+                    </div>
                   </div>
                 </div>
               </Reveal>
@@ -308,8 +362,12 @@ export default function ForTalentPage() {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(0,194,255,0.10) 0%, transparent 60%)",
+              "radial-gradient(ellipse 55% 45% at 50% 0%, rgba(0,194,255,0.12) 0%, transparent 60%)",
           }}
+        />
+        <div
+          aria-hidden
+          className="ft-orb-a pointer-events-none absolute -left-32 bottom-0 h-[420px] w-[420px] rounded-full bg-cyan/[0.07] blur-3xl"
         />
         <div className="container-x relative">
           <Reveal>
@@ -334,21 +392,26 @@ export default function ForTalentPage() {
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {PILLARS.map((p, i) => (
               <Reveal key={p.title} delay={i * 120}>
-                <div className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition-colors duration-300 hover:border-cyan/40 hover:bg-white/[0.05]">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan/10 text-cyan transition-transform duration-300 group-hover:scale-110">
-                    <p.icon className="h-5 w-5" />
+                <div className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-cyan/40 hover:bg-white/[0.05] hover:shadow-[0_44px_90px_-46px_rgba(0,194,255,0.5)]">
+                  <span aria-hidden className="ft-sheen" />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -right-14 -top-14 h-40 w-40 rounded-full bg-cyan/15 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+                  />
+                  <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan/25 to-cyan/[0.06] text-cyan shadow-[0_12px_30px_-12px_rgba(0,194,255,0.55)] ring-1 ring-cyan/25 transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3">
+                    <p.icon className="h-6 w-6" />
                   </span>
                   <h3
-                    className={`${playfair.className} mt-6 text-[1.7rem] font-medium leading-tight tracking-tight text-white`}
+                    className={`${playfair.className} relative mt-6 text-[1.9rem] font-medium leading-tight tracking-tight text-white`}
                   >
                     {p.title}
                   </h3>
-                  <p className="mt-4 text-base leading-relaxed text-on-deep-muted">
+                  <p className="relative mt-4 text-base leading-relaxed text-on-deep-muted">
                     {p.body}
                   </p>
                   <span
                     aria-hidden
-                    className="mt-6 block h-0.5 w-10 bg-cyan transition-all duration-500 group-hover:w-16"
+                    className="relative mt-6 block h-0.5 w-10 bg-cyan transition-all duration-500 group-hover:w-20"
                   />
                 </div>
               </Reveal>
@@ -358,7 +421,11 @@ export default function ForTalentPage() {
       </section>
 
       {/* 4. Voices of Talent (was "From the Network") */}
-      <section className="bg-page py-16 md:py-24">
+      <section className="relative isolate overflow-hidden bg-page py-16 md:py-24">
+        <div
+          aria-hidden
+          className="ft-orb-b pointer-events-none absolute -left-40 top-32 -z-10 h-[420px] w-[420px] rounded-full bg-cyan/[0.05] blur-3xl"
+        />
         <div className="container-x">
           <Reveal>
             <div className="mb-12 max-w-2xl md:mb-16">
@@ -378,20 +445,25 @@ export default function ForTalentPage() {
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
             {VOICES.map((v, i) => (
               <Reveal key={v.role + v.location} delay={(i % 2) * 90}>
-                <figure className="group flex h-full flex-col rounded-3xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-cyan/40 hover:shadow-[0_28px_60px_-30px_rgba(13,27,42,0.3)] md:p-9">
+                <figure className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-cyan/40 hover:shadow-[0_44px_90px_-46px_rgba(0,194,255,0.4)] md:p-9">
+                  <span aria-hidden className="ft-sheen" />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-cyan/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+                  />
                   <span
                     aria-hidden
-                    className={`${playfair.className} mb-3 block text-5xl leading-none text-cyan/30`}
+                    className={`${playfair.className} relative mb-3 block text-6xl leading-none text-cyan/25 transition-colors duration-300 group-hover:text-cyan/40`}
                   >
                     &ldquo;
                   </span>
-                  <blockquote className="flex-1 text-[15px] leading-relaxed text-ink md:text-base">
+                  <blockquote className="relative flex-1 text-[15px] leading-relaxed text-ink md:text-base">
                     {v.quote}
                   </blockquote>
-                  <figcaption className="mt-7 flex items-center gap-4 border-t border-ink/10 pt-6">
+                  <figcaption className="relative mt-7 flex items-center gap-4 border-t border-ink/10 pt-6">
                     <span
                       aria-hidden
-                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cyan-soft text-xs font-semibold text-cyan ring-2 ring-cyan/30"
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan/25 to-cyan/[0.06] text-xs font-semibold text-cyan ring-2 ring-cyan/30 transition-transform duration-500 group-hover:scale-110"
                     >
                       {initials(v.role)}
                     </span>
@@ -410,7 +482,7 @@ export default function ForTalentPage() {
       </section>
 
       {/* 5. Final CTA */}
-      <section className="relative overflow-hidden bg-deep-2 py-20 text-on-deep md:py-24">
+      <section className="relative isolate overflow-hidden bg-deep-2 py-20 text-on-deep md:py-24">
         <div
           aria-hidden
           className="absolute inset-0"
@@ -418,6 +490,10 @@ export default function ForTalentPage() {
             background:
               "radial-gradient(ellipse 55% 45% at 50% 50%, rgba(0,194,255,0.12) 0%, transparent 60%)",
           }}
+        />
+        <div
+          aria-hidden
+          className="ft-orb-a pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan/[0.08] blur-3xl"
         />
         <div className="container-x relative">
           <div className="mx-auto max-w-3xl text-center">
@@ -434,6 +510,12 @@ export default function ForTalentPage() {
                 <span className="text-cyan">thrive.</span>
               </h2>
             </Reveal>
+            <Reveal delay={220}>
+              <span
+                aria-hidden
+                className="ft-line mx-auto mb-8 block h-px w-40 rounded-full"
+              />
+            </Reveal>
             <Reveal delay={260}>
               <p className="mx-auto mb-10 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
                 Send us your CV and we&apos;ll come back with a real
@@ -444,7 +526,7 @@ export default function ForTalentPage() {
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-9 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
+                  className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-9 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white shadow-[0_16px_40px_-16px_rgba(255,107,43,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-700"
                 >
                   Submit your CV
                   <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
