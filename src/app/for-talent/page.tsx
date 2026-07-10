@@ -159,15 +159,13 @@ export default function ForTalentPage() {
         .group:hover .ft-sheen { transform: translateX(130%); }
 
         /* gradient accent shimmer */
-        @keyframes ft-shimmer { to { background-position: 200% center; } }
-        .ft-line { background: linear-gradient(90deg, rgba(0,194,255,0.15), rgba(0,194,255,0.9), rgba(0,194,255,0.15)); background-size: 200% auto; animation: ft-shimmer 3.5s linear infinite; }
 
         /* floating scroll cue */
         @keyframes ft-bob { 0%,100% { transform: translateY(0); opacity: 0.55; } 50% { transform: translateY(7px); opacity: 1; } }
         .ft-bob { animation: ft-bob 1.9s ease-in-out infinite; }
 
         @media (prefers-reduced-motion: reduce) {
-          .ft-img-in, .ft-orb-a, .ft-orb-b, .ft-sheen, .ft-line, .ft-bob { animation: none !important; transform: none !important; }
+          .ft-img-in, .ft-orb-a, .ft-orb-b, .ft-sheen, .ft-bob { animation: none !important; transform: none !important; }
         }
       `}</style>
 
@@ -250,7 +248,7 @@ export default function ForTalentPage() {
             </Reveal>
             <Reveal delay={300}>
               <p className="mx-auto mt-6 max-w-xl text-[14px] leading-relaxed text-on-deep-muted md:text-[15px] lg:mx-0">
-                At Querentia&reg;, we partner with the most forward-thinking
+                At Querentia&reg;, we partner with most forward-thinking
                 companies to help exceptional talent find roles where they are
                 valued, supported, and empowered to thrive.
               </p>
@@ -404,7 +402,7 @@ export default function ForTalentPage() {
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {PILLARS.map((p, i) => (
               <Reveal key={p.title} delay={i * 120}>
-                <div className="group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-cyan/40 hover:bg-white/[0.05] hover:shadow-[0_44px_90px_-46px_rgba(0,194,255,0.5)]">
+                <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-cyan/40 hover:bg-white/[0.05] hover:shadow-[0_44px_90px_-46px_rgba(0,194,255,0.5)]">
                   <span aria-hidden className="ft-sheen" />
                   <div
                     aria-hidden
@@ -421,10 +419,12 @@ export default function ForTalentPage() {
                   <p className="relative mt-4 text-base leading-relaxed text-on-deep-muted">
                     {p.body}
                   </p>
-                  <span
-                    aria-hidden
-                    className="relative mt-6 block h-0.5 w-10 bg-cyan transition-all duration-500 group-hover:w-20"
-                  />
+                  <div className="relative mt-auto pt-6">
+                    <span
+                      aria-hidden
+                      className="block h-0.5 w-10 bg-cyan transition-all duration-500 group-hover:w-20"
+                    />
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -493,67 +493,6 @@ export default function ForTalentPage() {
         </div>
       </section>
 
-      {/* 5. Final CTA */}
-      <section className="relative isolate overflow-hidden bg-deep-2 py-20 text-on-deep md:py-24">
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 55% 45% at 50% 50%, rgba(0,194,255,0.12) 0%, transparent 60%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="ft-orb-a pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan/[0.08] blur-3xl"
-        />
-        <div className="container-x relative">
-          <div className="mx-auto max-w-3xl text-center">
-            <Reveal>
-              <p className="mb-7 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-                Your next move
-              </p>
-            </Reveal>
-            <Reveal delay={130}>
-              <h2
-                className={`${playfair.className} mb-8 text-balance text-[clamp(2.25rem,5vw,3.75rem)] font-medium leading-[1.08] tracking-tight text-white`}
-              >
-                Let&apos;s find where you{" "}
-                <span className="text-cyan">thrive.</span>
-              </h2>
-            </Reveal>
-            <Reveal delay={220}>
-              <span
-                aria-hidden
-                className="ft-line mx-auto mb-8 block h-px w-40 rounded-full"
-              />
-            </Reveal>
-            <Reveal delay={260}>
-              <p className="mx-auto mb-10 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
-                Send us your CV and we&apos;ll come back with a real
-                conversation, not a form auto-reply.
-              </p>
-            </Reveal>
-            <Reveal delay={380}>
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-9 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white shadow-[0_16px_40px_-16px_rgba(255,107,43,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-700"
-                >
-                  Submit your CV
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-                <Link
-                  href="/jobs"
-                  className="inline-flex items-center gap-2.5 rounded-lg border border-white/25 px-9 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
-                >
-                  Browse roles
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
