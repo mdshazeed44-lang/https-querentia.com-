@@ -485,14 +485,14 @@ export default function ContactPage() {
                   href="/for-companies"
                   className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
                 >
-                  For Companies
+                  Hire Talent
                   <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 <Link
-                  href="/for-talent"
+                  href="/jobs"
                   className="inline-flex items-center gap-2.5 rounded-lg border border-white/25 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-on-deep transition-colors duration-300 hover:border-white/60 hover:bg-white/5"
                 >
-                  For Talent
+                  View Roles
                 </Link>
               </div>
             </Reveal>
