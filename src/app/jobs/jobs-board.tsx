@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { type Job } from "@/lib/site";
 import { Reveal } from "@/components/ui/reveal";
+import { GetInTouchButton } from "@/components/get-in-touch-button";
 import {
   Search,
   MapPin,
@@ -233,12 +234,7 @@ export function JobsBoard({ jobs }: Props) {
               <p className="mt-2 text-sm text-ink-muted">
                 Try clearing some filters — or submit your CV and we&apos;ll reach out when a role fits.
               </p>
-              <Link
-                href="/contact"
-                className="mt-5 inline-flex items-center gap-2 rounded-full bg-green px-5 py-2.5 text-sm font-semibold text-white hover:bg-green-700"
-              >
-                Submit your CV <ArrowRight className="h-4 w-4" />
-              </Link>
+              <GetInTouchButton className="mt-5 inline-flex items-center gap-2 rounded-full bg-green px-5 py-2.5 text-sm font-semibold text-white hover:bg-green-700" />
             </div>
           ) : (
             filtered.map((j, i) => (

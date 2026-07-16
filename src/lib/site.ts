@@ -9,8 +9,8 @@ export const site = {
   tagline: "Talent. Trust. Thrive.",
   description:
     "Querentia is a trusted talent partner, connecting organizations with exceptional people who elevate teams and accelerate growth. We deliver all talent, tech and non-tech, across Canada.",
-  location: "Oakville, Ontario, Canada",
-  locality: "Oakville",
+  location: "Toronto, ON",
+  locality: "Toronto",
   region: "ON",
   country: "CA",
   email: "info@querentia.com",
@@ -33,10 +33,10 @@ export const nav = [
 // Enterprise clients referenced across calls / scope
 export const clients = ["Deloitte", "Capgemini", "CGI", "Curasion", "Browne"] as const;
 
-// Office addresses — sample/placeholder locations for the footer.
+// Office addresses (client-provided, 2026-07-16).
 export const addresses = [
-  { city: "Oakville (Head Office)", lines: ["2010 Winston Park Dr, Suite 200", "Oakville, ON L6H 5R7", "Canada"] },
-  { city: "Toronto", lines: ["100 King St W, Suite 5600", "Toronto, ON M5X 1C9", "Canada"] },
+  { city: "Toronto Downtown", lines: ["First Canadian Place", "100 King St W #5600", "Toronto, ON M5X 1C9"] },
+  { city: "Registered Office", lines: ["2432 Castlebrook Rd", "Oakville, ON L6M 4Z2"] },
 ] as const;
 
 // Industry verticals (used in the header dropdown menu)

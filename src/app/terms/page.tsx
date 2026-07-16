@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
-import { Mail, ArrowRight } from "@/components/ui/icons";
+import { GetInTouchButton } from "@/components/get-in-touch-button";
+import { Mail } from "@/components/ui/icons";
 import { site } from "@/lib/site";
 
 const playfair = Playfair_Display({
@@ -215,13 +215,7 @@ export default function TermsPage() {
                   will get back to you.
                 </p>
                 <div className="mt-7 flex flex-wrap items-center gap-4">
-                  <Link
-                    href="/contact"
-                    className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
-                  >
-                    Contact Us
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </Link>
+                  <GetInTouchButton className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700" />
                   <a
                     href={`mailto:${site.email}`}
                     className="inline-flex items-center gap-2.5 text-sm font-medium text-cyan transition-colors hover:text-ink"

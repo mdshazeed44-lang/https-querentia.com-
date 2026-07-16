@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
-import { AboutTimeline } from "@/components/about-timeline";
-import { ArrowRight, MapPin, Users, Sparkles, Shield } from "@/components/ui/icons";
+import { AboutMilestones } from "@/components/about-milestones";
+import { ClosingCTA } from "@/components/sections/closing-cta";
+import { MapPin, Users, Sparkles, Shield } from "@/components/ui/icons";
 import { site } from "@/lib/site";
 
 /**
@@ -281,8 +281,8 @@ export default function AboutPage() {
             </Reveal>
           </div>
 
-          {/* timeline — scroll-driven beam + node activation */}
-          <AboutTimeline milestones={milestones} headingFont={playfair.className} />
+          {/* Our Story — milestone card grid (alternative to the journey timeline) */}
+          <AboutMilestones milestones={milestones} headingFont={playfair.className} />
         </div>
       </section>
 
@@ -432,59 +432,14 @@ export default function AboutPage() {
           <Reveal delay={200}>
             <p className="mt-10 flex items-center justify-center gap-2 text-sm text-ink-faint md:mt-14">
               <MapPin className="h-4 w-4 text-cyan" />
-              Headquartered in {site.location}
+              Located in {site.location}
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* ---------- 5. CLOSING CTA ---------- */}
-      <section className="relative isolate overflow-hidden border-t border-border bg-page-2 py-16 text-ink md:py-20">
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(ellipse 55% 55% at 50% 45%, rgba(0,194,255,0.10) 0%, transparent 62%)",
-            }}
-          />
-          <div className="ab-glow-a absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan/[0.07] blur-3xl" />
-        </div>
-
-        <div className="container-x mx-auto max-w-3xl text-center">
-          <Reveal>
-            <h2
-              className={`${playfair.className} text-[clamp(2.5rem,7vw,5rem)] font-medium leading-[1.05] tracking-tight text-ink`}
-            >
-              Talent. Trust.{" "}
-              <span style={{ color: "#00C2FF" }}>Thrive.</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={160}>
-            <p className="mx-auto mt-7 max-w-xl text-base leading-relaxed text-ink-muted md:text-lg">
-              Whether you&apos;re building a team or building a career, the right
-              conversation starts here.
-            </p>
-          </Reveal>
-          <Reveal delay={300}>
-            <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
-              <Link
-                href="/for-companies"
-                className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
-              >
-                Hire Talent
-                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="/for-talent"
-                className="inline-flex items-center gap-2.5 rounded-lg border border-ink/25 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-ink transition-colors duration-300 hover:border-ink/60 hover:bg-ink/5"
-              >
-                Find Work
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* ---------- 5. CLOSING CTA (shared) ---------- */}
+      <ClosingCTA subline="Whether you're building a team or building a career, the right conversation starts here." />
     </>
   );
 }

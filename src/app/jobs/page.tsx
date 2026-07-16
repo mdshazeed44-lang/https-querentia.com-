@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "@/components/ui/icons";
+import { GetInTouchButton } from "@/components/get-in-touch-button";
 import { site, openJobs } from "@/lib/site";
 
 const playfair = Playfair_Display({
@@ -105,13 +104,7 @@ export default function JobsPage() {
                 </span>
                 {openJobs.length} live roles · Updated this week
               </span>
-              <Link
-                href="/contact"
-                className="group inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.25em] text-cyan transition-colors hover:text-white"
-              >
-                Submit your CV
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
+              <GetInTouchButton className="group inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.25em] text-cyan transition-colors hover:text-white" />
             </div>
           </Reveal>
         </div>
@@ -149,14 +142,9 @@ export default function JobsPage() {
                   matches your skills — no resume flood, no spam.
                 </p>
                 <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-deep transition-transform duration-300 hover:scale-[1.03]"
-                  >
-                    Submit your CV <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <Button href="/for-talent" variant="outline-light">
-                    For Talent
+                  <GetInTouchButton className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-deep transition-transform duration-300 hover:scale-[1.03]" />
+                  <Button href="/jobs#results" variant="outline-light">
+                    View Roles
                   </Button>
                 </div>
               </div>

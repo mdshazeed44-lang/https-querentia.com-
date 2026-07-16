@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "professional staffing Ontario",
     "technology recruitment Canada",
     "finance and accounting recruitment",
-    "Oakville recruitment firm",
+    "Toronto recruitment firm",
     "hire exceptional talent Canada",
   ],
   openGraph: {

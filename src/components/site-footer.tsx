@@ -70,7 +70,7 @@ export function SiteFooter() {
           <div>
             <Link
               href="/"
-              className="inline-flex flex-col items-start gap-1"
+              className="inline-flex flex-col items-center gap-1.5"
               aria-label={site.name}
             >
               <span className="flex items-start">
@@ -79,13 +79,13 @@ export function SiteFooter() {
                   alt={site.name}
                   width={529}
                   height={93}
-                  className="h-10 w-auto brightness-0 invert"
+                  className="h-9 w-auto brightness-0 invert"
                 />
-                <span className="ml-1 mt-0.5 text-[13px] font-medium leading-none text-white">
+                <span className="ml-[3px] mt-0.5 text-[12px] font-medium leading-none text-white">
                   ®
                 </span>
               </span>
-              <span className="text-[9px] uppercase leading-none tracking-[0.25em] text-cyan">
+              <span className="text-[9px] uppercase leading-none tracking-[0.2em] text-cyan">
                 Talent · Trust · Thrive
               </span>
             </Link>

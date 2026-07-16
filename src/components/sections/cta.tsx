@@ -47,7 +47,7 @@ export function CTA() {
         <Reveal delay={380}>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="/contact"
+              href="/for-companies"
               className="group inline-flex items-center gap-2.5 bg-green px-9 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
             >
               Hire Talent

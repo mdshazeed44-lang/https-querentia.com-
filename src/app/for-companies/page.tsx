@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
-import { ArrowRight, Mail, ChevronDown } from "@/components/ui/icons";
+import { ChevronDown } from "@/components/ui/icons";
 import { Industries } from "@/components/sections/industries";
+import { ClosingCTA } from "@/components/sections/closing-cta";
 import { site } from "@/lib/site";
 
 /**
@@ -50,7 +51,7 @@ const FAQS = [
   },
   {
     q: "Where in Canada is Querentia based?",
-    a: "Querentia is headquartered in Oakville, Ontario, with an additional office in Toronto, and serves clients across Canada.",
+    a: "Querentia is located in Toronto, ON, with a registered office in Oakville, and serves clients across Canada.",
   },
 ];
 
@@ -401,61 +402,8 @@ export default function ForCompaniesPage() {
           </div>
         </section>
 
-        {/* ---------- FINAL CTA ---------- */}
-        <section className="relative isolate overflow-hidden bg-deep-2 py-16 text-on-deep md:py-20">
-          <div
-            aria-hidden
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(ellipse 50% 45% at 50% 50%, rgba(0,194,255,0.12) 0%, transparent 60%)",
-            }}
-          />
-          <div className="container-x relative">
-            <div className="mx-auto max-w-3xl text-center">
-              <Reveal>
-                <p className="mb-7 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
-                  <span className="inline-block h-px w-8 bg-cyan/60" />
-                  Get in touch
-                  <span className="inline-block h-px w-8 bg-cyan/60" />
-                </p>
-              </Reveal>
-              <Reveal delay={130}>
-                <h2
-                  className={`${playfair.className} mb-8 text-balance text-[clamp(2.25rem,5vw,3.75rem)] font-medium leading-[1.08] tracking-tight text-white`}
-                >
-                  You define the role.{" "}
-                  <span className="text-cyan">We deliver the talent.</span>
-                </h2>
-              </Reveal>
-              <Reveal delay={260}>
-                <p className="mx-auto mb-10 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
-                  Permanent or contract, one role or a whole team. Share your
-                  hiring needs and we&apos;ll add value from the very first
-                  brief.
-                </p>
-              </Reveal>
-              <Reveal delay={380}>
-                <div className="flex flex-wrap items-center justify-center gap-4">
-                  <Link
-                    href="/contact"
-                    className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-9 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:bg-green-700"
-                  >
-                    Contact Us
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </Link>
-                  <a
-                    href={`mailto:${site.email}`}
-                    className="inline-flex items-center gap-2.5 rounded-lg border border-white/25 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
-                  >
-                    <Mail className="h-4 w-4 text-cyan" />
-                    Email us
-                  </a>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </section>
+        {/* ---------- CLOSING CTA (shared) ---------- */}
+        <ClosingCTA subline="Great teams aren't hired, they're built on trust. Let's build yours." />
       </div>
     </>
   );

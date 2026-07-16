@@ -72,7 +72,7 @@ const contactSchema = {
 };
 
 const tel = (n: string) => `tel:${n.replace(/[^+\d]/g, "")}`;
-const MAPS_URL = "https://maps.google.com/?q=Oakville,+Ontario,+Canada";
+const MAPS_URL = "https://maps.google.com/?q=100+King+St+W+%235600,+Toronto,+ON+M5X+1C9";
 
 type ChannelLink = { label: string; href: string; external?: boolean };
 
@@ -100,7 +100,7 @@ const channels: {
   {
     icon: MapPin,
     title: "Our offices",
-    note: "Oakville HQ, plus an additional office in Toronto. Serving talent and employers Canada-wide.",
+    note: "Located in Toronto, ON, with a registered office in Oakville. Serving talent and employers Canada-wide.",
     links: [{ label: site.location, href: MAPS_URL, external: true }],
   },
   {
@@ -403,8 +403,8 @@ export default function ContactPage() {
                         {site.location}
                       </p>
                       <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
-                        Oakville headquarters, with an additional office in
-                        Toronto, serving talent and employers across Canada.
+                        Located in Toronto, ON, with a registered office in
+                        Oakville, serving talent and employers across Canada.
                         Meetings by appointment.
                       </p>
                     </div>
@@ -432,8 +432,8 @@ export default function ContactPage() {
                     }}
                   />
                   <iframe
-                    title="Querentia office — Oakville, Ontario, Canada"
-                    src="https://maps.google.com/maps?q=Oakville,%20Ontario,%20Canada&t=&z=12&ie=UTF8&iwloc=&output=embed"
+                    title="Querentia office — Toronto, Ontario, Canada"
+                    src="https://maps.google.com/maps?q=100%20King%20St%20W%20%235600,%20Toronto,%20ON%20M5X%201C9&t=&z=14&ie=UTF8&iwloc=&output=embed"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     allowFullScreen
@@ -445,7 +445,7 @@ export default function ContactPage() {
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-70" />
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
                     </span>
-                    Oakville, Ontario
+                    Toronto, Ontario
                   </div>
                 </div>
               </div>
