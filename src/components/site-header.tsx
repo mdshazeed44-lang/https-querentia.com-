@@ -17,6 +17,7 @@ const menu: MenuItem[] = [
   { label: "About Us", href: "/about" },
   { label: "For Talent", href: "/for-talent" },
   { label: "For Companies", href: "/for-companies" },
+  { label: "Jobs", href: "/jobs" },
   { label: "Contact Us", href: "/contact" },
 ];
 

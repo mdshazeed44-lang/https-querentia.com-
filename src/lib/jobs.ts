@@ -1,7 +1,7 @@
 import "server-only";
 
 import { fetchCareerPortalJobs, type CeipalRawJob } from "./ceipal";
-import type { Job } from "./site";
+import type { Job, DescriptionBlock } from "./site";
 
 /**
  * PUBLIC DATA BOUNDARY.
@@ -82,22 +82,96 @@ function htmlToText(html: string): string {
     .trim();
 }
 
+/** Strip tags + decode entities down to a single clean line of text. */
+function inlineText(html: string): string {
+  return html
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#3?9;|&apos;/gi, "'")
+    .replace(/&(?:ndash|mdash);/gi, "-")
+    .replace(/&#[0-9]+;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
+ * Parse recruiter HTML into ordered heading / list / paragraph blocks so the
+ * detail page can render real structure. We only ever read text out of known
+ * tags — no raw HTML is forwarded to the DOM, so this stays XSS-safe. A leading
+ * "Role: <title>" heading (which just repeats the page H1) is dropped.
+ */
+function htmlToBlocks(html: string): DescriptionBlock[] {
+  const clean = html.replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/gi, " ");
+  const blocks: DescriptionBlock[] = [];
+  const re =
+    /<h([1-6])[^>]*>([\s\S]*?)<\/h\1>|<(ul|ol)[^>]*>([\s\S]*?)<\/\3>|<p[^>]*>([\s\S]*?)<\/p>/gi;
+  let m: RegExpExecArray | null;
+
+  while ((m = re.exec(clean)) !== null) {
+    if (m[1] !== undefined) {
+      const text = inlineText(m[2]);
+      if (text && !/^role\s*:/i.test(text)) blocks.push({ type: "heading", text });
+    } else if (m[3] !== undefined) {
+      const items = Array.from(m[4].matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi))
+        .map((li) => inlineText(li[1]))
+        .filter(Boolean)
+        .slice(0, 30);
+      if (items.length) blocks.push({ type: "list", items });
+    } else if (m[5] !== undefined) {
+      const text = inlineText(m[5]);
+      if (text) blocks.push({ type: "para", text });
+    }
+  }
+
+  // No recognisable block tags → fall back to newline-split paragraphs.
+  if (blocks.length === 0) {
+    for (const p of htmlToText(html)
+      .split(/\n{2,}|\n/)
+      .map((x) => x.trim())
+      .filter(Boolean)) {
+      blocks.push({ type: "para", text: p });
+    }
+  }
+
+  return blocks.slice(0, 40);
+}
+
 function provinceAbbr(state: string): string {
   return PROVINCES[state.toLowerCase()] || state;
 }
 
-function buildLocation(raw: CeipalRawJob, remote: boolean): string {
+function countryCodeOf(name: string): string {
+  return /united states|u\.?s\.?a?\b|america/i.test(name) ? "US" : "CA";
+}
+
+type Place = {
+  city: string;
+  region: string; // province/state abbrev
+  country: string; // full name
+  countryCode: string; // ISO-2
+  display: string; // e.g. "Toronto, ON"
+};
+
+function buildPlace(raw: CeipalRawJob, remote: boolean): Place {
   const city = clean(raw.primary_city);
-  const state = clean(raw.primary_state);
-  const country = clean(raw.country);
+  const region = clean(raw.primary_state) ? provinceAbbr(clean(raw.primary_state)) : "";
+  const country = clean(raw.country) || "Canada";
   const parts: string[] = [];
   if (city) parts.push(city);
-  if (state) parts.push(provinceAbbr(state));
-  if (country && country.toLowerCase() !== "canada") parts.push(country);
+  if (region) parts.push(region);
+  if (country.toLowerCase() !== "canada") parts.push(country);
 
-  if (parts.length) return parts.join(", ");
-  if (remote) return "Remote · Canada";
-  return country || "Canada";
+  const display = parts.length
+    ? parts.join(", ")
+    : remote
+      ? "Remote · Canada"
+      : country;
+
+  return { city, region, country, countryCode: countryCodeOf(country), display };
 }
 
 function mapJobType(raw: string): Job["jobType"] {
@@ -242,7 +316,8 @@ export function normalizeJob(raw: CeipalRawJob): Job | null {
 
   const remote = clean(raw.remote_opportunities).toLowerCase() === "yes";
   const jobType = mapJobType(clean(raw.job_type));
-  const location = buildLocation(raw, remote);
+  const place = buildPlace(raw, remote);
+  const location = place.display;
 
   const publicDesc = clean(raw.public_job_desc);
   const descText = publicDesc ? htmlToText(publicDesc) : "";
@@ -254,12 +329,19 @@ export function normalizeJob(raw: CeipalRawJob): Job | null {
       }, represented by Querentia. Apply to connect with our recruitment team about this role.`;
 
   const description = descText || summary;
+  const descriptionBlocks: DescriptionBlock[] = publicDesc
+    ? htmlToBlocks(publicDesc)
+    : [{ type: "para", text: summary }];
 
   return {
     id: jobCode,
     slug: `${slugify(title)}-${slugify(jobCode)}`,
     title,
     location,
+    city: place.city || undefined,
+    region: place.region || undefined,
+    country: place.country,
+    countryCode: place.countryCode,
     workModel: remote ? "Remote" : "On-site",
     jobType,
     duration: buildDuration(raw, jobType),
@@ -269,6 +351,7 @@ export function normalizeJob(raw: CeipalRawJob): Job | null {
     closingDate: toIsoDateOrNull(clean(raw.closing_date)),
     summary,
     description,
+    descriptionBlocks,
     applyUrl:
       safeApplyUrl(raw.apply_job_without_registration) ||
       safeApplyUrl(raw.apply_job),

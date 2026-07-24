@@ -27,14 +27,23 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const job = await getJobBySlug(slug);
   if (!job) return { title: "Role not found" };
-  const desc = `${job.title} in ${job.location}. ${job.specialization} ${job.jobType.toLowerCase()} role (${job.workModel}) with Querentia. ${job.summary}`;
+  // Keep the meta description ~155 chars so it isn't truncated in SERPs.
+  const metaDesc =
+    `${job.title} in ${job.location}. ${job.specialization} ${job.jobType.toLowerCase()} role (${job.workModel}) with Querentia. Apply today.`.slice(
+      0,
+      158,
+    );
+  // Long role titles already exceed the ~60-char SERP limit on their own, so
+  // only append the location for short titles.
+  const metaTitle =
+    job.title.length > 42 ? job.title : `${job.title} in ${job.location}`;
   return {
-    title: `${job.title} in ${job.location}`,
-    description: desc.slice(0, 300),
+    title: metaTitle,
+    description: metaDesc,
     alternates: { canonical: `/jobs/${job.slug}` },
     openGraph: {
       title: `${job.title} · Querentia`,
-      description: desc.slice(0, 300),
+      description: metaDesc,
       url: `${site.url}/jobs/${job.slug}`,
       type: "article",
     },
@@ -54,6 +63,18 @@ function jobPostingSchema(job: Job) {
     job.closingDate && job.closingDate > today.toISOString().slice(0, 10)
       ? job.closingDate
       : rollingIso;
+
+  // Emit a real address whenever we know the city (even for remote roles, which
+  // are often hybrid/near an office), or for any on-site role. TELECOMMUTE +
+  // applicantLocationRequirements (with the job's actual country) are added on
+  // top for remote roles.
+  const emitLocation = Boolean(job.city) || job.workModel !== "Remote";
+  const address = {
+    "@type": "PostalAddress",
+    ...(job.city ? { addressLocality: job.city } : {}),
+    ...(job.region ? { addressRegion: job.region } : {}),
+    addressCountry: job.countryCode || "CA",
+  };
   return {
     "@context": "https://schema.org",
     "@type": "JobPosting",
@@ -82,22 +103,11 @@ function jobPostingSchema(job: Job) {
     },
     directApply: !job.applyUrl,
     url: `${site.url}/jobs/${job.slug}`,
-    jobLocation:
-      job.workModel === "Remote"
-        ? undefined
-        : {
-            "@type": "Place",
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: job.location.split(",")[0]?.trim() || "Toronto",
-              addressRegion: job.location.split(",")[1]?.trim() || "ON",
-              addressCountry: "CA",
-            },
-          },
+    jobLocation: emitLocation ? { "@type": "Place", address } : undefined,
     jobLocationType: job.workModel === "Remote" ? "TELECOMMUTE" : undefined,
     applicantLocationRequirements:
       job.workModel === "Remote"
-        ? { "@type": "Country", name: "Canada" }
+        ? { "@type": "Country", name: job.country || "Canada" }
         : undefined,
     ...(job.skills.length ? { skills: job.skills.join(", ") } : {}),
     industry: job.specialization,
@@ -163,11 +173,9 @@ export default async function JobDetailPage({ params }: Params) {
   const job = await getJobBySlug(slug);
   if (!job) notFound();
 
-  const paragraphs = (job.description || job.summary)
-    .split(/\n{2,}|\n/)
-    .map((p) => p.trim())
-    .filter(Boolean)
-    .slice(0, 8);
+  const blocks = job.descriptionBlocks?.length
+    ? job.descriptionBlocks
+    : [{ type: "para" as const, text: job.summary }];
 
   const allJobs = await getPublicJobs();
   const related = allJobs
@@ -281,12 +289,38 @@ export default async function JobDetailPage({ params }: Params) {
                 <h2 className="text-xl font-bold text-deep md:text-2xl">
                   About the role
                 </h2>
-                {paragraphs.map((p, i) => (
-                  <p key={i} className="mt-4 leading-relaxed text-ink-muted">
-                    {p}
-                  </p>
-                ))}
-                <p className="mt-4 leading-relaxed text-ink-muted">
+                <div className="mt-4 space-y-4">
+                  {blocks.map((b, i) =>
+                    b.type === "heading" ? (
+                      <h3
+                        key={i}
+                        className="pt-2 text-base font-bold text-deep md:text-lg"
+                      >
+                        {b.text}
+                      </h3>
+                    ) : b.type === "list" ? (
+                      <ul key={i} className="space-y-2.5">
+                        {b.items.map((it, k) => (
+                          <li
+                            key={k}
+                            className="flex items-start gap-3 text-[15px] leading-relaxed text-ink-muted"
+                          >
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan" />
+                            <span>{it}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p
+                        key={i}
+                        className="text-[15px] leading-relaxed text-ink-muted"
+                      >
+                        {b.text}
+                      </p>
+                    ),
+                  )}
+                </div>
+                <p className="mt-6 border-t border-border pt-5 text-[15px] leading-relaxed text-ink-muted">
                   This engagement is managed end-to-end by Querentia. Our
                   recruiters give you honest feedback at every stage, prepare you
                   for the interview, and support a smooth onboarding once you land

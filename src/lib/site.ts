@@ -73,6 +73,14 @@ export const industries = [
   },
 ] as const;
 
+// A parsed piece of a job description — lets the detail page render real
+// headings + bullet lists instead of a flat wall of text, without ever
+// injecting raw ATS HTML into the DOM.
+export type DescriptionBlock =
+  | { type: "heading"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "para"; text: string };
+
 // Public job shape. Live records come from Ceipal via `src/lib/jobs.ts`
 // (`getPublicJobs`), which builds each field from a strict allow-list so no
 // internal ATS data can leak. `company` / pay are optional because Querentia's
@@ -82,7 +90,11 @@ export type Job = {
   slug: string;
   title: string;
   company?: string;
-  location: string;
+  location: string; // display string e.g. "Toronto, ON"
+  city?: string;
+  region?: string; // province/state abbreviation
+  country?: string; // full name e.g. "Canada"
+  countryCode?: string; // ISO-2 e.g. "CA" / "US" (for schema addressCountry)
   workModel: "Remote" | "Hybrid" | "On-site";
   jobType: "Full-time" | "Part-time" | "Contract" | "Contract-to-hire";
   duration: string;
@@ -94,7 +106,8 @@ export type Job = {
   postedAt: string; // ISO (YYYY-MM-DD)
   closingDate?: string; // ISO (YYYY-MM-DD) — real Ceipal closing_date
   summary: string;
-  description?: string; // full candidate-facing text (HTML-stripped)
+  description?: string; // full candidate-facing text (HTML-stripped, for schema/meta)
+  descriptionBlocks?: DescriptionBlock[]; // structured version for rendering
   applyUrl?: string; // external Ceipal apply link (validated https ceipal.com)
   isFeatured?: boolean;
 };

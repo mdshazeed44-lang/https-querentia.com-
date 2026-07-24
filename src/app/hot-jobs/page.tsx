@@ -20,6 +20,13 @@ export const metadata: Metadata = {
   description:
     "The latest IT and technology roles across Canada, synced live from Querentia's open requisitions.",
   alternates: { canonical: "/hot-jobs" },
+  openGraph: {
+    title: "Hot Jobs · Querentia",
+    description:
+      "The latest roles across Canada, synced live from Querentia's open requisitions.",
+    url: `${site.url}/hot-jobs`,
+    type: "website",
+  },
 };
 
 export const revalidate = 1800;
