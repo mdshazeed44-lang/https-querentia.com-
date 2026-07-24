@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/icons";
 import { site, type Job } from "@/lib/site";
 import { getPublicJobs, getJobBySlug } from "@/lib/jobs";
+import { QuickApplyButton } from "@/components/quick-apply";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -101,7 +102,7 @@ function jobPostingSchema(job: Job) {
       sameAs: site.url,
       logo: `${site.url}/querentia-logo-og.png`,
     },
-    directApply: !job.applyUrl,
+    directApply: true, // Quick Apply completes on-page
     url: `${site.url}/jobs/${job.slug}`,
     jobLocation: emitLocation ? { "@type": "Place", address } : undefined,
     jobLocationType: job.workModel === "Remote" ? "TELECOMMUTE" : undefined,
@@ -143,28 +144,40 @@ function daysAgo(iso: string) {
   return m <= 1 ? "1 month ago" : `${m} months ago`;
 }
 
-/** Apply CTA — links straight into the Ceipal candidate portal when available,
- *  otherwise routes to our own contact page. External links open safely. */
-function ApplyButton({ job, className }: { job: Job; className: string }) {
-  if (job.applyUrl) {
-    return (
-      <a
-        href={job.applyUrl}
-        target="_blank"
-        rel="noopener noreferrer nofollow"
-        className={className}
-      >
-        Apply now <ArrowRight className="h-4 w-4" />
-      </a>
-    );
-  }
+/**
+ * Apply actions: primary "Quick Apply" (opens a small modal that posts Name /
+ * Email / Phone / Resume straight into Ceipal), plus a secondary "Apply on
+ * Ceipal" link that goes to the Ceipal login screen (client's request).
+ */
+function ApplyActions({
+  job,
+  primaryClass,
+  secondaryClass,
+  wrapClass = "",
+}: {
+  job: Job;
+  primaryClass: string;
+  secondaryClass: string;
+  wrapClass?: string;
+}) {
   return (
-    <Link
-      href={`/contact?role=${encodeURIComponent(job.title)}`}
-      className={className}
-    >
-      Apply now <ArrowRight className="h-4 w-4" />
-    </Link>
+    <div className={`w-full space-y-2.5 ${wrapClass}`}>
+      <QuickApplyButton
+        slug={job.slug}
+        jobTitle={job.title}
+        className={primaryClass}
+      />
+      {job.applyUrl && (
+        <a
+          href={job.applyUrl}
+          target="_blank"
+          rel="noopener noreferrer nofollow"
+          className={secondaryClass}
+        >
+          Apply on Ceipal <ArrowRight className="h-4 w-4" />
+        </a>
+      )}
+    </div>
   );
 }
 
@@ -278,14 +291,13 @@ export default async function JobDetailPage({ params }: Params) {
 
                 <div className="my-5 h-px w-full bg-white/10" />
 
-                <ApplyButton
+                <ApplyActions
                   job={job}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-green-700"
+                  primaryClass="flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.01] hover:bg-green-700"
+                  secondaryClass="flex w-full items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-2.5 text-sm font-medium text-white/90 transition-colors hover:border-white/50 hover:bg-white/10"
                 />
                 <p className="mt-3 text-center text-[11px] leading-relaxed text-on-deep-muted">
-                  {job.applyUrl
-                    ? "Quick apply, no account needed"
-                    : "We will get back to you shortly"}
+                  Quick Apply sends your details straight to our recruiters.
                 </p>
               </div>
             </Reveal>
@@ -386,9 +398,11 @@ export default async function JobDetailPage({ params }: Params) {
                   <Row label="Specialization" value={job.specialization} />
                   <Row label="Posted" value={daysAgo(job.postedAt)} />
                 </dl>
-                <ApplyButton
+                <ApplyActions
                   job={job}
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-deep px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-deep-2"
+                  wrapClass="mt-6"
+                  primaryClass="flex w-full items-center justify-center gap-2 rounded-full bg-green px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-green-700"
+                  secondaryClass="flex w-full items-center justify-center gap-2 rounded-full border border-border-2 px-5 py-2.5 text-sm font-medium text-deep transition-colors hover:border-deep hover:bg-page-2"
                 />
               </div>
 

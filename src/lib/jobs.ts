@@ -20,7 +20,14 @@ import type { Job, DescriptionBlock } from "./site";
 
 const REVALIDATE_MS = 25 * 60_000; // in-memory dedupe within a server instance
 
-type Cache = { at: number; jobs: Job[] };
+// `idBySlug` maps a public slug to the Ceipal encrypted job id. It is kept
+// SERVER-ONLY (never placed on the public Job) and used solely by the Quick
+// Apply API route to submit an application against the right Ceipal job.
+type Cache = {
+  at: number;
+  jobs: Job[];
+  idBySlug: Record<string, string>;
+};
 let cache: Cache | null = null;
 
 // ---------------------------------------------------------------------------
@@ -352,23 +359,12 @@ export function normalizeJob(raw: CeipalRawJob): Job | null {
     summary,
     description,
     descriptionBlocks,
+    // Client (Hemant) wants the "Apply" button to land on the Ceipal login
+    // screen (apply_job); the no-registration URL is the fallback only.
     applyUrl:
-      safeApplyUrl(raw.apply_job_without_registration) ||
-      safeApplyUrl(raw.apply_job),
+      safeApplyUrl(raw.apply_job) ||
+      safeApplyUrl(raw.apply_job_without_registration),
   };
-}
-
-function dedupeBySlug(jobs: Job[]): Job[] {
-  const seen = new Set<string>();
-  const out: Job[] = [];
-  for (const j of jobs) {
-    let slug = j.slug;
-    let n = 2;
-    while (seen.has(slug)) slug = `${j.slug}-${n++}`;
-    seen.add(slug);
-    out.push(slug === j.slug ? j : { ...j, slug });
-  }
-  return out;
 }
 
 // ---------------------------------------------------------------------------
@@ -385,16 +381,30 @@ export async function getPublicJobs(): Promise<Job[]> {
 
   try {
     const raw = await fetchCareerPortalJobs();
-    const jobs = dedupeBySlug(
-      raw
-        .map(normalizeJob)
-        .filter((j): j is Job => j !== null)
-        .sort(
-          (a, b) =>
-            new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime(),
-        ),
-    );
-    cache = { at: Date.now(), jobs };
+    // Keep each normalised job paired with its raw Ceipal id, newest first.
+    const pairs = raw
+      .map((r) => ({ job: normalizeJob(r), ceipalId: clean(r.id) }))
+      .filter((p): p is { job: Job; ceipalId: string } => p.job !== null)
+      .sort(
+        (a, b) =>
+          new Date(b.job.postedAt).getTime() -
+          new Date(a.job.postedAt).getTime(),
+      );
+
+    const seen = new Set<string>();
+    const jobs: Job[] = [];
+    const idBySlug: Record<string, string> = {};
+    for (const { job, ceipalId } of pairs) {
+      let slug = job.slug;
+      let n = 2;
+      while (seen.has(slug)) slug = `${job.slug}-${n++}`;
+      seen.add(slug);
+      const finalJob = slug === job.slug ? job : { ...job, slug };
+      jobs.push(finalJob);
+      if (ceipalId) idBySlug[slug] = ceipalId;
+    }
+
+    cache = { at: Date.now(), jobs, idBySlug };
     return jobs;
   } catch (err) {
     console.error("[jobs] Ceipal fetch failed:", err);
@@ -405,4 +415,10 @@ export async function getPublicJobs(): Promise<Job[]> {
 export async function getJobBySlug(slug: string): Promise<Job | null> {
   const jobs = await getPublicJobs();
   return jobs.find((j) => j.slug === slug) ?? null;
+}
+
+/** Server-only: the Ceipal encrypted job id for a slug, for Quick Apply. */
+export async function getCeipalJobId(slug: string): Promise<string | null> {
+  await getPublicJobs();
+  return cache?.idBySlug[slug] ?? null;
 }

@@ -15,6 +15,7 @@ import "server-only";
 const AUTH_URL =
   process.env.CEIPAL_AUTH_URL || "https://api.ceipal.com/v2/createAuthtoken/";
 const LIST_URL = "https://api.ceipal.com/v2/getJobPostingsList/";
+const APPLY_URL = "https://api.ceipal.com/v2/applyJobWithOutRegistration/";
 
 const REQUEST_TIMEOUT_MS = 20_000;
 const MAX_PAGES = 20; // safety cap: 20 × 50 = 1000 jobs
@@ -216,4 +217,66 @@ export async function fetchCareerPortalJobs(): Promise<CeipalRawJob[]> {
   }
 
   return jobs;
+}
+
+export type ApplyInput = {
+  jobId: string; // Ceipal encrypted job id
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  resume: { data: ArrayBuffer; filename: string; type: string };
+};
+
+export type ApplyResult = {
+  ok: boolean;
+  status: number;
+  message: string;
+  submissionId?: string;
+};
+
+/**
+ * Submit a candidate to a Ceipal job via the "Apply Without Registration"
+ * endpoint (multipart/form-data). Server-only — the Bearer token never leaves
+ * this module.
+ */
+export async function submitApplication(input: ApplyInput): Promise<ApplyResult> {
+  const token = await authenticate();
+
+  const form = new FormData();
+  form.append("jobId", input.jobId);
+  form.append("standard_fields.firstname", input.firstName);
+  form.append("standard_fields.lastname", input.lastName);
+  form.append("standard_fields.email", input.email);
+  form.append("standard_fields.mobile_number", input.phone);
+  form.append(
+    "document_fields.1",
+    new Blob([input.resume.data], { type: input.resume.type }),
+    input.resume.filename,
+  );
+
+  // NOTE: do not set Content-Type — fetch adds the multipart boundary itself.
+  const res = await fetchWithTimeout(APPLY_URL, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: form,
+    cache: "no-store",
+  });
+
+  let data: Record<string, unknown> = {};
+  try {
+    data = (await res.json()) as Record<string, unknown>;
+  } catch {
+    /* non-JSON body */
+  }
+
+  return {
+    ok: res.ok,
+    status: res.status,
+    message:
+      (typeof data.message === "string" && data.message) ||
+      (res.ok ? "Application submitted." : `Ceipal error (HTTP ${res.status})`),
+    submissionId:
+      typeof data.submissionId === "string" ? data.submissionId : undefined,
+  };
 }
