@@ -177,6 +177,17 @@ export default async function JobDetailPage({ params }: Params) {
     ? job.descriptionBlocks
     : [{ type: "para" as const, text: job.summary }];
 
+  // Secondary line for the apply card. Never repeat the job type (e.g. a
+  // contract role whose duration is just "Contract"); show the work model plus a
+  // real length ("5 months") only when it adds information.
+  const realDuration =
+    job.duration &&
+    job.duration !== job.jobType &&
+    !/^(contract|part-time)$/i.test(job.duration)
+      ? job.duration
+      : null;
+  const engagementSub = [job.workModel, realDuration].filter(Boolean).join(" · ");
+
   const allJobs = await getPublicJobs();
   const related = allJobs
     .filter((j) => j.id !== job.id && j.specialization === job.specialization)
@@ -252,18 +263,30 @@ export default async function JobDetailPage({ params }: Params) {
             </div>
 
             <Reveal delay={400}>
-              <div className="flex flex-col items-start gap-4 rounded-2xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-md md:items-end md:text-right">
-                <div className="md:text-right">
-                  <p className="text-[11px] font-semibold uppercase tracking-wide text-on-deep-muted">
-                    Engagement
+              <div className="w-full rounded-2xl border border-white/15 bg-white/[0.06] p-6 text-left backdrop-blur-md md:w-72">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan">
+                  Engagement
+                </p>
+                <p className="mt-2 text-2xl font-bold leading-tight text-white">
+                  {job.jobType}
+                </p>
+                {engagementSub && (
+                  <p className="mt-1 text-sm text-on-deep-muted">
+                    {engagementSub}
                   </p>
-                  <p className="mt-1 text-lg font-bold text-white">{job.jobType}</p>
-                  <p className="text-xs text-on-deep-muted">{job.duration}</p>
-                </div>
+                )}
+
+                <div className="my-5 h-px w-full bg-white/10" />
+
                 <ApplyButton
                   job={job}
                   className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-green-700"
                 />
+                <p className="mt-3 text-center text-[11px] leading-relaxed text-on-deep-muted">
+                  {job.applyUrl
+                    ? "Quick apply, no account needed"
+                    : "We will get back to you shortly"}
+                </p>
               </div>
             </Reveal>
           </div>
