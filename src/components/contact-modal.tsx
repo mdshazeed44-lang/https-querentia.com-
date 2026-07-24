@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { X, ArrowRight, Mail, Phone, MapPin } from "@/components/ui/icons";
 import { site } from "@/lib/site";
 
@@ -12,6 +13,9 @@ type Props = {
 export function ContactModal({ open, onClose }: Props) {
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const firstFieldRef = useRef<HTMLInputElement | null>(null);
+  // Portals need document, which only exists after mount (SSR-safe).
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   // Close on ESC + lock body scroll while open
   useEffect(() => {
@@ -31,9 +35,12 @@ export function ContactModal({ open, onClose }: Props) {
     };
   }, [open, onClose]);
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
-  return (
+  // Render into <body> so the modal escapes any transformed/ancestor stacking
+  // context (Reveal animations, transformed sections) that would otherwise trap
+  // `position: fixed` and break the overlay's positioning.
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
@@ -165,12 +172,13 @@ export function ContactModal({ open, onClose }: Props) {
         </form>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes modal-pop {
           from { transform: translateY(12px) scale(0.98); opacity: 0; }
           to   { transform: translateY(0) scale(1); opacity: 1; }
         }
       `}</style>
-    </div>
+    </div>,
+    document.body,
   );
 }
