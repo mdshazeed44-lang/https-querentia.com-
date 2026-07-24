@@ -213,7 +213,7 @@ export default async function JobDetailPage({ params }: Params) {
           />
         </div>
 
-        <div className="container-x relative pt-28 pb-16 md:pt-36 md:pb-20">
+        <div className="container-x relative pt-28 pb-6 md:pt-36 md:pb-8">
           <Reveal>
             <nav aria-label="Breadcrumb" className="text-xs text-on-deep-muted">
               <Link href="/jobs" className="hover:text-white">
