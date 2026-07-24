@@ -5,7 +5,8 @@ import { Reveal } from "@/components/ui/reveal";
 import {
   ArrowRight, MapPin, Briefcase, Clock, Bolt,
 } from "@/components/ui/icons";
-import { site, openJobs, type Job } from "@/lib/site";
+import { site, type Job } from "@/lib/site";
+import { getPublicJobs } from "@/lib/jobs";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -16,24 +17,12 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: "Hot Jobs",
-  description: "Featured IT roles — handpicked enterprise opportunities across Canada.",
+  description:
+    "The latest IT and technology roles across Canada, synced live from Querentia's open requisitions.",
   alternates: { canonical: "/hot-jobs" },
 };
 
-const hot = openJobs.filter((j) => j.isFeatured);
-
-const listSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "Querentia — Hot Jobs",
-  numberOfItems: hot.length,
-  itemListElement: hot.map((j, i) => ({
-    "@type": "ListItem",
-    position: i + 1,
-    url: `${site.url}/jobs/${j.slug}`,
-    name: j.title,
-  })),
-};
+export const revalidate = 1800;
 
 function daysAgo(iso: string) {
   const d = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 86400000));
@@ -49,7 +38,24 @@ function payLabel(j: Job) {
   return `$${j.payMin}–${j.payMax}${j.payUnit === "K" ? "K" : "/hr"}`;
 }
 
-export default function HotJobsPage() {
+export default async function HotJobsPage() {
+  const allJobs = await getPublicJobs();
+  // Genuinely the newest roles — jobs are already sorted newest-first.
+  const hot = allJobs.slice(0, 9);
+
+  const listSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Querentia Hot Jobs",
+    numberOfItems: hot.length,
+    itemListElement: hot.map((j, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${site.url}/jobs/${j.slug}`,
+      name: j.title,
+    })),
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(listSchema) }} />
@@ -104,8 +110,8 @@ export default function HotJobsPage() {
 
           <Reveal delay={300}>
             <p className="mt-5 max-w-md text-[14px] leading-relaxed text-white/65 md:text-[15px]">
-              Handpicked enterprise IT mandates we are actively shortlisting —
-              senior, vetted, and moving fast.
+              The most recent roles we have opened, synced live from our active
+              requisitions. Real, current, and moving fast.
             </p>
           </Reveal>
 
@@ -116,7 +122,7 @@ export default function HotJobsPage() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-frost opacity-70" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-frost" />
                 </span>
-                {hot.length} featured roles · Updated this week
+                {hot.length} latest roles · Synced live from Ceipal
               </span>
               <Link
                 href="/jobs"
@@ -150,7 +156,9 @@ export default function HotJobsPage() {
                         {j.title}
                       </Link>
                     </h3>
-                    <p className="mt-1 text-sm text-ink-muted">{j.company}</p>
+                    {j.company && (
+                      <p className="mt-1 text-sm text-ink-muted">{j.company}</p>
+                    )}
                     <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-ink-muted">{j.summary}</p>
 
                     <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-ink-muted">

@@ -18,8 +18,13 @@ import {
 
 type Props = { jobs: Job[] };
 
-const WORK_MODELS: Job["workModel"][] = ["Remote", "Hybrid", "On-site"];
-const JOB_TYPES: Job["jobType"][] = ["Full-time", "Contract", "Contract-to-hire"];
+const WORK_MODEL_ORDER: Job["workModel"][] = ["Remote", "Hybrid", "On-site"];
+const JOB_TYPE_ORDER: Job["jobType"][] = [
+  "Full-time",
+  "Part-time",
+  "Contract",
+  "Contract-to-hire",
+];
 
 function payLabel(j: Job) {
   if (!j.payMin || !j.payMax) return null;
@@ -51,12 +56,23 @@ export function JobsBoard({ jobs }: Props) {
     [jobs]
   );
 
+  // Only offer filter chips for values that actually exist in the live data.
+  const workModelOpts = useMemo(() => {
+    const present = new Set(jobs.map((j) => j.workModel));
+    return WORK_MODEL_ORDER.filter((w) => present.has(w));
+  }, [jobs]);
+
+  const jobTypeOpts = useMemo(() => {
+    const present = new Set(jobs.map((j) => j.jobType));
+    return JOB_TYPE_ORDER.filter((t) => present.has(t));
+  }, [jobs]);
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     const loc = location.trim().toLowerCase();
     const result = jobs.filter((j) => {
       if (q) {
-        const hay = `${j.title} ${j.company} ${j.skills.join(" ")} ${j.specialization}`.toLowerCase();
+        const hay = `${j.title} ${j.company ?? ""} ${j.skills.join(" ")} ${j.specialization}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
       if (loc && !j.location.toLowerCase().includes(loc)) return false;
@@ -99,6 +115,21 @@ export function JobsBoard({ jobs }: Props) {
     jobTypes.size +
     specs.size;
 
+  if (jobs.length === 0) {
+    return (
+      <div className="rounded-3xl border border-dashed border-border bg-card p-12 text-center">
+        <p className="text-lg font-semibold text-deep">
+          Our latest roles are on their way
+        </p>
+        <p className="mx-auto mt-2 max-w-md text-sm text-ink-muted">
+          We&apos;re refreshing open positions right now. Join our talent pool and
+          our recruiters will reach out the moment a role fits your skills.
+        </p>
+        <GetInTouchButton className="mt-5 inline-flex items-center gap-2 rounded-full bg-green px-5 py-2.5 text-sm font-semibold text-white hover:bg-green-700" />
+      </div>
+    );
+  }
+
   return (
     <div className="grid gap-8 lg:grid-cols-[18rem_1fr]">
       {/* ---------- FILTER SIDEBAR ---------- */}
@@ -123,7 +154,7 @@ export function JobsBoard({ jobs }: Props) {
 
           {/* Work model */}
           <FilterGroup title="Work model">
-            {WORK_MODELS.map((w) => (
+            {workModelOpts.map((w) => (
               <ChipToggle
                 key={w}
                 active={workModels.has(w)}
@@ -135,7 +166,7 @@ export function JobsBoard({ jobs }: Props) {
 
           {/* Job type */}
           <FilterGroup title="Job type">
-            {JOB_TYPES.map((t) => (
+            {jobTypeOpts.map((t) => (
               <ChipToggle
                 key={t}
                 active={jobTypes.has(t)}
@@ -232,7 +263,8 @@ export function JobsBoard({ jobs }: Props) {
             <div className="rounded-3xl border border-dashed border-border bg-card p-12 text-center">
               <p className="text-lg font-semibold text-deep">No matches yet</p>
               <p className="mt-2 text-sm text-ink-muted">
-                Try clearing some filters — or submit your CV and we&apos;ll reach out when a role fits.
+                Try clearing some filters, or get in touch and we&apos;ll reach
+                out when a role fits.
               </p>
               <GetInTouchButton className="mt-5 inline-flex items-center gap-2 rounded-full bg-green px-5 py-2.5 text-sm font-semibold text-white hover:bg-green-700" />
             </div>
@@ -322,7 +354,9 @@ function JobCard({ job }: { job: Job }) {
                 </span>
               )}
             </div>
-            <p className="mt-1 text-sm text-ink-muted">{job.company}</p>
+            {job.company && (
+              <p className="mt-1 text-sm text-ink-muted">{job.company}</p>
+            )}
             <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-ink-muted">
               {job.summary}
             </p>

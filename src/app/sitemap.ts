@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { site, openJobs } from "@/lib/site";
+import { site } from "@/lib/site";
+import { getPublicJobs } from "@/lib/jobs";
 
 // Static routes for the brand pages.
 const routes = [
@@ -15,7 +16,9 @@ const routes = [
   { path: "/terms", priority: 0.3, changeFrequency: "yearly" as const },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const openJobs = await getPublicJobs();
+
   // Brand pages
   const staticUrls = routes.map((r) => ({
     url: `${site.url}${r.path}`,

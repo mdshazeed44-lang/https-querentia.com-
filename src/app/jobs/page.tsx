@@ -3,7 +3,8 @@ import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
 import { GetInTouchButton } from "@/components/get-in-touch-button";
-import { site, openJobs } from "@/lib/site";
+import { site } from "@/lib/site";
+import { getPublicJobs } from "@/lib/jobs";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -13,36 +14,41 @@ const playfair = Playfair_Display({
 });
 import { JobsBoard } from "./jobs-board";
 
+// Re-pull from Ceipal at most every 30 min (client accepts up to 30 min delay).
+export const revalidate = 1800;
+
 export const metadata: Metadata = {
   title: "Open Roles",
   description:
-    "Live IT and technology roles from Querentia — full-time, contract, and contract-to-hire positions at Canada's leading enterprises. Search by skill, location, or work model.",
+    "Live roles from Querentia, synced from our ATS: full-time, part-time, and contract positions at Canada's leading enterprises. Search by skill, location, or work model.",
   alternates: { canonical: "/jobs" },
   openGraph: {
     title: "Open Roles · Querentia",
     description:
-      "Live enterprise IT roles in Canada — cloud, data, security, engineering.",
+      "Live enterprise roles across Canada: cloud, data, security, engineering, SAP, and more.",
     url: `${site.url}/jobs`,
     type: "website",
   },
 };
 
-// ItemList schema — search engines + AI can crawl this overview, and per-job pages
-// (/jobs/[slug]) will add JobPosting schema each.
-const listSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "Querentia — Open IT Roles in Canada",
-  numberOfItems: openJobs.length,
-  itemListElement: openJobs.map((j, i) => ({
-    "@type": "ListItem",
-    position: i + 1,
-    url: `${site.url}/jobs/${j.slug}`,
-    name: j.title,
-  })),
-};
+export default async function JobsPage() {
+  const openJobs = await getPublicJobs();
 
-export default function JobsPage() {
+  // ItemList schema — search engines + AI can crawl this overview, and per-job
+  // pages (/jobs/[slug]) add JobPosting schema each.
+  const listSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Querentia Open Roles in Canada",
+    numberOfItems: openJobs.length,
+    itemListElement: openJobs.map((j, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${site.url}/jobs/${j.slug}`,
+      name: j.title,
+    })),
+  };
+
   return (
     <>
       <script
@@ -91,8 +97,8 @@ export default function JobsPage() {
           </Reveal>
           <Reveal delay={300}>
             <p className="mt-5 max-w-md text-[14px] leading-relaxed text-white/65 md:text-[15px]">
-              Live senior IT mandates from Canada&apos;s leading consulting
-              firms and enterprises — represented honestly, moved fast.
+              Live roles from Canada&apos;s leading consulting firms and
+              enterprises, represented honestly and moved fast.
             </p>
           </Reveal>
           <Reveal delay={440}>
@@ -102,7 +108,7 @@ export default function JobsPage() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-frost opacity-70" />
                   <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-frost" />
                 </span>
-                {openJobs.length} live roles · Updated this week
+                {openJobs.length} live roles · Synced from Ceipal
               </span>
               <GetInTouchButton className="group inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.25em] text-cyan transition-colors hover:text-white" />
             </div>
@@ -139,7 +145,7 @@ export default function JobsPage() {
                 </h2>
                 <p className="mx-auto mt-4 max-w-xl text-white/85">
                   Join our talent pool. Our recruiters reach out when a role
-                  matches your skills — no resume flood, no spam.
+                  matches your skills, with no resume flood and no spam.
                 </p>
                 <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <GetInTouchButton className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-deep transition-transform duration-300 hover:scale-[1.03]" />

@@ -2,36 +2,39 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Reveal } from "@/components/ui/reveal";
-import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
   MapPin,
   Briefcase,
   Clock,
-  Bolt,
-  Check,
   Sparkles,
 } from "@/components/ui/icons";
-import { site, openJobs, type Job } from "@/lib/site";
+import { site, type Job } from "@/lib/site";
+import { getPublicJobs, getJobBySlug } from "@/lib/jobs";
 
 type Params = { params: Promise<{ slug: string }> };
 
+// Refresh from Ceipal at most every 30 min; render new slugs on demand.
+export const revalidate = 1800;
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
-  return openJobs.map((j) => ({ slug: j.slug }));
+  const jobs = await getPublicJobs();
+  return jobs.map((j) => ({ slug: j.slug }));
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const job = openJobs.find((j) => j.slug === slug);
+  const job = await getJobBySlug(slug);
   if (!job) return { title: "Role not found" };
-  const desc = `${job.title} at ${job.company} — ${job.location}, ${job.jobType} (${job.workModel}). ${job.summary}`;
+  const desc = `${job.title} in ${job.location}. ${job.specialization} ${job.jobType.toLowerCase()} role (${job.workModel}) with Querentia. ${job.summary}`;
   return {
-    title: job.title,
-    description: desc,
+    title: `${job.title} in ${job.location}`,
+    description: desc.slice(0, 300),
     alternates: { canonical: `/jobs/${job.slug}` },
     openGraph: {
       title: `${job.title} · Querentia`,
-      description: desc,
+      description: desc.slice(0, 300),
       url: `${site.url}/jobs/${job.slug}`,
       type: "article",
     },
@@ -39,26 +42,46 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 function jobPostingSchema(job: Job) {
-  const valid = new Date();
-  valid.setDate(valid.getDate() + 60);
+  // Most Ceipal roles are "Open Until Filled" (no real closing date). Google
+  // requires validThrough in the future for an open posting, so fall back to a
+  // rolling ~60-day window that is always ahead of today. Use the real Ceipal
+  // closing date only when it is a genuine future date.
+  const today = new Date();
+  const rolling = new Date(today);
+  rolling.setDate(today.getDate() + 60);
+  const rollingIso = rolling.toISOString().slice(0, 10);
+  const validThrough =
+    job.closingDate && job.closingDate > today.toISOString().slice(0, 10)
+      ? job.closingDate
+      : rollingIso;
   return {
     "@context": "https://schema.org",
     "@type": "JobPosting",
     title: job.title,
-    description: job.summary,
+    description: job.description || job.summary,
     datePosted: job.postedAt,
-    validThrough: valid.toISOString(),
+    validThrough,
     employmentType:
       job.jobType === "Full-time"
         ? "FULL_TIME"
-        : job.jobType === "Contract"
-          ? "CONTRACTOR"
-          : "OTHER",
+        : job.jobType === "Part-time"
+          ? "PART_TIME"
+          : job.jobType === "Contract"
+            ? "CONTRACTOR"
+            : "OTHER",
+    identifier: {
+      "@type": "PropertyValue",
+      name: site.legalName,
+      value: job.id,
+    },
     hiringOrganization: {
       "@type": "Organization",
       name: site.legalName,
       sameAs: site.url,
+      logo: `${site.url}/querentia-logo-og.png`,
     },
+    directApply: !job.applyUrl,
+    url: `${site.url}/jobs/${job.slug}`,
     jobLocation:
       job.workModel === "Remote"
         ? undefined
@@ -67,7 +90,7 @@ function jobPostingSchema(job: Job) {
             address: {
               "@type": "PostalAddress",
               addressLocality: job.location.split(",")[0]?.trim() || "Toronto",
-              addressRegion: "ON",
+              addressRegion: job.location.split(",")[1]?.trim() || "ON",
               addressCountry: "CA",
             },
           },
@@ -76,21 +99,25 @@ function jobPostingSchema(job: Job) {
       job.workModel === "Remote"
         ? { "@type": "Country", name: "Canada" }
         : undefined,
-    skills: job.skills.join(", "),
+    ...(job.skills.length ? { skills: job.skills.join(", ") } : {}),
     industry: job.specialization,
-    baseSalary:
-      job.payMin && job.payMax
-        ? {
-            "@type": "MonetaryAmount",
-            currency: "CAD",
-            value: {
-              "@type": "QuantitativeValue",
-              minValue: job.payMin * (job.payUnit === "K" ? 1000 : 1),
-              maxValue: job.payMax * (job.payUnit === "K" ? 1000 : 1),
-              unitText: job.payUnit === "K" ? "YEAR" : "HOUR",
-            },
-          }
-        : undefined,
+    // No baseSalary: Querentia mandates carry no public rate, so none is emitted.
+  };
+}
+
+function breadcrumbSchema(job: Job) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Open Roles", item: `${site.url}/jobs` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: job.title,
+        item: `${site.url}/jobs/${job.slug}`,
+      },
+    ],
   };
 }
 
@@ -106,17 +133,44 @@ function daysAgo(iso: string) {
   return m <= 1 ? "1 month ago" : `${m} months ago`;
 }
 
+/** Apply CTA — links straight into the Ceipal candidate portal when available,
+ *  otherwise routes to our own contact page. External links open safely. */
+function ApplyButton({ job, className }: { job: Job; className: string }) {
+  if (job.applyUrl) {
+    return (
+      <a
+        href={job.applyUrl}
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+        className={className}
+      >
+        Apply now <ArrowRight className="h-4 w-4" />
+      </a>
+    );
+  }
+  return (
+    <Link
+      href={`/contact?role=${encodeURIComponent(job.title)}`}
+      className={className}
+    >
+      Apply now <ArrowRight className="h-4 w-4" />
+    </Link>
+  );
+}
+
 export default async function JobDetailPage({ params }: Params) {
   const { slug } = await params;
-  const job = openJobs.find((j) => j.slug === slug);
+  const job = await getJobBySlug(slug);
   if (!job) notFound();
 
-  const pay =
-    job.payMin && job.payMax
-      ? `$${job.payMin}–${job.payMax}${job.payUnit === "K" ? "K" : "/hr"}`
-      : null;
+  const paragraphs = (job.description || job.summary)
+    .split(/\n{2,}|\n/)
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .slice(0, 8);
 
-  const related = openJobs
+  const allJobs = await getPublicJobs();
+  const related = allJobs
     .filter((j) => j.id !== job.id && j.specialization === job.specialization)
     .slice(0, 3);
 
@@ -125,6 +179,10 @@ export default async function JobDetailPage({ params }: Params) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingSchema(job)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema(job)) }}
       />
 
       {/* HERO */}
@@ -155,11 +213,6 @@ export default async function JobDetailPage({ params }: Params) {
                     <Sparkles className="h-3 w-3 text-blue" />
                     {job.specialization}
                   </span>
-                  {job.isFeatured && (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-green-soft px-2 py-1 text-[11px] font-bold uppercase tracking-wide text-cyan">
-                      <Bolt className="h-3 w-3" /> Featured
-                    </span>
-                  )}
                 </div>
               </Reveal>
               <Reveal delay={160}>
@@ -167,11 +220,13 @@ export default async function JobDetailPage({ params }: Params) {
                   {job.title}
                 </h1>
               </Reveal>
-              <Reveal delay={240}>
-                <p className="mt-3 text-base text-on-deep-muted md:text-lg">
-                  {job.company}
-                </p>
-              </Reveal>
+              {job.company && (
+                <Reveal delay={240}>
+                  <p className="mt-3 text-base text-on-deep-muted md:text-lg">
+                    {job.company}
+                  </p>
+                </Reveal>
+              )}
               <Reveal delay={320}>
                 <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-on-deep-muted">
                   <span className="inline-flex items-center gap-1.5">
@@ -190,21 +245,17 @@ export default async function JobDetailPage({ params }: Params) {
 
             <Reveal delay={400}>
               <div className="flex flex-col items-start gap-4 rounded-2xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-md md:items-end md:text-right">
-                {pay && (
-                  <div className="md:text-right">
-                    <p className="text-[11px] font-semibold uppercase tracking-wide text-on-deep-muted">
-                      Compensation
-                    </p>
-                    <p className="mt-1 text-2xl font-bold text-white">{pay}</p>
-                    <p className="text-xs text-on-deep-muted">{job.duration}</p>
-                  </div>
-                )}
-                <Link
-                  href={`/contact?role=${encodeURIComponent(job.title)}`}
+                <div className="md:text-right">
+                  <p className="text-[11px] font-semibold uppercase tracking-wide text-on-deep-muted">
+                    Engagement
+                  </p>
+                  <p className="mt-1 text-lg font-bold text-white">{job.jobType}</p>
+                  <p className="text-xs text-on-deep-muted">{job.duration}</p>
+                </div>
+                <ApplyButton
+                  job={job}
                   className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-green-700"
-                >
-                  Apply now <ArrowRight className="h-4 w-4" />
-                </Link>
+                />
               </div>
             </Reveal>
           </div>
@@ -230,54 +281,37 @@ export default async function JobDetailPage({ params }: Params) {
                 <h2 className="text-xl font-bold text-deep md:text-2xl">
                   About the role
                 </h2>
-                <p className="mt-4 leading-relaxed text-ink-muted">{job.summary}</p>
+                {paragraphs.map((p, i) => (
+                  <p key={i} className="mt-4 leading-relaxed text-ink-muted">
+                    {p}
+                  </p>
+                ))}
                 <p className="mt-4 leading-relaxed text-ink-muted">
-                  This is an enterprise-grade engagement managed end-to-end by
-                  Querentia. Our recruiters will give you honest feedback at
-                  every stage, prepare you for the interview, and support a
-                  smooth onboarding once you land the offer.
+                  This engagement is managed end-to-end by Querentia. Our
+                  recruiters give you honest feedback at every stage, prepare you
+                  for the interview, and support a smooth onboarding once you land
+                  the offer.
                 </p>
               </div>
             </Reveal>
 
-            <Reveal>
-              <div>
-                <h2 className="text-xl font-bold text-deep md:text-2xl">
-                  What you&apos;ll bring
-                </h2>
-                <ul className="mt-5 space-y-3">
-                  {[
-                    `Hands-on experience across ${job.skills.slice(0, 3).join(", ")}`,
-                    `Comfort delivering in a ${job.workModel.toLowerCase()} setting`,
-                    "Strong communication with technical and business stakeholders",
-                    "A track record of shipping in enterprise environments",
-                  ].map((p) => (
-                    <li key={p} className="flex items-start gap-3 text-sm text-ink">
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-soft">
-                        <Check className="h-3 w-3 text-frost" />
+            {job.skills.length > 0 && (
+              <Reveal>
+                <div>
+                  <h2 className="text-xl font-bold text-deep md:text-2xl">Skills</h2>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {job.skills.map((s) => (
+                      <span
+                        key={s}
+                        className="rounded-full border border-border bg-page-2 px-3 py-1.5 text-sm font-medium text-deep"
+                      >
+                        {s}
                       </span>
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-
-            <Reveal>
-              <div>
-                <h2 className="text-xl font-bold text-deep md:text-2xl">Skills</h2>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {job.skills.map((s) => (
-                    <span
-                      key={s}
-                      className="rounded-full border border-border bg-page-2 px-3 py-1.5 text-sm font-medium text-deep"
-                    >
-                      {s}
-                    </span>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            )}
           </div>
 
           {/* SIDEBAR */}
@@ -293,15 +327,12 @@ export default async function JobDetailPage({ params }: Params) {
                   <Row label="Duration" value={job.duration} />
                   <Row label="Location" value={job.location} />
                   <Row label="Specialization" value={job.specialization} />
-                  {pay && <Row label="Compensation" value={pay} />}
                   <Row label="Posted" value={daysAgo(job.postedAt)} />
                 </dl>
-                <Link
-                  href={`/contact?role=${encodeURIComponent(job.title)}`}
+                <ApplyButton
+                  job={job}
                   className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-deep px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-deep-2"
-                >
-                  Apply now <ArrowRight className="h-4 w-4" />
-                </Link>
+                />
               </div>
 
               <Link
