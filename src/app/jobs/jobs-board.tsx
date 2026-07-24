@@ -396,7 +396,10 @@ function JobCard({ job }: { job: Job }) {
               <p className="text-base font-bold text-deep">{pay}</p>
             </div>
           )}
-          <span className="relative z-10 inline-flex min-h-[44px] items-center gap-2 rounded-full bg-deep px-4 py-2 text-xs font-semibold text-white transition-all duration-300 group-hover:bg-green group-hover:text-white md:min-h-0">
+          {/* Visual only — the whole card is the link (title's stretched
+              ::after overlay). Must NOT sit above that overlay, or clicks here
+              get swallowed. */}
+          <span className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-deep px-4 py-2 text-xs font-semibold text-white transition-all duration-300 group-hover:bg-green group-hover:text-white md:min-h-0">
             View role
             <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
           </span>

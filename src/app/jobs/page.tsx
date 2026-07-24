@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
@@ -56,20 +57,64 @@ export default async function JobsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(listSchema) }}
       />
 
-      {/* HERO */}
-      <section className="relative isolate overflow-hidden bg-deep-2 text-on-deep">
-        <div aria-hidden className="absolute inset-0 -z-10">
-          <div
-            className="absolute inset-0 animate-gradient-pan"
-            style={{
-              background:
-                "linear-gradient(120deg, #0D1B2A 0%, #142235 30%, #16324C 60%, #142235 100%)",
-            }}
+      {/* HERO — full-bleed image, homepage-style */}
+      <section
+        className="relative isolate flex min-h-[72vh] items-center overflow-hidden pb-16 pt-28 text-on-deep sm:pt-32"
+        style={{ backgroundColor: "#0D1B2A" }}
+      >
+        <style>{`
+          @media (min-width: 1024px) {
+            .jobs-hero-mask {
+              -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.45) 30%, #000 62%, #000 100%);
+              mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.45) 30%, #000 62%, #000 100%);
+            }
+          }
+          @keyframes jobs-img-in { from { opacity: 0; transform: scale(1.12); } to { opacity: 1; transform: scale(1); } }
+          .jobs-img-in { animation: jobs-img-in 1.6s cubic-bezier(0.16,1,0.3,1) both; }
+          @media (prefers-reduced-motion: reduce) { .jobs-img-in { animation: none; opacity: 1; transform: none; } }
+        `}</style>
+
+        {/* full-bleed image on the right; left edge feathered into navy via mask */}
+        <div className="jobs-hero-mask absolute inset-0 lg:left-[40%]">
+          <Image
+            src="/hero-arch.webp"
+            alt="Modern enterprise architecture, where high-impact roles are placed"
+            fill
+            priority
+            sizes="(min-width:1024px) 60vw, 100vw"
+            className="jobs-img-in object-cover object-center"
           />
-          <span className="grain absolute inset-0" />
         </div>
 
-        <div className="container-x relative pb-16 pt-32 md:pb-20 md:pt-40">
+        {/* mobile veil so copy stays readable over the image */}
+        <div
+          aria-hidden
+          className="absolute inset-0 lg:hidden"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(13,27,42,0.82), rgba(13,27,42,0.94))",
+          }}
+        />
+        {/* desktop: navy wash on the left for copy depth (mask does the blend) */}
+        <div
+          aria-hidden
+          className="absolute inset-0 hidden lg:block"
+          style={{
+            background:
+              "linear-gradient(90deg, #0D1B2A 0%, rgba(13,27,42,0.92) 30%, rgba(13,27,42,0.55) 48%, rgba(13,27,42,0.18) 62%, rgba(13,27,42,0) 74%)",
+          }}
+        />
+        {/* desktop: top + bottom navy fades and a soft tint to settle the image */}
+        <div
+          aria-hidden
+          className="absolute inset-0 hidden lg:block"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(13,27,42,0.85) 0%, rgba(13,27,42,0.25) 16%, rgba(13,27,42,0) 32%, rgba(13,27,42,0) 72%, rgba(13,27,42,0.5) 100%), rgba(13,27,42,0.20)",
+          }}
+        />
+
+        <div className="container-x relative w-full">
           <Reveal>
             <p className="mb-6 inline-flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.3em] text-cyan">
               <span className="inline-block h-px w-6 bg-current opacity-50" />
