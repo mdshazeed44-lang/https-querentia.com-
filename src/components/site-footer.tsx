@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { site, addresses } from "@/lib/site";
+import { FlagCA, FlagUS } from "@/components/ui/flags";
 import {
   Mail,
   MapPin,
@@ -104,12 +105,6 @@ export function SiteFooter() {
                   >
                     {site.phone}
                   </a>
-                  <a
-                    href={`tel:${site.phoneAlt.replace(/[^+\d]/g, "")}`}
-                    className="transition-colors hover:text-white"
-                  >
-                    {site.phoneAlt}
-                  </a>
                 </span>
               </li>
               <li className="flex items-start gap-3 text-on-deep-muted">
@@ -147,28 +142,47 @@ export function SiteFooter() {
           ))}
         </div>
 
-        {/* ───────── Row 2 · offices (full-width, 3-up) ───────── */}
+        {/* ───────── Row 2 · offices grouped by country ───────── */}
         <div className="mt-10 border-t border-white/10 pt-8 md:mt-12 md:pt-9">
-          <div className="mb-4 flex items-center gap-2.5 md:mb-5">
+          <div className="mb-5 flex items-center gap-2.5">
             <MapPin className="h-4 w-4 shrink-0 text-cyan" />
             <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-on-deep-muted">
               Our Offices
             </p>
           </div>
-          <ul className="grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3 md:gap-y-6">
-            {addresses.map((office) => (
-              <li key={office.city} className="text-[13px] leading-snug">
-                <p className="font-semibold text-white">{office.city}</p>
-                <address className="mt-1 not-italic text-on-deep-muted">
-                  {office.lines.map((line) => (
-                    <span key={line} className="block">
-                      {line}
-                    </span>
-                  ))}
-                </address>
-              </li>
-            ))}
-          </ul>
+          <div className="space-y-7">
+            {([
+              { cc: "CA", label: "Canada Offices", Flag: FlagCA },
+              { cc: "US", label: "US Offices", Flag: FlagUS },
+            ] as const).map(({ cc, label, Flag }) => {
+              const group = addresses.filter((o) => o.country === cc);
+              if (!group.length) return null;
+              return (
+                <div key={cc}>
+                  <div className="mb-3 flex items-center gap-2">
+                    <Flag className="h-3.5 w-5 shrink-0 rounded-[2px] shadow-[0_0_0_1px_rgba(255,255,255,0.12)]" />
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white">
+                      {label}
+                    </p>
+                  </div>
+                  <ul className="grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
+                    {group.map((office) => (
+                      <li key={office.city} className="text-[13px] leading-snug">
+                        <p className="font-semibold text-white">{office.city}</p>
+                        <address className="mt-1 not-italic text-on-deep-muted">
+                          {office.lines.map((line) => (
+                            <span key={line} className="block">
+                              {line}
+                            </span>
+                          ))}
+                        </address>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -180,7 +194,7 @@ export function SiteFooter() {
               © {year} {site.legalName}. All rights reserved.
             </p>
             <p className="text-[12px] text-on-deep-muted">
-              Querentia® is a registered trademark in Canada.
+              Querentia® is a registered trademark.
             </p>
           </div>
           <div className="flex items-center gap-2.5">

@@ -21,17 +21,17 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "For Companies: Hire Exceptional Talent in Canada",
+  title: "For Companies: Hire Exceptional Talent",
   description:
-    "Querentia is Canada's trusted recruitment partner for exceptional talent, tech and non-tech. Thoughtful, transparent, permanent and contract hiring across 42 disciplines and 7 practice areas.",
+    "Querentia is your trusted recruitment partner for exceptional talent, tech and non-tech. Thoughtful, transparent, permanent and contract hiring across 42 disciplines and 7 practice areas.",
   alternates: { canonical: "/for-companies" },
 };
 
 /* ── FAQ: answer-oriented content for AI search (GEO) + FAQPage schema ── */
 const FAQS = [
   {
-    q: "What does Querentia do for companies hiring in Canada?",
-    a: "Querentia is a Canadian recruitment partner that helps organizations hire exceptional talent, both technical and non-technical, across 42 disciplines and 7 practice areas. We deliver pre-vetted shortlists for permanent and contract roles, matching candidates for capability, trajectory, and cultural fit rather than keyword overlap.",
+    q: "What does Querentia do for companies?",
+    a: "Querentia is a trusted recruitment partner that helps organizations hire exceptional talent, both technical and non-technical, across 42 disciplines and 7 practice areas. We deliver pre-vetted shortlists for permanent and contract roles, matching candidates for capability, trajectory, and cultural fit rather than keyword overlap.",
   },
   {
     q: "How does Querentia's hiring process work?",
@@ -50,8 +50,8 @@ const FAQS = [
     a: "We cover 7 practice areas and 42 disciplines, including Cloud, Data & AI; Engineering & Product; Enterprise Platforms; Strategy & Delivery; Security, Risk & Business; Infrastructure, Networking & IT Operations; and Business, Finance & Risk. We serve sectors from banking and insurance to technology, public sector, healthcare, and professional services.",
   },
   {
-    q: "Where in Canada is Querentia based?",
-    a: "Querentia is located in Toronto, ON, with a registered office in Oakville, and serves clients across Canada.",
+    q: "Where is Querentia based?",
+    a: "Querentia has offices across Canada and the United States, including downtown Toronto and Vancouver, New York City, and Silicon Valley, and serves clients internationally.",
   },
 ];
 
@@ -62,15 +62,14 @@ const serviceSchema = {
   serviceType: "Staffing and recruitment",
   url: `${site.url}/for-companies`,
   description:
-    "Permanent and contract recruitment for Canada's leading organizations. Thoughtful, transparent shortlists across 42 disciplines and 7 practice areas, tech and non-tech, from cloud, data and security to finance, HR, project delivery and risk.",
+    "Permanent and contract recruitment for leading organizations. Thoughtful, transparent shortlists across 42 disciplines and 7 practice areas, tech and non-tech, from cloud, data and security to finance, HR, project delivery and risk.",
   areaServed: [
     { "@type": "Country", name: "Canada" },
-    { "@type": "City", name: "Oakville" },
-    { "@type": "City", name: "Toronto" },
+    { "@type": "Country", name: "United States" },
   ],
   audience: {
     "@type": "BusinessAudience",
-    name: "Employers hiring talent in Canada",
+    name: "Employers hiring exceptional talent",
   },
   provider: {
     "@type": "Organization",
@@ -367,7 +366,7 @@ export default function ForCompaniesPage() {
                   </h2>
                   <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-ink-muted">
                     Everything you need to know about partnering with Querentia
-                    to hire in Canada. Still curious?{" "}
+                    to hire exceptional talent. Still curious?{" "}
                     <Link
                       href="/contact"
                       className="font-medium text-cyan underline-offset-4 hover:underline"

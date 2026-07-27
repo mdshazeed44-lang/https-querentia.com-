@@ -25,7 +25,7 @@ const display = Familjen_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Trusted Recruitment Partner in Canada`,
+    default: `${site.name} | Your Trusted Recruitment Partner`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
@@ -34,29 +34,29 @@ export const metadata: Metadata = {
   creator: site.legalName,
   publisher: site.legalName,
   keywords: [
-    "recruitment agency Canada",
-    "talent acquisition Canada",
-    "staffing agency Toronto",
-    "executive search Canada",
+    "recruitment agency",
+    "IT recruitment",
+    "technology recruitment",
+    "talent acquisition",
+    "staffing agency",
+    "executive search",
     "permanent and contract recruitment",
-    "professional staffing Ontario",
-    "technology recruitment Canada",
+    "professional staffing",
     "finance and accounting recruitment",
-    "Toronto recruitment firm",
-    "hire exceptional talent Canada",
+    "hire exceptional talent",
   ],
   openGraph: {
     type: "website",
-    locale: "en_CA",
+    locale: "en_US",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} | Trusted Recruitment Partner in Canada`,
+    title: `${site.name} | Your Trusted Recruitment Partner`,
     description: site.description,
     images: [{ url: "/querentia-logo-og.png", width: 1200, height: 630, alt: site.name }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} | Trusted Recruitment Partner in Canada`,
+    title: `${site.name} | Your Trusted Recruitment Partner`,
     description: site.description,
     images: ["/querentia-logo-og.png"],
   },
@@ -103,22 +103,25 @@ const structuredData = {
         addressRegion: site.region,
         addressCountry: site.country,
       },
-      areaServed: { "@type": "Country", name: "Canada" },
+      areaServed: [
+        { "@type": "Country", name: "Canada" },
+        { "@type": "Country", name: "United States" },
+      ],
       contactPoint: [
         {
           "@type": "ContactPoint",
           contactType: "customer service",
           telephone: site.phone,
           email: site.email,
-          areaServed: "CA",
+          areaServed: ["CA", "US"],
           availableLanguage: ["English"],
         },
         {
           "@type": "ContactPoint",
           contactType: "sales",
-          telephone: site.phoneAlt,
+          telephone: site.phone,
           email: site.email,
-          areaServed: "CA",
+          areaServed: ["CA", "US"],
           availableLanguage: ["English"],
         },
       ],
@@ -139,7 +142,7 @@ const structuredData = {
       url: site.url,
       name: site.name,
       description: site.description,
-      inLanguage: "en-CA",
+      inLanguage: "en",
       publisher: { "@id": `${site.url}#organization` },
       potentialAction: {
         "@type": "SearchAction",
@@ -158,7 +161,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang="en-CA"
+      lang="en"
       className={`${sans.variable} ${display.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-page text-ink">

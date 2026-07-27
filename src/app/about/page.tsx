@@ -428,13 +428,6 @@ export default function AboutPage() {
             ))}
           </div>
 
-          {/* HQ line */}
-          <Reveal delay={200}>
-            <p className="mt-10 flex items-center justify-center gap-2 text-sm text-ink-faint md:mt-14">
-              <MapPin className="h-4 w-4 text-cyan" />
-              Located in {site.location}
-            </p>
-          </Reveal>
         </div>
       </section>
 

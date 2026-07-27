@@ -175,7 +175,7 @@ function buildPlace(raw: CeipalRawJob, remote: boolean): Place {
   const display = parts.length
     ? parts.join(", ")
     : remote
-      ? "Remote · Canada"
+      ? `Remote · ${country}`
       : country;
 
   return { city, region, country, countryCode: countryCodeOf(country), display };
@@ -332,7 +332,7 @@ export function normalizeJob(raw: CeipalRawJob): Job | null {
   const summary = descText
     ? descText.replace(/\s+/g, " ").slice(0, 260).trim()
     : `${title}. A ${jobType.toLowerCase()} opportunity ${
-        remote ? "open across Canada" : `in ${location}`
+        remote ? "open remotely" : `in ${location}`
       }, represented by Querentia. Apply to connect with our recruitment team about this role.`;
 
   const description = descText || summary;

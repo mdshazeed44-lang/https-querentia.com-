@@ -8,14 +8,13 @@ export const site = {
   url: "https://querentia.com",
   tagline: "Talent. Trust. Thrive.",
   description:
-    "Querentia is a trusted talent partner, connecting organizations with exceptional people who elevate teams and accelerate growth. We deliver all talent, tech and non-tech, across Canada.",
+    "Querentia is a trusted talent partner, connecting organizations with exceptional people who elevate teams and accelerate growth. We deliver all talent, tech and non-tech, across North America and beyond.",
   location: "Toronto, ON",
   locality: "Toronto",
   region: "ON",
   country: "CA",
   email: "info@querentia.com",
-  phone: "+1 (905) 409-5422",
-  phoneAlt: "+1 (416) 475-5422",
+  phone: "1-877-669-1214",
   linkedin: "https://www.linkedin.com/company/querentia",
   facebook: "https://www.facebook.com/querentia",
   instagram: "https://www.instagram.com/querentia",
@@ -33,10 +32,15 @@ export const nav = [
 // Enterprise clients referenced across calls / scope
 export const clients = ["Deloitte", "Capgemini", "CGI", "Curasion", "Browne"] as const;
 
-// Office addresses (client-provided, 2026-07-16).
+// Office addresses (client-provided, 2026-07-25). Grouped by country for the
+// flag-labelled "Canada Offices" / "US Offices" sections in the footer + contact.
 export const addresses = [
-  { city: "Toronto Downtown", lines: ["First Canadian Place", "100 King St W #5600", "Toronto, ON M5X 1C9"] },
-  { city: "Registered Office", lines: ["2432 Castlebrook Rd", "Oakville, ON L6M 4Z2"] },
+  { city: "Downtown Toronto", country: "CA", lines: ["First Canadian Place", "100 King St W #5600", "Toronto, ON M5X 1C9"] },
+  { city: "Downtown Vancouver", country: "CA", lines: ["701 West Georgia Street, Suite 1500", "Vancouver, BC V7Y 1G5"] },
+  { city: "Canada Registered Office", country: "CA", lines: ["2432 Castlebrook Rd", "Oakville, ON L6M 4Z2"] },
+  { city: "New York City", country: "US", lines: ["287 Park Avenue South", "New York, NY 10010"] },
+  { city: "Silicon Valley", country: "US", lines: ["325 South 1st Street, Suite 200", "San Jose, CA 95113"] },
+  { city: "US Registered Office", country: "US", lines: ["8 The Green B", "Dover, DE 19901, USA"] },
 ] as const;
 
 // Industry verticals (used in the header dropdown menu)

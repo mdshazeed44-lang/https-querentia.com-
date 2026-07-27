@@ -24,7 +24,7 @@ const QUOTES: Quote[] = [
     quote:
       "What set Querentia apart was the technical depth of their screening. They sent us people who could actually do the job, not just check the keyword box.",
     author: "Head of Engineering",
-    role: "Canadian Bank · Vancouver",
+    role: "Tier-1 Bank · Vancouver",
     Icon: Bank,
   },
   {

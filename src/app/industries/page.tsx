@@ -25,7 +25,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Industries We Serve",
   description:
-    "Querentia places exceptional talent, tech and non-tech, across the sectors that power Canada — banking, insurance, technology, public sector, retail, energy, healthcare, and professional services.",
+    "Querentia places exceptional talent, tech and non-tech, across the sectors that power modern business: banking, insurance, technology, public sector, retail, energy, healthcare, and professional services.",
   alternates: { canonical: "/industries" },
 };
 
@@ -33,7 +33,7 @@ const SECTORS = [
   {
     Icon: Bank,
     title: "Banking and Financial Services",
-    body: "Core banking, payments, risk, compliance, and capital-markets talent for Canada's largest financial institutions and fintechs.",
+    body: "Core banking, payments, risk, compliance, and capital-markets talent for leading financial institutions and fintechs.",
   },
   {
     Icon: Shield,
@@ -130,8 +130,8 @@ export default function IndustriesPage() {
               <Reveal delay={300}>
                 <p className="mt-6 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
                   From banking floors to public-sector programs, Querentia places
-                  exceptional people — tech and non-tech alike — across the
-                  industries that power Canada.
+                  exceptional people, tech and non-tech alike, across the
+                  industries that power modern business.
                 </p>
               </Reveal>
             </div>

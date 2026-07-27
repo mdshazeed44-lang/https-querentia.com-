@@ -44,7 +44,9 @@ function daysAgo(iso: string) {
 
 export function JobsBoard({ jobs }: Props) {
   const [query, setQuery] = useState("");
-  const [location, setLocation] = useState("");
+  const [country, setCountry] = useState("");
+  const [region, setRegion] = useState("");
+  const [city, setCity] = useState("");
   const [workModels, setWorkModels] = useState<Set<Job["workModel"]>>(new Set());
   const [jobTypes, setJobTypes] = useState<Set<Job["jobType"]>>(new Set());
   const [specs, setSpecs] = useState<Set<string>>(new Set());
@@ -67,15 +69,32 @@ export function JobsBoard({ jobs }: Props) {
     return JOB_TYPE_ORDER.filter((t) => present.has(t));
   }, [jobs]);
 
+  // Cascading location options: State/Province narrows to the chosen Country,
+  // City narrows to the chosen Country + State.
+  const uniqSorted = (vals: (string | undefined)[]) =>
+    Array.from(new Set(vals.filter((v): v is string => !!v))).sort();
+  const countryOpts = useMemo(() => uniqSorted(jobs.map((j) => j.country)), [jobs]);
+  const regionOpts = useMemo(() => {
+    const pool = country ? jobs.filter((j) => j.country === country) : jobs;
+    return uniqSorted(pool.map((j) => j.region));
+  }, [jobs, country]);
+  const cityOpts = useMemo(() => {
+    let pool = jobs;
+    if (country) pool = pool.filter((j) => j.country === country);
+    if (region) pool = pool.filter((j) => j.region === region);
+    return uniqSorted(pool.map((j) => j.city));
+  }, [jobs, country, region]);
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const loc = location.trim().toLowerCase();
     const result = jobs.filter((j) => {
       if (q) {
-        const hay = `${j.title} ${j.company ?? ""} ${j.skills.join(" ")} ${j.specialization}`.toLowerCase();
+        const hay = `${j.title} ${j.company ?? ""} ${j.skills.join(" ")} ${j.specialization} ${j.location}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
-      if (loc && !j.location.toLowerCase().includes(loc)) return false;
+      if (country && j.country !== country) return false;
+      if (region && j.region !== region) return false;
+      if (city && j.city !== city) return false;
       if (workModels.size && !workModels.has(j.workModel)) return false;
       if (jobTypes.size && !jobTypes.has(j.jobType)) return false;
       if (specs.size && !specs.has(j.specialization)) return false;
@@ -87,7 +106,7 @@ export function JobsBoard({ jobs }: Props) {
       return sort === "new" ? db - da : da - db;
     });
     return result;
-  }, [jobs, query, location, workModels, jobTypes, specs, sort]);
+  }, [jobs, query, country, region, city, workModels, jobTypes, specs, sort]);
 
   const toggleSet = <T extends string>(
     set: Set<T>,
@@ -102,7 +121,9 @@ export function JobsBoard({ jobs }: Props) {
 
   const clearAll = () => {
     setQuery("");
-    setLocation("");
+    setCountry("");
+    setRegion("");
+    setCity("");
     setWorkModels(new Set());
     setJobTypes(new Set());
     setSpecs(new Set());
@@ -110,7 +131,9 @@ export function JobsBoard({ jobs }: Props) {
 
   const activeCount =
     (query ? 1 : 0) +
-    (location ? 1 : 0) +
+    (country ? 1 : 0) +
+    (region ? 1 : 0) +
+    (city ? 1 : 0) +
     workModels.size +
     jobTypes.size +
     specs.size;
@@ -151,6 +174,40 @@ export function JobsBoard({ jobs }: Props) {
               </button>
             )}
           </div>
+
+          {/* Location: Country → State/Province → City (cascading) */}
+          <FilterGroup title="Location">
+            <div className="flex w-full flex-col gap-2">
+              <FilterSelect
+                label="Country"
+                value={country}
+                options={countryOpts}
+                placeholder="All countries"
+                onChange={(v) => {
+                  setCountry(v);
+                  setRegion("");
+                  setCity("");
+                }}
+              />
+              <FilterSelect
+                label="State / Province"
+                value={region}
+                options={regionOpts}
+                placeholder="All states / provinces"
+                onChange={(v) => {
+                  setRegion(v);
+                  setCity("");
+                }}
+              />
+              <FilterSelect
+                label="City"
+                value={city}
+                options={cityOpts}
+                placeholder="All cities"
+                onChange={setCity}
+              />
+            </div>
+          </FilterGroup>
 
           {/* Work model */}
           <FilterGroup title="Work model">
@@ -208,17 +265,6 @@ export function JobsBoard({ jobs }: Props) {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Role, skill or keyword"
                 aria-label="Search jobs by role, skill or keyword"
-                className="w-full bg-transparent py-2.5 text-sm text-deep placeholder:text-ink-muted/70 focus:outline-none"
-              />
-            </div>
-            <div className="hidden h-6 w-px bg-border sm:block" />
-            <div className="flex flex-1 items-center gap-2 px-3">
-              <MapPin className="h-4 w-4 shrink-0 text-cyan" />
-              <input
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                placeholder="Location"
-                aria-label="Filter jobs by location"
                 className="w-full bg-transparent py-2.5 text-sm text-deep placeholder:text-ink-muted/70 focus:outline-none"
               />
             </div>
@@ -295,6 +341,39 @@ function FilterGroup({
       </h3>
       <div className="mt-3 flex flex-wrap gap-1.5">{children}</div>
     </div>
+  );
+}
+
+function FilterSelect({
+  label,
+  value,
+  options,
+  placeholder,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  options: string[];
+  placeholder: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <label className="block w-full">
+      <span className="sr-only">{label}</span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        aria-label={label}
+        className="w-full rounded-xl border border-border bg-white px-3 py-2 text-xs font-medium text-deep transition-colors focus:border-cyan focus:outline-none focus:ring-2 focus:ring-cyan/25"
+      >
+        <option value="">{placeholder}</option>
+        {options.map((o) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }
 

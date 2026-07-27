@@ -21,12 +21,12 @@ export const revalidate = 1800;
 export const metadata: Metadata = {
   title: "Open Roles",
   description:
-    "Live roles from Querentia, synced from our ATS: full-time, part-time, and contract positions at Canada's leading enterprises. Search by skill, location, or work model.",
+    "Live roles from Querentia, synced from our ATS: full-time, part-time, and contract positions at leading enterprises. Search by skill, location, or work model.",
   alternates: { canonical: "/jobs" },
   openGraph: {
     title: "Open Roles · Querentia",
     description:
-      "Live enterprise roles across Canada: cloud, data, security, engineering, SAP, and more.",
+      "Live enterprise roles: cloud, data, security, engineering, SAP, and more.",
     url: `${site.url}/jobs`,
     type: "website",
   },
@@ -40,7 +40,7 @@ export default async function JobsPage() {
   const listSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Querentia Open Roles in Canada",
+    name: "Querentia Open Roles",
     numberOfItems: openJobs.length,
     itemListElement: openJobs.map((j, i) => ({
       "@type": "ListItem",
@@ -142,8 +142,8 @@ export default async function JobsPage() {
           </Reveal>
           <Reveal delay={300}>
             <p className="mt-5 max-w-md text-[14px] leading-relaxed text-white/65 md:text-[15px]">
-              Live roles from Canada&apos;s leading consulting firms and
-              enterprises, represented honestly and moved fast.
+              Live roles from leading consulting firms and enterprises,
+              represented honestly and moved fast.
             </p>
           </Reveal>
           <Reveal delay={440}>

@@ -11,7 +11,8 @@ import {
   Check,
   Clock,
 } from "@/components/ui/icons";
-import { site } from "@/lib/site";
+import { site, addresses } from "@/lib/site";
+import { FlagCA, FlagUS } from "@/components/ui/flags";
 
 /**
  * Contact — premium editorial aesthetic matching the About "Manifesto",
@@ -29,7 +30,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with Querentia — Canada's trusted recruitment partner for all talent, tech and non-tech. Hire exceptional people or explore your next role. Replies within one business day.",
+    "Get in touch with Querentia, your trusted recruitment partner for all talent, tech and non-tech. Hire exceptional people or explore your next role. Replies within one business day.",
   alternates: { canonical: "/contact" },
 };
 
@@ -56,15 +57,15 @@ const contactSchema = {
         contactType: "customer service",
         email: site.email,
         telephone: site.phone,
-        areaServed: "CA",
+        areaServed: ["CA", "US"],
         availableLanguage: ["English"],
       },
       {
         "@type": "ContactPoint",
         contactType: "sales",
         email: site.email,
-        telephone: site.phoneAlt,
-        areaServed: "CA",
+        telephone: site.phone,
+        areaServed: ["CA", "US"],
         availableLanguage: ["English"],
       },
     ],
@@ -91,17 +92,14 @@ const channels: {
   {
     icon: Phone,
     title: "Call our team",
-    note: "Either line reaches a recruiter — not a switchboard.",
-    links: [
-      { label: site.phone, href: tel(site.phone) },
-      { label: site.phoneAlt, href: tel(site.phoneAlt) },
-    ],
+    note: "Reaches a recruiter directly, not a switchboard.",
+    links: [{ label: site.phone, href: tel(site.phone) }],
   },
   {
     icon: MapPin,
     title: "Our offices",
-    note: "Located in Toronto, ON, with a registered office in Oakville. Serving talent and employers Canada-wide.",
-    links: [{ label: site.location, href: MAPS_URL, external: true }],
+    note: "Offices across Canada and the United States, serving talent and employers wherever they are.",
+    links: [{ label: "View all offices", href: "#offices" }],
   },
   {
     icon: Linkedin,
@@ -172,8 +170,8 @@ export default function ContactPage() {
                 <p className="mt-7 max-w-xl text-base leading-relaxed text-on-deep-muted md:text-lg">
                   One call starts it. Whether you&apos;re building a team or
                   building a career, you&apos;ll get an honest conversation with
-                  people who place exceptional talent — tech and non-tech —
-                  across Canada.
+                  people who place exceptional talent, tech and non-tech, across
+                  North America and beyond.
                 </p>
               </Reveal>
 
@@ -378,7 +376,7 @@ export default function ContactPage() {
         </section>
 
         {/* ---------- OFFICE / MAP CARD ---------- */}
-        <section className="bg-page-2 py-16 md:py-20">
+        <section id="offices" className="scroll-mt-24 bg-page-2 py-16 md:py-20">
           <div className="container-x">
             <Reveal>
               <div className="relative mx-auto max-w-5xl overflow-hidden rounded-3xl border border-border bg-card shadow-[0_40px_90px_-40px_rgba(13,27,42,0.25)] md:grid md:grid-cols-[0.9fr_1.1fr]">
@@ -394,20 +392,45 @@ export default function ContactPage() {
                     {site.legalName}
                   </h2>
 
-                  <div className="mt-7 flex items-start gap-4">
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-deep-2 text-cyan shadow-[0_14px_34px_-12px_rgba(0,194,255,0.45)]">
-                      <MapPin className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold text-ink">
-                        {site.location}
-                      </p>
-                      <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
-                        Located in Toronto, ON, with a registered office in
-                        Oakville, serving talent and employers across Canada.
-                        Meetings by appointment.
-                      </p>
-                    </div>
+                  <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+                    Offices across Canada and the United States. Meetings by
+                    appointment.
+                  </p>
+
+                  <div className="mt-6 space-y-6">
+                    {(
+                      [
+                        { cc: "CA", label: "Canada Offices", Flag: FlagCA },
+                        { cc: "US", label: "US Offices", Flag: FlagUS },
+                      ] as const
+                    ).map(({ cc, label, Flag }) => {
+                      const group = addresses.filter((o) => o.country === cc);
+                      if (!group.length) return null;
+                      return (
+                        <div key={cc}>
+                          <div className="mb-2.5 flex items-center gap-2">
+                            <Flag className="h-3.5 w-5 shrink-0 rounded-[2px] shadow-[0_0_0_1px_rgba(15,27,42,0.12)]" />
+                            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink">
+                              {label}
+                            </p>
+                          </div>
+                          <ul className="grid gap-x-6 gap-y-4 sm:grid-cols-2">
+                            {group.map((o) => (
+                              <li key={o.city} className="text-[13px] leading-snug">
+                                <p className="font-semibold text-ink">{o.city}</p>
+                                <address className="mt-1 not-italic text-ink-muted">
+                                  {o.lines.map((line) => (
+                                    <span key={line} className="block">
+                                      {line}
+                                    </span>
+                                  ))}
+                                </address>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      );
+                    })}
                   </div>
 
                   <a

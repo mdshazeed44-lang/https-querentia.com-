@@ -1,16 +1,16 @@
 # Querentia
 
-> Querentia Inc. is Canada's trusted recruitment partner, placing exceptional talent — both tech and non-tech — with leading organizations across the country since 2021. Tagline: Talent. Trust. Thrive.
+> Querentia Inc. is a trusted recruitment partner, placing exceptional talent, both tech and non-tech, with leading organizations across North America and beyond since 2021. Tagline: Talent. Trust. Thrive.
 
-Querentia is a recruitment and talent-solutions firm located in Toronto, Ontario, with a registered office in Oakville. We connect employers with high-quality, high-impact candidates across 42 disciplines and 7 practice areas, for permanent and contract roles. Our promise: Talent. Trust. Thrive.
+Querentia is a recruitment and talent-solutions firm with offices across Canada and the United States. We connect employers with high-quality, high-impact candidates across 42 disciplines and 7 practice areas, for permanent and contract roles. Our promise: Talent. Trust. Thrive.
 
 - Founded: 2021
-- Location: Toronto, Ontario, Canada (registered office in Oakville)
-- Area served: all of Canada
+- Locations: offices in Toronto and Vancouver (Canada) and New York City and Silicon Valley (USA); registered offices in Oakville, ON and Dover, DE
+- Area served: Canada, the United States, and internationally
 - Audiences: employers hiring talent, and candidates seeking roles
-- Specialties: technology AND non-tech — engineering, data, cloud, cybersecurity, finance, HR, marketing, supply chain, project delivery, and more
+- Specialties: technology AND non-tech: engineering, data, cloud, cybersecurity, finance, HR, marketing, supply chain, project delivery, and more
 - Track record: 500+ successful placements, 94% placement retention, 48-hour average shortlist
-- Contact: info@querentia.com · +1 (905) 409-5422
+- Contact: info@querentia.com · 1-877-669-1214
 
 ## Key pages
 
@@ -19,7 +19,7 @@ Querentia is a recruitment and talent-solutions firm located in Toronto, Ontario
 - [For Companies](https://querentia.com/for-companies): How employers hire with Querentia — 48-hour shortlists, the process, and disciplines covered.
 - [For Talent](https://querentia.com/for-talent): For job seekers — how Querentia helps candidates find the right role.
 - [Industries](https://querentia.com/industries): The business sectors Querentia serves.
-- [Jobs](https://querentia.com/jobs): Searchable board of open roles across Canada.
+- [Jobs](https://querentia.com/jobs): Searchable board of open roles.
 - [Hot Jobs](https://querentia.com/hot-jobs): Featured, actively-shortlisting roles.
 - [Contact](https://querentia.com/contact): Get in touch to hire talent or explore a role.
 
@@ -51,6 +51,7 @@ Querentia is a recruitment and talent-solutions firm located in Toronto, Ontario
 ## Contact
 
 - Email: info@querentia.com
-- Phone: +1 (905) 409-5422
-- Offices: Toronto Downtown (First Canadian Place, 100 King St W #5600), Registered Office (2432 Castlebrook Rd, Oakville), Canada
+- Phone: 1-877-669-1214
+- Canada offices: Downtown Toronto (First Canadian Place, 100 King St W #5600, Toronto, ON M5X 1C9), Downtown Vancouver (701 West Georgia Street, Suite 1500, Vancouver, BC V7Y 1G5), Registered Office (2432 Castlebrook Rd, Oakville, ON L6M 4Z2)
+- US offices: New York City (287 Park Avenue South, New York, NY 10010), Silicon Valley (325 South 1st Street, Suite 200, San Jose, CA 95113), Registered Office (8 The Green B, Dover, DE 19901)
 - LinkedIn: https://www.linkedin.com/company/querentia
