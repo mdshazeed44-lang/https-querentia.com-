@@ -5,6 +5,9 @@ import { submitApplication } from "@/lib/ceipal";
 // Needs the Node runtime (Buffer / Ceipal SDK usage), never statically cached.
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+// Resolving the Ceipal job id plus the submission itself are two API round
+// trips; keep headroom so a slow Ceipal response doesn't fail the application.
+export const maxDuration = 60;
 
 const MAX_RESUME_BYTES = 5 * 1024 * 1024; // 5 MB
 const ALLOWED_EXT = ["pdf", "doc", "docx", "rtf", "txt"];

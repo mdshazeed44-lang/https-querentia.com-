@@ -17,6 +17,9 @@ import { JobsBoard } from "./jobs-board";
 
 // Re-pull from Ceipal at most every 30 min (client accepts up to 30 min delay).
 export const revalidate = 1800;
+// Regeneration calls the Ceipal API; the default limit is tight enough that a
+// slow refetch aborts and the page keeps serving a stale snapshot.
+export const maxDuration = 60;
 
 export const metadata: Metadata = {
   title: "Open Roles",

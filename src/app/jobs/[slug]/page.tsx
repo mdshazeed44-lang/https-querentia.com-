@@ -18,6 +18,9 @@ type Params = { params: Promise<{ slug: string }> };
 // Refresh from Ceipal at most every 30 min; render new slugs on demand.
 export const revalidate = 1800;
 export const dynamicParams = true;
+// A newly-opened role is rendered on demand, which means fetching from Ceipal
+// inside the request; give it room so the page doesn't error out.
+export const maxDuration = 60;
 
 export async function generateStaticParams() {
   const jobs = await getPublicJobs();

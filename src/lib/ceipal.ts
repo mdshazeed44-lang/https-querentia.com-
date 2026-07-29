@@ -181,10 +181,24 @@ async function authedGet(
   throw new CeipalError("Ceipal request exhausted retries", 429);
 }
 
+function readResults(data: unknown): CeipalRawJob[] {
+  const results =
+    data && typeof data === "object" && "results" in data
+      ? (data as { results?: unknown }).results
+      : null;
+  return Array.isArray(results) ? (results as CeipalRawJob[]) : [];
+}
+
 /**
- * Fetch every career-portal, active job posting, following pagination.
- * Returns raw records; normalisation + the public-field allow-list happen in
- * jobs.ts. Node's fetch transparently gunzips Ceipal's gzipped responses.
+ * Fetch every career-portal, active job posting.
+ *
+ * Page 1 also reports `num_pages`, so the remaining pages are fetched in
+ * PARALLEL rather than walking `next` one request at a time. With ~5 pages that
+ * turns 5 sequential round-trips into 2, which matters because this runs on the
+ * apply path and during ISR regeneration (a slow refetch there leaves the jobs
+ * page serving a stale snapshot).
+ *
+ * Node's fetch transparently gunzips Ceipal's gzipped responses.
  */
 export async function fetchCareerPortalJobs(): Promise<CeipalRawJob[]> {
   const params = new URLSearchParams({
@@ -192,28 +206,27 @@ export async function fetchCareerPortalJobs(): Promise<CeipalRawJob[]> {
     postOnCareerportal: "1",
     isActive: "1",
   });
+  const base = `${LIST_URL}?${params.toString()}`;
 
-  const jobs: CeipalRawJob[] = [];
-  let url: string | null = `${LIST_URL}?${params.toString()}`;
-  let page = 0;
+  const first: unknown = await authedGet(base);
+  const jobs = readResults(first);
 
-  while (url && page < MAX_PAGES) {
-    const data: unknown = await authedGet(url);
-    const results =
-      data && typeof data === "object" && "results" in data
-        ? (data as { results?: unknown }).results
-        : null;
+  const totalPages =
+    first && typeof first === "object" && "num_pages" in first
+      ? Number((first as { num_pages?: unknown }).num_pages)
+      : 1;
+  const lastPage = Math.min(
+    Number.isFinite(totalPages) && totalPages > 0 ? totalPages : 1,
+    MAX_PAGES,
+  );
 
-    if (Array.isArray(results)) {
-      jobs.push(...(results as CeipalRawJob[]));
-    }
-
-    const next =
-      data && typeof data === "object" && "next" in data
-        ? (data as { next?: unknown }).next
-        : null;
-    url = typeof next === "string" && next ? next : null;
-    page++;
+  if (lastPage > 1) {
+    const rest = await Promise.all(
+      Array.from({ length: lastPage - 1 }, (_, i) =>
+        authedGet(`${base}&page=${i + 2}`),
+      ),
+    );
+    for (const data of rest) jobs.push(...readResults(data));
   }
 
   return jobs;
