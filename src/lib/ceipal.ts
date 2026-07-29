@@ -17,6 +17,9 @@ const AUTH_URL =
 const LIST_URL = "https://api.ceipal.com/v2/getJobPostingsList/";
 const APPLY_URL = "https://api.ceipal.com/v2/applyJobWithOutRegistration/";
 
+/** Job data is cached this long, matching the pages' `revalidate`. */
+export const JOBS_REVALIDATE_SECONDS = 1800;
+
 const REQUEST_TIMEOUT_MS = 20_000;
 const MAX_PAGES = 20; // safety cap: 20 × 50 = 1000 jobs
 const MAX_RETRIES = 3;
@@ -149,7 +152,11 @@ async function authedGet(
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      cache: "no-store",
+      // Cached for the same 30 minutes the pages revalidate on. `no-store` here
+      // forced /jobs to render dynamically, so every visitor waited on a live
+      // Ceipal round trip; with this the board is served pre-rendered and
+      // refreshes in the background instead.
+      next: { revalidate: JOBS_REVALIDATE_SECONDS },
     });
 
     // Token rejected → force one fresh auth and retry.
