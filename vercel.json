@@ -3,7 +3,7 @@
   "crons": [
     {
       "path": "/api/cron/social",
-      "schedule": "0 14,17 * * 1-5"
+      "schedule": "0 14 * * 1-5"
     }
   ]
 }
