@@ -48,7 +48,7 @@ function payLabel(j: Job) {
 export default async function HotJobsPage() {
   const allJobs = await getPublicJobs();
   // Genuinely the newest roles — jobs are already sorted newest-first.
-  const hot = allJobs.slice(0, 9);
+  const hot = allJobs.slice(0, 10);
 
   const listSchema = {
     "@context": "https://schema.org",

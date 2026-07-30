@@ -1,6 +1,6 @@
 import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
-import { Star, Briefcase, Bank, Shield } from "@/components/ui/icons";
+import { Star, Briefcase, Shield, Code, Users } from "@/components/ui/icons";
 import type { ComponentType, SVGProps } from "react";
 
 const playfair = Playfair_Display({
@@ -18,29 +18,37 @@ type Quote = {
   dark?: boolean;
 };
 
-// Strongest quote sits in the middle as the dark accent card — even sizes, one focal point.
+// One dark accent card (the quantifiable 48-hour shortlist) for visual rhythm
+// across the 2x2 grid.
 const QUOTES: Quote[] = [
   {
     quote:
-      "What set Querentia apart was the technical depth of their screening. They sent us people who could actually do the job, not just check the keyword box.",
+      "What set Querentia apart was the depth of their screening. We finally started seeing candidates who could actually build in our environment, not just match keywords. Their process saved our engineering team countless hours.",
     author: "Head of Engineering",
-    role: "Tier-1 Bank · Vancouver",
-    Icon: Bank,
+    role: "Global Technology Services Company · Vancouver",
+    Icon: Code,
   },
   {
     quote:
-      "Querentia turned around a 5-candidate shortlist in 36 hours for a Senior Cloud Architect mandate. The first hire is still with us at 18 months.",
+      "Querentia delivered a five-candidate shortlist for a Senior Cloud Architect role in under 48 hours. Every profile was vetted, relevant, and deployable. The first hire is still with us 18 months later and has become a key delivery lead.",
     author: "Practice Director",
-    role: "Tier-1 Consulting · Toronto",
+    role: "Tier-1 Consulting Company · Toronto",
     Icon: Briefcase,
     dark: true,
   },
   {
     quote:
-      "After three years of Boolean-search agencies, Querentia felt different. They knew our stack, our team, and what 'senior' actually means in our environment.",
-    author: "CIO",
-    role: "Insurance Group · Mississauga",
+      "After years of working with agencies that relied on Boolean searches, Querentia felt refreshingly different. They understood our tech stack, our culture, and what 'senior' actually means in a complex enterprise environment.",
+    author: "Chief Information Officer",
+    role: "Enterprise IT Organization · New York",
     Icon: Shield,
+  },
+  {
+    quote:
+      "Querentia's candidates consistently arrived prepared — technically strong, context-aware, and aligned to our delivery model. It's rare to find a partner who gets both the engineering depth and the business nuance right.",
+    author: "VP Technology",
+    role: "Large Professional Services Firm · Calgary",
+    Icon: Users,
   },
 ];
 
@@ -80,8 +88,8 @@ export function Testimonials() {
           </div>
         </Reveal>
 
-        {/* Even 3-card grid — equal height, dark accent in the middle */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-7">
+        {/* Even 2x2 grid — equal height, one dark accent card */}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-7">
           {QUOTES.map((q, i) => (
             <Reveal key={i} delay={i * 120}>
               <figure

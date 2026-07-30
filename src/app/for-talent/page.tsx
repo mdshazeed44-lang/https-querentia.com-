@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Playfair_Display } from "next/font/google";
 import { Reveal } from "@/components/ui/reveal";
 import { ClosingCTA } from "@/components/sections/closing-cta";
-import { GetInTouchButton } from "@/components/get-in-touch-button";
 import {
   ArrowRight,
   Target,
@@ -257,7 +256,13 @@ export default function ForTalentPage() {
             </Reveal>
             <Reveal delay={440}>
               <div className="mt-9 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
-                <GetInTouchButton className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white shadow-[0_16px_40px_-16px_rgba(255,107,43,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-700" />
+                <Link
+                  href="/hot-jobs"
+                  className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white shadow-[0_16px_40px_-16px_rgba(255,107,43,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-700"
+                >
+                  Hot Jobs
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
                 <Link
                   href="/jobs"
                   className="inline-flex items-center gap-2.5 rounded-lg border border-white/25 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors hover:border-white/60 hover:bg-white/5"
@@ -307,7 +312,13 @@ export default function ForTalentPage() {
                   commitments we hold to every professional we represent.
                 </p>
                 <div className="mt-8 flex items-center gap-4">
-                  <GetInTouchButton className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.25em] text-white shadow-[0_16px_40px_-16px_rgba(255,107,43,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-700" />
+                  <Link
+                    href="/hot-jobs"
+                    className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-7 py-3.5 text-[12px] font-medium uppercase tracking-[0.25em] text-white shadow-[0_16px_40px_-16px_rgba(255,107,43,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-700"
+                  >
+                    Hot Jobs
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
                   <span
                     className={`${playfair.className} text-sm text-ink-faint`}
                   >

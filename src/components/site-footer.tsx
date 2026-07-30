@@ -16,10 +16,9 @@ const COLUMNS = [
   {
     title: "For Talent",
     links: [
-      { label: "Open Mandates", href: "/jobs" },
-      { label: "Why Querentia", href: "/for-talent" },
-      { label: "Submit Your CV", href: "/contact" },
+      { label: "Why Querentia", href: "/about" },
       { label: "Hot Jobs", href: "/hot-jobs" },
+      { label: "View All Jobs", href: "/jobs" },
     ],
   },
   {
@@ -28,7 +27,6 @@ const COLUMNS = [
       { label: "How We Hire", href: "/for-companies" },
       { label: "Industries", href: "/industries" },
       { label: "Our Expertise", href: "/for-companies#expertise" },
-      { label: "Get a Shortlist", href: "/contact" },
     ],
   },
   {
@@ -194,7 +192,8 @@ export function SiteFooter() {
               © {year} {site.legalName}. All rights reserved.
             </p>
             <p className="text-[12px] text-on-deep-muted">
-              Querentia® is a registered trademark.
+              Querentia® is a registered trademark in Canada and an
+              applied-for trademark in the United States.
             </p>
           </div>
           <div className="flex items-center gap-2.5">

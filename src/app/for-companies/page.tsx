@@ -402,7 +402,10 @@ export default function ForCompaniesPage() {
         </section>
 
         {/* ---------- CLOSING CTA (shared) ---------- */}
-        <ClosingCTA subline="Great teams aren't hired — they're built, on trust. Let's build yours." />
+        <ClosingCTA
+          subline="Great teams aren't hired — they're built, on trust. Let's build yours."
+          cta="getInTouch"
+        />
       </div>
     </>
   );
