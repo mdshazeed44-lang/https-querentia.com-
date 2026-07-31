@@ -52,7 +52,7 @@ const contactSchema = {
       addressRegion: site.region,
       addressCountry: site.country,
     },
-    sameAs: [site.linkedin, site.facebook, site.instagram, site.twitter],
+    sameAs: [site.linkedin, site.facebook, site.instagram],
     contactPoint: [
       {
         "@type": "ContactPoint",

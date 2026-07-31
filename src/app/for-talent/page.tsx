@@ -495,7 +495,10 @@ export default function ForTalentPage() {
       </section>
 
       {/* 5. Closing CTA (shared) */}
-      <ClosingCTA subline="Great careers aren't found by chance — they're built on trust. Let's find where you thrive." />
+      <ClosingCTA
+        subline="Great careers aren't found by chance — they're built on trust. Let's find where you thrive."
+        cta="hotJobs"
+      />
     </div>
   );
 }

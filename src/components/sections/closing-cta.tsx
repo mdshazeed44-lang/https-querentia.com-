@@ -14,15 +14,16 @@ const playfair = Playfair_Display({
 /**
  * Shared closing "Talent. Trust. Thrive." CTA (light / Arctic White).
  * Used on About, For Companies and For Talent with a per-page subline.
- * Default: Hire Talent -> /for-companies, View Roles -> /jobs. Pass
- * `cta="getInTouch"` for a single centred "Get in Touch" button (For Companies).
+ * Default: Hire Talent -> /for-companies, View Roles -> /jobs.
+ * `cta="getInTouch"` — single centred "Get in Touch" button (For Companies).
+ * `cta="hotJobs"`   — Hot Jobs -> /hot-jobs, View Roles -> /jobs (For Talent).
  */
 export function ClosingCTA({
   subline,
   cta = "default",
 }: {
   subline: string;
-  cta?: "default" | "getInTouch";
+  cta?: "default" | "getInTouch" | "hotJobs";
 }) {
   return (
     <section className="relative isolate overflow-hidden border-t border-border bg-page-2 py-16 text-ink md:py-20">
@@ -55,6 +56,22 @@ export function ClosingCTA({
           <div className="mt-11 flex flex-wrap items-center justify-center gap-4">
             {cta === "getInTouch" ? (
               <GetInTouchButton className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700" />
+            ) : cta === "hotJobs" ? (
+              <>
+                <Link
+                  href="/hot-jobs"
+                  className="group inline-flex items-center gap-2.5 rounded-lg bg-green px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-green-700"
+                >
+                  Hot Jobs
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href="/jobs"
+                  className="inline-flex items-center gap-2.5 rounded-lg border border-ink/25 px-8 py-4 text-[12px] font-medium uppercase tracking-[0.25em] text-ink transition-colors duration-300 hover:border-ink/60 hover:bg-ink/5"
+                >
+                  View Roles
+                </Link>
+              </>
             ) : (
               <>
                 <Link

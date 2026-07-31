@@ -96,7 +96,7 @@ const structuredData = {
       foundingDate: site.founded,
       email: site.email,
       telephone: site.phone,
-      sameAs: [site.linkedin, site.facebook, site.instagram, site.twitter],
+      sameAs: [site.linkedin, site.facebook, site.instagram],
       address: {
         "@type": "PostalAddress",
         addressLocality: site.locality,

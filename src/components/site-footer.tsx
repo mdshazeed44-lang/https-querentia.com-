@@ -9,7 +9,6 @@ import {
   Linkedin,
   Facebook,
   Instagram,
-  Twitter,
 } from "@/components/ui/icons";
 
 const COLUMNS = [
@@ -42,7 +41,6 @@ const COLUMNS = [
 
 const SOCIALS = [
   { Icon: Linkedin, href: site.linkedin, label: "LinkedIn" },
-  { Icon: Twitter, href: site.twitter, label: "Twitter / X" },
   { Icon: Instagram, href: site.instagram, label: "Instagram" },
   { Icon: Facebook, href: site.facebook, label: "Facebook" },
 ];

@@ -18,7 +18,6 @@ export const site = {
   linkedin: "https://www.linkedin.com/company/querentia",
   facebook: "https://www.facebook.com/querentia",
   instagram: "https://www.instagram.com/querentia",
-  twitter: "https://twitter.com/querentia",
   founded: "2021",
 } as const;
 
